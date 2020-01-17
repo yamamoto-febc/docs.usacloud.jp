@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VPCルータ - Terraform for さくらのクラウド(v2)</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../css/extra.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "VPCルータ";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-63739336-5', 'auto');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Terraform for さくらのクラウド(v2)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">ホーム</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>ドキュメント</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>アップグレードガイド</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../guides/upgrade_to_v2.0.0/">v2.0での変更点</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>設定リファレンス</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../provider/">プロバイダ設定</a>
+        
+    </li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>プロバイダデータソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/zone/">ゾーン</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>コンピュート</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>データソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/private_host/">専有ホスト</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/server/">サーバ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/server_vnc_info/">VNC接続情報</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>リソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../private_host/">専有ホスト</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../server/">サーバ</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>ストレージ</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>データソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/archive/">アーカイブ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/cdrom/">CD-ROM</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/disk/">ディスク</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>リソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../archive/">アーカイブ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../cdrom/">CD-ROM</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../disk/">ディスク</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>ネットワーク</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>データソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/bridge/">ブリッジ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/internet/">スイッチ+ルータ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/packet_filter/">パケットフィルタ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/subnet/">サブネット</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/switch/">スイッチ</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>リソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../bridge/">ブリッジ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../internet/">スイッチ+ルータ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../ipv4_ptr/">IPv4逆引き</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../packet_filter/">パケットフィルタ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../packet_filter_rules/">パケットフィルタ(ルール)</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../subnet/">サブネット</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../switch/">スイッチ</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>アプライアンス</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>データソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/database/">データベース</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/load_balancer/">ロードバランサ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/nfs/">NFS</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/vpc_router/">VPCルータ</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>リソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../auto_backup/">自動バックアップ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../database/">データベース</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../database_read_replica/">データベース(リードレプリカ)</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../load_balancer/">ロードバランサ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../nfs/">NFS</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">VPCルータ</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#manages-a-sakuracloud-vpc-router">Manages a SakuraCloud VPC Router.</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#sakuracloud_vpc_router">sakuracloud_vpc_router</a></li>
+                
+                    <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
+                
+                    <li><a class="toctree-l4" href="#argument-reference">Argument Reference</a></li>
+                
+                    <li><a class="toctree-l4" href="#attribute-reference">Attribute Reference</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>グローバル</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>データソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/dns/">DNS</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/gslb/">GSLB</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/proxylb/">エンハンスドロードバランサ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/simple_monitor/">シンプル監視</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>リソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../dns/">DNS</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../dns_record/">DNSレコード</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../gslb/">GSLB</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../proxylb/">エンハンスドロードバランサ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../proxylb_acme/">エンハンスドロードバランサ(ACME設定)</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../simple_monitor/">シンプル監視</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>セキュアモバイル</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>リソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../mobile_gateway/">モバイルゲートウェイ</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../sim/">SIM</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>Lab</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>データソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/container_registry/">コンテナレジストリ</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>リソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../container_registry/">コンテナレジストリ</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>その他</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>データソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/icon/">アイコン</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/note/">スタートアップスクリプト</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/ssh_key/">SSH公開鍵</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>リソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../icon/">アイコン</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../note/">スタートアップスクリプト</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../ssh_key/">SSH公開鍵</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../ssh_key_gen/">SSH公開鍵生成</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>オブジェクトストレージ</span></li>
+
+        
+            
+    <ul class="subnav">
+    <li><span>データソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../d/bucket_object/">バケットオブジェクト</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+            
+    <ul class="subnav">
+    <li><span>リソース</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../bucket_object/">バケットオブジェクト</a>
+        
+    </li>
+
+        
+    </ul>
+
+        
+    </ul>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Terraform for さくらのクラウド(v2)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>リソース &raquo;</li>
+        
+      
+    
+    <li>VPCルータ</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="manages-a-sakuracloud-vpc-router">Manages a SakuraCloud VPC Router.</h2>
+<h1 id="sakuracloud_vpc_router">sakuracloud_vpc_router</h1>
+<p>Manages a SakuraCloud VPC Router.</p>
+<h2 id="example-usage">Example Usage</h2>
+<pre><code class="hcl">resource &quot;sakuracloud_vpc_router&quot; &quot;standard&quot; {
+  name                = &quot;standard&quot;
+  description         = &quot;description&quot;
+  tags                = [&quot;tag1&quot;, &quot;tag2&quot;]
+  internet_connection = true
+}
+
+resource &quot;sakuracloud_vpc_router&quot; &quot;premium&quot; {
+  name        = &quot;premium&quot;
+  description = &quot;description&quot;
+  tags        = [&quot;tag1&quot;, &quot;tag2&quot;]
+  plan        = &quot;premium&quot;
+
+  internet_connection = true
+
+  switch_id    = sakuracloud_internet.foobar.switch_id
+  vip          = sakuracloud_internet.foobar.ip_addresses[0]
+  ip_addresses = [sakuracloud_internet.foobar.ip_addresses[1], sakuracloud_internet.foobar.ip_addresses[2]]
+  aliases      = [sakuracloud_internet.foobar.ip_addresses[3]]
+  vrid         = 1
+
+  network_interface {
+    index        = 1
+    switch_id    = sakuracloud_switch.foobar.id
+    vip          = &quot;192.168.11.1&quot;
+    ip_addresses = [&quot;192.168.11.2&quot;, &quot;192.168.11.3&quot;]
+    netmask      = 24
+  }
+
+  dhcp_server {
+    interface_index = 1
+
+    range_start = &quot;192.168.11.11&quot;
+    range_stop  = &quot;192.168.11.20&quot;
+    dns_servers = [&quot;8.8.8.8&quot;, &quot;8.8.4.4&quot;]
+  }
+
+  dhcp_static_mapping {
+    ip_address  = &quot;192.168.11.10&quot;
+    mac_address = &quot;aa:bb:cc:aa:bb:cc&quot;
+  }
+
+  firewall {
+    interface_index = 1
+
+    direction = &quot;send&quot;
+    expression {
+      protocol            = &quot;tcp&quot;
+      source_network      = &quot;&quot;
+      source_port         = &quot;80&quot;
+      destination_network = &quot;&quot;
+      destination_port    = &quot;&quot;
+      allow               = true
+      logging             = true
+      description         = &quot;desc&quot;
+    }
+
+    expression {
+      protocol            = &quot;ip&quot;
+      source_network      = &quot;&quot;
+      source_port         = &quot;&quot;
+      destination_network = &quot;&quot;
+      destination_port    = &quot;&quot;
+      allow               = false
+      logging             = true
+      description         = &quot;desc&quot;
+    }
+  }
+
+  l2tp {
+    pre_shared_secret = &quot;example&quot;
+    range_start       = &quot;192.168.11.21&quot;
+    range_stop        = &quot;192.168.11.30&quot;
+  }
+
+  port_forwarding {
+    protocol     = &quot;udp&quot;
+    public_port  = 10022
+    private_ip   = &quot;192.168.11.11&quot;
+    private_port = 22
+    description  = &quot;desc&quot;
+  }
+
+  pptp {
+    range_start = &quot;192.168.11.31&quot;
+    range_stop  = &quot;192.168.11.40&quot;
+  }
+
+  site_to_site_vpn {
+    peer              = &quot;192.0.2.1&quot;
+    remote_id         = &quot;192.0.2.1&quot;
+    pre_shared_secret = &quot;example&quot;
+    routes            = [&quot;192.0.2.0/8&quot;]
+    local_prefix      = [&quot;192.168.21.0/24&quot;]
+  }
+
+  static_nat {
+    public_ip   = sakuracloud_internet.foobar.ip_addresses[3]
+    private_ip  = &quot;192.168.11.12&quot;
+    description = &quot;desc&quot;
+  }
+
+  static_route {
+    prefix   = &quot;172.16.0.0/16&quot;
+    next_hop = &quot;192.168.11.99&quot;
+  }
+
+  user {
+    name     = &quot;username&quot;
+    password = &quot;password&quot;
+  }
+}
+
+resource &quot;sakuracloud_internet&quot; &quot;foobar&quot; {
+  name = &quot;foobar&quot;
+}
+
+resource sakuracloud_switch &quot;foobar&quot; {
+  name = &quot;foobar&quot;
+}
+</code></pre>
+
+<h2 id="argument-reference">Argument Reference</h2>
+<ul>
+<li><code>name</code> - (Required) The name of the VPCRouter. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
+<li><code>internet_connection</code> - (Optional) The flag to enable connecting to the Internet from the VPC Router. Default:<code>true</code>.</li>
+<li><code>plan</code> - (Optional) The plan name of the VPCRouter. This must be one of [<code>standard</code>/<code>premium</code>/<code>highspec</code>/<code>highspec4000</code>]. Changing this forces a new resource to be created. Default:<code>standard</code>.</li>
+<li><code>syslog_host</code> - (Optional) The ip address of the syslog host to which the VPC Router sends logs.</li>
+<li><code>vrid</code> - (Optional) The Virtual Router Identifier. This is only required when <code>plan</code> is not <code>standard</code>. Changing this forces a new resource to be created.</li>
+</ul>
+<h4 id="network">Network</h4>
+<ul>
+<li><code>aliases</code> - (Optional) A list of ip alias to assign to the VPC Router. This can only be specified if <code>plan</code> is not <code>standard</code>.</li>
+<li><code>ip_addresses</code> - (Optional) The list of the IP address to assign to the VPC Router. This is required only one value when <code>plan</code> is <code>standard</code>, two values otherwise. Changing this forces a new resource to be created.</li>
+<li><code>network_interface</code> - (Optional) A list of additional network interface setting. This doesn't include primary network interface setting.</li>
+<li><code>switch_id</code> - (Optional) The id of the switch to connect. This is only required when when <code>plan</code> is not <code>standard</code>%!(EXTRA string=VPCRouter). Changing this forces a new resource to be created.</li>
+<li><code>vip</code> - (Optional) The virtual IP address of the VPC Router. This is only required when <code>plan</code> is not <code>standard</code>. Changing this forces a new resource to be created.</li>
+</ul>
+<h4 id="static-route">Static Route</h4>
+<ul>
+<li><code>static_route</code> - (Optional) One or more <code>static_route</code> blocks as defined below.</li>
+</ul>
+<h4 id="firewall">Firewall</h4>
+<ul>
+<li><code>firewall</code> - (Optional) One or more <code>firewall</code> blocks as defined below.</li>
+</ul>
+<h4 id="site-to-site-vpn">Site to Site VPN</h4>
+<ul>
+<li><code>site_to_site_vpn</code> - (Optional) One or more <code>site_to_site_vpn</code> blocks as defined below.</li>
+</ul>
+<h4 id="dhcpnatforwarding">DHCP/NAT/Forwarding</h4>
+<ul>
+<li><code>dhcp_server</code> - (Optional) One or more <code>dhcp_server</code> blocks as defined below.</li>
+<li><code>dhcp_static_mapping</code> - (Optional) One or more <code>dhcp_static_mapping</code> blocks as defined below.</li>
+<li><code>port_forwarding</code> - (Optional) One or more <code>port_forwarding</code> blocks as defined below.</li>
+<li><code>static_nat</code> - (Optional) One or more <code>static_nat</code> blocks as defined below.</li>
+</ul>
+<h4 id="remote-access">Remote Access</h4>
+<ul>
+<li><code>l2tp</code> - (Optional) A <code>l2tp</code> block as defined below.</li>
+<li><code>pptp</code> - (Optional) A <code>pptp</code> block as defined below.</li>
+<li><code>user</code> - (Optional) One or more <code>user</code> blocks as defined below.</li>
+</ul>
+<h4 id="common-arguments">Common Arguments</h4>
+<ul>
+<li><code>description</code> - (Optional) The description of the VPCRouter. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
+<li><code>icon_id</code> - (Optional) The icon id to attach to the VPCRouter.</li>
+<li><code>tags</code> - (Optional) Any tags to assign to the VPCRouter.</li>
+<li><code>zone</code> - (Optional) The name of zone that the VPCRouter will be created. (e.g. <code>is1a</code>, <code>tk1a</code>). Changing this forces a new resource to be created.</li>
+</ul>
+<hr />
+<p>A <code>dhcp_server</code> block supports the following:</p>
+<ul>
+<li><code>interface_index</code> - (Required) The index of the network interface on which to enable the DHCP service. This must be in the range [<code>1</code>-<code>7</code>].</li>
+<li><code>range_start</code> - (Required) The start value of IP address range to assign to DHCP client.</li>
+<li><code>range_stop</code> - (Required) The end value of IP address range to assign to DHCP client.</li>
+<li><code>dns_servers</code> - (Optional) A list of IP address of DNS server to assign to DHCP client.</li>
+</ul>
+<hr />
+<p>A <code>dhcp_static_mapping</code> block supports the following:</p>
+<ul>
+<li><code>ip_address</code> - (Required) The static IP address to assign to DHCP client.</li>
+<li><code>mac_address</code> - (Required) The source MAC address of static mapping.</li>
+</ul>
+<hr />
+<p>A <code>firewall</code> block supports the following:</p>
+<ul>
+<li><code>direction</code> - (Required) The direction to apply the firewall. This must be one of [<code>send</code>/<code>receive</code>].</li>
+<li><code>expression</code> - (Required) One or more <code>expression</code> blocks as defined below.</li>
+<li><code>interface_index</code> - (Optional) The index of the network interface on which to enable filtering. This must be in the range [<code>0</code>-<code>7</code>].</li>
+</ul>
+<hr />
+<p>A <code>expression</code> block supports the following:</p>
+<ul>
+<li><code>protocol</code> - (Required) The protocol used for filtering. This must be one of [<code>tcp</code>/<code>udp</code>/<code>icmp</code>/<code>ip</code>].</li>
+<li><code>allow</code> - (Required) The flag to allow the packet through the filter.</li>
+<li><code>destination_network</code> - (Optional) A destination IP address or CIDR block used for filtering (e.g. <code>192.0.2.1</code>, <code>192.0.2.0/24</code>).</li>
+<li><code>destination_port</code> - (Optional) A destination port number or port range used for filtering (e.g. <code>1024</code>, <code>1024-2048</code>). This is only used when <code>protocol</code> is <code>tcp</code> or <code>udp</code>.</li>
+<li><code>source_network</code> - (Optional) A source IP address or CIDR block used for filtering (e.g. <code>192.0.2.1</code>, <code>192.0.2.0/24</code>).</li>
+<li><code>source_port</code> - (Optional) A source port number or port range used for filtering (e.g. <code>1024</code>, <code>1024-2048</code>). This is only used when <code>protocol</code> is <code>tcp</code> or <code>udp</code>.</li>
+<li><code>logging</code> - (Optional) The flag to enable packet logging when matching the expression.</li>
+<li><code>description</code> - (Optional) The description of the expression. The length of this value must be in the range [<code>0</code>-<code>512</code>].</li>
+</ul>
+<hr />
+<p>A <code>l2tp</code> block supports the following:</p>
+<ul>
+<li><code>pre_shared_secret</code> - (Required) The pre shared secret for L2TP/IPsec.</li>
+<li><code>range_start</code> - (Required) The start value of IP address range to assign to L2TP/IPsec client.</li>
+<li><code>range_stop</code> - (Required) The end value of IP address range to assign to L2TP/IPsec client.</li>
+</ul>
+<hr />
+<p>A <code>network_interface</code> block supports the following:</p>
+<ul>
+<li><code>index</code> - (Required) The index of the network interface. This must be in the range [<code>1</code>-<code>7</code>].</li>
+<li><code>ip_addresses</code> - (Required) A list of ip address to assign to the network interface. This is required only one value when <code>plan</code> is <code>standard</code>, two values otherwise.</li>
+<li><code>netmask</code> - (Required) The bit length of the subnet to assign to the network interface.</li>
+<li><code>switch_id</code> - (Required) The id of the connected switch.</li>
+<li><code>vip</code> - (Optional) The virtual IP address to assign to the network interface. This is only required when <code>plan</code> is not <code>standard</code>.</li>
+</ul>
+<hr />
+<p>A <code>port_forwarding</code> block supports the following:</p>
+<ul>
+<li><code>private_ip</code> - (Required) The destination ip address of the port forwarding.</li>
+<li><code>private_port</code> - (Required) The destination port number of the port forwarding. This will be a port number on a private network.</li>
+<li><code>protocol</code> - (Required) The protocol used for port forwarding. This must be one of [<code>tcp</code>/<code>udp</code>].</li>
+<li><code>public_port</code> - (Required) The source port number of the port forwarding. This must be a port number on a public network.</li>
+<li><code>description</code> - (Optional) The description of the port forwarding. The length of this value must be in the range [<code>0</code>-<code>512</code>].</li>
+</ul>
+<hr />
+<p>A <code>pptp</code> block supports the following:</p>
+<ul>
+<li><code>range_start</code> - (Required) The start value of IP address range to assign to PPTP client.</li>
+<li><code>range_stop</code> - (Required) The end value of IP address range to assign to PPTP client.</li>
+</ul>
+<hr />
+<p>A <code>site_to_site_vpn</code> block supports the following:</p>
+<ul>
+<li><code>local_prefix</code> - (Required) A list of CIDR block of the network under the VPC Router.</li>
+<li><code>peer</code> - (Required) The IP address of the opposing appliance connected to the VPC Router.</li>
+<li><code>pre_shared_secret</code> - (Required) The pre shared secret for the VPN. The length of this value must be in the range [<code>0</code>-<code>40</code>].</li>
+<li><code>remote_id</code> - (Required) The id of the opposing appliance connected to the VPC Router. This is typically set same as value of <code>peer</code>.</li>
+<li><code>routes</code> - (Required) A list of CIDR block of VPN connected networks.</li>
+</ul>
+<hr />
+<p>A <code>static_nat</code> block supports the following:</p>
+<ul>
+<li><code>private_ip</code> - (Required) The private IP address used for the static NAT.</li>
+<li><code>public_ip</code> - (Required) The public IP address used for the static NAT.</li>
+<li><code>description</code> - (Optional) The description of the static nat. The length of this value must be in the range [<code>0</code>-<code>512</code>].</li>
+</ul>
+<hr />
+<p>A <code>static_route</code> block supports the following:</p>
+<ul>
+<li><code>next_hop</code> - (Required) The IP address of the next hop.</li>
+<li><code>prefix</code> - (Required) The CIDR block of destination.</li>
+</ul>
+<hr />
+<p>A <code>user</code> block supports the following:</p>
+<ul>
+<li><code>name</code> - (Required) The user name used to authenticate remote access.</li>
+<li><code>password</code> - (Required) The password used to authenticate remote access.</li>
+</ul>
+<h3 id="timeouts">Timeouts</h3>
+<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<ul>
+<li><code>create</code> - (Defaults to 60 minutes) Used when creating the VPC Router</li>
+<li><code>update</code> - (Defaults to 60 minutes) Used when updating the VPC Router</li>
+<li><code>delete</code> - (Defaults to 20 minutes) Used when deleting VPC Router</li>
+</ul>
+<h2 id="attribute-reference">Attribute Reference</h2>
+<ul>
+<li><code>id</code> - The id of the VPC Router.</li>
+<li><code>public_ip</code> - The public ip address of the VPC Router.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../d/dns/" class="btn btn-neutral float-right" title="DNS"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../nfs/" class="btn btn-neutral" title="NFS"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright (C) 2016-2020 terraform-provider-sakuracloud authors</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../nfs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../d/dns/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

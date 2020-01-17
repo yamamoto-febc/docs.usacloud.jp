@@ -2,7 +2,7 @@ site_name: Sacloud ドキュメント
 site_url: https://docs.usacloud.jp
 site_description: Sacloudの提供するOSSツール群のドキュメント
 site_author: '@yamamoto-febc'
-copyright: Copyright (C) 2016-2019 sacloude authors
+copyright: Copyright (C) 2016-2020 sacloude authors
 google_analytics: ['UA-63739336-5','auto']
 theme: readthedocs
 extra_css:
@@ -10,4 +10,5 @@ extra_css:
 nav:
   - 目次: index.md
   - Terraform: https://docs.usacloud.jp/terraform
+  - Terraform(v1): https://docs.usacloud.jp/terraform-v1
   - Usacloud: https://sacloud.github.io/usacloud

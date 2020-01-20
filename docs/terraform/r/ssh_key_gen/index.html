@@ -672,10 +672,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-ssh-key-gen">Manages a SakuraCloud SSH Key Gen.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_ssh_key_gen">sakuracloud_ssh_key_gen</a></li>
+                <li class="toctree-l3"><a href="#ssh-sakuracloud_ssh_key_gen">SSH公開鍵(生成): sakuracloud_ssh_key_gen</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-ssh-key-gen">Manages a SakuraCloud SSH Key Gen.</h2>
-<h1 id="sakuracloud_ssh_key_gen">sakuracloud_ssh_key_gen</h1>
-<p>Manages a SakuraCloud SSH Key Gen.</p>
+                <h1 id="ssh-sakuracloud_ssh_key_gen">SSH公開鍵(生成): sakuracloud_ssh_key_gen</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_ssh_key_gen&quot; &quot;foobar&quot; {
   name = &quot;foobar&quot;
@@ -785,26 +780,25 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the SSHKey. The length of this value must be in the range [<code>1</code>-<code>64</code>]. Changing this forces a new resource to be created.</li>
-<li><code>pass_phrase</code> - (Optional) The pass phrase of the private key. The length of this value must be in the range [<code>8</code>-<code>64</code>]. Changing this forces a new resource to be created.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定 / この値を変更するとリソースの再作成が行われる</li>
+<li><code>pass_phrase</code> - (Optional) 秘密鍵のパスフレーズ / <code>8</code>-<code>64</code>文字で指定 / この値を変更するとリソースの再作成が行われる</li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>description</code> - (Optional) The description of the SSHKey. The length of this value must be in the range [<code>1</code>-<code>512</code>]. Changing this forces a new resource to be created.</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 5 minutes) Used when creating the SSH Key Gen</li>
-<li><code>update</code> - (Defaults to 5 minutes) Used when updating the SSH Key Gen</li>
-<li><code>delete</code> - (Defaults to 5 minutes) Used when deleting SSH Key Gen</li>
+<li><code>create</code> - 作成 (デフォルト: 5分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 5分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the SSH Key Gen.</li>
-<li><code>fingerprint</code> - The fingerprint of the public key.</li>
-<li><code>private_key</code> - The body of the private key.</li>
-<li><code>public_key</code> - The body of the public key.</li>
+<li><code>id</code> - ID</li>
+<li><code>fingerprint</code> - 公開鍵のフィンガープリント</li>
+<li><code>private_key</code> - 秘密鍵</li>
+<li><code>public_key</code> - 公開鍵</li>
 </ul>
               
             </div>

@@ -113,10 +113,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#get-information-about-an-existing-zone">Get information about an existing Zone.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#data-source-sakuracloud_zone">Data Source: sakuracloud_zone</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_zone">ゾーン情報: sakuracloud_zone</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,12 +769,13 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="get-information-about-an-existing-zone">Get information about an existing Zone.</h2>
-<h1 id="data-source-sakuracloud_zone">Data Source: sakuracloud_zone</h1>
-<p>Get information about an existing Zone.</p>
+                <h1 id="sakuracloud_zone">ゾーン情報: sakuracloud_zone</h1>
+<p>ゾーン情報を参照するためのデータソース</p>
 <h2 id="example-usage">Example Usage</h2>
-<pre><code class="hcl">data &quot;sakuracloud_zone&quot; &quot;current&quot; {}
+<pre><code class="hcl"># カレントゾーンの情報を参照
+data &quot;sakuracloud_zone&quot; &quot;current&quot; {}
 
+# 指定のゾーンの情報を参照
 data &quot;sakuracloud_zone&quot; &quot;is1a&quot; {
   name = &quot;is1a&quot;
 }
@@ -785,16 +783,16 @@ data &quot;sakuracloud_zone&quot; &quot;is1a&quot; {
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Optional) The name of the zone (e.g. <code>is1a</code>,<code>tk1a</code>).</li>
+<li><code>name</code> - (Optional) 対象ゾーンの名前 (例: <code>is1a</code>, <code>tk1a</code>)  </li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Zone.</li>
-<li><code>description</code> - The description of the zone.</li>
-<li><code>dns_servers</code> - A list of IP address of DNS server in the zone.</li>
-<li><code>region_id</code> - The id of the region that the zone belongs.</li>
-<li><code>region_name</code> - The name of the region that the zone belongs.</li>
-<li><code>zone_id</code> - The id of the zone.</li>
+<li><code>id</code> - ID</li>
+<li><code>description</code> - 説明</li>
+<li><code>dns_servers</code> - DNSサーバのID</li>
+<li><code>region_id</code> - ゾーンが属するリージョンのID</li>
+<li><code>region_name</code> - ゾーンが属するリージョンの名前</li>
+<li><code>zone_id</code> - ゾーンのID(さくらのクラウド上でのリソースID)</li>
 </ul>
               
             </div>

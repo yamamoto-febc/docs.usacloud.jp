@@ -373,10 +373,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#get-information-about-an-existing-load-balancer">Get information about an existing Load Balancer.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#data-source-sakuracloud_load_balancer">Data Source: sakuracloud_load_balancer</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_load_balancer">ロードバランサ: sakuracloud_load_balancer</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,8 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="get-information-about-an-existing-load-balancer">Get information about an existing Load Balancer.</h2>
-<h1 id="data-source-sakuracloud_load_balancer">Data Source: sakuracloud_load_balancer</h1>
-<p>Get information about an existing Load Balancer.</p>
+                <h1 id="sakuracloud_load_balancer">ロードバランサ: sakuracloud_load_balancer</h1>
+<p>ロードバランサの情報を参照するためのデータソース</p>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">data &quot;sakuracloud_load_balancer&quot; &quot;foobar&quot; {
   filter {
@@ -785,57 +781,57 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>filter</code> - (Optional) One or more values used for filtering, as defined below.</li>
-<li><code>zone</code> - (Optional) The name of zone that the LoadBalancer is in (e.g. <code>is1a</code>, <code>tk1a</code>).</li>
+<li><code>filter</code> - (Optional) 参照対象をフィルタリングするための条件。詳細は<a href="#filter">filterブロック</a>を参照 </li>
+<li><code>zone</code> - (Optional) 対象ゾーンの名前 (例: <code>is1a</code>, <code>tk1a</code>)  </li>
 </ul>
 <hr />
-<p>A <code>filter</code> block supports the following:</p>
+<h4 id="filter">filterブロック</h4>
 <ul>
-<li><code>condition</code> - (Optional) One or more name/values pairs used for filtering. There are several valid keys, for a full reference, check out finding section in the <a href="https://developer.sakura.ad.jp/cloud/api/1.1/">SakuraCloud API reference</a>.</li>
-<li><code>id</code> - (Optional) The resource id on SakuraCloud used for filtering.</li>
-<li><code>names</code> - (Optional) The resource names on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.</li>
-<li><code>tags</code> - (Optional) The resource tags on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.</li>
+<li><code>condition</code> - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は<a href="#condition">conditionブロック</a>を参照  </li>
+<li><code>id</code> - (Optional) 対象リソースのID </li>
+<li><code>names</code> - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  </li>
+<li><code>tags</code> - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる</li>
 </ul>
 <hr />
-<p>A <code>condition</code> block supports the following:</p>
+<h4 id="condition">conditionブロック</h4>
 <ul>
-<li><code>name</code> - (Required) The name of the target field. This value is case-sensitive.</li>
-<li><code>values</code> - (Required) The values of the condition. If multiple values ​​are specified, they combined as AND condition.</li>
+<li><code>name</code> - (Required) 対象フィールド名。大文字/小文字を区別する  </li>
+<li><code>values</code> - (Required) 対象フィールドの値。複数指定した場合はAND条件となる</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Load Balancer.</li>
-<li><code>description</code> - The description of the LoadBalancer.</li>
-<li><code>gateway</code> - The IP address of the gateway used by LoadBalancer.</li>
-<li><code>high_availability</code> - The flag to enable HA mode.</li>
-<li><code>icon_id</code> - The icon id attached to the LoadBalancer.</li>
-<li><code>ip_addresses</code> - The list of IP address assigned to the LoadBalancer.</li>
-<li><code>name</code> - The name of the LoadBalancer.</li>
-<li><code>netmask</code> - The bit length of the subnet assigned to the LoadBalancer.</li>
-<li><code>plan</code> - The plan name of the LoadBalancer. This will be one of [<code>standard</code>/<code>highspec</code>].</li>
-<li><code>switch_id</code> - The id of the switch connected from the LoadBalancer.</li>
-<li><code>tags</code> - Any tags assigned to the LoadBalancer.</li>
-<li><code>vip</code> - A list of <code>vip</code> blocks as defined below.</li>
-<li><code>vrid</code> - The Virtual Router Identifier. This is only used when <code>high_availability</code> is set <code>true</code>.</li>
+<li><code>id</code> - ID</li>
+<li><code>description</code> - 説明</li>
+<li><code>gateway</code> - ゲートウェイIPアドレス</li>
+<li><code>high_availability</code> - 冗長化構成の有効フラグ</li>
+<li><code>icon_id</code> - アイコンID</li>
+<li><code>ip_addresses</code> - IPアドレスのリスト</li>
+<li><code>name</code> - 名前</li>
+<li><code>netmask</code> - サブネットマスク長</li>
+<li><code>plan</code> - プラン。次のいずれかとなる [<code>standard</code>/<code>highspec</code>]</li>
+<li><code>switch_id</code> - スイッチID</li>
+<li><code>tags</code> - タグ</li>
+<li><code>vip</code> - VIPのリスト。詳細は<a href="#vip">vipブロック</a>を参照</li>
+<li><code>vrid</code> - VRID</li>
 </ul>
 <hr />
-<p>A <code>vip</code> block exports the following:</p>
+<h4 id="vip">vipブロック</h4>
 <ul>
-<li><code>delay_loop</code> - The interval in seconds between checks.</li>
-<li><code>description</code> - The description of the VIP.</li>
-<li><code>port</code> - The target port number for load-balancing.</li>
-<li><code>server</code> - A list of <code>server</code> blocks as defined below.</li>
-<li><code>sorry_server</code> - The IP address of the SorryServer. This will be used when all servers under this VIP are down.</li>
-<li><code>vip</code> - The virtual IP address.</li>
+<li><code>delay_loop</code> - チェック間隔秒数</li>
+<li><code>description</code> - 説明</li>
+<li><code>port</code> - ポート番号</li>
+<li><code>server</code> - 実サーバのリスト。詳細は<a href="#server">serverブロック</a>を参照</li>
+<li><code>sorry_server</code> - ソーリーサーバのIPアドレス</li>
+<li><code>vip</code> - VIP(仮想IPアドレス)</li>
 </ul>
 <hr />
-<p>A <code>server</code> block exports the following:</p>
+<h4 id="server">serverブロック</h4>
 <ul>
-<li><code>enabled</code> - The flag to enable as destination of load balancing.</li>
-<li><code>ip_address</code> - The IP address of the destination server.</li>
-<li><code>path</code> - The path used when checking by HTTP/HTTPS.</li>
-<li><code>protocol</code> - The protocol used for health checks. This will be one of [<code>http</code>/<code>https</code>/<code>tcp</code>/<code>ping</code>].</li>
-<li><code>status</code> - The response code to expect when checking by HTTP/HTTPS.</li>
+<li><code>enabled</code> - 有効フラグ</li>
+<li><code>ip_address</code> - IPアドレス</li>
+<li><code>path</code> - HTTP/HTTPSチェック時に利用されるリクエストパス</li>
+<li><code>protocol</code> - ヘルスチェックのプロトコル。次のいずれかとなる [<code>http</code>/<code>https</code>/<code>tcp</code>/<code>ping</code>]</li>
+<li><code>status</code> - HTTP/HTTPSチェック時に利用されるレスポンスコード</li>
 </ul>
               
             </div>

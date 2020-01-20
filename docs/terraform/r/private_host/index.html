@@ -162,10 +162,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-private-host">Manages a SakuraCloud Private Host.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_private_host">sakuracloud_private_host</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_private_host">専有ホスト: sakuracloud_private_host</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-private-host">Manages a SakuraCloud Private Host.</h2>
-<h1 id="sakuracloud_private_host">sakuracloud_private_host</h1>
-<p>Manages a SakuraCloud Private Host.</p>
+                <h1 id="sakuracloud_private_host">専有ホスト: sakuracloud_private_host</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_private_host&quot; &quot;foobar&quot; {
   name        = &quot;foobar&quot;
@@ -785,29 +780,29 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the PrivateHost. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>class</code> - (Optional) The class of the PrivateHost. This will be one of [<code>dynamic</code>/<code>ms_windows</code>]. Default:<code>dynamic</code>.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>class</code> - (Optional) クラス / 次のいずれかを指定 [<code>dynamic</code>/<code>ms_windows</code>] / デフォルト:<code>dynamic</code></li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>description</code> - (Optional) The description of the PrivateHost. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
-<li><code>icon_id</code> - (Optional) The icon id to attach to the PrivateHost.</li>
-<li><code>tags</code> - (Optional) Any tags to assign to the PrivateHost.</li>
-<li><code>zone</code> - (Optional) The name of zone that the PrivateHost will be created. (e.g. <code>is1a</code>, <code>tk1a</code>). Changing this forces a new resource to be created.</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
+<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 5 minutes) Used when creating the Private Host</li>
-<li><code>update</code> - (Defaults to 5 minutes) Used when updating the Private Host</li>
-<li><code>delete</code> - (Defaults to 20 minutes) Used when deleting Private Host</li>
+<li><code>create</code> - 作成 (デフォルト: 5分)</li>
+<li><code>update</code> - 更新 (デフォルト: 5分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 20分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Private Host.</li>
-<li><code>assigned_core</code> - The total number of CPUs assigned to servers on the private host.</li>
-<li><code>assigned_memory</code> - The total size of memory assigned to servers on the private host.</li>
-<li><code>hostname</code> - The hostname of the private host.</li>
+<li><code>id</code> - ID</li>
+<li><code>assigned_core</code> - サーバに割り当てたCPUコアの総数</li>
+<li><code>assigned_memory</code> - サーバに割り当てたメモリ(GiB単位)の総数</li>
+<li><code>hostname</code> - ホスト名</li>
 </ul>
               
             </div>

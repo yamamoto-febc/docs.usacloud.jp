@@ -503,10 +503,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-dns-record">Manages a SakuraCloud DNS Record.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_dns_record">sakuracloud_dns_record</a></li>
+                <li class="toctree-l3"><a href="#dns-sakuracloud_dns_record">DNS(レコード): sakuracloud_dns_record</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-dns-record">Manages a SakuraCloud DNS Record.</h2>
-<h1 id="sakuracloud_dns_record">sakuracloud_dns_record</h1>
-<p>Manages a SakuraCloud DNS Record.</p>
+                <h1 id="dns-sakuracloud_dns_record">DNS(レコード): sakuracloud_dns_record</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_dns&quot; &quot;foobar&quot; {
   zone = &quot;example.com&quot;
@@ -797,30 +792,30 @@ resource &quot;sakuracloud_dns_record&quot; &quot;record2&quot; {
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>dns_id</code> - (Required) The id of the DNS resource. Changing this forces a new resource to be created.</li>
-<li><code>name</code> - (Required) The name of the DNS Record resource. Changing this forces a new resource to be created.</li>
-<li><code>type</code> - (Required) The type of DNS Record. This must be one of [<code>A</code>/<code>AAAA</code>/<code>ALIAS</code>/<code>CNAME</code>/<code>NS</code>/<code>MX</code>/<code>TXT</code>/<code>SRV</code>/<code>CAA</code>/<code>PTR</code>]. Changing this forces a new resource to be created.</li>
-<li><code>value</code> - (Required) The value of the DNS Record. Changing this forces a new resource to be created.</li>
-<li><code>ttl</code> - (Optional) The number of the TTL. Changing this forces a new resource to be created. Default:<code>3600</code>.</li>
+<li><code>dns_id</code> - (Required) レコードを登録する対象ゾーン(DNSリソース)のID / この値を変更するとリソースの再作成が行われる</li>
+<li><code>name</code> - (Required) レコード名 / この値を変更するとリソースの再作成が行われる</li>
+<li><code>type</code> - (Required) レコード種別 / 次のいずれかを指定 [<code>A</code>/<code>AAAA</code>/<code>ALIAS</code>/<code>CNAME</code>/<code>NS</code>/<code>MX</code>/<code>TXT</code>/<code>SRV</code>/<code>CAA</code>/<code>PTR</code>] / この値を変更するとリソースの再作成が行われる</li>
+<li><code>value</code> - (Required) レコードの値 / この値を変更するとリソースの再作成が行われる</li>
+<li><code>ttl</code> - (Optional) TTL / この値を変更するとリソースの再作成が行われる / デフォルト:<code>3600</code></li>
 </ul>
-<h4 id="for-mxsrv-record">For MX/SRV Record</h4>
+<h4 id="mxsrv">MX/SRVレコード関連</h4>
 <ul>
-<li><code>priority</code> - (Optional) The priority of target DNS Record. This must be in the range [<code>0</code>-<code>65535</code>]. Changing this forces a new resource to be created.</li>
+<li><code>priority</code> - (Optional) 優先度 / <code>0</code>-<code>65535</code>の範囲で指定 / この値を変更するとリソースの再作成が行われる</li>
 </ul>
-<h4 id="for-srv-record">For SRV Record</h4>
+<h4 id="srv">SRVレコード関連</h4>
 <ul>
-<li><code>port</code> - (Optional) The number of port. This must be in the range [<code>1</code>-<code>65535</code>]. Changing this forces a new resource to be created.</li>
-<li><code>weight</code> - (Optional) The weight of target DNS Record. This must be in the range [<code>0</code>-<code>65535</code>]. Changing this forces a new resource to be created.</li>
+<li><code>port</code> - (Optional) ポート番号 / <code>1</code>-<code>65535</code>の範囲で指定 / この値を変更するとリソースの再作成が行われる</li>
+<li><code>weight</code> - (Optional) ウェイト / <code>0</code>-<code>65535</code>の範囲で指定 / この値を変更するとリソースの再作成が行われる</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 5 minutes) Used when creating the DNS Record</li>
-<li><code>delete</code> - (Defaults to 5 minutes) Used when deleting DNS Record</li>
+<li><code>create</code> - 作成 (デフォルト: 5分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 5分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the DNS Record.</li>
+<li><code>id</code> - ID</li>
 </ul>
               
             </div>

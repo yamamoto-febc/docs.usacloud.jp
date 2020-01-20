@@ -147,10 +147,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#get-information-about-vnc-for-connecting-to-an-existing-server">Get information about VNC for connecting to an existing Server.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#data-source-sakuracloud_server_vnc_info">Data Source: sakuracloud_server_vnc_info</a></li>
+                <li class="toctree-l3"><a href="#vnc-sakuracloud_server_vnc_info">サーバ(VNC接続情報): sakuracloud_server_vnc_info</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,8 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="get-information-about-vnc-for-connecting-to-an-existing-server">Get information about VNC for connecting to an existing Server.</h2>
-<h1 id="data-source-sakuracloud_server_vnc_info">Data Source: sakuracloud_server_vnc_info</h1>
-<p>Get information about VNC for connecting to an existing Server.</p>
+                <h1 id="vnc-sakuracloud_server_vnc_info">サーバ(VNC接続情報): sakuracloud_server_vnc_info</h1>
+<p>サーバのVNC接続情報を参照するためのデータソース</p>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">data &quot;sakuracloud_server_vnc_info&quot; &quot;foobar&quot; {
   server_id = sakuracloud_server.foobar.id
@@ -783,15 +779,15 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>server_id</code> - (Required) The id of the Server.</li>
-<li><code>zone</code> - (Optional) The name of zone that the Server is in (e.g. <code>is1a</code>, <code>tk1a</code>).</li>
+<li><code>server_id</code> - (Required) サーバのID</li>
+<li><code>zone</code> - (Optional) 対象ゾーンの名前 (例: <code>is1a</code>, <code>tk1a</code>)  </li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Server VNC Information.</li>
-<li><code>host</code> - The host name for connecting by VNC.</li>
-<li><code>password</code> - The password for connecting by VNC.</li>
-<li><code>port</code> - The port number for connecting by VNC.</li>
+<li><code>id</code> - サーバのID</li>
+<li><code>host</code> - VNC接続先ホスト名</li>
+<li><code>password</code> - VNC接続パスワード</li>
+<li><code>port</code> - VNC接続先ポート番号</li>
 </ul>
               
             </div>

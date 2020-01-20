@@ -710,10 +710,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-bucket-object">Manages a SakuraCloud Bucket Object.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_bucket_object">sakuracloud_bucket_object</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_bucket_object">バケットオブジェクト: sakuracloud_bucket_object</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,12 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-bucket-object">Manages a SakuraCloud Bucket Object.</h2>
-<h1 id="sakuracloud_bucket_object">sakuracloud_bucket_object</h1>
-<p>Manages a SakuraCloud Bucket Object.</p>
+                <h1 id="sakuracloud_bucket_object">バケットオブジェクト: sakuracloud_bucket_object</h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>バケットの作成はAPI経由では行えません。<br />
+このため、このリソースを利用する場合はあらかじめバケットを手動で作成しておく必要があります。</p>
+</div>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_bucket_object&quot; &quot;foobar&quot; {
   bucket  = &quot;foobar&quot;
@@ -785,26 +785,26 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>access_key</code> - (Required) The access key for using SakuraCloud Object Storage API.</li>
-<li><code>secret_key</code> - (Required) The secret key for using SakuraCloud Object Storage API.</li>
-<li><code>bucket</code> - (Required) The name of the bucket. Changing this forces a new resource to be created.</li>
-<li><code>key</code> - (Required) The name of the bucket object. Changing this forces a new resource to be created.</li>
-<li><code>content</code> - (Optional) The content to upload to as the bucket object. This conflicts with [<code>source</code>].</li>
-<li><code>content_type</code> - (Optional) The content-type of the bucket object.</li>
-<li><code>etag</code> - (Optional) The etag of the bucket object.</li>
-<li><code>source</code> - (Optional) The file path to upload to as the bucket object. This conflicts with [<code>content</code>].</li>
+<li><code>access_key</code> - (Required) オブジェクトストレージAPIのアクセスキー</li>
+<li><code>secret_key</code> - (Required) オブジェクトストレージAPIのシークレットキー</li>
+<li><code>bucket</code> - (Required) バケット名 / この値を変更するとリソースの再作成が行われる</li>
+<li><code>key</code> - (Required) オブジェクトのキー(ファイル名) / この値を変更するとリソースの再作成が行われる</li>
+<li><code>content</code> - (Optional) オブジェクトのコンテンツ / [<code>source</code>]と同時に指定できません</li>
+<li><code>content_type</code> - (Optional) Content-Type</li>
+<li><code>etag</code> - (Optional) HTTP ETag</li>
+<li><code>source</code> - (Optional) オブジェクトのコンテンツファイルのパス /  [<code>content</code>]と同時に指定できません</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Bucket Object.</li>
-<li><code>http_cache_url</code> - The URL for cached access to the bucket object via HTTP.</li>
-<li><code>http_path_url</code> - The URL with path-format for accessing the bucket object via HTTP.</li>
-<li><code>http_url</code> - The URL for accessing the bucket object via HTTP.</li>
-<li><code>https_cache_url</code> - The URL for cached access to the bucket object via HTTPS.</li>
-<li><code>https_path_url</code> - The URL with path-format for accessing the bucket object via HTTPS.</li>
-<li><code>https_url</code> - The URL for accessing the bucket object via HTTPS.</li>
-<li><code>last_modified</code> - The time when the bucket object last modified.</li>
-<li><code>size</code> - The size of the bucket object in bytes.</li>
+<li><code>id</code> - ID</li>
+<li><code>http_cache_url</code> - キャッシュアクセスURL(http)</li>
+<li><code>http_path_url</code> - パス形式のアクセスURL(http)</li>
+<li><code>http_url</code> - アクセスURL(http)</li>
+<li><code>https_cache_url</code> - キャッシュアクセスURL(https)</li>
+<li><code>https_path_url</code> - パス形式のアクセスURL(https)</li>
+<li><code>https_url</code> - アクセスURL(https)</li>
+<li><code>last_modified</code> - 最終更新日時</li>
+<li><code>size</code> - サイズ(byte単位)</li>
 </ul>
               
             </div>

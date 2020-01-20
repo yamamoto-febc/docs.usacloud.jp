@@ -599,10 +599,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-container-registry">Manages a SakuraCloud Container Registry.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_container_registry">sakuracloud_container_registry</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_container_registry">コンテナレジストリ: sakuracloud_container_registry</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-container-registry">Manages a SakuraCloud Container Registry.</h2>
-<h1 id="sakuracloud_container_registry">sakuracloud_container_registry</h1>
-<p>Manages a SakuraCloud Container Registry.</p>
+                <h1 id="sakuracloud_container_registry">コンテナレジストリ: sakuracloud_container_registry</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">variable users {
   type = list(object({
@@ -813,34 +808,34 @@ resource &quot;sakuracloud_container_registry&quot; &quot;foobar&quot; {
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the Container Registry. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>access_level</code> - (Required) The level of access that allow to users. This must be one of [<code>readwrite</code>/<code>readonly</code>/<code>none</code>].</li>
-<li><code>subdomain_label</code> - (Required) The label at the lowest of the FQDN used when be accessed from users. The length of this value must be in the range [<code>1</code>-<code>64</code>]. Changing this forces a new resource to be created.</li>
-<li><code>user</code> - (Optional) One or more <code>user</code> blocks as defined below.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>access_level</code> - (Required) アクセスレベル / この値は次のいずれかを指定 [<code>readwrite</code>/<code>readonly</code>/<code>none</code>]</li>
+<li><code>subdomain_label</code> - (Required) サブドメインラベル /  <code>1</code>-<code>64</code>文字で指定 / この値を変更するとリソースの再作成が行われる</li>
+<li><code>user</code> - (Optional) ユーザー設定のリスト。詳細は<a href="#user">userブロック</a>を参照</li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>description</code> - (Optional) The description of the Container Registry. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
-<li><code>icon_id</code> - (Optional) The icon id to attach to the Container Registry.</li>
-<li><code>tags</code> - (Optional) Any tags to assign to the Container Registry.</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
 </ul>
 <hr />
-<p>A <code>user</code> block supports the following:</p>
+<h4 id="user">userブロック</h4>
 <ul>
-<li><code>name</code> - (Required) The user name used to authenticate remote access.</li>
-<li><code>password</code> - (Required) The password used to authenticate remote access.</li>
+<li><code>name</code> - (Required) ユーザー名</li>
+<li><code>password</code> - (Required) パスワード</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 5 minutes) Used when creating the Container Registry</li>
-<li><code>update</code> - (Defaults to 5 minutes) Used when updating the Container Registry</li>
-<li><code>delete</code> - (Defaults to 5 minutes) Used when deleting Container Registry</li>
+<li><code>create</code> - 作成 (デフォルト: 5分)</li>
+<li><code>update</code> - 更新 (デフォルト: 5分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 5分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Container Registry.</li>
-<li><code>fqdn</code> - The FQDN for accessing the Container Registry. FQDN is built from <code>subdomain_label</code> + <code>.sakuracr.jp</code>.</li>
+<li><code>id</code> - ID</li>
+<li><code>fqdn</code> - コンテナレジストリにアクセスするためのFQDN / この値は<code>subdomain_label</code> + <code>.sakuracr.jp</code>となる</li>
 </ul>
               
             </div>

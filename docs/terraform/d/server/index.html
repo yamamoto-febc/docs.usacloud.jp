@@ -140,10 +140,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#get-information-about-an-existing-server">Get information about an existing Server.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#data-source-sakuracloud_server">Data Source: sakuracloud_server</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_server">サーバ: sakuracloud_server</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,8 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="get-information-about-an-existing-server">Get information about an existing Server.</h2>
-<h1 id="data-source-sakuracloud_server">Data Source: sakuracloud_server</h1>
-<p>Get information about an existing Server.</p>
+                <h1 id="sakuracloud_server">サーバ: sakuracloud_server</h1>
+<p>サーバの情報を参照するためのデータソース</p>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">data &quot;sakuracloud_server&quot; &quot;foobar&quot; {
   filter {
@@ -785,51 +781,60 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>filter</code> - (Optional) One or more values used for filtering, as defined below.</li>
-<li><code>zone</code> - (Optional) The name of zone that the Server is in (e.g. <code>is1a</code>, <code>tk1a</code>).</li>
+<li><code>filter</code> - (Optional) 参照対象をフィルタリングするための条件。詳細は<a href="#filter">filterブロック</a>を参照 </li>
+<li><code>zone</code> - (Optional) 対象ゾーンの名前 (例: <code>is1a</code>, <code>tk1a</code>)  </li>
 </ul>
 <hr />
-<p>A <code>filter</code> block supports the following:</p>
+<h4 id="filter">filterブロック</h4>
 <ul>
-<li><code>condition</code> - (Optional) One or more name/values pairs used for filtering. There are several valid keys, for a full reference, check out finding section in the <a href="https://developer.sakura.ad.jp/cloud/api/1.1/">SakuraCloud API reference</a>.</li>
-<li><code>id</code> - (Optional) The resource id on SakuraCloud used for filtering.</li>
-<li><code>names</code> - (Optional) The resource names on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.</li>
-<li><code>tags</code> - (Optional) The resource tags on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.</li>
+<li><code>condition</code> - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は<a href="#condition">conditionブロック</a>を参照  </li>
+<li><code>id</code> - (Optional) 対象リソースのID </li>
+<li><code>names</code> - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  </li>
+<li><code>tags</code> - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる</li>
 </ul>
 <hr />
-<p>A <code>condition</code> block supports the following:</p>
+<h4 id="condition">conditionブロック</h4>
 <ul>
-<li><code>name</code> - (Required) The name of the target field. This value is case-sensitive.</li>
-<li><code>values</code> - (Required) The values of the condition. If multiple values ​​are specified, they combined as AND condition.</li>
+<li><code>name</code> - (Required) 対象フィールド名。大文字/小文字を区別する  </li>
+<li><code>values</code> - (Required) 対象フィールドの値。複数指定した場合はAND条件となる</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Server.</li>
-<li><code>cdrom_id</code> - The id of the CD-ROM attached to the server.</li>
-<li><code>commitment</code> - The policy of how to allocate virtual CPUs to the server. This will be one of [<code>standard</code>/<code>dedicatedcpu</code>].</li>
-<li><code>core</code> - The number of virtual CPUs.</li>
-<li><code>description</code> - The description of the Server.</li>
-<li><code>disks</code> - A list of disk id connected to the server.</li>
-<li><code>dns_servers</code> - A list of IP address of DNS server in the zone.</li>
-<li><code>gateway</code> - The IP address of the gateway used by Server.</li>
-<li><code>icon_id</code> - The icon id attached to the Server.</li>
-<li><code>interface_driver</code> - The driver name of network interface. This will be one of [<code>virtio</code>/<code>e1000</code>].</li>
-<li><code>ip_address</code> - The IP address assigned to the Server.</li>
-<li><code>memory</code> - The size of memory in GiB.</li>
-<li><code>name</code> - The name of the Server.</li>
-<li><code>netmask</code> - The bit length of the subnet assigned to the Server.</li>
-<li><code>network_address</code> - The network address which the <code>ip_address</code> belongs.</li>
-<li><code>network_interface</code> - A list of <code>network_interface</code> blocks as defined below.</li>
-<li><code>private_host_id</code> - The id of the private host which the server is assigned.</li>
-<li><code>private_host_name</code> - The name of the private host which the server is assigned.</li>
-<li><code>tags</code> - Any tags assigned to the Server.</li>
+<li><code>id</code> - ID</li>
+<li><code>cdrom_id</code> - サーバに挿入されているCD-ROMのID</li>
+<li><code>commitment</code> - vCPUの割り当て方式。次のいずれかとなる <ul>
+<li><code>standard</code>: 通常  </li>
+<li><code>dedicatedcpu</code>: コア専有  </li>
+</ul>
+</li>
+<li><code>core</code> - vCPU数</li>
+<li><code>description</code> - 説明</li>
+<li><code>disks</code> - サーバに接続されているディスクのIDのリスト</li>
+<li><code>dns_servers</code> - サーバが属するゾーンのDNSサーバのIPアドレスのリスト</li>
+<li><code>gateway</code> - ゲートウェイIPアドレス</li>
+<li><code>icon_id</code> - アイコンID</li>
+<li><code>interface_driver</code> - NICのドライバー。次のいずれかとなる [<code>virtio</code>/<code>e1000</code>]</li>
+<li><code>ip_address</code> - IPアドレス</li>
+<li><code>memory</code> - メモリサイズ(GiB単位)</li>
+<li><code>name</code> - 名前</li>
+<li><code>netmask</code> - サブネットマスク長</li>
+<li><code>network_address</code> - ネットワークアドレス</li>
+<li><code>network_interface</code> - NIC設定。詳細は<a href="#network_interface">network_interfaceブロック</a>を参照</li>
+<li><code>private_host_id</code> - 専有ホストのID</li>
+<li><code>private_host_name</code> - 専有ホストの名前</li>
+<li><code>tags</code> - タグ</li>
 </ul>
 <hr />
-<p>A <code>network_interface</code> block exports the following:</p>
+<h4 id="network_interface">network_interfaceブロック</h4>
 <ul>
-<li><code>mac_address</code> - The MAC address.</li>
-<li><code>packet_filter_id</code> - The id of the packet filter attached to the network interface.</li>
-<li><code>upstream</code> - The upstream type or upstream switch id. This will be one of [<code>shared</code>/<code>disconnect</code>/<code>&lt;switch id&gt;</code>].</li>
+<li><code>mac_address</code> - MACアドレス</li>
+<li><code>packet_filter_id</code> - パケットフィルタのID</li>
+<li><code>upstream</code> - 上流ネットワーク設定。次のいずれかとなる<ul>
+<li><code>shared</code>: 共有セグメント(100Mbps)</li>
+<li><code>disconnect</code>: 切断</li>
+<li><code>&lt;switch id&gt;</code>: スイッチ(ID)</li>
+</ul>
+</li>
 </ul>
               
             </div>

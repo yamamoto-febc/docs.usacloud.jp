@@ -658,10 +658,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-note">Manages a SakuraCloud Note.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_note">sakuracloud_note</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_note">スタートアップスクリプト: sakuracloud_note</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-note">Manages a SakuraCloud Note.</h2>
-<h1 id="sakuracloud_note">sakuracloud_note</h1>
-<p>Manages a SakuraCloud Note.</p>
+                <h1 id="sakuracloud_note">スタートアップスクリプト: sakuracloud_note</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_note&quot; &quot;foobar&quot; {
   name    = &quot;foobar&quot;
@@ -784,26 +779,26 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the Note. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>content</code> - (Required) The content of the Note. This must be specified as a shell script or as a cloud-config.</li>
-<li><code>class</code> - (Optional) The class of the Note. This must be one of <code>shell</code>/<code>yaml_cloud_config</code>. Default:<code>shell</code>.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>content</code> - (Required) スタートアップスクリプトのコンテンツ / シェルスクリプト、またはyamlとなる</li>
+<li><code>class</code> - (Optional) クラス / 次のいずれかを指定 [<code>shell</code>/<code>yaml_cloud_config</code>] / デフォルト:<code>shell</code></li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>icon_id</code> - (Optional) The icon id to attach to the Note.</li>
-<li><code>tags</code> - (Optional) Any tags to assign to the Note.</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 5 minutes) Used when creating the Note</li>
-<li><code>update</code> - (Defaults to 5 minutes) Used when updating the Note</li>
-<li><code>delete</code> - (Defaults to 5 minutes) Used when deleting Note</li>
+<li><code>create</code> - 作成 (デフォルト: 5分)</li>
+<li><code>update</code> - 更新 (デフォルト: 5分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 5分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Note.</li>
-<li><code>description</code> - The description of the Note. This will be computed from special tags within body of <code>content</code>.</li>
+<li><code>id</code> - ID</li>
+<li><code>description</code> - 説明 / <code>content</code>内に設定した値から算出される</li>
 </ul>
               
             </div>

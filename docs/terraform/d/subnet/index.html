@@ -279,10 +279,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#get-information-about-an-existing-subnet">Get information about an existing Subnet.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#data-source-sakuracloud_subnet">Data Source: sakuracloud_subnet</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_subnet">サブネット: sakuracloud_subnet</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,8 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="get-information-about-an-existing-subnet">Get information about an existing Subnet.</h2>
-<h1 id="data-source-sakuracloud_subnet">Data Source: sakuracloud_subnet</h1>
-<p>Get information about an existing Subnet.</p>
+                <h1 id="sakuracloud_subnet">サブネット: sakuracloud_subnet</h1>
+<p>ディスクの情報を参照するためのデータソース</p>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">variable internet_id {}
 data sakuracloud_subnet &quot;foobar&quot; {
@@ -785,20 +781,20 @@ data sakuracloud_subnet &quot;foobar&quot; {
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>index</code> - (Required) The index of the subnet in assigned to the Switch+Router. Changing this forces a new resource to be created.</li>
-<li><code>internet_id</code> - (Required) The id of the switch+router resource that the Subnet belongs. Changing this forces a new resource to be created.</li>
-<li><code>zone</code> - (Optional) The name of zone that the Subnet is in (e.g. <code>is1a</code>, <code>tk1a</code>).</li>
+<li><code>index</code> - (Required) スイッチ+ルータに割り当てられたサブネットのインデックス</li>
+<li><code>internet_id</code> - (Required) サブネットが割り当てられたスイッチ+ルータのID</li>
+<li><code>zone</code> - (Optional) 対象ゾーンの名前 (例: <code>is1a</code>, <code>tk1a</code>) </li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Subnet.</li>
-<li><code>ip_addresses</code> - A list of assigned global address to the Subnet.</li>
-<li><code>max_ip_address</code> - Maximum IP address in assigned global addresses to the Subnet.</li>
-<li><code>min_ip_address</code> - Minimum IP address in assigned global addresses to the Subnet.</li>
-<li><code>netmask</code> - The bit length of the subnet assigned to the Subnet.</li>
-<li><code>network_address</code> - The IPv4 network address assigned to the Subnet.</li>
-<li><code>next_hop</code> - The ip address of the next-hop at the Subnet.</li>
-<li><code>switch_id</code> - The id of the switch connected from the Subnet.</li>
+<li><code>id</code> - ID</li>
+<li><code>ip_addresses</code> - サブネットに割り当てられた、ユーザーが利用可能なIPアドレスのリスト</li>
+<li><code>max_ip_address</code> - サブネットに割り当てられた、ユーザーが利用可能なIPアドレスの最大値</li>
+<li><code>min_ip_address</code> - サブネットに割り当てられた、ユーザーが利用可能なIPアドレスの最小値</li>
+<li><code>netmask</code> - サブネットマスク長</li>
+<li><code>network_address</code> - ネットワークアドレス</li>
+<li><code>next_hop</code> - ネクストホップのIPアドレス</li>
+<li><code>switch_id</code> - スイッチID</li>
 </ul>
               
             </div>

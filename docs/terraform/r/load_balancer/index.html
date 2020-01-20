@@ -423,10 +423,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-load-balancer">Manages a SakuraCloud Load Balancer.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_load_balancer">sakuracloud_load_balancer</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_load_balancer">ロードバランサ: sakuracloud_load_balancer</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-load-balancer">Manages a SakuraCloud Load Balancer.</h2>
-<h1 id="sakuracloud_load_balancer">sakuracloud_load_balancer</h1>
-<p>Manages a SakuraCloud Load Balancer.</p>
+                <h1 id="sakuracloud_load_balancer">ロードバランサ: sakuracloud_load_balancer</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_load_balancer&quot; &quot;foobar&quot; {
   name         = &quot;foobar&quot;
@@ -816,55 +811,55 @@ resource &quot;sakuracloud_switch&quot; &quot;foobar&quot; {
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the LoadBalancer. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>vrid</code> - (Required) The Virtual Router Identifier. This is only used when <code>high_availability</code> is set <code>true</code>. Changing this forces a new resource to be created.</li>
-<li><code>high_availability</code> - (Optional) The flag to enable HA mode. Changing this forces a new resource to be created.</li>
-<li><code>plan</code> - (Optional) The plan name of the LoadBalancer. This must be one of [<code>standard</code>/<code>highspec</code>]. Changing this forces a new resource to be created. Default:<code>standard</code>.</li>
-<li><code>vip</code> - (Optional) One or more <code>vip</code> blocks as defined below.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>vrid</code> - (Required) VRID / <code>high_availability</code>が<code>true</code>の場合のみ利用されます / この値を変更するとリソースの再作成が行われる</li>
+<li><code>high_availability</code> - (Optional) 冗長化構成の有効かフラグ / この値を変更するとリソースの再作成が行われる</li>
+<li><code>plan</code> - (Optional) プラン / 次のいずれかを指定 [<code>standard</code>/<code>highspec</code>] / この値を変更するとリソースの再作成が行われる / デフォルト:<code>standard</code></li>
+<li><code>vip</code> - (Optional) VIP設定。詳細は<a href="#vip">vipブロック</a>を参照</li>
 </ul>
-<h4 id="network">Network</h4>
+<h4 id="_1">ネットワーク関連</h4>
 <ul>
-<li><code>ip_addresses</code> - (Required) A list of IP address to assign to the LoadBalancer. . Changing this forces a new resource to be created.</li>
-<li><code>netmask</code> - (Required) The bit length of the subnet assigned to the LoadBalancer. This must be in the range [<code>8</code>-<code>29</code>]. Changing this forces a new resource to be created.</li>
-<li><code>gateway</code> - (Optional) The IP address of the gateway used by LoadBalancer. Changing this forces a new resource to be created.</li>
-<li><code>switch_id</code> - (Required) The id of the switch to which the LoadBalancer connects. Changing this forces a new resource to be created.</li>
+<li><code>ip_addresses</code> - (Required) IPアドレスのリスト / この値を変更するとリソースの再作成が行われる</li>
+<li><code>netmask</code> - (Required) サブネットマスク長 / <code>8</code>-<code>29</code>の範囲で指定 / この値を変更するとリソースの再作成が行われる</li>
+<li><code>gateway</code> - (Optional) ゲートウェイIPアドレス / この値を変更するとリソースの再作成が行われる</li>
+<li><code>switch_id</code> - (Required) スイッチID / この値を変更するとリソースの再作成が行われる</li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>description</code> - (Optional) The description of the LoadBalancer. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
-<li><code>icon_id</code> - (Optional) The icon id to attach to the LoadBalancer.</li>
-<li><code>tags</code> - (Optional) Any tags to assign to the LoadBalancer.</li>
-<li><code>zone</code> - (Optional) The name of zone that the LoadBalancer will be created. (e.g. <code>is1a</code>, <code>tk1a</code>). Changing this forces a new resource to be created.</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
+<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
 </ul>
 <hr />
-<p>A <code>vip</code> block supports the following:</p>
+<h4 id="vip">vipブロック</h4>
 <ul>
-<li><code>port</code> - (Required) The target port number for load-balancing. This must be in the range [<code>1</code>-<code>65535</code>].</li>
-<li><code>vip</code> - (Required) The virtual IP address.</li>
-<li><code>delay_loop</code> - (Optional) The interval in seconds between checks. This must be in the range [<code>10</code>-<code>2147483647</code>].</li>
-<li><code>description</code> - (Optional) The description of the VIP. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
-<li><code>server</code> - (Optional) One or more <code>server</code> blocks as defined below.</li>
-<li><code>sorry_server</code> - (Optional) The IP address of the SorryServer. This will be used when all servers under this VIP are down.</li>
+<li><code>port</code> - (Required) ポート番号 / <code>1</code>-<code>65535</code>の範囲で指定</li>
+<li><code>vip</code> - (Required) 仮想IPアドレス</li>
+<li><code>delay_loop</code> - (Optional) チェック間隔秒数 / <code>10</code>-<code>2147483647</code>の範囲で指定</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>server</code> - (Optional) 実サーバ設定のリスト。詳細は<a href="#server">serverブロック</a>を参照</li>
+<li><code>sorry_server</code> - (Optional) ソーリーサーバのIPアドレス</li>
 </ul>
 <hr />
-<p>A <code>server</code> block supports the following:</p>
+<h4 id="server">serverブロック</h4>
 <ul>
-<li><code>ip_address</code> - (Required) The IP address of the destination server.</li>
-<li><code>protocol</code> - (Required) The protocol used for health checks. This must be one of [<code>http</code>/<code>https</code>/<code>tcp</code>/<code>ping</code>].</li>
-<li><code>enabled</code> - (Optional) The flag to enable as destination of load balancing.</li>
-<li><code>path</code> - (Optional) The path used when checking by HTTP/HTTPS.</li>
-<li><code>status</code> - (Optional) The response code to expect when checking by HTTP/HTTPS.</li>
+<li><code>ip_address</code> - (Required) IPアドレス</li>
+<li><code>protocol</code> - (Required) ヘルスチェックで用いるプロコとる / 次のいずれかを指定 [<code>http</code>/<code>https</code>/<code>tcp</code>/<code>ping</code>]</li>
+<li><code>enabled</code> - (Optional) 有効フラグ</li>
+<li><code>path</code> - (Optional) HTTP/HTTPSチェック時のリクエストパス</li>
+<li><code>status</code> - (Optional) HTTP/HTTPSチェック時のレスポンスコード</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 60 minutes) Used when creating the Load Balancer</li>
-<li><code>update</code> - (Defaults to 60 minutes) Used when updating the Load Balancer</li>
-<li><code>delete</code> - (Defaults to 20 minutes) Used when deleting Load Balancer</li>
+<li><code>create</code> - 作成 (デフォルト: 60分)</li>
+<li><code>update</code> - 更新 (デフォルト: 60分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 20分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Load Balancer.</li>
+<li><code>id</code> - ID</li>
 </ul>
               
             </div>

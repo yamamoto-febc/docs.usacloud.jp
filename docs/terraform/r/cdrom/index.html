@@ -228,10 +228,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-cd-rom">Manages a SakuraCloud CD-ROM.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_cdrom">sakuracloud_cdrom</a></li>
+                <li class="toctree-l3"><a href="#cd-romiso-sakuracloud_cdrom">CD-ROM(ISOイメージ): sakuracloud_cdrom</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-cd-rom">Manages a SakuraCloud CD-ROM.</h2>
-<h1 id="sakuracloud_cdrom">sakuracloud_cdrom</h1>
-<p>Manages a SakuraCloud CD-ROM.</p>
+                <h1 id="cd-romiso-sakuracloud_cdrom">CD-ROM(ISOイメージ): sakuracloud_cdrom</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_cdrom&quot; &quot;foobar&quot; {
   name           = &quot;foobar&quot;
@@ -787,30 +782,30 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the CD-ROM. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>content</code> - (Optional) The content to upload to as the CD-ROM. This conflicts with [<code>iso_image_file</code>].</li>
-<li><code>content_file_name</code> - (Optional) The name of content file to upload to as the CD-ROM. This is only used when <code>content</code> is specified. This conflicts with [<code>iso_image_file</code>]. Default:<code>config</code>.</li>
-<li><code>iso_image_file</code> - (Optional) The file path to upload to as the CD-ROM. This conflicts with [<code>content</code>].</li>
-<li><code>hash</code> - (Optional) The md5 checksum calculated from the base64 encoded file body.</li>
-<li><code>size</code> - (Optional) The size of CD-ROM in GiB. This must be one of [<code>5</code>/<code>10</code>]. Changing this forces a new resource to be created. Default:<code>5</code>.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>content</code> - (Optional) アップロードするCD-ROMのコンテンツ /  [<code>iso_image_file</code>]と同時に指定できません</li>
+<li><code>content_file_name</code> - (Optional) <code>content</code>を指定した場合の作成するファイル名 / [<code>iso_image_file</code>]と同時に指定できません /  デフォルト:<code>config</code></li>
+<li><code>iso_image_file</code> - (Optional) アップロードするファイルのパス / [<code>content</code>]と同時に指定できません</li>
+<li><code>hash</code> - (Optional) コンテンツをBASE64エンコードしたものから算出されたMD5チェックサム</li>
+<li><code>size</code> - (Optional) サイズ(GiB単位) / 次のいずれかを指定 [<code>5</code>/<code>10</code>] / この値を変更するとリソースの再作成が行われる / デフォルト:<code>5</code></li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>description</code> - (Optional) The description of the CD-ROM. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
-<li><code>icon_id</code> - (Optional) The icon id to attach to the CD-ROM.</li>
-<li><code>tags</code> - (Optional) Any tags to assign to the CD-ROM.</li>
-<li><code>zone</code> - (Optional) The name of zone that the CD-ROM will be created. (e.g. <code>is1a</code>, <code>tk1a</code>). Changing this forces a new resource to be created.</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
+<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 24 hours) Used when creating the CD-ROM</li>
-<li><code>update</code> - (Defaults to 24 hours) Used when updating the CD-ROM</li>
-<li><code>delete</code> - (Defaults to 20 minutes) Used when deleting CD-ROM</li>
+<li><code>create</code> - 作成 (デフォルト: 24時間)</li>
+<li><code>update</code> - 更新 (デフォルト: 24時間)</li>
+<li><code>delete</code> - 削除 (デフォルト: 20分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the CD-ROM.</li>
+<li><code>id</code> - ID</li>
 </ul>
               
             </div>

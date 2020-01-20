@@ -554,10 +554,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-mobile-gateway">Manages a SakuraCloud Mobile Gateway.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_mobile_gateway">sakuracloud_mobile_gateway</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_mobile_gateway">モバイルゲートウェイ: sakuracloud_mobile_gateway</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-mobile-gateway">Manages a SakuraCloud Mobile Gateway.</h2>
-<h1 id="sakuracloud_mobile_gateway">sakuracloud_mobile_gateway</h1>
-<p>Manages a SakuraCloud Mobile Gateway.</p>
+                <h1 id="sakuracloud_mobile_gateway">モバイルゲートウェイ: sakuracloud_mobile_gateway</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_mobile_gateway&quot; &quot;foobar&quot; {
   name                = &quot;foobar&quot;
@@ -822,70 +817,70 @@ resource &quot;sakuracloud_switch&quot; &quot;foobar&quot; {
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the MobileGateway. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>dns_servers</code> - (Required) A list of IP address used by each connected devices.</li>
-<li><code>inter_device_communication</code> - (Optional) The flag to allow communication between each connected devices.</li>
-<li><code>internet_connection</code> - (Optional) The flag to enable connect to the Internet.</li>
-<li><code>private_network_interface</code> - (Optional) An <code>private_network_interface</code> block as defined below.</li>
-<li><code>sim</code> - (Optional) One or more <code>sim</code> blocks as defined below.</li>
-<li><code>sim_route</code> - (Optional) One or more <code>sim_route</code> blocks as defined below.</li>
-<li><code>static_route</code> - (Optional) One or more <code>static_route</code> blocks as defined below.</li>
-<li><code>traffic_control</code> - (Optional) A <code>traffic_control</code> block as defined below.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>dns_servers</code> - (Required) SIMから利用するDNSサーバのIPアドレスのリスト</li>
+<li><code>inter_device_communication</code> - (Optional) 接続されたデバイス間での通信を許可するフラグ</li>
+<li><code>internet_connection</code> - (Optional) 接続されたデバイスからインターネットへの接続を許可するフラグ</li>
+<li><code>private_network_interface</code> - (Optional) プライベート側NICの設定。詳細は<a href="#private_network_interface">private_network_interfaceブロック</a>を参照</li>
+<li><code>sim</code> - (Optional) 接続するSIMの設定リスト。詳細は<a href="#sim">simブロック</a>を参照</li>
+<li><code>sim_route</code> - (Optional) SIMルート設定のリスト。詳細は<a href="#sim_route">sim_routeブロック</a>を参照</li>
+<li><code>static_route</code> - (Optional) スタティックルート設定のリスト。詳細は<a href="#static_route">static_routeブロック</a>を参照</li>
+<li><code>traffic_control</code> - (Optional) トラフィックコントロール設定。詳細は<a href="#traffic_control">traffic_controlブロック</a>を参照</li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>description</code> - (Optional) The description of the MobileGateway. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
-<li><code>icon_id</code> - (Optional) The icon id to attach to the MobileGateway.</li>
-<li><code>tags</code> - (Optional) Any tags to assign to the MobileGateway.</li>
-<li><code>zone</code> - (Optional) The name of zone that the MobileGateway will be created. (e.g. <code>is1a</code>, <code>tk1a</code>). Changing this forces a new resource to be created.</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
+<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
 </ul>
 <hr />
-<p>A <code>private_network_interface</code> block supports the following:</p>
+<h4 id="private_network_interface">private_network_interfaceブロック</h4>
 <ul>
-<li><code>ip_address</code> - (Required) The IP address to assign to the MobileGateway.</li>
-<li><code>netmask</code> - (Required) The bit length of the subnet to assign to the MobileGateway. This must be in the range [<code>8</code>-<code>29</code>].</li>
-<li><code>switch_id</code> - (Required) The id of the switch to which the MobileGateway connects.</li>
+<li><code>ip_address</code> - (Required) IPアドレス</li>
+<li><code>netmask</code> - (Required) サブネットマスク長 / <code>8</code>-<code>29</code>の範囲で指定</li>
+<li><code>switch_id</code> - (Required) スイッチID</li>
 </ul>
 <hr />
-<p>A <code>sim</code> block supports the following:</p>
+<h4 id="sim">simブロック</h4>
 <ul>
-<li><code>ip_address</code> - (Required) The IP address to assign to the SIM.</li>
-<li><code>sim_id</code> - (Required) The id of the Switch connected to the MobileGateway.</li>
+<li><code>ip_address</code> - (Required) IPアドレス</li>
+<li><code>sim_id</code> - (Required) SIMのID</li>
 </ul>
 <hr />
-<p>A <code>sim_route</code> block supports the following:</p>
+<h4 id="sim_route">sim_routeブロック</h4>
 <ul>
-<li><code>prefix</code> - (Required) The destination network prefix used by the sim routing. This must be specified by CIDR block formatted string.</li>
-<li><code>sim_id</code> - (Required) The id of the routing destination SIM.</li>
+<li><code>prefix</code> - (Required) プレフィックス / CIDRブロックとして指定</li>
+<li><code>sim_id</code> - (Required) 宛先となるSIMのID</li>
 </ul>
 <hr />
-<p>A <code>static_route</code> block supports the following:</p>
+<h4 id="static_route">static_routeブロック</h4>
 <ul>
-<li><code>next_hop</code> - (Required) The IP address of next hop.</li>
-<li><code>prefix</code> - (Required) The destination network prefix used by static routing. This must be specified by CIDR block formatted string.</li>
+<li><code>next_hop</code> - (Required) ネクストホップIPアドレス</li>
+<li><code>prefix</code> - (Required) プレフィックス / CIDRブロックとして指定</li>
 </ul>
 <hr />
-<p>A <code>traffic_control</code> block supports the following:</p>
+<h4 id="traffic_control">traffic_controlブロック</h4>
 <ul>
-<li><code>quota</code> - (Required) The threshold of monthly traffic usage to enable to the traffic shaping.</li>
-<li><code>auto_traffic_shaping</code> - (Optional) The flag to enable the traffic shaping.</li>
-<li><code>band_width_limit</code> - (Optional) The bandwidth allowed when the traffic shaping is enabled.</li>
-<li><code>enable_email</code> - (Optional) The flag to enable email notification when the traffic shaping is enabled.</li>
-<li><code>enable_slack</code> - (Optional) The flag to enable slack notification when the traffic shaping is enabled.</li>
-<li><code>slack_webhook</code> - (Optional) The webhook URL used when sends notification. It will only used when <code>enable_slack</code> is set <code>true</code>.</li>
+<li><code>quota</code> - (Required) 通信制限を行う月間通信量の閾値</li>
+<li><code>auto_traffic_shaping</code> - (Optional) <code>quota</code>を超えた際に自動で通信制限を有効にするフラグ</li>
+<li><code>band_width_limit</code> - (Optional) 通信制限時の帯域</li>
+<li><code>enable_email</code> - (Optional) e-mailでの通知の有効フラグ</li>
+<li><code>enable_slack</code> - (Optional) slackでの通知の有効フラグ</li>
+<li><code>slack_webhook</code> - (Optional) slackでの通知に利用されるWebhookのURL</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 60 minutes) Used when creating the Mobile Gateway</li>
-<li><code>update</code> - (Defaults to 60 minutes) Used when updating the Mobile Gateway</li>
-<li><code>delete</code> - (Defaults to 20 minutes) Used when deleting Mobile Gateway</li>
+<li><code>create</code> - 作成 (デフォルト: 60分)</li>
+<li><code>update</code> - 更新 (デフォルト: 60分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 20分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Mobile Gateway.</li>
-<li><code>public_ip</code> - The public IP address assigned to the MobileGateway.</li>
-<li><code>public_netmask</code> - The bit length of the subnet assigned to the MobileGateway.</li>
+<li><code>id</code> - ID</li>
+<li><code>public_ip</code> - パブリック側NICのIPアドレス</li>
+<li><code>public_netmask</code> - パブリック側NICのサブネットマスク長</li>
 </ul>
               
             </div>

@@ -169,10 +169,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-server">Manages a SakuraCloud Server.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_server">sakuracloud_server</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_server">サーバ: sakuracloud_server</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-server">Manages a SakuraCloud Server.</h2>
-<h1 id="sakuracloud_server">sakuracloud_server</h1>
-<p>Manages a SakuraCloud Server.</p>
+                <h1 id="sakuracloud_server">サーバ: sakuracloud_server</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_server&quot; &quot;foobar&quot; {
   name        = &quot;foobar&quot;
@@ -815,72 +810,96 @@ resource &quot;sakuracloud_disk&quot; &quot;foobar&quot; {
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the Server. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>cdrom_id</code> - (Optional) The id of the CD-ROM to attach to the Server.</li>
-<li><code>force_shutdown</code> - (Optional) The flag to use force shutdown when need to reboot/shutdown while applying.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>cdrom_id</code> - (Optional) サーバに挿入するCD-ROM(ISOイメージ)のID</li>
+<li><code>force_shutdown</code> - (Optional) <code>terraform apply</code>時にAPI経由でシャットダウン、または再起動する際に強制終了するフラグ<br />
+ACPIが利用できないサーバの場合<code>true</code>に設定する</li>
 </ul>
-<h4 id="spec">Spec</h4>
+<h4 id="_1">スペック関連</h4>
 <ul>
-<li><code>commitment</code> - (Optional) The policy of how to allocate virtual CPUs to the server. This must be one of [<code>standard</code>/<code>dedicatedcpu</code>]. Default:<code>standard</code>.</li>
-<li><code>core</code> - (Optional) The number of virtual CPUs. Default:<code>1</code>.</li>
-<li><code>memory</code> - (Optional) The size of memory in GiB. Default:<code>1</code>.</li>
-<li><code>network_interface</code> - (Optional) One or more <code>network_interface</code> blocks as defined below.</li>
-<li><code>interface_driver</code> - (Optional) The driver name of network interface. This must be one of [<code>virtio</code>/<code>e1000</code>]. Default:<code>virtio</code>.</li>
-<li><code>private_host_id</code> - (Optional) The id of the PrivateHost which the Server is assigned.</li>
+<li><code>commitment</code> - (Optional) vCPUの割り当て方法 / 次のいずれかを指定 <ul>
+<li><code>standard</code>(デフォルト): 通常</li>
+<li><code>dedicatedcpu</code>: コア専有</li>
 </ul>
-<h4 id="disks">Disks</h4>
+</li>
+<li><code>core</code> - (Optional) vCPUの割り当て数 / デフォルト:<code>1</code></li>
+<li><code>memory</code> - (Optional) メモリサイズ(GiB単位) / デフォルト:<code>1</code></li>
+<li><code>network_interface</code> - (Optional) NIC設定のリスト。詳細は<a href="#network_interface">network_interfaceブロック</a>を参照</li>
+<li><code>interface_driver</code> - (Optional) NICのドライバー / 次のいずれかを指定 [<code>virtio</code>/<code>e1000</code>] / デフォルト:<code>virtio</code></li>
+<li><code>private_host_id</code> - (Optional) 専有ホストのID</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>core</code>と<code>memory</code>に指定できる値の組み合わせはさくらのクラウドドキュメントなどを参照ください。<br />
+<code>usacloud server-plan ls</code>コマンドでも確認できます。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>network_interface</code>は省略可能ですが、省略した場合NICが接続されていない状態のサーバが作成されます。<br />
+通常は1つ以上指定してください。</p>
+</div>
+<h4 id="_2">ディスク関連</h4>
 <ul>
-<li><code>disk_edit_parameter</code> - (Optional) A <code>disk_edit_parameter</code> block as defined below.</li>
-<li><code>disks</code> - (Optional) A list of disk id connected to the server.</li>
+<li><code>disk_edit_parameter</code> - (Optional) ディスクの修正APIへのパラメータ。詳細は<a href="#disk_edit_parameter">disk_edit_parameterブロック</a>を参照</li>
+<li><code>disks</code> - (Optional) サーバに接続するディスクのIDのリスト</li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>description</code> - (Optional) The description of the Server. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
-<li><code>icon_id</code> - (Optional) The icon id to attach to the Server.</li>
-<li><code>tags</code> - (Optional) Any tags to assign to the Server.</li>
-<li><code>zone</code> - (Optional) The name of zone that the Server will be created. (e.g. <code>is1a</code>, <code>tk1a</code>). Changing this forces a new resource to be created.</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
+<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
 </ul>
 <hr />
-<p>A <code>disk_edit_parameter</code> block supports the following:</p>
+<h4 id="disk_edit_parameter">disk_edit_parameterブロック</h4>
 <ul>
-<li><code>change_partition_uuid</code> - (Optional) The flag to change partition uuid.</li>
-<li><code>disable_pw_auth</code> - (Optional) The flag to disable password authentication.</li>
-<li><code>enable_dhcp</code> - (Optional) The flag to enable DHCP client.</li>
-<li><code>gateway</code> - (Optional) The gateway address used by the Server.</li>
-<li><code>hostname</code> - (Optional) The hostname of the Server. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>ip_address</code> - (Optional) The IP address to assign to the Server.</li>
-<li><code>netmask</code> - (Optional) The bit length of the subnet to assign to the Server.</li>
-<li><code>note_ids</code> - (Optional) A list of the Note id.</li>
-<li><code>password</code> - (Optional) The password of default user. The length of this value must be in the range [<code>8</code>-<code>64</code>].</li>
-<li><code>ssh_key_ids</code> - (Optional) A list of the SSHKey id.</li>
+<li><code>change_partition_uuid</code> - (Optional) パーティションUUIDを変更するフラグ</li>
+<li><code>disable_pw_auth</code> - (Optional) パスワード認証を無効にするフラグ</li>
+<li><code>enable_dhcp</code> - (Optional) DHCPクライアントを有効にするフラグ</li>
+<li><code>gateway</code> - (Optional) ゲートウェイIPアドレス</li>
+<li><code>hostname</code> - (Optional) ホスト名 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>ip_address</code> - (Optional) IPアドレス</li>
+<li><code>netmask</code> - (Optional) サブネットマスク長</li>
+<li><code>note_ids</code> - (Optional) スタートアップスクリプトIDのリスト</li>
+<li><code>password</code> - (Optional) 管理ユーザーのパスワード / <code>8</code>-<code>64</code>文字で指定</li>
+<li><code>ssh_key_ids</code> - (Optional) SSH公開鍵IDのリスト</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ディスクの修正API(<code>disk_edit_parameter</code>)はサーバに接続された先頭のディスクに対してのみ有効です。</p>
+</div>
 <hr />
-<p>A <code>network_interface</code> block supports the following:</p>
+<h4 id="network_interface">network_interfaceブロック</h4>
 <ul>
-<li><code>upstream</code> - (Required) The upstream type or upstream switch id. This must be one of [<code>shared</code>/<code>disconnect</code>/<code>&lt;switch id&gt;</code>].</li>
-<li><code>packet_filter_id</code> - (Optional) The id of the packet filter to attach to the network interface.</li>
+<li><code>upstream</code> - (Required) 上流ネットワーク設定 / 次のいずれかを指定する<ul>
+<li><code>shared</code>: 共有セグメント(100Mbps)</li>
+<li><code>disconnect</code>: 切断</li>
+<li><code>&lt;switch id&gt;</code>: スイッチのID</li>
+</ul>
+</li>
+<li><code>packet_filter_id</code> - (Optional) NICにアタッチするパケットフィルタのID</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 5 minutes) Used when creating the Server</li>
-<li><code>update</code> - (Defaults to 5 minutes) Used when updating the Server</li>
-<li><code>delete</code> - (Defaults to 20 minutes) Used when deleting Server</li>
+<li><code>create</code> - 作成 (デフォルト: 5分)</li>
+<li><code>update</code> - 更新 (デフォルト: 5分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 20分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Server.</li>
-<li><code>dns_servers</code> - A list of IP address of DNS server in the zone.</li>
-<li><code>gateway</code> - The IP address of the gateway used by Server.</li>
-<li><code>ip_address</code> - The IP address assigned to the Server.</li>
-<li><code>netmask</code> - The bit length of the subnet assigned to the Server.</li>
-<li><code>network_address</code> - The network address which the <code>ip_address</code> belongs.</li>
-<li><code>private_host_name</code> - The id of the PrivateHost which the Server is assigned.</li>
+<li><code>id</code> - ID</li>
+<li><code>dns_servers</code> - DNSサーバのIPアドレスのリスト</li>
+<li><code>gateway</code> - ゲートウェイIPアドレス</li>
+<li><code>ip_address</code> - IPアドレス</li>
+<li><code>netmask</code> - サブネットマスク長</li>
+<li><code>network_address</code> - ネットワークアドレス</li>
+<li><code>private_host_name</code> - 専有ホストの名前</li>
 </ul>
 <hr />
-<p>A <code>network_interface</code> block exports the following:</p>
+<p><code>network_interface</code>の各要素は以下の項目も参照可能です。</p>
 <ul>
-<li><code>mac_address</code> - The MAC address.</li>
+<li><code>mac_address</code> - MACアドレス</li>
 </ul>
               
             </div>

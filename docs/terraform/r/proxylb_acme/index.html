@@ -524,10 +524,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-proxylb-acme-setting">Manages a SakuraCloud ProxyLB ACME Setting.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_proxylb_acme">sakuracloud_proxylb_acme</a></li>
+                <li class="toctree-l3"><a href="#acme-sakuracloud_proxylb_acme">エンハンスドロードバランサ(ACME設定): sakuracloud_proxylb_acme</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-proxylb-acme-setting">Manages a SakuraCloud ProxyLB ACME Setting.</h2>
-<h1 id="sakuracloud_proxylb_acme">sakuracloud_proxylb_acme</h1>
-<p>Manages a SakuraCloud ProxyLB ACME Setting.</p>
+                <h1 id="acme-sakuracloud_proxylb_acme">エンハンスドロードバランサ(ACME設定): sakuracloud_proxylb_acme</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource sakuracloud_proxylb_acme &quot;foobar&quot; {
   proxylb_id       = sakuracloud_proxylb.foobar.id
@@ -790,38 +785,56 @@ data &quot;sakuracloud_proxylb&quot; &quot;foobar&quot; {
 }
 </code></pre>
 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>このリソースを利用する場合、エンハンスドロードバランサリソース(<code>sakuracloud_proxylb</code>)の<code>certificate</code>ブロックの値は上書きされます。<br />
+両者を同時に指定することはできません。</p>
+</div>
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>accept_tos</code> - (Required) The flag to accept the current Let's Encrypt terms of service(see: https://letsencrypt.org/repository/). This must be set <code>true</code> explicitly. Changing this forces a new resource to be created.</li>
-<li><code>common_name</code> - (Required) The FQDN used by ACME. This must set resolvable value. Changing this forces a new resource to be created.</li>
-<li><code>proxylb_id</code> - (Required) The id of the ProxyLB that set ACME settings to. Changing this forces a new resource to be created.</li>
-<li><code>update_delay_sec</code> - (Optional) The wait time in seconds. This typically used for waiting for a DNS propagation. Changing this forces a new resource to be created.</li>
+<li><code>accept_tos</code> - (Required) <a href="https://letsencrypt.org/repository/">Let's Encrypt terms of service</a>への同意フラグ<br />
+この項目は明示的に<code>true</code>に設定する必要があります / この値を変更するとリソースの再作成が行われる</li>
+<li><code>common_name</code> - (Required) 証明書発行対象のFQDN / 名前解決できる値を指定する必要があります / この値を変更するとリソースの再作成が行われる</li>
+<li><code>proxylb_id</code> - (Required) ACME設定を行う対象のエンハンスドロードバランサID / この値を変更するとリソースの再作成が行われる</li>
+<li><code>update_delay_sec</code> - (Optional) ACME設定を有効にするまでの待ち時間 / この値を変更するとリソースの再作成が行われる</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>エンハンスドロードバランサでLet's Encryptによる証明書発行を行うには<a href="https://letsencrypt.org/repository/">Let's Encrypt terms of service</a>に同意する必要があります。<br />
+Let's Encrypt terms of service: https://letsencrypt.org/repository/
+このため、このリソースを使用する際は<code>accept_tos</code>に<code>true</code>を明示的に設定する必要があります</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>エンハンスドロードバランサでACME設定を有効にするには、<code>common_name</code>で指定したFQDNを名前解決できる必要があります。<br />
+DNSレコードを登録した直後だと名前解決できない場合があります。<br />
+このため、必要に応じて<code>update_delay_sec</code>を適切に設定してください。</p>
+</div>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 20 minutes) Used when creating the ProxyLB ACME Setting</li>
-<li><code>delete</code> - (Defaults to 5 minutes) Used when deleting ProxyLB ACME Setting</li>
+<li><code>create</code> - 作成 (デフォルト: 20分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 5分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the ProxyLB ACME Setting.</li>
-<li><code>certificate</code> - A list of <code>certificate</code> blocks as defined below.</li>
+<li><code>id</code> - ID</li>
+<li><code>certificate</code> - 証明書設定のリスト。詳細は<a href="#certificate">certificateブロック</a>を参照</li>
 </ul>
 <hr />
-<p>A <code>certificate</code> block exports the following:</p>
+<h4 id="certificate">certificateブロック</h4>
 <ul>
-<li><code>additional_certificate</code> - A list of <code>additional_certificate</code> blocks as defined below.</li>
-<li><code>intermediate_cert</code> - The intermediate certificate for a server.</li>
-<li><code>private_key</code> - The private key for a server.</li>
-<li><code>server_cert</code> - The certificate for a server.</li>
+<li><code>additional_certificate</code> - 追加証明書のリスト。詳細は<a href="#additional_certificate">additional_certificateブロック</a>を参照</li>
+<li><code>intermediate_cert</code> - 中間証明書</li>
+<li><code>private_key</code> - 秘密鍵</li>
+<li><code>server_cert</code> - サーバ証明書</li>
 </ul>
 <hr />
-<p>A <code>additional_certificate</code> block exports the following:</p>
+<h4 id="additional_certificate">additional_certificateブロック</h4>
 <ul>
-<li><code>intermediate_cert</code> - The intermediate certificate for a server.</li>
-<li><code>private_key</code> - The private key for a server.</li>
-<li><code>server_cert</code> - The certificate for a server.</li>
+<li><code>intermediate_cert</code> - 中間証明書</li>
+<li><code>private_key</code> - 秘密鍵</li>
+<li><code>server_cert</code> - サーバ証明書</li>
 </ul>
               
             </div>

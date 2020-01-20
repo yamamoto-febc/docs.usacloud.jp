@@ -437,10 +437,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-vpc-router">Manages a SakuraCloud VPC Router.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_vpc_router">sakuracloud_vpc_router</a></li>
+                <li class="toctree-l3"><a href="#vpc-sakuracloud_vpc_router">VPCルータ: sakuracloud_vpc_router</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-vpc-router">Manages a SakuraCloud VPC Router.</h2>
-<h1 id="sakuracloud_vpc_router">sakuracloud_vpc_router</h1>
-<p>Manages a SakuraCloud VPC Router.</p>
+                <h1 id="vpc-sakuracloud_vpc_router">VPCルータ: sakuracloud_vpc_router</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_vpc_router&quot; &quot;standard&quot; {
   name                = &quot;standard&quot;
@@ -900,155 +895,149 @@ resource sakuracloud_switch &quot;foobar&quot; {
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the VPCRouter. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>internet_connection</code> - (Optional) The flag to enable connecting to the Internet from the VPC Router. Default:<code>true</code>.</li>
-<li><code>plan</code> - (Optional) The plan name of the VPCRouter. This must be one of [<code>standard</code>/<code>premium</code>/<code>highspec</code>/<code>highspec4000</code>]. Changing this forces a new resource to be created. Default:<code>standard</code>.</li>
-<li><code>syslog_host</code> - (Optional) The ip address of the syslog host to which the VPC Router sends logs.</li>
-<li><code>vrid</code> - (Optional) The Virtual Router Identifier. This is only required when <code>plan</code> is not <code>standard</code>. Changing this forces a new resource to be created.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>internet_connection</code> - (Optional) インターネットへの接続を許可するフラグ / デフォルト:<code>true</code></li>
+<li><code>plan</code> - (Optional) プラン / 次のいずれかを指定 [<code>standard</code>/<code>premium</code>/<code>highspec</code>/<code>highspec4000</code>] / この値を変更するとリソースの再作成が行われる / デフォルト:<code>standard</code></li>
+<li><code>syslog_host</code> - (Optional) syslogホストのIPアドレス</li>
+<li><code>vrid</code> - (Optional) VRID / <code>plan</code>が<code>standard</code>以外の場合に利用される / この値を変更するとリソースの再作成が行われる</li>
 </ul>
-<h4 id="network">Network</h4>
+<h4 id="_1">ネットワーク関連</h4>
 <ul>
-<li><code>aliases</code> - (Optional) A list of ip alias to assign to the VPC Router. This can only be specified if <code>plan</code> is not <code>standard</code>.</li>
-<li><code>ip_addresses</code> - (Optional) The list of the IP address to assign to the VPC Router. This is required only one value when <code>plan</code> is <code>standard</code>, two values otherwise. Changing this forces a new resource to be created.</li>
-<li><code>network_interface</code> - (Optional) A list of additional network interface setting. This doesn't include primary network interface setting.</li>
-<li><code>switch_id</code> - (Optional) The id of the switch to connect. This is only required when when <code>plan</code> is not <code>standard</code>%!(EXTRA string=VPCRouter). Changing this forces a new resource to be created.</li>
-<li><code>vip</code> - (Optional) The virtual IP address of the VPC Router. This is only required when <code>plan</code> is not <code>standard</code>. Changing this forces a new resource to be created.</li>
+<li><code>aliases</code> - (Optional) プライマリNICに割り当てるIPエイリアスのリスト / <code>plan</code>が<code>standard</code>以外の場合に利用可能</li>
+<li><code>ip_addresses</code> - (Optional) プライマリNICのIPアドレスのリスト / <code>plan</code>が<code>standard</code>の場合は1つ、以外の場合は2つの要素を指定 / この値を変更するとリソースの再作成が行われる</li>
+<li><code>switch_id</code> - (Optional) プライマリNICが接続するスイッチのID / <code>plan</code>が<code>standard</code>以外の時に必須 / この値を変更するとリソースの再作成が行われる</li>
+<li><code>vip</code> - (Optional) プライマリNICに割り当てる仮想IPアドレス /  <code>plan</code>が<code>standard</code>以外の場合に必須 / この値を変更するとリソースの再作成が行われる</li>
+<li><code>network_interface</code> - (Optional) NIC設定のリスト / この設定にはプライマリNIC(eth0)の設定を含まない</li>
 </ul>
-<h4 id="static-route">Static Route</h4>
+<h4 id="_2">ルータ機能関連</h4>
 <ul>
-<li><code>static_route</code> - (Optional) One or more <code>static_route</code> blocks as defined below.</li>
+<li><code>firewall</code> - (Optional) ファイアウォール設定のリスト。詳細は<a href="#firewall">firewallブロック</a>を参照</li>
+<li><code>static_route</code> - (Optional) スタティックルート設定のリスト。詳細は<a href="#static_route">static_routeブロック</a>を参照</li>
+<li><code>site_to_site_vpn</code> - (Optional) サイト間VPN設定のリスト。詳細は<a href="#site_to_site_vpn">site_to_site_vpnブロック</a>を参照</li>
 </ul>
-<h4 id="firewall">Firewall</h4>
+<h4 id="dhcpnatforwarding">DHCP/NAT/Forwarding関連</h4>
 <ul>
-<li><code>firewall</code> - (Optional) One or more <code>firewall</code> blocks as defined below.</li>
+<li><code>dhcp_server</code> - (Optional) DHCPサーバ設定のリスト。詳細は<a href="#dhcp_server">dhcp_serverブロック</a>を参照</li>
+<li><code>dhcp_static_mapping</code> - (Optional) DHCPスタティックマッピング設定のリスト。詳細は<a href="#dhcp_static_mapping">dhcp_static_mappingブロック</a>を参照</li>
+<li><code>port_forwarding</code> - (Optional) ポートフォワーディング設定のリスト。詳細は<a href="#port_forwarding">port_forwardingブロック</a>を参照</li>
+<li><code>static_nat</code> - (Optional) スタティックNAT設定のリスト。詳細は<a href="#static_nat">static_natブロック</a>を参照</li>
 </ul>
-<h4 id="site-to-site-vpn">Site to Site VPN</h4>
+<h4 id="_3">リモートアクセス関連</h4>
 <ul>
-<li><code>site_to_site_vpn</code> - (Optional) One or more <code>site_to_site_vpn</code> blocks as defined below.</li>
-</ul>
-<h4 id="dhcpnatforwarding">DHCP/NAT/Forwarding</h4>
-<ul>
-<li><code>dhcp_server</code> - (Optional) One or more <code>dhcp_server</code> blocks as defined below.</li>
-<li><code>dhcp_static_mapping</code> - (Optional) One or more <code>dhcp_static_mapping</code> blocks as defined below.</li>
-<li><code>port_forwarding</code> - (Optional) One or more <code>port_forwarding</code> blocks as defined below.</li>
-<li><code>static_nat</code> - (Optional) One or more <code>static_nat</code> blocks as defined below.</li>
-</ul>
-<h4 id="remote-access">Remote Access</h4>
-<ul>
-<li><code>l2tp</code> - (Optional) A <code>l2tp</code> block as defined below.</li>
-<li><code>pptp</code> - (Optional) A <code>pptp</code> block as defined below.</li>
-<li><code>user</code> - (Optional) One or more <code>user</code> blocks as defined below.</li>
+<li><code>l2tp</code> - (Optional) L2TP/IPsec設定。詳細は<a href="#l2tp">l2tpブロック</a>を参照</li>
+<li><code>pptp</code> - (Optional) PPTP設定。詳細は<a href="#pptp">pptpブロック</a>を参照</li>
+<li><code>user</code> - (Optional) リモートアクセスユーザー設定のリスト。詳細は<a href="#user">userブロック</a>を参照</li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>description</code> - (Optional) The description of the VPCRouter. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
-<li><code>icon_id</code> - (Optional) The icon id to attach to the VPCRouter.</li>
-<li><code>tags</code> - (Optional) Any tags to assign to the VPCRouter.</li>
-<li><code>zone</code> - (Optional) The name of zone that the VPCRouter will be created. (e.g. <code>is1a</code>, <code>tk1a</code>). Changing this forces a new resource to be created.</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
+<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
 </ul>
 <hr />
-<p>A <code>dhcp_server</code> block supports the following:</p>
+<h4 id="dhcp_server">dhcp_serverブロック</h4>
 <ul>
-<li><code>interface_index</code> - (Required) The index of the network interface on which to enable the DHCP service. This must be in the range [<code>1</code>-<code>7</code>].</li>
-<li><code>range_start</code> - (Required) The start value of IP address range to assign to DHCP client.</li>
-<li><code>range_stop</code> - (Required) The end value of IP address range to assign to DHCP client.</li>
-<li><code>dns_servers</code> - (Optional) A list of IP address of DNS server to assign to DHCP client.</li>
+<li><code>interface_index</code> - (Required) DHCPサーバを有効にするNICのインデックス / <code>1</code>-<code>7</code>の範囲で指定</li>
+<li><code>range_start</code> - (Required) DHCPクライアントに割り当てるIPアドレスの開始値</li>
+<li><code>range_stop</code> - (Required) DHCPクライアントに割り当てるIPアドレスの終了値</li>
+<li><code>dns_servers</code> - (Optional) DHCPクライアントに配布するDNSサーバのIPアドレスのリスト</li>
 </ul>
 <hr />
-<p>A <code>dhcp_static_mapping</code> block supports the following:</p>
+<h4 id="dhcp_static_mapping">dhcp_static_mappingブロック</h4>
 <ul>
-<li><code>ip_address</code> - (Required) The static IP address to assign to DHCP client.</li>
-<li><code>mac_address</code> - (Required) The source MAC address of static mapping.</li>
+<li><code>ip_address</code> - (Required) DHCPクライアントに割り当てるIPアドレス</li>
+<li><code>mac_address</code> - (Required) スタティックマッピングのキーとなるアクセス元MACアドレス</li>
 </ul>
 <hr />
-<p>A <code>firewall</code> block supports the following:</p>
+<h4 id="firewall">firewallブロック</h4>
 <ul>
-<li><code>direction</code> - (Required) The direction to apply the firewall. This must be one of [<code>send</code>/<code>receive</code>].</li>
-<li><code>expression</code> - (Required) One or more <code>expression</code> blocks as defined below.</li>
-<li><code>interface_index</code> - (Optional) The index of the network interface on which to enable filtering. This must be in the range [<code>0</code>-<code>7</code>].</li>
+<li><code>direction</code> - (Required) ファイアウォールを適用する通信方向 / 次のいずれかを指定 [<code>send</code>/<code>receive</code>]</li>
+<li><code>expression</code> - (Required) フィルタリングルールのリスト。詳細は<a href="#expression">expressionブロック</a>を参照</li>
+<li><code>interface_index</code> - (Optional) ファイアウォールを適用するNICのインデックス /  <code>0</code>-<code>7</code>の範囲で指定</li>
 </ul>
 <hr />
-<p>A <code>expression</code> block supports the following:</p>
+<h4 id="expression">expressionブロック</h4>
 <ul>
-<li><code>protocol</code> - (Required) The protocol used for filtering. This must be one of [<code>tcp</code>/<code>udp</code>/<code>icmp</code>/<code>ip</code>].</li>
-<li><code>allow</code> - (Required) The flag to allow the packet through the filter.</li>
-<li><code>destination_network</code> - (Optional) A destination IP address or CIDR block used for filtering (e.g. <code>192.0.2.1</code>, <code>192.0.2.0/24</code>).</li>
-<li><code>destination_port</code> - (Optional) A destination port number or port range used for filtering (e.g. <code>1024</code>, <code>1024-2048</code>). This is only used when <code>protocol</code> is <code>tcp</code> or <code>udp</code>.</li>
-<li><code>source_network</code> - (Optional) A source IP address or CIDR block used for filtering (e.g. <code>192.0.2.1</code>, <code>192.0.2.0/24</code>).</li>
-<li><code>source_port</code> - (Optional) A source port number or port range used for filtering (e.g. <code>1024</code>, <code>1024-2048</code>). This is only used when <code>protocol</code> is <code>tcp</code> or <code>udp</code>.</li>
-<li><code>logging</code> - (Optional) The flag to enable packet logging when matching the expression.</li>
-<li><code>description</code> - (Optional) The description of the expression. The length of this value must be in the range [<code>0</code>-<code>512</code>].</li>
+<li><code>protocol</code> - (Required) プロトコル / 次のいずれかを指定 [<code>tcp</code>/<code>udp</code>/<code>icmp</code>/<code>ip</code>]</li>
+<li><code>allow</code> - (Required) ルールにマッチしたパケットを許可するフラグ</li>
+<li><code>destination_network</code> - (Optional) 宛先IPアドレス、または宛先CIDRブロック (例: <code>192.0.2.1</code>, <code>192.0.2.0/24</code>)</li>
+<li><code>destination_port</code> - (Optional) 宛先ポート番号、または宛先ポート番号範囲 (例: <code>1024</code>, <code>1024-2048</code>) / <code>protocol</code>が<code>tcp</code>/<code>udp</code>の場合に利用される</li>
+<li><code>source_network</code> - (Optional) 送信元IPアドレス、または送信元CIDRブロック (例: <code>192.0.2.1</code>, <code>192.0.2.0/24</code>)</li>
+<li><code>source_port</code> - (Optional) 送信元ポート、または送信元ポート範囲 (例: <code>1024</code>, <code>1024-2048</code>) / <code>protocol</code>が<code>tcp</code>/<code>udp</code>の場合に利用される</li>
+<li><code>logging</code> - (Optional) ルールにマッチしたパケットのロギングを有効にするフラグ</li>
+<li><code>description</code> - (Optional) 説明 /  <code>0</code>-<code>512</code>文字で指定</li>
 </ul>
 <hr />
-<p>A <code>l2tp</code> block supports the following:</p>
+<h4 id="l2tp">l2tpブロック</h4>
 <ul>
-<li><code>pre_shared_secret</code> - (Required) The pre shared secret for L2TP/IPsec.</li>
-<li><code>range_start</code> - (Required) The start value of IP address range to assign to L2TP/IPsec client.</li>
-<li><code>range_stop</code> - (Required) The end value of IP address range to assign to L2TP/IPsec client.</li>
+<li><code>pre_shared_secret</code> - (Required) 事前共有鍵</li>
+<li><code>range_start</code> - (Required) クライアントに割り当てるIPアドレスの開始値</li>
+<li><code>range_stop</code> - (Required) クライアントに割り当てるIPアドレスの終了値</li>
 </ul>
 <hr />
-<p>A <code>network_interface</code> block supports the following:</p>
+<h4 id="network_interface">network_interfaceブロック</h4>
 <ul>
-<li><code>index</code> - (Required) The index of the network interface. This must be in the range [<code>1</code>-<code>7</code>].</li>
-<li><code>ip_addresses</code> - (Required) A list of ip address to assign to the network interface. This is required only one value when <code>plan</code> is <code>standard</code>, two values otherwise.</li>
-<li><code>netmask</code> - (Required) The bit length of the subnet to assign to the network interface.</li>
-<li><code>switch_id</code> - (Required) The id of the connected switch.</li>
-<li><code>vip</code> - (Optional) The virtual IP address to assign to the network interface. This is only required when <code>plan</code> is not <code>standard</code>.</li>
+<li><code>index</code> - (Required) 対象NICのインデックス / <code>1</code>-<code>7</code>の範囲で指定</li>
+<li><code>ip_addresses</code> - (Required) IPアドレスのリスト / <code>plan</code>が<code>standard</code>の場合は1つ、以外の場合は2つの要素を指定</li>
+<li><code>netmask</code> - (Required) サブネットマスク長</li>
+<li><code>switch_id</code> - (Required) スイッチID</li>
+<li><code>vip</code> - (Optional) 仮想IPアドレス /  <code>plan</code>が<code>standard</code>の場合に必須</li>
 </ul>
 <hr />
-<p>A <code>port_forwarding</code> block supports the following:</p>
+<h4 id="port_forwarding">port_forwardingブロック</h4>
 <ul>
-<li><code>private_ip</code> - (Required) The destination ip address of the port forwarding.</li>
-<li><code>private_port</code> - (Required) The destination port number of the port forwarding. This will be a port number on a private network.</li>
-<li><code>protocol</code> - (Required) The protocol used for port forwarding. This must be one of [<code>tcp</code>/<code>udp</code>].</li>
-<li><code>public_port</code> - (Required) The source port number of the port forwarding. This must be a port number on a public network.</li>
-<li><code>description</code> - (Optional) The description of the port forwarding. The length of this value must be in the range [<code>0</code>-<code>512</code>].</li>
+<li><code>private_ip</code> - (Required) プライベート側IPアドレス</li>
+<li><code>private_port</code> - (Required) プライベート側ポート番号</li>
+<li><code>protocol</code> - (Required) プロトコル / 次のいずれかを指定 [<code>tcp</code>/<code>udp</code>]</li>
+<li><code>public_port</code> - (Required) パブリック側ポート番号</li>
+<li><code>description</code> - (Optional) 説明 / <code>0</code>-<code>512</code>文字で指定</li>
 </ul>
 <hr />
-<p>A <code>pptp</code> block supports the following:</p>
+<h4 id="pptp">pptpブロック</h4>
 <ul>
-<li><code>range_start</code> - (Required) The start value of IP address range to assign to PPTP client.</li>
-<li><code>range_stop</code> - (Required) The end value of IP address range to assign to PPTP client.</li>
+<li><code>range_start</code> - (Required) クライアントに割り当てるIPアドレスの開始値</li>
+<li><code>range_stop</code> - (Required) クライアントに割り当てるIPアドレスの終了値</li>
 </ul>
 <hr />
-<p>A <code>site_to_site_vpn</code> block supports the following:</p>
+<h4 id="site_to_site_vpn">site_to_site_vpnブロック</h4>
 <ul>
-<li><code>local_prefix</code> - (Required) A list of CIDR block of the network under the VPC Router.</li>
-<li><code>peer</code> - (Required) The IP address of the opposing appliance connected to the VPC Router.</li>
-<li><code>pre_shared_secret</code> - (Required) The pre shared secret for the VPN. The length of this value must be in the range [<code>0</code>-<code>40</code>].</li>
-<li><code>remote_id</code> - (Required) The id of the opposing appliance connected to the VPC Router. This is typically set same as value of <code>peer</code>.</li>
-<li><code>routes</code> - (Required) A list of CIDR block of VPN connected networks.</li>
+<li><code>local_prefix</code> - (Required) ローカルプレフィックス / CIDRブロックとして指定</li>
+<li><code>peer</code> - (Required) ピアのIPアドレス</li>
+<li><code>pre_shared_secret</code> - (Required) 事前共有鍵 / <code>0</code>-<code>40</code>文字で指定</li>
+<li><code>remote_id</code> - (Required) リモートID</li>
+<li><code>routes</code> - (Required) 接続されたVPNのCIDRブロックのリスト</li>
 </ul>
 <hr />
-<p>A <code>static_nat</code> block supports the following:</p>
+<h4 id="static_nat">static_natブロック</h4>
 <ul>
-<li><code>private_ip</code> - (Required) The private IP address used for the static NAT.</li>
-<li><code>public_ip</code> - (Required) The public IP address used for the static NAT.</li>
-<li><code>description</code> - (Optional) The description of the static nat. The length of this value must be in the range [<code>0</code>-<code>512</code>].</li>
+<li><code>private_ip</code> - (Required) プライベート側IPアドレス</li>
+<li><code>public_ip</code> - (Required) パブリック側IPアドレス</li>
+<li><code>description</code> - (Optional) 説明 / <code>0</code>-<code>512</code>文字で指定</li>
 </ul>
 <hr />
-<p>A <code>static_route</code> block supports the following:</p>
+<h4 id="static_route">static_routeブロック</h4>
 <ul>
-<li><code>next_hop</code> - (Required) The IP address of the next hop.</li>
-<li><code>prefix</code> - (Required) The CIDR block of destination.</li>
+<li><code>next_hop</code> - (Required) ネクストホップのIPアドレス</li>
+<li><code>prefix</code> - (Required) プレフィックスのリスト / 各要素はCIDRブロックとして指定</li>
 </ul>
 <hr />
-<p>A <code>user</code> block supports the following:</p>
+<h4 id="user">userブロック</h4>
 <ul>
-<li><code>name</code> - (Required) The user name used to authenticate remote access.</li>
-<li><code>password</code> - (Required) The password used to authenticate remote access.</li>
+<li><code>name</code> - (Required) ユーザー名</li>
+<li><code>password</code> - (Required) パスワード</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 60 minutes) Used when creating the VPC Router</li>
-<li><code>update</code> - (Defaults to 60 minutes) Used when updating the VPC Router</li>
-<li><code>delete</code> - (Defaults to 20 minutes) Used when deleting VPC Router</li>
+<li><code>create</code> - 作成 (デフォルト: 60分)</li>
+<li><code>update</code> - 更新 (デフォルト: 60分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 20分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the VPC Router.</li>
-<li><code>public_ip</code> - The public ip address of the VPC Router.</li>
+<li><code>id</code> - ID</li>
+<li><code>public_ip</code> - VPCルータのパブリックIP</li>
 </ul>
               
             </div>

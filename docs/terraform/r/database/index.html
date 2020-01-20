@@ -409,10 +409,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-database">Manages a SakuraCloud Database.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_database">sakuracloud_database</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_database">データベースアプライアンス: sakuracloud_database</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-database">Manages a SakuraCloud Database.</h2>
-<h1 id="sakuracloud_database">sakuracloud_database</h1>
-<p>Manages a SakuraCloud Database.</p>
+                <h1 id="sakuracloud_database">データベースアプライアンス: sakuracloud_database</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">variable password {}
 variable replica_password {}
@@ -812,51 +807,51 @@ resource &quot;sakuracloud_switch&quot; &quot;foobar&quot; {
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the Database. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>database_type</code> - (Optional) The type of the database. This must be one of [<code>mariadb</code>/<code>postgres</code>]. Changing this forces a new resource to be created. Default:<code>postgres</code>.</li>
-<li><code>plan</code> - (Optional) The plan name of the Database. This must be one of [<code>10g</code>/<code>30g</code>/<code>90g</code>/<code>240g</code>/<code>500g</code>/<code>1t</code>]. Changing this forces a new resource to be created. Default:<code>10g</code>.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>database_type</code> - (Optional) データベースタイプ / 次のいずれかを指定 [<code>mariadb</code>/<code>postgres</code>] / この値を変更するとリソースの再作成が行われる / デフォルト:<code>postgres</code>.</li>
+<li><code>plan</code> - (Optional) プラン / 次のいずれかを指定 [<code>10g</code>/<code>30g</code>/<code>90g</code>/<code>240g</code>/<code>500g</code>/<code>1t</code>] /  この値を変更するとリソースの再作成が行われる / デフォルト:<code>10g</code>.</li>
 </ul>
-<h4 id="user">User</h4>
+<h4 id="_1">ユーザー関連</h4>
 <ul>
-<li><code>username</code> - (Required) The name of default user on the database. Changing this forces a new resource to be created.</li>
-<li><code>password</code> - (Required) The password of default user on the database.</li>
+<li><code>username</code> - (Required) デフォルトユーザー名 /  この値を変更するとリソースの再作成が行われる</li>
+<li><code>password</code> - (Required) デフォルトユーザーのパスワード</li>
 </ul>
-<h4 id="network">Network</h4>
+<h4 id="_2">ネットワーク関連</h4>
 <ul>
-<li><code>switch_id</code> - (Required) The id of the switch to which the Database connects. Changing this forces a new resource to be created.</li>
-<li><code>gateway</code> - (Required) The IP address of the gateway used by Database. Changing this forces a new resource to be created.</li>
-<li><code>ip_address</code> - (Required) The IP address to assign to the Database. Changing this forces a new resource to be created.</li>
-<li><code>netmask</code> - (Required) The bit length of the subnet to assign to the Database. This must be in the range [<code>8</code>-<code>29</code>]. Changing this forces a new resource to be created.</li>
-<li><code>port</code> - (Optional) The number of the listening port. This must be in the range [<code>1024</code>-<code>65535</code>]. Default:<code>5432</code>.</li>
-<li><code>source_ranges</code> - (Optional) The range of source IP addresses that allow to access to the Database via network.</li>
+<li><code>switch_id</code> - (Required) スイッチID /  この値を変更するとリソースの再作成が行われる</li>
+<li><code>gateway</code> - (Required) ゲートウェイIPアドレス / この値を変更するとリソースの再作成が行われる</li>
+<li><code>ip_address</code> - (Required) IPアドレス / この値を変更するとリソースの再作成が行われる</li>
+<li><code>netmask</code> - (Required) サブネットマスク長 /  <code>8</code>-<code>29</code>の範囲で指定 /  この値を変更するとリソースの再作成が行われる</li>
+<li><code>port</code> - (Optional) ポート番号 / <code>1024</code>-<code>65535</code>の範囲で指定 / デフォルト:<code>5432</code></li>
+<li><code>source_ranges</code> - (Optional) データベースアプライアンスにアクセスできるIPアドレス、またはCIDRブロックのリスト</li>
 </ul>
-<h4 id="backup">Backup</h4>
+<h4 id="_3">バックアップ関連</h4>
 <ul>
-<li><code>backup_time</code> - (Optional) The time to take backup. This must be formatted with <code>HH:mm</code>.</li>
-<li><code>backup_weekdays</code> - (Optional) A list of weekdays to backed up. The values in the list must be in [<code>sun</code>/<code>mon</code>/<code>tue</code>/<code>wed</code>/<code>thu</code>/<code>fri</code>/<code>sat</code>].</li>
+<li><code>backup_time</code> - (Optional) バックアップ取得時刻 / <code>HH:mm</code>形式で指定</li>
+<li><code>backup_weekdays</code> - (Optional) バックアップ取得曜日のリスト / 各要素は次のいずれかを指定 [<code>sun</code>/<code>mon</code>/<code>tue</code>/<code>wed</code>/<code>thu</code>/<code>fri</code>/<code>sat</code>]</li>
 </ul>
-<h4 id="replication">Replication</h4>
+<h4 id="_4">レプリケーション関連</h4>
 <ul>
-<li><code>replica_password</code> - (Optional) The password of user that processing a replication.</li>
-<li><code>replica_user</code> - (Optional) The name of user that processing a replication. Default:<code>replica</code>.</li>
+<li><code>replica_password</code> - (Optional) レプリケーションユーザーのパスワード</li>
+<li><code>replica_user</code> - (Optional) レプリケーションユーザー名 / デフォルト:<code>replica</code></li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>tags</code> - (Optional) Any tags to assign to the Database.</li>
-<li><code>icon_id</code> - (Optional) The icon id to attach to the Database.</li>
-<li><code>description</code> - (Optional) The description of the Database. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
-<li><code>zone</code> - (Optional) The name of zone that the Database will be created. (e.g. <code>is1a</code>, <code>tk1a</code>). Changing this forces a new resource to be created.</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
+<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 60 minutes) Used when creating the Database</li>
-<li><code>update</code> - (Defaults to 60 minutes) Used when updating the Database</li>
-<li><code>delete</code> - (Defaults to 20 minutes) Used when deleting Database</li>
+<li><code>create</code> - 作成 (デフォルト: 60分)</li>
+<li><code>update</code> - 更新 (デフォルト: 60分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 20分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Database.</li>
+<li><code>id</code> - ID</li>
 </ul>
               
             </div>

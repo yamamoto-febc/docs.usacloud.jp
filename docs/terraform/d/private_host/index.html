@@ -133,10 +133,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#get-information-about-an-existing-private-host">Get information about an existing Private Host.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#data-source-sakuracloud_private_host">Data Source: sakuracloud_private_host</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_private_host">専有ホスト: sakuracloud_private_host</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,8 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="get-information-about-an-existing-private-host">Get information about an existing Private Host.</h2>
-<h1 id="data-source-sakuracloud_private_host">Data Source: sakuracloud_private_host</h1>
-<p>Get information about an existing Private Host.</p>
+                <h1 id="sakuracloud_private_host">専有ホスト: sakuracloud_private_host</h1>
+<p>ディスクの情報を参照するためのデータソース</p>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">data &quot;sakuracloud_private_host&quot; &quot;foobar&quot; {
   filter {
@@ -785,34 +781,34 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>filter</code> - (Optional) One or more values used for filtering, as defined below.</li>
-<li><code>zone</code> - (Optional) The name of zone that the PrivateHost is in (e.g. <code>is1a</code>, <code>tk1a</code>).</li>
+<li><code>filter</code> - (Optional) 参照対象をフィルタリングするための条件。詳細は<a href="#filter">filterブロック</a>を参照 </li>
+<li><code>zone</code> - (Optional) 対象ゾーンの名前 (例: <code>is1a</code>, <code>tk1a</code>)  </li>
 </ul>
 <hr />
-<p>A <code>filter</code> block supports the following:</p>
+<h4 id="filter">filterブロック</h4>
 <ul>
-<li><code>condition</code> - (Optional) One or more name/values pairs used for filtering. There are several valid keys, for a full reference, check out finding section in the <a href="https://developer.sakura.ad.jp/cloud/api/1.1/">SakuraCloud API reference</a>.</li>
-<li><code>id</code> - (Optional) The resource id on SakuraCloud used for filtering.</li>
-<li><code>names</code> - (Optional) The resource names on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.</li>
-<li><code>tags</code> - (Optional) The resource tags on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.</li>
+<li><code>condition</code> - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は<a href="#condition">conditionブロック</a>を参照  </li>
+<li><code>id</code> - (Optional) 対象リソースのID </li>
+<li><code>names</code> - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  </li>
+<li><code>tags</code> - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる</li>
 </ul>
 <hr />
-<p>A <code>condition</code> block supports the following:</p>
+<h4 id="condition">conditionブロック</h4>
 <ul>
-<li><code>name</code> - (Required) The name of the target field. This value is case-sensitive.</li>
-<li><code>values</code> - (Required) The values of the condition. If multiple values ​​are specified, they combined as AND condition.</li>
+<li><code>name</code> - (Required) 対象フィールド名。大文字/小文字を区別する  </li>
+<li><code>values</code> - (Required) 対象フィールドの値。複数指定した場合はAND条件となる</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Private Host.</li>
-<li><code>assigned_core</code> - The total number of CPUs assigned to servers on the private host.</li>
-<li><code>assigned_memory</code> - The total size of memory assigned to servers on the private host.</li>
-<li><code>class</code> - The class of the PrivateHost. This will be one of [<code>dynamic</code>/<code>ms_windows</code>].</li>
-<li><code>description</code> - The description of the PrivateHost.</li>
-<li><code>hostname</code> - The hostname of the private host.</li>
-<li><code>icon_id</code> - The icon id attached to the PrivateHost.</li>
-<li><code>name</code> - The name of the PrivateHost.</li>
-<li><code>tags</code> - Any tags assigned to the PrivateHost.</li>
+<li><code>id</code> - ID</li>
+<li><code>assigned_core</code> - サーバに割り当てたCPUコアの総数</li>
+<li><code>assigned_memory</code> - サーバに割り当てたメモリ(GiB単位)の総数</li>
+<li><code>class</code> - クラス。次のいずれかとなる [<code>dynamic</code>/<code>ms_windows</code>]</li>
+<li><code>description</code> - 説明</li>
+<li><code>hostname</code> - ホスト名</li>
+<li><code>icon_id</code> - アイコンID</li>
+<li><code>name</code> - 名前</li>
+<li><code>tags</code> - タグ</li>
 </ul>
               
             </div>

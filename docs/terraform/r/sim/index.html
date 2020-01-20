@@ -561,10 +561,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-sim">Manages a SakuraCloud SIM.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_sim">sakuracloud_sim</a></li>
+                <li class="toctree-l3"><a href="#sim-sakuracloud_sim">SIM: sakuracloud_sim</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-sim">Manages a SakuraCloud SIM.</h2>
-<h1 id="sakuracloud_sim">sakuracloud_sim</h1>
-<p>Manages a SakuraCloud SIM.</p>
+                <h1 id="sim-sakuracloud_sim">SIM: sakuracloud_sim</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_sim&quot; &quot;foobar&quot; {
   name        = &quot;foobar&quot;
@@ -792,37 +787,37 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the SIM. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>enabled</code> - (Optional) The flag to enable the SIM. Default:<code>true</code>.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>enabled</code> - (Optional) 有効フラグ / デフォルト:<code>true</code></li>
 </ul>
-<h4 id="sim-registration">SIM Registration</h4>
+<h4 id="_1">登録関連</h4>
 <ul>
-<li><code>iccid</code> - (Required) ICCID(Integrated Circuit Card ID) assigned to the SIM. Changing this forces a new resource to be created.</li>
-<li><code>passcode</code> - (Required) The passcord to authenticate the SIM. Changing this forces a new resource to be created.</li>
-<li><code>carrier</code> - (Required) A list of a communication company. Each element must be one of <code>kddi</code>/<code>docomo</code>/<code>softbank</code>.</li>
+<li><code>iccid</code> - (Required) ICCID(Integrated Circuit Card ID) / この値を変更するとリソースの再作成が行われる</li>
+<li><code>passcode</code> - (Required) パスコード / この値を変更するとリソースの再作成が行われる</li>
+<li><code>carrier</code> - (Required) 利用するキャリアのリスト / 各要素は次のいずれかを指定 [<code>kddi</code>/<code>docomo</code>/<code>softbank</code>]</li>
 </ul>
-<h4 id="imei-locking">IMEI Locking</h4>
+<h4 id="imei">IMEIロック</h4>
 <ul>
-<li><code>imei</code> - (Optional) The id of the device to restrict devices that can use the SIM.</li>
+<li><code>imei</code> - (Optional) IMEIロックを利用する場合のIMEI</li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>description</code> - (Optional) The description of the SIM. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
-<li><code>icon_id</code> - (Optional) The icon id to attach to the SIM.</li>
-<li><code>tags</code> - (Optional) Any tags to assign to the SIM.</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 5 minutes) Used when creating the SIM</li>
-<li><code>update</code> - (Defaults to 5 minutes) Used when updating the SIM</li>
-<li><code>delete</code> - (Defaults to 5 minutes) Used when deleting SIM</li>
+<li><code>create</code> - 作成 (デフォルト: 5分)</li>
+<li><code>update</code> - 更新 (デフォルト: 5分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 5分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the SIM.</li>
-<li><code>ip_address</code> - The IP address assigned to the SIM.</li>
-<li><code>mobile_gateway_id</code> - The id of the MobileGateway which the SIM is assigned.</li>
+<li><code>id</code> - ID</li>
+<li><code>ip_address</code> - SIMに割り当てられたIPアドレス</li>
+<li><code>mobile_gateway_id</code> - モバイルゲートウェイのID</li>
 </ul>
               
             </div>

@@ -510,10 +510,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-gslb">Manages a SakuraCloud GSLB.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_gslb">sakuracloud_gslb</a></li>
+                <li class="toctree-l3"><a href="#gslb-sakuracloud_gslb">GSLB: sakuracloud_gslb</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-gslb">Manages a SakuraCloud GSLB.</h2>
-<h1 id="sakuracloud_gslb">sakuracloud_gslb</h1>
-<p>Manages a SakuraCloud GSLB.</p>
+                <h1 id="gslb-sakuracloud_gslb">GSLB: sakuracloud_gslb</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_gslb&quot; &quot;foobar&quot; {
   name = &quot;example&quot;
@@ -807,46 +802,46 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the GSLB. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>health_check</code> - (Required) A <code>health_check</code> block as defined below.</li>
-<li><code>server</code> - (Optional) One or more <code>server</code> blocks as defined below.</li>
-<li><code>weighted</code> - (Optional) The flag to enable weighted load-balancing.</li>
-<li><code>sorry_server</code> - (Optional) The IP address of the SorryServer. This will be used when all servers are down.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>health_check</code> - (Required) ヘルスチェック。詳細は<a href="#health_check">health_checkブロック</a>を参照</li>
+<li><code>server</code> - (Optional) 実サーバのリスト。詳細は<a href="#server">serverブロック</a>を参照</li>
+<li><code>weighted</code> - (Optional) 重み付け振り分けの有効フラグ</li>
+<li><code>sorry_server</code> - (Optional) ソーリーサーバのIPアドレス</li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>description</code> - (Optional) The description of the GSLB. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
-<li><code>icon_id</code> - (Optional) The icon id to attach to the GSLB.</li>
-<li><code>tags</code> - (Optional) Any tags to assign to the GSLB.</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
 </ul>
 <hr />
-<p>A <code>health_check</code> block supports the following:</p>
+<h4 id="health_check">health_checkブロック</h4>
 <ul>
-<li><code>protocol</code> - (Required) The protocol used for health checks. This must be one of [<code>http</code>/<code>https</code>/<code>tcp</code>/<code>ping</code>].</li>
-<li><code>delay_loop</code> - (Optional) The interval in seconds between checks. This must be in the range [<code>10</code>-<code>60</code>].</li>
-<li><code>host_header</code> - (Optional) The value of host header send when checking by HTTP/HTTPS.</li>
-<li><code>path</code> - (Optional) The path used when checking by HTTP/HTTPS.</li>
-<li><code>port</code> - (Optional) The port number used when checking by TCP.</li>
-<li><code>status</code> - (Optional) The response-code to expect when checking by HTTP/HTTPS.</li>
+<li><code>protocol</code> - (Required) プロトコル / 次のいずれかを指定 [<code>http</code>/<code>https</code>/<code>tcp</code>/<code>ping</code>]</li>
+<li><code>delay_loop</code> - (Optional) チェック間隔秒数 / <code>10</code>-<code>60</code>の範囲で指定</li>
+<li><code>host_header</code> - (Optional) HTTP/HTTPSチェック時に利用されるHostヘッダの値</li>
+<li><code>path</code> - (Optional) HTTP/HTTPSチェック時のリクエストパス</li>
+<li><code>port</code> - (Optional) TCPチェック時のポート番号</li>
+<li><code>status</code> - (Optional) HTTP/HTTPSチェック時のレスポンスコード</li>
 </ul>
 <hr />
-<p>A <code>server</code> block supports the following:</p>
+<h4 id="server">serverブロック</h4>
 <ul>
-<li><code>ip_address</code> - (Required) The IP address of the server.</li>
-<li><code>enabled</code> - (Optional) The flag to enable as destination of load balancing.</li>
-<li><code>weight</code> - (Optional) The weight used when weighted load balancing is enabled. This must be in the range [<code>1</code>-<code>10000</code>].</li>
+<li><code>ip_address</code> - (Required) IPアドレス</li>
+<li><code>enabled</code> - (Optional) 有効フラグ</li>
+<li><code>weight</code> - (Optional) 重み付け振り分けが有効な場合のウェイト / <code>1</code>-<code>10000</code>の範囲で指定</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 5 minutes) Used when creating the GSLB</li>
-<li><code>update</code> - (Defaults to 5 minutes) Used when updating the GSLB</li>
-<li><code>delete</code> - (Defaults to 5 minutes) Used when deleting GSLB</li>
+<li><code>create</code> - 作成 (デフォルト: 5分)</li>
+<li><code>update</code> - 更新 (デフォルト: 5分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 5分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the GSLB.</li>
-<li><code>fqdn</code> - The FQDN for accessing to the GSLB. This is typically used as value of CNAME record.</li>
+<li><code>id</code> - ID</li>
+<li><code>fqdn</code> - GSLBにアクセスするためのFQDN。この値は通常CNAMEレコードの値として利用します</li>
 </ul>
               
             </div>

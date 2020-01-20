@@ -481,10 +481,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#get-information-about-an-existing-simple-monitor">Get information about an existing Simple Monitor.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#data-source-sakuracloud_simple_monitor">Data Source: sakuracloud_simple_monitor</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_simple_monitor">シンプル監視: sakuracloud_simple_monitor</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,8 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="get-information-about-an-existing-simple-monitor">Get information about an existing Simple Monitor.</h2>
-<h1 id="data-source-sakuracloud_simple_monitor">Data Source: sakuracloud_simple_monitor</h1>
-<p>Get information about an existing Simple Monitor.</p>
+                <h1 id="sakuracloud_simple_monitor">シンプル監視: sakuracloud_simple_monitor</h1>
+<p>シンプル監視の情報を参照するためのデータソース</p>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">data &quot;sakuracloud_simple_monitor&quot; &quot;foobar&quot; {
   filter {
@@ -785,55 +781,55 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>filter</code> - (Optional) One or more values used for filtering, as defined below.</li>
+<li><code>filter</code> - (Optional) 参照対象をフィルタリングするための条件。詳細は<a href="#filter">filterブロック</a>を参照 </li>
 </ul>
 <hr />
-<p>A <code>filter</code> block supports the following:</p>
+<h4 id="filter">filterブロック</h4>
 <ul>
-<li><code>condition</code> - (Optional) One or more name/values pairs used for filtering. There are several valid keys, for a full reference, check out finding section in the <a href="https://developer.sakura.ad.jp/cloud/api/1.1/">SakuraCloud API reference</a>.</li>
-<li><code>id</code> - (Optional) The resource id on SakuraCloud used for filtering.</li>
-<li><code>names</code> - (Optional) The resource names on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.</li>
-<li><code>tags</code> - (Optional) The resource tags on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.</li>
+<li><code>condition</code> - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は<a href="#condition">conditionブロック</a>を参照  </li>
+<li><code>id</code> - (Optional) 対象リソースのID </li>
+<li><code>names</code> - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  </li>
+<li><code>tags</code> - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる</li>
 </ul>
 <hr />
-<p>A <code>condition</code> block supports the following:</p>
+<h4 id="condition">conditionブロック</h4>
 <ul>
-<li><code>name</code> - (Required) The name of the target field. This value is case-sensitive.</li>
-<li><code>values</code> - (Required) The values of the condition. If multiple values ​​are specified, they combined as AND condition.</li>
+<li><code>name</code> - (Required) 対象フィールド名。大文字/小文字を区別する  </li>
+<li><code>values</code> - (Required) 対象フィールドの値。複数指定した場合はAND条件となる</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Simple Monitor.</li>
-<li><code>delay_loop</code> - The interval in seconds between checks.</li>
-<li><code>description</code> - The description of the SimpleMonitor.</li>
-<li><code>enabled</code> - The flag to enable monitoring by the simple monitor.</li>
-<li><code>health_check</code> - A list of <code>health_check</code> blocks as defined below.</li>
-<li><code>icon_id</code> - The icon id attached to the SimpleMonitor.</li>
-<li><code>notify_email_enabled</code> - The flag to enable notification by email.</li>
-<li><code>notify_email_html</code> - The flag to enable HTML format instead of text format.</li>
-<li><code>notify_interval</code> - The interval in hours between notification.</li>
-<li><code>notify_slack_enabled</code> - The flag to enable notification by slack/discord.</li>
-<li><code>notify_slack_webhook</code> - The webhook URL for sending notification by slack/discord.</li>
-<li><code>tags</code> - Any tags assigned to the SimpleMonitor.</li>
-<li><code>target</code> - The monitoring target of the simple monitor. This will be IP address or FQDN.</li>
+<li><code>id</code> - ID</li>
+<li><code>delay_loop</code> - チェック間隔秒数</li>
+<li><code>description</code> - 説明</li>
+<li><code>enabled</code> - 有効フラグ</li>
+<li><code>health_check</code> - ヘルスチェック。詳細は<a href="#health_check">health_checkブロック</a>を参照</li>
+<li><code>icon_id</code> - アイコンID</li>
+<li><code>notify_email_enabled</code> - e-mailでの通知の有効フラグ</li>
+<li><code>notify_email_html</code> - e-mail通知でのHTMLメール有効フラグ</li>
+<li><code>notify_interval</code> - 再通知間隔秒数</li>
+<li><code>notify_slack_enabled</code> - slackでの通知の有効フラグ</li>
+<li><code>notify_slack_webhook</code> - slack/discordでの通知を利用する場合のwebhookのURL</li>
+<li><code>tags</code> - タグ</li>
+<li><code>target</code> - 監視対象のIPアドレス、またはFQDN</li>
 </ul>
 <hr />
-<p>A <code>health_check</code> block exports the following:</p>
+<h4 id="health_check">health_checkブロック</h4>
 <ul>
-<li><code>community</code> - The SNMP community string used when checking by SNMP.</li>
-<li><code>excepcted_data</code> - The expected value used when checking by DNS.</li>
-<li><code>host_header</code> - The value of host header send when checking by HTTP/HTTPS.</li>
-<li><code>oid</code> - The SNMP OID used when checking by SNMP.</li>
-<li><code>password</code> - The password for basic auth used when checking by HTTP/HTTPS.</li>
-<li><code>path</code> - The path used when checking by HTTP/HTTPS.</li>
-<li><code>port</code> - The target port number.</li>
-<li><code>protocol</code> - The protocol used for health checks. This will be one of [<code>http</code>/<code>https</code>/<code>ping</code>/<code>tcp</code>/<code>dns</code>/<code>ssh</code>/<code>smtp</code>/<code>pop3</code>/<code>snmp</code>/<code>sslcertificate</code>].</li>
-<li><code>qname</code> - The FQDN used when checking by DNS.</li>
-<li><code>remaining_days</code> - The number of remaining days until certificate expiration used when checking SSL certificates.</li>
-<li><code>sni</code> - The flag to enable SNI when checking by HTTP/HTTPS.</li>
-<li><code>snmp_version</code> - The SNMP version used when checking by SNMP.</li>
-<li><code>status</code> - The response-code to expect when checking by HTTP/HTTPS.</li>
-<li><code>username</code> - The user name for basic auth used when checking by HTTP/HTTPS.</li>
+<li><code>community</code> - SNMPチェック時に利用されるSNMPコミュニティ名</li>
+<li><code>excepcted_data</code> - DNSチェック時の期待値</li>
+<li><code>host_header</code> - HTTP/HTTPSチェック時のリクエストのHostヘッダの値</li>
+<li><code>oid</code> - SNMPチェック時に利用されるOID</li>
+<li><code>password</code> - HTTP/HTTPSチェック時のBASIC認証で利用されるパスワード</li>
+<li><code>path</code> - HTTP/HTTPSチェック時のリクエストパス</li>
+<li><code>port</code> - 対象ポート番号</li>
+<li><code>protocol</code> - プロトコル。次のいずれかとなる [<code>http</code>/<code>https</code>/<code>ping</code>/<code>tcp</code>/<code>dns</code>/<code>ssh</code>/<code>smtp</code>/<code>pop3</code>/<code>snmp</code>/<code>sslcertificate</code>]</li>
+<li><code>qname</code> - DNSチェック時のクエリの値</li>
+<li><code>remaining_days</code> - SSL証明書チェック時の証明書有効日数の閾値</li>
+<li><code>sni</code> - HTTP/HTTPSチェック時のSNI有効フラグ</li>
+<li><code>snmp_version</code> - SNMPチェック時のSNMPバージョン</li>
+<li><code>status</code> - HTTP/HTTPSチェック時のレスポンスコード</li>
+<li><code>username</code> - HTTP/HTTPSチェック時のBASIC認証で利用されるユーザー名</li>
 </ul>
               
             </div>

@@ -272,10 +272,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#get-information-about-an-existing-packet-filter">Get information about an existing Packet Filter.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#data-source-sakuracloud_packet_filter">Data Source: sakuracloud_packet_filter</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_packet_filter">パケットフィルタ : sakuracloud_packet_filter</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,8 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="get-information-about-an-existing-packet-filter">Get information about an existing Packet Filter.</h2>
-<h1 id="data-source-sakuracloud_packet_filter">Data Source: sakuracloud_packet_filter</h1>
-<p>Get information about an existing Packet Filter.</p>
+                <h1 id="sakuracloud_packet_filter">パケットフィルタ : sakuracloud_packet_filter</h1>
+<p>パケットフィルタの情報を参照するためのデータソース</p>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">data &quot;sakuracloud_packet_filter&quot; &quot;foobar&quot; {
   filter {
@@ -785,38 +781,38 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>expression</code> - (Optional) One or more <code>expression</code> blocks as defined below.</li>
-<li><code>filter</code> - (Optional) One or more values used for filtering, as defined below.</li>
-<li><code>zone</code> - (Optional) The name of zone that the PacketFilter is in (e.g. <code>is1a</code>, <code>tk1a</code>).</li>
+<li><code>filter</code> - (Optional) 参照対象をフィルタリングするための条件。詳細は<a href="#filter">filterブロック</a>を参照 </li>
+<li><code>zone</code> - (Optional) 対象ゾーンの名前 (例: <code>is1a</code>, <code>tk1a</code>)  </li>
 </ul>
 <hr />
-<p>A <code>filter</code> block supports the following:</p>
+<h4 id="filter">filterブロック</h4>
 <ul>
-<li><code>condition</code> - (Optional) One or more name/values pairs used for filtering. There are several valid keys, for a full reference, check out finding section in the <a href="https://developer.sakura.ad.jp/cloud/api/1.1/">SakuraCloud API reference</a>.</li>
-<li><code>id</code> - (Optional) The resource id on SakuraCloud used for filtering.</li>
-<li><code>names</code> - (Optional) The resource names on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.</li>
+<li><code>condition</code> - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は<a href="#condition">conditionブロック</a>を参照  </li>
+<li><code>id</code> - (Optional) 対象リソースのID </li>
+<li><code>names</code> - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  </li>
 </ul>
 <hr />
-<p>A <code>condition</code> block supports the following:</p>
+<h4 id="condition">conditionブロック</h4>
 <ul>
-<li><code>name</code> - (Required) The name of the target field. This value is case-sensitive.</li>
-<li><code>values</code> - (Required) The values of the condition. If multiple values ​​are specified, they combined as AND condition.</li>
+<li><code>name</code> - (Required) 対象フィールド名。大文字/小文字を区別する  </li>
+<li><code>values</code> - (Required) 対象フィールドの値。複数指定した場合はAND条件となる</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Packet Filter.</li>
-<li><code>description</code> - The description of the PacketFilter.</li>
-<li><code>name</code> - The name of the PacketFilter.</li>
+<li><code>id</code> - ID</li>
+<li><code>description</code> - 説明</li>
+<li><code>expression</code> - フィルタリングルールのリスト。詳細は<a href="#expression">expressionブロック</a>を参照</li>
+<li><code>name</code> - 名前</li>
 </ul>
 <hr />
-<p>A <code>expression</code> block exports the following:</p>
+<h4 id="expression">expressionブロック</h4>
 <ul>
-<li><code>allow</code> - The flag to allow the packet through the filter.</li>
-<li><code>description</code> - The description of the expression.</li>
-<li><code>destination_port</code> - A destination port number or port range used for filtering (e.g. <code>1024</code>, <code>1024-2048</code>).</li>
-<li><code>protocol</code> - The protocol used for filtering. This will be one of [<code>http</code>/<code>https</code>/<code>tcp</code>/<code>udp</code>/<code>icmp</code>/<code>fragment</code>/<code>ip</code>].</li>
-<li><code>source_network</code> - A source IP address or CIDR block used for filtering (e.g. <code>192.0.2.1</code>, <code>192.0.2.0/24</code>).</li>
-<li><code>source_port</code> - A source port number or port range used for filtering (e.g. <code>1024</code>, <code>1024-2048</code>).</li>
+<li><code>allow</code> - ルールにマッチした通信を許可するかのフラグ</li>
+<li><code>description</code> - 説明</li>
+<li><code>destination_port</code> - 宛先ポート、または宛先ポート範囲。次のような値となる (<code>1024</code>, <code>1024-2048</code>)</li>
+<li><code>protocol</code> - プロトコル。次のいずれかとなる [<code>http</code>/<code>https</code>/<code>tcp</code>/<code>udp</code>/<code>icmp</code>/<code>fragment</code>/<code>ip</code>]</li>
+<li><code>source_network</code> - 送信元IPアドレス、または送信元CIDRブロック。次のような値となる (<code>192.0.2.1</code>, <code>192.0.2.0/24</code>)</li>
+<li><code>source_port</code> - 送信元ポート、または送信元ポート範囲。次のような値となる (<code>1024</code>, <code>1024-2048</code>)</li>
 </ul>
               
             </div>

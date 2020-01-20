@@ -496,10 +496,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-dns">Manages a SakuraCloud DNS.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_dns">sakuracloud_dns</a></li>
+                <li class="toctree-l3"><a href="#dns-sakuracloud_dns">DNS: sakuracloud_dns</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-dns">Manages a SakuraCloud DNS.</h2>
-<h1 id="sakuracloud_dns">sakuracloud_dns</h1>
-<p>Manages a SakuraCloud DNS.</p>
+                <h1 id="dns-sakuracloud_dns">DNS: sakuracloud_dns</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_dns&quot; &quot;foobar&quot; {
   zone        = &quot;example.com&quot;
@@ -795,43 +790,43 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>zone</code> - (Required) The target zone. (e.g. <code>example.com</code>). Changing this forces a new resource to be created.</li>
-<li><code>record</code> - (Optional) One or more <code>record</code> blocks as defined below.</li>
+<li><code>zone</code> - (Required) 対象ゾーン(例: <code>example.com</code>) / この値を変更するとリソースの再作成が行われる</li>
+<li><code>record</code> - (Optional) レコードのリスト。詳細は<a href="#record">recordブロック</a>を参照</li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>description</code> - (Optional) The description of the DNS. The length of this value must be in the range [<code>1</code>-<code>512</code>].</li>
-<li><code>icon_id</code> - (Optional) The icon id to attach to the DNS.</li>
-<li><code>tags</code> - (Optional) Any tags to assign to the DNS.</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
 </ul>
 <hr />
-<p>A <code>record</code> block supports the following:</p>
+<h4 id="record">recordブロック</h4>
 <ul>
-<li><code>name</code> - (Required) The name of the DNS Record. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>type</code> - (Required) The type of DNS Record. This must be one of [<code>A</code>/<code>AAAA</code>/<code>ALIAS</code>/<code>CNAME</code>/<code>NS</code>/<code>MX</code>/<code>TXT</code>/<code>SRV</code>/<code>CAA</code>/<code>PTR</code>].</li>
-<li><code>value</code> - (Required) The value of the DNS Record.</li>
-<li><code>ttl</code> - (Optional) The number of the TTL.</li>
+<li><code>name</code> - (Required) レコード名 /  <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>type</code> - (Required) レコード種別 / 次のいずれかを指定 [<code>A</code>/<code>AAAA</code>/<code>ALIAS</code>/<code>CNAME</code>/<code>NS</code>/<code>MX</code>/<code>TXT</code>/<code>SRV</code>/<code>CAA</code>/<code>PTR</code>]</li>
+<li><code>value</code> - (Required) 値</li>
+<li><code>ttl</code> - (Optional) TTL</li>
 </ul>
-<h4 id="for-mxsrv-record">For MX/SRV Record</h4>
+<h4 id="mxsrv">MX/SRVレコード関連</h4>
 <ul>
-<li><code>priority</code> - (Optional) The priority of target DNS Record. This must be in the range [<code>0</code>-<code>65535</code>].</li>
+<li><code>priority</code> - (Optional) 優先度 / <code>0</code>-<code>65535</code>の範囲で指定</li>
 </ul>
-<h4 id="for-srv-record">For SRV record</h4>
+<h4 id="srv">SRVレコード関連</h4>
 <ul>
-<li><code>port</code> - (Optional) The number of port. This must be in the range [<code>1</code>-<code>65535</code>].</li>
-<li><code>weight</code> - (Optional) The weight of target DNS Record. This must be in the range [<code>0</code>-<code>65535</code>].</li>
+<li><code>port</code> - (Optional) ポート番号 / <code>1</code>-<code>65535</code>の範囲で指定</li>
+<li><code>weight</code> - (Optional) ウェイト / <code>0</code>-<code>65535</code>の範囲で指定</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 5 minutes) Used when creating the DNS</li>
-<li><code>update</code> - (Defaults to 5 minutes) Used when updating the DNS</li>
-<li><code>delete</code> - (Defaults to 5 minutes) Used when deleting DNS</li>
+<li><code>create</code> - 作成 (デフォルト: 5分)</li>
+<li><code>update</code> - 更新 (デフォルト: 5分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 5分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the DNS.</li>
-<li><code>dns_servers</code> - A list of IP address of DNS server that manage this zone.</li>
+<li><code>id</code> - ID</li>
+<li><code>dns_servers</code> - DNSサーバのIPアドレスのリスト</li>
 </ul>
               
             </div>

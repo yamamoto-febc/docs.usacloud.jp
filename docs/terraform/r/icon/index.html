@@ -651,10 +651,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-icon">Manages a SakuraCloud Icon.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_icon">sakuracloud_icon</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_icon">アイコン: sakuracloud_icon</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-icon">Manages a SakuraCloud Icon.</h2>
-<h1 id="sakuracloud_icon">sakuracloud_icon</h1>
-<p>Manages a SakuraCloud Icon.</p>
+                <h1 id="sakuracloud_icon">アイコン: sakuracloud_icon</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_icon&quot; &quot;foobar&quot; {
   name = &quot;foobar&quot;
@@ -786,22 +781,22 @@
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) The name of the Icon. The length of this value must be in the range [<code>1</code>-<code>64</code>].</li>
-<li><code>base64content</code> - (Optional) The base64 encoded content to upload to as the Icon. This conflicts with [<code>source</code>]. Changing this forces a new resource to be created.</li>
-<li><code>source</code> - (Optional) The file path to upload to as the Icon. This conflicts with [<code>base64content</code>]. Changing this forces a new resource to be created.</li>
-<li><code>tags</code> - (Optional) Any tags to assign to the Icon.</li>
+<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
+<li><code>base64content</code> - (Optional) base64エンコードされたコンテンツ / [<code>source</code>]と同時に指定できません / この値を変更するとリソースの再作成が行われる</li>
+<li><code>source</code> - (Optional) アップロードするアイコンファイルのパス / [<code>base64content</code>]と同時に指定できません / この値を変更するとリソースの再作成が行われる</li>
+<li><code>tags</code> - (Optional) タグ</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 5 minutes) Used when creating the Icon</li>
-<li><code>update</code> - (Defaults to 5 minutes) Used when updating the Icon</li>
-<li><code>delete</code> - (Defaults to 5 minutes) Used when deleting Icon</li>
+<li><code>create</code> - 作成 (デフォルト: 5分)</li>
+<li><code>update</code> - 更新 (デフォルト: 5分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 5分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the Icon.</li>
-<li><code>url</code> - The URL for getting the icon's raw data.</li>
+<li><code>id</code> - ID</li>
+<li><code>url</code> - アイコンのデータを取得するためのURL</li>
 </ul>
               
             </div>

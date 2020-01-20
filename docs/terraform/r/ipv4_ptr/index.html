@@ -315,10 +315,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#manages-a-sakuracloud-ipv4-ptr">Manages a SakuraCloud IPv4 PTR.</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#sakuracloud_ipv4_ptr">sakuracloud_ipv4_ptr</a></li>
+                <li class="toctree-l3"><a href="#ipv4-sakuracloud_ipv4_ptr">IPv4逆引きアドレス: sakuracloud_ipv4_ptr</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -772,9 +769,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="manages-a-sakuracloud-ipv4-ptr">Manages a SakuraCloud IPv4 PTR.</h2>
-<h1 id="sakuracloud_ipv4_ptr">sakuracloud_ipv4_ptr</h1>
-<p>Manages a SakuraCloud IPv4 PTR.</p>
+                <h1 id="ipv4-sakuracloud_ipv4_ptr">IPv4逆引きアドレス: sakuracloud_ipv4_ptr</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource sakuracloud_server &quot;server&quot; {
   name = &quot;foobar&quot;
@@ -793,28 +788,35 @@ resource &quot;sakuracloud_ipv4_ptr&quot; &quot;foobar&quot; {
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>hostname</code> - (Required) The value of the PTR record. This must be FQDN.</li>
-<li><code>ip_address</code> - (Required) The IP address to which the PTR record is set.</li>
+<li><code>hostname</code> - (Required) PTRレコードの値 / FQDNを指定</li>
+<li><code>ip_address</code> - (Required) 対象IPアドレス</li>
 </ul>
-<h4 id="retry-parameter">Retry Parameter</h4>
+<h4 id="_1">リトライ関連</h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>PTRレコードを登録するには正引きできる状態になっている必要があります。<br />
+正引きレコードを登録したばかりの場合、PTRレコード登録に失敗することがあります。
+レコード登録に失敗した場合、指定した間隔で指定回数までリトライが行われます。
+必要に応じて十分に大きな値を指定してください。</p>
+</div>
 <ul>
-<li><code>retry_interval</code> - (Optional) The wait interval(in seconds) for retrying API call used when SakuraCloud API returns any errors. Default:<code>10</code>.</li>
-<li><code>retry_max</code> - (Optional) The maximum number of API call retries used when SakuraCloud API returns any errors. Default:<code>30</code>.</li>
+<li><code>retry_interval</code> - (Optional) リトライ間隔秒数 / デフォルト:<code>10</code></li>
+<li><code>retry_max</code> - (Optional) リトライ回数 / デフォルト:<code>30</code></li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>zone</code> - (Optional) The name of zone that the IPv4 PTR will be created. (e.g. <code>is1a</code>, <code>tk1a</code>). Changing this forces a new resource to be created.</li>
+<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
 </ul>
 <h3 id="timeouts">Timeouts</h3>
-<p>The <code>timeouts</code> block allows you to specify <a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeouts</a> for certain actions:</p>
+<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - (Defaults to 60 minutes) Used when creating the IPv4 PTR</li>
-<li><code>update</code> - (Defaults to 60 minutes) Used when updating the IPv4 PTR</li>
-<li><code>delete</code> - (Defaults to 5 minutes) Used when deleting IPv4 PTR</li>
+<li><code>create</code> - 作成 (デフォルト: 60分)</li>
+<li><code>update</code> - 更新 (デフォルト: 60分)</li>
+<li><code>delete</code> - 削除 (デフォルト: 5分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
-<li><code>id</code> - The id of the IPv4 PTR.</li>
+<li><code>id</code> - ID</li>
 </ul>
               
             </div>

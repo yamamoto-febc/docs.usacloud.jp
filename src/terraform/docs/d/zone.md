@@ -1,36 +1,31 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_zone"
-subcategory: "Provider Data Sources"
-description: |-
-  Get information about an existing Zone.
----
+# ゾーン情報: sakuracloud_zone
 
-# Data Source: sakuracloud_zone
-
-Get information about an existing Zone.
+ゾーン情報を参照するためのデータソース
 
 ## Example Usage
 
 ```hcl
+# カレントゾーンの情報を参照
 data "sakuracloud_zone" "current" {}
 
+# 指定のゾーンの情報を参照
 data "sakuracloud_zone" "is1a" {
   name = "is1a"
 }
 ```
+
 ## Argument Reference
 
-* `name` - (Optional) The name of the zone (e.g. `is1a`,`tk1a`).
+* `name` - (Optional) 対象ゾーンの名前 (例: `is1a`, `tk1a`)  
 
 ## Attribute Reference
 
-* `id` - The id of the Zone.
-* `description` - The description of the zone.
-* `dns_servers` - A list of IP address of DNS server in the zone.
-* `region_id` - The id of the region that the zone belongs.
-* `region_name` - The name of the region that the zone belongs.
-* `zone_id` - The id of the zone.
+* `id` - ID
+* `description` - 説明
+* `dns_servers` - DNSサーバのID
+* `region_id` - ゾーンが属するリージョンのID
+* `region_name` - ゾーンが属するリージョンの名前
+* `zone_id` - ゾーンのID(さくらのクラウド上でのリソースID)
 
 
 

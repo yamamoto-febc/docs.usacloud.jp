@@ -1,14 +1,6 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_proxylb"
-subcategory: "Global"
-description: |-
-  Get information about an existing ProxyLB.
----
+# エンハンスドロードバランサ: sakuracloud_proxylb
 
-# Data Source: sakuracloud_proxylb
-
-Get information about an existing ProxyLB.
+エンハンスドロードバランサの情報を参照するためのデータソース
 
 ## Example Usage
 
@@ -19,122 +11,116 @@ data "sakuracloud_proxylb" "foobar" {
   }
 }
 ```
+
 ## Argument Reference
 
-* `filter` - (Optional) One or more values used for filtering, as defined below.
-
-
----
-
-A `certificate` block supports the following:
-
-* `additional_certificate` - (Optional) One or more `additional_certificate` blocks as defined below.
+* `filter` - (Optional) 参照対象をフィルタリングするための条件。詳細は[filterブロック](#filter)を参照 
 
 ---
 
-A `filter` block supports the following:
+#### filterブロック
 
-* `condition` - (Optional) One or more name/values pairs used for filtering. There are several valid keys, for a full reference, check out finding section in the [SakuraCloud API reference](https://developer.sakura.ad.jp/cloud/api/1.1/).
-* `id` - (Optional) The resource id on SakuraCloud used for filtering.
-* `names` - (Optional) The resource names on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.
-* `tags` - (Optional) The resource tags on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.
+* `condition` - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は[conditionブロック](#condition)を参照  
+* `id` - (Optional) 対象リソースのID 
+* `names` - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  
+* `tags` - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる
 
 ---
 
-A `condition` block supports the following:
+#### conditionブロック
 
-* `name` - (Required) The name of the target field. This value is case-sensitive.
-* `values` - (Required) The values of the condition. If multiple values ​​are specified, they combined as AND condition.
+* `name` - (Required) 対象フィールド名。大文字/小文字を区別する  
+* `values` - (Required) 対象フィールドの値。複数指定した場合はAND条件となる
 
 
 ## Attribute Reference
 
-* `id` - The id of the ProxyLB.
-* `bind_port` - A list of `bind_port` blocks as defined below.
-* `certificate` - A list of `certificate` blocks as defined below.
-* `description` - The description of the ProxyLB.
-* `fqdn` - The FQDN for accessing to the ProxyLB. This is typically used as value of CNAME record.
-* `health_check` - A list of `health_check` blocks as defined below.
-* `icon_id` - The icon id attached to the ProxyLB.
-* `name` - The name of the ProxyLB.
-* `plan` - The plan name of the ProxyLB. This will be one of [`100`/`500`/`1000`/`5000`/`10000`/`50000`/`100000`].
-* `proxy_networks` - A list of CIDR block used by the ProxyLB to access the server.
-* `region` - The name of region that the proxy LB is in. This will be one of [`tk1`/`is1`].
-* `rule` - A list of `rule` blocks as defined below.
-* `server` - A list of `server` blocks as defined below.
-* `sorry_server` - A list of `sorry_server` blocks as defined below.
-* `sticky_session` - The flag to enable sticky session.
-* `tags` - Any tags assigned to the ProxyLB.
-* `timeout` - The timeout duration in seconds.
-* `vip` - The virtual IP address assigned to the ProxyLB.
-* `vip_failover` - The flag to enable VIP fail-over.
+* `id` - ID
+* `bind_port` - 待ち受けポートのリスト。詳細は[bind_portブロック](#bind_port)を参照
+* `certificate` - 証明書のリスト。詳細は[certificateブロック](#certificate)を参照
+* `description` - 説明
+* `fqdn` - エンハンスドロードバランサにアクセスするためのFQDN。 通常CNAMEレコードの値として利用する
+* `health_check` - ヘルスチェック。詳細は[health_checkブロック](#health_check)を参照
+* `icon_id` - アイコンID
+* `name` - 名前
+* `plan` - プラン。次のいずれかとなる [`100`/`500`/`1000`/`5000`/`10000`/`50000`/`100000`]
+* `proxy_networks` - エンハンスドロードバランサが実サーバにアクセスする際のアクセス元CIDRブロックのリスト
+* `region` - エンハンスドロードバランサを設置するリージョン名。次のいずれかとなる [`tk1`/`is1`]
+* `rule` - ルールベースバランシングを行う際のルールのリスト。詳細は[ruleブロック](#rule)を参照
+* `server` - 実サーバのリスト。詳細は[serverブロック](#server)を参照
+* `sorry_server` - ソーリーサーバの設定。詳細は[sorry_serverブロック](#sorry_server)を参照
+* `sticky_session` - Stickyセッション有効フラグ
+* `tags` - タグ
+* `timeout` - 実サーバのタイムアウト(秒数)
+* `vip` - エンハンスドロードバランサに割り当てられたVIP
+* `vip_failover` - VIPフェイルオーバ機能の有効フラグ
 
 
 ---
 
-A `bind_port` block exports the following:
+#### bind_portブロック
 
-* `port` - The number of listening port.
-* `proxy_mode` - The proxy mode. This will be one of [`http`/`https`/`tcp`].
-* `redirect_to_https` - The flag to enable redirection from http to https. This flag is used only when `proxy_mode` is `http`.
-* `response_header` - A list of `response_header` blocks as defined below.
-* `support_http2` - The flag to enable HTTP/2. This flag is used only when `proxy_mode` is `https`.
-
----
-
-A `response_header` block exports the following:
-
-* `header` - The field name of HTTP header added to response by the ProxyLB.
-* `value` - The field value of HTTP header added to response by the ProxyLB.
+* `port` - ポート番号
+* `proxy_mode` - 待ち受けモード。次のいずれかとなる [`http`/`https`/`tcp`]
+* `redirect_to_https` - HTTPからHTTPSへのリダイレクト有効フラグ。 `proxy_mode`が`http`の場合にのみ使用される
+* `response_header` - エンハンスドロードバランサが付与するレスポンスヘッダのリスト。詳細は[response_headerブロック](#response_header)を参照
+* `support_http2` - HTTP/2の有効フラグ。 proxy_mode`が`https`の場合にのみ利用される
 
 ---
 
-A `certificate` block exports the following:
+#### response_headerブロック
 
-* `intermediate_cert` - The intermediate certificate for a server.
-* `private_key` - The private key for a server.
-* `server_cert` - The certificate for a server.
-
----
-
-A `additional_certificate` block exports the following:
-
-* `intermediate_cert` - The intermediate certificate for a server.
-* `private_key` - The private key for a server.
-* `server_cert` - The certificate for a server.
+* `header` - ヘッダ名
+* `value` - 値
 
 ---
 
-A `health_check` block exports the following:
+#### certificateブロック
 
-* `delay_loop` - The interval in seconds between checks.
-* `host_header` - The value of host header send when checking by HTTP.
-* `path` - The path used when checking by HTTP.
-* `port` - The port number used when checking by TCP.
-* `protocol` - The protocol used for health checks. This will be one of [`http`/`tcp`].
+* `intermediate_cert` - 中間証明書
+* `private_key` - 秘密鍵
+* `server_cert` - サーバ証明書
 
 ---
 
-A `rule` block exports the following:
+#### additional_certificateブロック
 
-* `group` - The name of load balancing group. When proxyLB received request which matched to `host` and `path`, proxyLB forwards the request to servers that having same group name.
-* `host` - The value of HTTP host header that is used as condition of rule-based balancing.
-* `path` - The request path that is used as condition of rule-based balancing.
-
----
-
-A `server` block exports the following:
-
-* `enabled` - The flag to enable as destination of load balancing.
-* `group` - The name of load balancing group. This is used when using rule-based load balancing.
-* `ip_address` - The IP address of the destination server.
-* `port` - The port number of the destination server.
+* `intermediate_cert` - 中間証明書
+* `private_key` - 秘密鍵
+* `server_cert` - サーバ証明書
 
 ---
 
-A `sorry_server` block exports the following:
+#### health_checkブロック
 
-* `ip_address` - The IP address of the SorryServer. This will be used when all servers are down.
-* `port` - The port number of the SorryServer. This will be used when all servers are down.
+* `delay_loop` - チェック間隔秒数 
+* `host_header` - HTTPチェック時に利用されるHostヘッダの値
+* `path` - HTTPチェック時に利用されるリクエストパス
+* `port` - TCPチェック時に利用されるポート番号
+* `protocol` - プロトコル。次のいずれかとなる [`http`/`tcp`]
+
+---
+
+#### ruleブロック
+
+* `group` - 振り分け先グループ名。 `host`と`path`にマッチするリクエストを受信した場合に同じ`group`の値を持つ実サーバに振り分けられる
+* `host` - リクエストのHostヘッダ
+* `path` - リクエストパス
+
+---
+
+#### serverブロック
+
+* `enabled` - 有効フラグ
+* `group` - 振り分け先グループ名。 振り分けの挙動については[ruleブロック](#rule)を参照
+* `ip_address` - IPアドレス
+* `port` - ポート番号
+
+---
+
+#### sorry_serverブロック
+
+* `ip_address` - IPアドレス
+* `port` - ポート番号
 
 

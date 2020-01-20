@@ -1,14 +1,6 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_server_vnc_info"
-subcategory: "Compute"
-description: |-
-  Get information about VNC for connecting to an existing Server.
----
+# サーバ(VNC接続情報): sakuracloud_server_vnc_info
 
-# Data Source: sakuracloud_server_vnc_info
-
-Get information about VNC for connecting to an existing Server.
+サーバのVNC接続情報を参照するためのデータソース
 
 ## Example Usage
 
@@ -20,13 +12,13 @@ data "sakuracloud_server_vnc_info" "foobar" {
 
 ## Argument Reference
 
-* `server_id` - (Required) The id of the Server.
-* `zone` - (Optional) The name of zone that the Server is in (e.g. `is1a`, `tk1a`).
+* `server_id` - (Required) サーバのID
+* `zone` - (Optional) 対象ゾーンの名前 (例: `is1a`, `tk1a`)  
 
 ## Attribute Reference
 
-* `id` - The id of the Server VNC Information.
-* `host` - The host name for connecting by VNC.
-* `password` - The password for connecting by VNC.
-* `port` - The port number for connecting by VNC.
+* `id` - サーバのID
+* `host` - VNC接続先ホスト名
+* `password` - VNC接続パスワード
+* `port` - VNC接続先ポート番号
 

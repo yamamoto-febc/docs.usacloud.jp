@@ -138,7 +138,7 @@ data "sakuracloud_vpc_router" "foobar" {
 
 #### site_to_site_vpnブロック
 
-* `local_prefix` - ローカルプレフィックスのリスト
+* `local_prefix` - ローカルプレフィックス
 * `peer` - ピアのIPアドレス
 * `pre_shared_secret` - 事前共有鍵
 * `remote_id` - 対抗ID
@@ -157,7 +157,7 @@ data "sakuracloud_vpc_router" "foobar" {
 #### static_routeブロック
 
 * `next_hop` - ネクストホップのIPアドレス
-* `prefix` - 宛先のCIDRブロック
+* `prefix` - プレフィックスのリスト
 
 ---
 

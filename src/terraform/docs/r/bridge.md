@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_bridge"
-subcategory: "Networking"
-description: |-
-  Manages a SakuraCloud Bridge.
----
-
-# sakuracloud_bridge
-
-Manages a SakuraCloud Bridge.
+# ブリッジ: sakuracloud_bridge
 
 ## Example Usage
 
@@ -32,23 +22,24 @@ resource "sakuracloud_bridge" "foobar" {
   description = "description"
 }
 ```
+
 ## Argument Reference
 
-* `name` - (Required) The name of the Bridge. The length of this value must be in the range [`1`-`64`].
+* `name` - (Required) 名前 / `1`-`64`文字で指定
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the Bridge. The length of this value must be in the range [`1`-`512`].
-* `zone` - (Optional) The name of zone that the Bridge will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 20 minutes) Used when creating the Bridge
-* `update` - (Defaults to 20 minutes) Used when updating the Bridge
-* `delete` - (Defaults to 20 minutes) Used when deleting Bridge
+* `create` - 作成 (デフォルト: 20分)
+* `update` - 更新 (デフォルト: 20分)
+* `delete` - 削除 (デフォルト: 20分)
 
 ## Attribute Reference
 
-* `id` - The id of the Bridge.
+* `id` - ID

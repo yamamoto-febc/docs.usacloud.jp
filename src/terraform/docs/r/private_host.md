@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_private_host"
-subcategory: "Compute"
-description: |-
-  Manages a SakuraCloud Private Host.
----
-
-# sakuracloud_private_host
-
-Manages a SakuraCloud Private Host.
+# 専有ホスト: sakuracloud_private_host
 
 ## Example Usage
 
@@ -22,28 +12,27 @@ resource "sakuracloud_private_host" "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the PrivateHost. The length of this value must be in the range [`1`-`64`].
-* `class` - (Optional) The class of the PrivateHost. This will be one of [`dynamic`/`ms_windows`]. Default:`dynamic`.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `class` - (Optional) クラス / 次のいずれかを指定 [`dynamic`/`ms_windows`] / デフォルト:`dynamic`
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the PrivateHost. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the PrivateHost.
-* `tags` - (Optional) Any tags to assign to the PrivateHost.
-* `zone` - (Optional) The name of zone that the PrivateHost will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 5 minutes) Used when creating the Private Host
-* `update` - (Defaults to 5 minutes) Used when updating the Private Host
-* `delete` - (Defaults to 20 minutes) Used when deleting Private Host
+* `create` - 作成 (デフォルト: 5分)
+* `update` - 更新 (デフォルト: 5分)
+* `delete` - 削除 (デフォルト: 20分)
 
 ## Attribute Reference
 
-* `id` - The id of the Private Host.
-* `assigned_core` - The total number of CPUs assigned to servers on the private host.
-* `assigned_memory` - The total size of memory assigned to servers on the private host.
-* `hostname` - The hostname of the private host.
-
+* `id` - ID
+* `assigned_core` - サーバに割り当てたCPUコアの総数
+* `assigned_memory` - サーバに割り当てたメモリ(GiB単位)の総数
+* `hostname` - ホスト名

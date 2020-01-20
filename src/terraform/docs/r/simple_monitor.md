@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_simple_monitor"
-subcategory: "Global"
-description: |-
-  Manages a SakuraCloud Simple Monitor.
----
-
-# sakuracloud_simple_monitor
-
-Manages a SakuraCloud Simple Monitor.
+# シンプル監視: sakuracloud_simple_monitor
 
 ## Example Usage
 
@@ -40,67 +30,69 @@ resource "sakuracloud_simple_monitor" "foobar" {
 
 ## Argument Reference
 
-* `target` - (Required) The monitoring target of the simple monitor. This must be IP address or FQDN. Changing this forces a new resource to be created.
-* `health_check` - (Required) A `health_check` block as defined below.
-* `delay_loop` - (Optional) The interval in seconds between checks. This must be in the range [`60`-`3600`]. Default:`60`.
-* `enabled` - (Optional) The flag to enable monitoring by the simple monitor. Default:`true`.
+* `target` - (Required) 監視対象のIPアドレス、またはFQDN / この値を変更するとリソースの再作成が行われる
+* `health_check` - (Required) ヘルスチェック設定。詳細は[health_checkブロック](#health_check)を参照
+* `delay_loop` - (Optional) チェック間隔秒数 / `60`-`3600`の範囲で指定 / デフォルト:`60`
+* `enabled` - (Optional) 有効フラグ / デフォルト:`true`
 
-#### Notification
+!!! Note
+    `target`はIPv4アドレス、またはAレコードが設定されたFQDNを指定する必要があります。  
+    IPv6アドレスには対応していません
 
-* `notify_email_enabled` - (Optional) The flag to enable notification by email. Default:`true`.
-* `notify_email_html` - (Optional) The flag to enable HTML format instead of text format.
-* `notify_interval` - (Optional) The interval in hours between notification. Default:`2`.
-* `notify_slack_enabled` - (Optional) The flag to enable notification by slack/discord.
-* `notify_slack_webhook` - (Optional) The webhook URL for sending notification by slack/discord.
+#### 通知関連
+
+* `notify_email_enabled` - (Optional) e-mailでの通知の有効フラグ / デフォルト:`true`
+* `notify_email_html` - (Optional) e-mailでの通知時のHTMLメール有効フラグ
+* `notify_interval` - (Optional) 再通知間隔(単位:時間) / デフォルト:`2`
+* `notify_slack_enabled` - (Optional) slack/discordでの通知の有効フラグ
+* `notify_slack_webhook` - (Optional) slack/discordでの通知で利用するWebhookのURL
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the SimpleMonitor. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the SimpleMonitor.
-* `tags` - (Optional) Any tags to assign to the SimpleMonitor.
-
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
 
 ---
 
-A `health_check` block supports the following:
+#### health_checkブロック
 
-* `protocol` - (Required) The protocol used for health checks. This must be one of [`http`/`https`/`ping`/`tcp`/`dns`/`ssh`/`smtp`/`pop3`/`snmp`/`sslcertificate`].
-* `port` - (Optional) The target port number.
+* `protocol` - (Required) プロトコル / 次のいずれかを指定 [`http`/`https`/`ping`/`tcp`/`dns`/`ssh`/`smtp`/`pop3`/`snmp`/`sslcertificate`]
+* `port` - (Optional) ポート番号
 
-#### DNS
+#### DNSチェック関連
 
-* `excepcted_data` - (Optional) The expected value used when checking by DNS.
-* `qname` - (Optional) The FQDN used when checking by DNS.
+* `excepcted_data` - (Optional) DNSチェック時の期待値
+* `qname` - (Optional) DNSチェック時のクエリで利用するFQDN
 
-#### HTTP/HTTPS
+#### HTTP/HTTPSチェック関連
 
-* `host_header` - (Optional) The value of host header send when checking by HTTP/HTTPS.
-* `password` - (Optional) The password for basic auth used when checking by HTTP/HTTPS.
-* `username` - (Optional) The user name for basic auth used when checking by HTTP/HTTPS.
-* `path` - (Optional) The path used when checking by HTTP/HTTPS.
-* `sni` - (Optional) The flag to enable SNI when checking by HTTP/HTTPS.
-* `status` - (Optional) The response-code to expect when checking by HTTP/HTTPS.
+* `host_header` - (Optional) HTTP/HTTPSチェック時のHostヘッダの値
+* `password` - (Optional) HTTP/HTTPSチェック時のBASIC認証で利用するパスワード
+* `username` - (Optional) HTTP/HTTPSチェック時のBASIC認証で利用するユーザー名
+* `path` - (Optional) HTTP/HTTPSチェック時のリクエストパス
+* `sni` - (Optional) HTTP/HTTPSチェック時のSNI有効フラグ
+* `status` - (Optional) HTTP/HTTPSチェック時のレスポンスコード
 
-#### Certificate
+#### 証明書チェック関連
 
-* `remaining_days` - (Optional) The number of remaining days until certificate expiration used when checking SSL certificates. This must be in the range [`1`-`9999`].
+* `remaining_days` - (Optional) 証明書チェックでの有効期限残日数の閾値 / `1`-`9999`の範囲で指定
 
+#### SNMP関連
 
-#### SNMP 
-
-* `community` - (Optional) The SNMP community string used when checking by SNMP.
-* `oid` - (Optional) The SNMP OID used when checking by SNMP.
-* `snmp_version` - (Optional) The SNMP version used when checking by SNMP. This must be one of `1`/`2c`.
+* `community` - (Optional) SNMPコミュニティ名
+* `oid` - (Optional) SNMP OID
+* `snmp_version` - (Optional) SNMPバージョン / 次のいずれかを指定 [`1`/`2c`]
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 5 minutes) Used when creating the Simple Monitor
-* `update` - (Defaults to 5 minutes) Used when updating the Simple Monitor
-* `delete` - (Defaults to 5 minutes) Used when deleting Simple Monitor
+* `create` - 作成 (デフォルト: 5分)
+* `update` - 更新 (デフォルト: 5分)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the Simple Monitor.
+* `id` - ID
 

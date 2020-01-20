@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_proxylb"
-subcategory: "Global"
-description: |-
-  Manages a SakuraCloud ProxyLB.
----
-
-# sakuracloud_proxylb
-
-Manages a SakuraCloud ProxyLB.
+# エンハンスドロードバランサ: sakuracloud_proxylb
 
 ## Example Usage
 
@@ -67,112 +57,114 @@ resource sakuracloud_server "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the ProxyLB. The length of this value must be in the range [`1`-`64`].
-* `bind_port` - (Required) One or more `bind_port` blocks as defined below.
-* `health_check` - (Required) A `health_check` block as defined below.
-* `vip_failover` - (Optional) The flag to enable VIP fail-over. Changing this forces a new resource to be created.
-* `plan` - (Optional) The plan name of the ProxyLB. This must be one of [`100`/`500`/`1000`/`5000`/`10000`/`50000`/`100000`]. Changing this forces a new resource to be created. Default:`100`.
-* `region` - (Optional) The name of region that the proxy LB is in. This must be one of [`tk1`/`is1`]. Changing this forces a new resource to be created. Default:`is1`.
-* `sorry_server` - (Optional) A `sorry_server` block as defined below.
-* `sticky_session` - (Optional) The flag to enable sticky session.
-* `timeout` - (Optional) The timeout duration in seconds. Default:`10`.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `bind_port` - (Required) 待ち受けポート設定のリスト。詳細は[bind_portブロック](#bind_port)を参照
+* `health_check` - (Required) ヘルスチェック設定。詳細は[health_checkブロック](#health_check)を参照
+* `vip_failover` - (Optional) VIPフェイルオーバ機能の有効フラグ / この値を変更するとリソースの再作成が行われる
+* `plan` - (Optional) プラン / 次のいずれかを指定 [`100`/`500`/`1000`/`5000`/`10000`/`50000`/`100000`] / この値を変更するとリソースの再作成が行われる / デフォルト:`100`
+* `region` - (Optional) エンハンスドロードバランサが配置されるリージョン / 次のいずれかを指定 [`tk1`/`is1`] / この値を変更するとリソースの再作成が行われる / デフォルト:`is1`
+* `sorry_server` - (Optional) ソーリーサーバ設定。詳細は[sorry_serverブロック](#sorry_server)を参照
+* `sticky_session` - (Optional) Stickyセッションの有効フラグ
+* `timeout` - (Optional) 実サーバの通信タイムアウト秒数 / デフォルト:`10`
 
-#### Certificate
+#### 証明書関連
 
-* `certificate` - (Optional) An `certificate` block as defined below.
+* `certificate` - (Optional) 証明書設定。詳細は[certificateブロック](#certificate)を参照
 
-#### LoadBalancing Rule/Destination
+#### 振り分け動作関連
 
-* `rule` - (Optional) One or more `rule` blocks as defined below.
-* `server` - (Optional) One or more `server` blocks as defined below.
+* `rule` - (Optional) 振り分けルール設定のリスト。詳細は[ruleブロック](#rule)を参照
+* `server` - (Optional) 実サーバ設定のリスト。詳細は[serverブロック](#server)を参照
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the ProxyLB. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the ProxyLB.
-* `tags` - (Optional) Any tags to assign to the ProxyLB.
-
-
----
-
-A `bind_port` block supports the following:
-
-* `proxy_mode` - (Required) The proxy mode. This must be one of [`http`/`https`/`tcp`].
-* `port` - (Optional) The number of listening port.
-* `redirect_to_https` - (Optional) The flag to enable redirection from http to https. This flag is used only when `proxy_mode` is `http`.
-* `response_header` - (Optional) One or more `response_header` blocks as defined below.
-* `support_http2` - (Optional) The flag to enable HTTP/2. This flag is used only when `proxy_mode` is `https`.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
 
 ---
 
-A `response_header` block supports the following:
+#### bind_portブロック
 
-* `header` - (Required) The field name of HTTP header added to response by the ProxyLB.
-* `value` - (Required) The field value of HTTP header added to response by the ProxyLB.
-
----
-
-A `certificate` block supports the following:
-
-* `additional_certificate` - (Optional) One or more `additional_certificate` blocks as defined below.
-* `intermediate_cert` - (Optional) The intermediate certificate for a server.
-* `private_key` - (Optional) The private key for a server.
-* `server_cert` - (Optional) The certificate for a server.
+* `proxy_mode` - (Required) プロキシモード / 次のいずれかを指定 [`http`/`https`/`tcp`]
+* `port` - (Optional) 待ち受けポート番号
+* `redirect_to_https` - (Optional) httpからhttpsへのリダイレクト有効化フラグ / `proxy_mode`が`http`の場合のみ有効
+* `response_header` - (Optional) レスポンスに付与するHTTPヘッダのリスト。詳細は[response_headerブロック](#response_header)を参照
+* `support_http2` - (Optional) HTTP/2を有効にするフラグ / `proxy_mode`が`https`の場合のみ有効
 
 ---
 
-A `additional_certificate` block supports the following:
+### response_headerブロック
 
-* `server_cert` - (Required) The certificate for a server.
-* `private_key` - (Required) The private key for a server.
-* `intermediate_cert` - (Optional) The intermediate certificate for a server.
-
----
-
-A `health_check` block supports the following:
-
-* `protocol` - (Required) The protocol used for health checks. This must be one of [`http`/`tcp`].
-* `delay_loop` - (Optional) The interval in seconds between checks. This must be in the range [`10`-`60`].
-* `host_header` - (Optional) The value of host header send when checking by HTTP.
-* `path` - (Optional) The path used when checking by HTTP.
-* `port` - (Optional) The port number used when checking by TCP.
+* `header` - (Required) ヘッダ名
+* `value` - (Required) 値
 
 ---
 
-A `rule` block supports the following:
+#### certificateブロック
 
-* `group` - (Optional) The name of load balancing group. When proxyLB received request which matched to `host` and `path`, proxyLB forwards the request to servers that having same group name. The length of this value must be in the range [`1`-`10`].
-* `host` - (Optional) The value of HTTP host header that is used as condition of rule-based balancing.
-* `path` - (Optional) The request path that is used as condition of rule-based balancing.
+!!! Note
+    `server_cert`と`private_key`、`intermediate_cert`はエンハンスドロードバランサ ACME設定リソース(`sakuracloud_proxylb_acme`)を利用すると上書きされます。
 
----
-
-A `server` block supports the following:
-
-* `ip_address` - (Required) The IP address of the destination server.
-* `port` - (Required) The port number of the destination server. This must be in the range [`1`-`65535`].
-* `enabled` - (Optional) The flag to enable as destination of load balancing.
-* `group` - (Optional) The name of load balancing group. This is used when using rule-based load balancing. The length of this value must be in the range [`1`-`10`].
+* `additional_certificate` - (Optional) 追加証明書のリスト。詳細は[additional_certificateブロック](#additional_certificate)を参照
+* `intermediate_cert` - (Optional) 中間証明書
+* `private_key` - (Optional) 秘密鍵
+* `server_cert` - (Optional) サーバ証明書
 
 ---
 
-A `sorry_server` block supports the following:
+#### additional_certificateブロック
 
-* `ip_address` - (Required) The IP address of the SorryServer. This will be used when all servers are down.
-* `port` - (Optional) The port number of the SorryServer. This will be used when all servers are down.
+* `server_cert` - (Required) サーバ証明書
+* `private_key` - (Required) 秘密鍵
+* `intermediate_cert` - (Optional) 中間証明書
+
+---
+
+#### health_checkブロック
+
+* `protocol` - (Required) プロトコル / 次のいずれかを指定 [`http`/`tcp`]
+* `delay_loop` - (Optional) チェック間隔秒数 / `10`-`60`の範囲で指定
+* `host_header` - (Optional) HTTPチェック時のHostヘッダの値
+* `path` - (Optional) HTTPチェック時のリクエストパス
+* `port` - (Optional) TCPチェック時のポート番号
+
+---
+
+#### ruleブロック
+
+* `group` - (Optional) 振り分け先グループ名 / `host`と`path`にマッチするリクエストを受信した場合に同じ`group`の値を持つ実サーバに振り分けられる / `1`-`10`文字で指定
+* `host` - (Optional) リクエストのHostヘッダ
+* `path` - (Optional) リクエストパス
+
+---
+
+#### serverブロック
+
+* `ip_address` - (Required) IPアドレス
+* `port` - (Required) ポート番号 / `1`-`65535`の範囲で指定
+* `enabled` - (Optional) 有効フラグ
+* `group` - (Optional) 振り分け先グループ名 / 振り分けの挙動については[ruleブロック](#rule)を参照 
+
+---
+
+#### sorry_serverブロック
+
+* `ip_address` - (Required) IPアドレス
+* `port` - (Optional) ポート番号
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 5 minutes) Used when creating the ProxyLB
-* `update` - (Defaults to 5 minutes) Used when updating the ProxyLB
-* `delete` - (Defaults to 5 minutes) Used when deleting ProxyLB
+* `create` - 作成 (デフォルト: 5分)
+* `update` - 更新 (デフォルト: 5分)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the ProxyLB.
-* `fqdn` - The FQDN for accessing to the ProxyLB. This is typically used as value of CNAME record.
-* `proxy_networks` - A list of CIDR block used by the ProxyLB to access the server.
-* `vip` - The virtual IP address assigned to the ProxyLB.
+* `id` - ID
+* `fqdn` - エンハンスドロードバランサにアクセスするためのFQDN / 通常CNAMEレコードの値として利用する
+* `proxy_networks` - エンハンスドロードバランサが実サーバにアクセスする際のアクセス元CIDRブロックのリスト
+* `vip` - 現在の仮想IPアドレス
 

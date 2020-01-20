@@ -1,14 +1,8 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_bucket_object"
-subcategory: "ObjectStorage"
-description: |-
-  Manages a SakuraCloud Bucket Object.
----
+# バケットオブジェクト: sakuracloud_bucket_object
 
-# sakuracloud_bucket_object
-
-Manages a SakuraCloud Bucket Object.
+!!! Note
+    バケットの作成はAPI経由では行えません。  
+    このため、このリソースを利用する場合はあらかじめバケットを手動で作成しておく必要があります。
 
 ## Example Usage
 
@@ -22,24 +16,24 @@ resource "sakuracloud_bucket_object" "foobar" {
 
 ## Argument Reference
 
-* `access_key` - (Required) The access key for using SakuraCloud Object Storage API.
-* `secret_key` - (Required) The secret key for using SakuraCloud Object Storage API.
-* `bucket` - (Required) The name of the bucket. Changing this forces a new resource to be created.
-* `key` - (Required) The name of the bucket object. Changing this forces a new resource to be created.
-* `content` - (Optional) The content to upload to as the bucket object. This conflicts with [`source`].
-* `content_type` - (Optional) The content-type of the bucket object.
-* `etag` - (Optional) The etag of the bucket object.
-* `source` - (Optional) The file path to upload to as the bucket object. This conflicts with [`content`].
+* `access_key` - (Required) オブジェクトストレージAPIのアクセスキー
+* `secret_key` - (Required) オブジェクトストレージAPIのシークレットキー
+* `bucket` - (Required) バケット名 / この値を変更するとリソースの再作成が行われる
+* `key` - (Required) オブジェクトのキー(ファイル名) / この値を変更するとリソースの再作成が行われる
+* `content` - (Optional) オブジェクトのコンテンツ / [`source`]と同時に指定できません
+* `content_type` - (Optional) Content-Type
+* `etag` - (Optional) HTTP ETag
+* `source` - (Optional) オブジェクトのコンテンツファイルのパス /  [`content`]と同時に指定できません
 
 ## Attribute Reference
 
-* `id` - The id of the Bucket Object.
-* `http_cache_url` - The URL for cached access to the bucket object via HTTP.
-* `http_path_url` - The URL with path-format for accessing the bucket object via HTTP.
-* `http_url` - The URL for accessing the bucket object via HTTP.
-* `https_cache_url` - The URL for cached access to the bucket object via HTTPS.
-* `https_path_url` - The URL with path-format for accessing the bucket object via HTTPS.
-* `https_url` - The URL for accessing the bucket object via HTTPS.
-* `last_modified` - The time when the bucket object last modified.
-* `size` - The size of the bucket object in bytes.
+* `id` - ID
+* `http_cache_url` - キャッシュアクセスURL(http)
+* `http_path_url` - パス形式のアクセスURL(http)
+* `http_url` - アクセスURL(http)
+* `https_cache_url` - キャッシュアクセスURL(https)
+* `https_path_url` - パス形式のアクセスURL(https)
+* `https_url` - アクセスURL(https)
+* `last_modified` - 最終更新日時
+* `size` - サイズ(byte単位)
 

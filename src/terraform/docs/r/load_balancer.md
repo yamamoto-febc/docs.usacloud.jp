@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_load_balancer"
-subcategory: "Appliance"
-description: |-
-  Manages a SakuraCloud Load Balancer.
----
-
-# sakuracloud_load_balancer
-
-Manages a SakuraCloud Load Balancer.
+# ロードバランサ: sakuracloud_load_balancer
 
 ## Example Usage
 
@@ -53,57 +43,56 @@ resource "sakuracloud_switch" "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the LoadBalancer. The length of this value must be in the range [`1`-`64`].
-* `vrid` - (Required) The Virtual Router Identifier. This is only used when `high_availability` is set `true`. Changing this forces a new resource to be created.
-* `high_availability` - (Optional) The flag to enable HA mode. Changing this forces a new resource to be created.
-* `plan` - (Optional) The plan name of the LoadBalancer. This must be one of [`standard`/`highspec`]. Changing this forces a new resource to be created. Default:`standard`.
-* `vip` - (Optional) One or more `vip` blocks as defined below.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `vrid` - (Required) VRID / `high_availability`が`true`の場合のみ利用されます / この値を変更するとリソースの再作成が行われる
+* `high_availability` - (Optional) 冗長化構成の有効かフラグ / この値を変更するとリソースの再作成が行われる
+* `plan` - (Optional) プラン / 次のいずれかを指定 [`standard`/`highspec`] / この値を変更するとリソースの再作成が行われる / デフォルト:`standard`
+* `vip` - (Optional) VIP設定。詳細は[vipブロック](#vip)を参照
 
-#### Network
+#### ネットワーク関連
 
-* `ip_addresses` - (Required) A list of IP address to assign to the LoadBalancer. . Changing this forces a new resource to be created.
-* `netmask` - (Required) The bit length of the subnet assigned to the LoadBalancer. This must be in the range [`8`-`29`]. Changing this forces a new resource to be created.
-* `gateway` - (Optional) The IP address of the gateway used by LoadBalancer. Changing this forces a new resource to be created.
-* `switch_id` - (Required) The id of the switch to which the LoadBalancer connects. Changing this forces a new resource to be created.
+* `ip_addresses` - (Required) IPアドレスのリスト / この値を変更するとリソースの再作成が行われる
+* `netmask` - (Required) サブネットマスク長 / `8`-`29`の範囲で指定 / この値を変更するとリソースの再作成が行われる
+* `gateway` - (Optional) ゲートウェイIPアドレス / この値を変更するとリソースの再作成が行われる
+* `switch_id` - (Required) スイッチID / この値を変更するとリソースの再作成が行われる
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the LoadBalancer. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the LoadBalancer.
-* `tags` - (Optional) Any tags to assign to the LoadBalancer.
-* `zone` - (Optional) The name of zone that the LoadBalancer will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ---
 
-A `vip` block supports the following:
+#### vipブロック
 
-* `port` - (Required) The target port number for load-balancing. This must be in the range [`1`-`65535`].
-* `vip` - (Required) The virtual IP address.
-* `delay_loop` - (Optional) The interval in seconds between checks. This must be in the range [`10`-`2147483647`].
-* `description` - (Optional) The description of the VIP. The length of this value must be in the range [`1`-`512`].
-* `server` - (Optional) One or more `server` blocks as defined below.
-* `sorry_server` - (Optional) The IP address of the SorryServer. This will be used when all servers under this VIP are down.
+* `port` - (Required) ポート番号 / `1`-`65535`の範囲で指定
+* `vip` - (Required) 仮想IPアドレス
+* `delay_loop` - (Optional) チェック間隔秒数 / `10`-`2147483647`の範囲で指定
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `server` - (Optional) 実サーバ設定のリスト。詳細は[serverブロック](#server)を参照
+* `sorry_server` - (Optional) ソーリーサーバのIPアドレス
 
 ---
 
-A `server` block supports the following:
+#### serverブロック
 
-* `ip_address` - (Required) The IP address of the destination server.
-* `protocol` - (Required) The protocol used for health checks. This must be one of [`http`/`https`/`tcp`/`ping`].
-* `enabled` - (Optional) The flag to enable as destination of load balancing.
-* `path` - (Optional) The path used when checking by HTTP/HTTPS.
-* `status` - (Optional) The response code to expect when checking by HTTP/HTTPS.
-
+* `ip_address` - (Required) IPアドレス
+* `protocol` - (Required) ヘルスチェックで用いるプロコとる / 次のいずれかを指定 [`http`/`https`/`tcp`/`ping`]
+* `enabled` - (Optional) 有効フラグ
+* `path` - (Optional) HTTP/HTTPSチェック時のリクエストパス
+* `status` - (Optional) HTTP/HTTPSチェック時のレスポンスコード
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 60 minutes) Used when creating the Load Balancer
-* `update` - (Defaults to 60 minutes) Used when updating the Load Balancer
-* `delete` - (Defaults to 20 minutes) Used when deleting Load Balancer
+* `create` - 作成 (デフォルト: 60分)
+* `update` - 更新 (デフォルト: 60分)
+* `delete` - 削除 (デフォルト: 20分)
 
 ## Attribute Reference
 
-* `id` - The id of the Load Balancer.
+* `id` - ID
 

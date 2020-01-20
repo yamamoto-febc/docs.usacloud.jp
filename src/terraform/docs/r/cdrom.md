@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_cdrom"
-subcategory: "Storage"
-description: |-
-  Manages a SakuraCloud CD-ROM.
----
-
-# sakuracloud_cdrom
-
-Manages a SakuraCloud CD-ROM.
+# CD-ROM(ISOイメージ): sakuracloud_cdrom
 
 ## Example Usage
 
@@ -24,30 +14,30 @@ resource "sakuracloud_cdrom" "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the CD-ROM. The length of this value must be in the range [`1`-`64`].
-* `content` - (Optional) The content to upload to as the CD-ROM. This conflicts with [`iso_image_file`].
-* `content_file_name` - (Optional) The name of content file to upload to as the CD-ROM. This is only used when `content` is specified. This conflicts with [`iso_image_file`]. Default:`config`.
-* `iso_image_file` - (Optional) The file path to upload to as the CD-ROM. This conflicts with [`content`].
-* `hash` - (Optional) The md5 checksum calculated from the base64 encoded file body.
-* `size` - (Optional) The size of CD-ROM in GiB. This must be one of [`5`/`10`]. Changing this forces a new resource to be created. Default:`5`.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `content` - (Optional) アップロードするCD-ROMのコンテンツ /  [`iso_image_file`]と同時に指定できません
+* `content_file_name` - (Optional) `content`を指定した場合の作成するファイル名 / [`iso_image_file`]と同時に指定できません /  デフォルト:`config`
+* `iso_image_file` - (Optional) アップロードするファイルのパス / [`content`]と同時に指定できません
+* `hash` - (Optional) コンテンツをBASE64エンコードしたものから算出されたMD5チェックサム
+* `size` - (Optional) サイズ(GiB単位) / 次のいずれかを指定 [`5`/`10`] / この値を変更するとリソースの再作成が行われる / デフォルト:`5`
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the CD-ROM. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the CD-ROM.
-* `tags` - (Optional) Any tags to assign to the CD-ROM.
-* `zone` - (Optional) The name of zone that the CD-ROM will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 24 hours) Used when creating the CD-ROM
-* `update` - (Defaults to 24 hours) Used when updating the CD-ROM
-* `delete` - (Defaults to 20 minutes) Used when deleting CD-ROM
+* `create` - 作成 (デフォルト: 24時間)
+* `update` - 更新 (デフォルト: 24時間)
+* `delete` - 削除 (デフォルト: 20分)
 
 ## Attribute Reference
 
-* `id` - The id of the CD-ROM.
+* `id` - ID
 

@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_database_read_replica"
-subcategory: "Appliance"
-description: |-
-  Manages a SakuraCloud Database Read Replica.
----
-
-# sakuracloud_database_read_replica
-
-Manages a SakuraCloud Database Read Replica.
+# データベースアプライアンス(リードレプリカ): sakuracloud_database_read_replica
 
 ## Example Usage
 
@@ -30,33 +20,33 @@ data sakuracloud_database "master" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the read-replica database. The length of this value must be in the range [`1`-`64`].
-* `master_id` - (Required) The id of the replication master database. Changing this forces a new resource to be created.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `master_id` - (Required) レプリケーションのマスターとなるデータベースアプライアンスのID /  この値を変更するとリソースの再作成が行われる
 
-#### Network
+#### Network関連
 
-* `ip_address` - (Required) The IP address to assign to the read-replica database. Changing this forces a new resource to be created.
-* `gateway` - (Optional) The IP address of the gateway used by read-replica database. If `gateway` isn't specified, it will be set to the same value of the master database. Changing this forces a new resource to be created.
-* `netmask` - (Optional) The bit length of the subnet to assign to the read-replica database. This must be in the range [`8`-`29`]. If `netmask` isn't specified, it will be set to the same value of the master database. Changing this forces a new resource to be created.
-* `switch_id` - (Optional) The id of the switch to which the read-replica database connects. If `switch_id` isn't specified, it will be set to the same value of the master database. Changing this forces a new resource to be created.
-* `source_ranges` - (Optional) The range of source IP addresses that allow to access to the read-replica database via network.
+* `ip_address` - (Required) IPアドレス / この値を変更するとリソースの再作成が行われる
+* `gateway` - (Optional) ゲートウェイIPアドレス / 未指定の場合マスターデータベースの値が利用されます / この値を変更するとリソースの再作成が行われる
+* `netmask` - (Optional) サブネットマスク長 / `8`-`29`の範囲で指定 / 未指定の場合マスターデータベースの値が利用されます / この値を変更するとリソースの再作成が行われる
+* `switch_id` - (Optional) スイッチID / 未指定の場合マスターデータベースの値が利用されます / この値を変更するとリソースの再作成が行われる
+* `source_ranges` - (Optional) データベースアプライアンスにアクセスできるIPアドレス、またはCIDRブロックのリスト
+
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the read-replica database. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the read-replica database.
-* `tags` - (Optional) Any tags to assign to the read-replica database.
-* `zone` - (Optional) The name of zone that the read-replica database will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 60 minutes) Used when creating the Database Read Replica
-* `update` - (Defaults to 60 minutes) Used when updating the Database Read Replica
-* `delete` - (Defaults to 20 minutes) Used when deleting Database Read Replica
+* `create` - 作成 (デフォルト: 60分)
+* `update` - 更新 (デフォルト: 60分)
+* `delete` - 削除 (デフォルト: 20分)
 
 ## Attribute Reference
 
-* `id` - The id of the Database Read Replica.
-
+* `id` - ID

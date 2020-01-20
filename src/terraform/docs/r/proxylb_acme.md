@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_proxylb_acme"
-subcategory: "Global"
-description: |-
-  Manages a SakuraCloud ProxyLB ACME Setting.
----
-
-# sakuracloud_proxylb_acme
-
-Manages a SakuraCloud ProxyLB ACME Setting.
+# エンハンスドロードバランサ(ACME設定): sakuracloud_proxylb_acme
 
 ## Example Usage
 
@@ -27,39 +17,54 @@ data "sakuracloud_proxylb" "foobar" {
 }
 ```
 
+!!! Note
+    このリソースを利用する場合、エンハンスドロードバランサリソース(`sakuracloud_proxylb`)の`certificate`ブロックの値は上書きされます。  
+    両者を同時に指定することはできません。
+
 ## Argument Reference
 
-* `accept_tos` - (Required) The flag to accept the current Let's Encrypt terms of service(see: https://letsencrypt.org/repository/). This must be set `true` explicitly. Changing this forces a new resource to be created.
-* `common_name` - (Required) The FQDN used by ACME. This must set resolvable value. Changing this forces a new resource to be created.
-* `proxylb_id` - (Required) The id of the ProxyLB that set ACME settings to. Changing this forces a new resource to be created.
-* `update_delay_sec` - (Optional) The wait time in seconds. This typically used for waiting for a DNS propagation. Changing this forces a new resource to be created.
+* `accept_tos` - (Required) [Let's Encrypt terms of service](https://letsencrypt.org/repository/)への同意フラグ  
+この項目は明示的に`true`に設定する必要があります / この値を変更するとリソースの再作成が行われる
+* `common_name` - (Required) 証明書発行対象のFQDN / 名前解決できる値を指定する必要があります / この値を変更するとリソースの再作成が行われる
+* `proxylb_id` - (Required) ACME設定を行う対象のエンハンスドロードバランサID / この値を変更するとリソースの再作成が行われる
+* `update_delay_sec` - (Optional) ACME設定を有効にするまでの待ち時間 / この値を変更するとリソースの再作成が行われる
+
+!!! Note
+    エンハンスドロードバランサでLet's Encryptによる証明書発行を行うには[Let's Encrypt terms of service](https://letsencrypt.org/repository/)に同意する必要があります。  
+    Let's Encrypt terms of service: https://letsencrypt.org/repository/
+    このため、このリソースを使用する際は`accept_tos`に`true`を明示的に設定する必要があります
+
+!!! Note
+    エンハンスドロードバランサでACME設定を有効にするには、`common_name`で指定したFQDNを名前解決できる必要があります。  
+    DNSレコードを登録した直後だと名前解決できない場合があります。  
+    このため、必要に応じて`update_delay_sec`を適切に設定してください。
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 20 minutes) Used when creating the ProxyLB ACME Setting
-* `delete` - (Defaults to 5 minutes) Used when deleting ProxyLB ACME Setting
+* `create` - 作成 (デフォルト: 20分)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the ProxyLB ACME Setting.
-* `certificate` - A list of `certificate` blocks as defined below.
+* `id` - ID
+* `certificate` - 証明書設定のリスト。詳細は[certificateブロック](#certificate)を参照
 
 ---
 
-A `certificate` block exports the following:
+#### certificateブロック
 
-* `additional_certificate` - A list of `additional_certificate` blocks as defined below.
-* `intermediate_cert` - The intermediate certificate for a server.
-* `private_key` - The private key for a server.
-* `server_cert` - The certificate for a server.
+* `additional_certificate` - 追加証明書のリスト。詳細は[additional_certificateブロック](#additional_certificate)を参照
+* `intermediate_cert` - 中間証明書
+* `private_key` - 秘密鍵
+* `server_cert` - サーバ証明書
 
 ---
 
-A `additional_certificate` block exports the following:
+#### additional_certificateブロック
 
-* `intermediate_cert` - The intermediate certificate for a server.
-* `private_key` - The private key for a server.
-* `server_cert` - The certificate for a server.
+* `intermediate_cert` - 中間証明書
+* `private_key` - 秘密鍵
+* `server_cert` - サーバ証明書
 

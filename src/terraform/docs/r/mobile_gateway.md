@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_mobile_gateway"
-subcategory: "SecureMobile"
-description: |-
-  Manages a SakuraCloud Mobile Gateway.
----
-
-# sakuracloud_mobile_gateway
-
-Manages a SakuraCloud Mobile Gateway.
+# モバイルゲートウェイ: sakuracloud_mobile_gateway
 
 ## Example Usage
 
@@ -59,75 +49,75 @@ resource "sakuracloud_switch" "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the MobileGateway. The length of this value must be in the range [`1`-`64`].
-* `dns_servers` - (Required) A list of IP address used by each connected devices.
-* `inter_device_communication` - (Optional) The flag to allow communication between each connected devices.
-* `internet_connection` - (Optional) The flag to enable connect to the Internet.
-* `private_network_interface` - (Optional) An `private_network_interface` block as defined below.
-* `sim` - (Optional) One or more `sim` blocks as defined below.
-* `sim_route` - (Optional) One or more `sim_route` blocks as defined below.
-* `static_route` - (Optional) One or more `static_route` blocks as defined below.
-* `traffic_control` - (Optional) A `traffic_control` block as defined below.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `dns_servers` - (Required) SIMから利用するDNSサーバのIPアドレスのリスト
+* `inter_device_communication` - (Optional) 接続されたデバイス間での通信を許可するフラグ
+* `internet_connection` - (Optional) 接続されたデバイスからインターネットへの接続を許可するフラグ
+* `private_network_interface` - (Optional) プライベート側NICの設定。詳細は[private_network_interfaceブロック](#private_network_interface)を参照
+* `sim` - (Optional) 接続するSIMの設定リスト。詳細は[simブロック](#sim)を参照
+* `sim_route` - (Optional) SIMルート設定のリスト。詳細は[sim_routeブロック](#sim_route)を参照
+* `static_route` - (Optional) スタティックルート設定のリスト。詳細は[static_routeブロック](#static_route)を参照
+* `traffic_control` - (Optional) トラフィックコントロール設定。詳細は[traffic_controlブロック](#traffic_control)を参照
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the MobileGateway. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the MobileGateway.
-* `tags` - (Optional) Any tags to assign to the MobileGateway.
-* `zone` - (Optional) The name of zone that the MobileGateway will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ---
 
-A `private_network_interface` block supports the following:
+#### private_network_interfaceブロック
 
-* `ip_address` - (Required) The IP address to assign to the MobileGateway.
-* `netmask` - (Required) The bit length of the subnet to assign to the MobileGateway. This must be in the range [`8`-`29`].
-* `switch_id` - (Required) The id of the switch to which the MobileGateway connects.
-
----
-
-A `sim` block supports the following:
-
-* `ip_address` - (Required) The IP address to assign to the SIM.
-* `sim_id` - (Required) The id of the Switch connected to the MobileGateway.
+* `ip_address` - (Required) IPアドレス
+* `netmask` - (Required) サブネットマスク長 / `8`-`29`の範囲で指定
+* `switch_id` - (Required) スイッチID
 
 ---
 
-A `sim_route` block supports the following:
+#### simブロック
 
-* `prefix` - (Required) The destination network prefix used by the sim routing. This must be specified by CIDR block formatted string.
-* `sim_id` - (Required) The id of the routing destination SIM.
-
----
-
-A `static_route` block supports the following:
-
-* `next_hop` - (Required) The IP address of next hop.
-* `prefix` - (Required) The destination network prefix used by static routing. This must be specified by CIDR block formatted string.
+* `ip_address` - (Required) IPアドレス
+* `sim_id` - (Required) SIMのID
 
 ---
 
-A `traffic_control` block supports the following:
+#### sim_routeブロック
 
-* `quota` - (Required) The threshold of monthly traffic usage to enable to the traffic shaping.
-* `auto_traffic_shaping` - (Optional) The flag to enable the traffic shaping.
-* `band_width_limit` - (Optional) The bandwidth allowed when the traffic shaping is enabled.
-* `enable_email` - (Optional) The flag to enable email notification when the traffic shaping is enabled.
-* `enable_slack` - (Optional) The flag to enable slack notification when the traffic shaping is enabled.
-* `slack_webhook` - (Optional) The webhook URL used when sends notification. It will only used when `enable_slack` is set `true`.
+* `prefix` - (Required) プレフィックス / CIDRブロックとして指定
+* `sim_id` - (Required) 宛先となるSIMのID
+
+---
+
+#### static_routeブロック
+
+* `next_hop` - (Required) ネクストホップIPアドレス
+* `prefix` - (Required) プレフィックス / CIDRブロックとして指定
+
+---
+
+#### traffic_controlブロック
+
+* `quota` - (Required) 通信制限を行う月間通信量の閾値
+* `auto_traffic_shaping` - (Optional) `quota`を超えた際に自動で通信制限を有効にするフラグ
+* `band_width_limit` - (Optional) 通信制限時の帯域
+* `enable_email` - (Optional) e-mailでの通知の有効フラグ
+* `enable_slack` - (Optional) slackでの通知の有効フラグ
+* `slack_webhook` - (Optional) slackでの通知に利用されるWebhookのURL
 
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 60 minutes) Used when creating the Mobile Gateway
-* `update` - (Defaults to 60 minutes) Used when updating the Mobile Gateway
-* `delete` - (Defaults to 20 minutes) Used when deleting Mobile Gateway
+* `create` - 作成 (デフォルト: 60分)
+* `update` - 更新 (デフォルト: 60分)
+* `delete` - 削除 (デフォルト: 20分)
 
 ## Attribute Reference
 
-* `id` - The id of the Mobile Gateway.
-* `public_ip` - The public IP address assigned to the MobileGateway.
-* `public_netmask` - The bit length of the subnet assigned to the MobileGateway.
+* `id` - ID
+* `public_ip` - パブリック側NICのIPアドレス
+* `public_netmask` - パブリック側NICのサブネットマスク長
 

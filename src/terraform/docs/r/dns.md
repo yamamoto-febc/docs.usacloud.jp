@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_dns"
-subcategory: "Global"
-description: |-
-  Manages a SakuraCloud DNS.
----
-
-# sakuracloud_dns
-
-Manages a SakuraCloud DNS.
+# DNS: sakuracloud_dns
 
 ## Example Usage
 
@@ -32,43 +22,43 @@ resource "sakuracloud_dns" "foobar" {
 
 ## Argument Reference
 
-* `zone` - (Required) The target zone. (e.g. `example.com`). Changing this forces a new resource to be created.
-* `record` - (Optional) One or more `record` blocks as defined below.
+* `zone` - (Required) 対象ゾーン(例: `example.com`) / この値を変更するとリソースの再作成が行われる
+* `record` - (Optional) レコードのリスト。詳細は[recordブロック](#record)を参照
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the DNS. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the DNS.
-* `tags` - (Optional) Any tags to assign to the DNS.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
 
 ---
 
-A `record` block supports the following:
+#### recordブロック
 
-* `name` - (Required) The name of the DNS Record. The length of this value must be in the range [`1`-`64`].
-* `type` - (Required) The type of DNS Record. This must be one of [`A`/`AAAA`/`ALIAS`/`CNAME`/`NS`/`MX`/`TXT`/`SRV`/`CAA`/`PTR`].
-* `value` - (Required) The value of the DNS Record.
-* `ttl` - (Optional) The number of the TTL.
+* `name` - (Required) レコード名 /  `1`-`64`文字で指定
+* `type` - (Required) レコード種別 / 次のいずれかを指定 [`A`/`AAAA`/`ALIAS`/`CNAME`/`NS`/`MX`/`TXT`/`SRV`/`CAA`/`PTR`]
+* `value` - (Required) 値
+* `ttl` - (Optional) TTL
 
-#### For MX/SRV Record
+#### MX/SRVレコード関連
 
-* `priority` - (Optional) The priority of target DNS Record. This must be in the range [`0`-`65535`].
+* `priority` - (Optional) 優先度 / `0`-`65535`の範囲で指定
 
-#### For SRV record
+#### SRVレコード関連
 
-* `port` - (Optional) The number of port. This must be in the range [`1`-`65535`].
-* `weight` - (Optional) The weight of target DNS Record. This must be in the range [`0`-`65535`].
+* `port` - (Optional) ポート番号 / `1`-`65535`の範囲で指定
+* `weight` - (Optional) ウェイト / `0`-`65535`の範囲で指定
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 5 minutes) Used when creating the DNS
-* `update` - (Defaults to 5 minutes) Used when updating the DNS
-* `delete` - (Defaults to 5 minutes) Used when deleting DNS
+* `create` - 作成 (デフォルト: 5分)
+* `update` - 更新 (デフォルト: 5分)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the DNS.
-* `dns_servers` - A list of IP address of DNS server that manage this zone.
+* `id` - ID
+* `dns_servers` - DNSサーバのIPアドレスのリスト
 

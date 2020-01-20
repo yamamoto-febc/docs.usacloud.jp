@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_container_registry"
-subcategory: "Lab"
-description: |-
-  Manages a SakuraCloud Container Registry.
----
-
-# sakuracloud_container_registry
-
-Manages a SakuraCloud Container Registry.
+# コンテナレジストリ: sakuracloud_container_registry
 
 ## Example Usage
 
@@ -47,38 +37,39 @@ resource "sakuracloud_container_registry" "foobar" {
   }
 }
 ```
+
 ## Argument Reference
 
-* `name` - (Required) The name of the Container Registry. The length of this value must be in the range [`1`-`64`].
-* `access_level` - (Required) The level of access that allow to users. This must be one of [`readwrite`/`readonly`/`none`].
-* `subdomain_label` - (Required) The label at the lowest of the FQDN used when be accessed from users. The length of this value must be in the range [`1`-`64`]. Changing this forces a new resource to be created.
-* `user` - (Optional) One or more `user` blocks as defined below.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `access_level` - (Required) アクセスレベル / この値は次のいずれかを指定 [`readwrite`/`readonly`/`none`]
+* `subdomain_label` - (Required) サブドメインラベル /  `1`-`64`文字で指定 / この値を変更するとリソースの再作成が行われる
+* `user` - (Optional) ユーザー設定のリスト。詳細は[userブロック](#user)を参照
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the Container Registry. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the Container Registry.
-* `tags` - (Optional) Any tags to assign to the Container Registry.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
 
 ---
 
-A `user` block supports the following:
+#### userブロック
 
-* `name` - (Required) The user name used to authenticate remote access.
-* `password` - (Required) The password used to authenticate remote access.
+* `name` - (Required) ユーザー名
+* `password` - (Required) パスワード
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 5 minutes) Used when creating the Container Registry
-* `update` - (Defaults to 5 minutes) Used when updating the Container Registry
-* `delete` - (Defaults to 5 minutes) Used when deleting Container Registry
+* `create` - 作成 (デフォルト: 5分)
+* `update` - 更新 (デフォルト: 5分)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the Container Registry.
-* `fqdn` - The FQDN for accessing the Container Registry. FQDN is built from `subdomain_label` + `.sakuracr.jp`.
+* `id` - ID
+* `fqdn` - コンテナレジストリにアクセスするためのFQDN / この値は`subdomain_label` + `.sakuracr.jp`となる
 
 
 

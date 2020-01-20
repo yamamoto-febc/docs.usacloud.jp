@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_dns_record"
-subcategory: "Global"
-description: |-
-  Manages a SakuraCloud DNS Record.
----
-
-# sakuracloud_dns_record
-
-Manages a SakuraCloud DNS Record.
+# DNS(レコード): sakuracloud_dns_record
 
 ## Example Usage
 
@@ -31,31 +21,32 @@ resource "sakuracloud_dns_record" "record2" {
   value  = "192.168.0.2"
 }
 ```
+
 ## Argument Reference
 
-* `dns_id` - (Required) The id of the DNS resource. Changing this forces a new resource to be created.
-* `name` - (Required) The name of the DNS Record resource. Changing this forces a new resource to be created.
-* `type` - (Required) The type of DNS Record. This must be one of [`A`/`AAAA`/`ALIAS`/`CNAME`/`NS`/`MX`/`TXT`/`SRV`/`CAA`/`PTR`]. Changing this forces a new resource to be created.
-* `value` - (Required) The value of the DNS Record. Changing this forces a new resource to be created.
-* `ttl` - (Optional) The number of the TTL. Changing this forces a new resource to be created. Default:`3600`.
+* `dns_id` - (Required) レコードを登録する対象ゾーン(DNSリソース)のID / この値を変更するとリソースの再作成が行われる
+* `name` - (Required) レコード名 / この値を変更するとリソースの再作成が行われる
+* `type` - (Required) レコード種別 / 次のいずれかを指定 [`A`/`AAAA`/`ALIAS`/`CNAME`/`NS`/`MX`/`TXT`/`SRV`/`CAA`/`PTR`] / この値を変更するとリソースの再作成が行われる
+* `value` - (Required) レコードの値 / この値を変更するとリソースの再作成が行われる
+* `ttl` - (Optional) TTL / この値を変更するとリソースの再作成が行われる / デフォルト:`3600`
 
-#### For MX/SRV Record
+#### MX/SRVレコード関連
 
-* `priority` - (Optional) The priority of target DNS Record. This must be in the range [`0`-`65535`]. Changing this forces a new resource to be created.
+* `priority` - (Optional) 優先度 / `0`-`65535`の範囲で指定 / この値を変更するとリソースの再作成が行われる
 
-#### For SRV Record
+#### SRVレコード関連
 
-* `port` - (Optional) The number of port. This must be in the range [`1`-`65535`]. Changing this forces a new resource to be created.
-* `weight` - (Optional) The weight of target DNS Record. This must be in the range [`0`-`65535`]. Changing this forces a new resource to be created.
+* `port` - (Optional) ポート番号 / `1`-`65535`の範囲で指定 / この値を変更するとリソースの再作成が行われる
+* `weight` - (Optional) ウェイト / `0`-`65535`の範囲で指定 / この値を変更するとリソースの再作成が行われる
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 5 minutes) Used when creating the DNS Record
-* `delete` - (Defaults to 5 minutes) Used when deleting DNS Record
+* `create` - 作成 (デフォルト: 5分)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the DNS Record.
+* `id` - ID
 

@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_internet"
-subcategory: "Networking"
-description: |-
-  Manages a SakuraCloud Switch+Router.
----
-
-# sakuracloud_internet
-
-Manages a SakuraCloud Switch+Router.
+# スイッチ+ルータ: sakuracloud_internet
 
 ## Example Usage
 
@@ -27,37 +17,36 @@ resource "sakuracloud_internet" "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the Switch+Router. The length of this value must be in the range [`1`-`64`].
-* `band_width` - (Optional) The bandwidth of the network connected to the Internet in Mbps. `100`/`250`/`500`/`1000`/`1500`/`2000`/`2500`/`3000`/`5000`. Default:`100`.
-* `netmask` - (Optional) The bit length of the subnet assigned to the Switch+Router. `26`/`27`/`28`. Changing this forces a new resource to be created. Default:`28`.
-* `enable_ipv6` - (Optional) The flag to enable IPv6.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `band_width` - (Optional) 帯域 / 次のいずれかを指定 [`100`/`250`/`500`/`1000`/`1500`/`2000`/`2500`/`3000`/`5000`] / デフォルト:`100`
+* `netmask` - (Optional) サブネットマスク長 / 次のいずれかを指定 [`26`/`27`/`28`] / この値を変更するとリソースの再作成が行われる / デフォルト:`28`
+* `enable_ipv6` - (Optional) IPv6有効化フラグ
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the Switch+Router. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the Switch+Router.
-* `tags` - (Optional) Any tags to assign to the Switch+Router.
-* `zone` - (Optional) The name of zone that the Switch+Router will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 60 minutes) Used when creating the Switch+Router
-* `update` - (Defaults to 60 minutes) Used when updating the Switch+Router
-* `delete` - (Defaults to 20 minutes) Used when deleting Switch+Router
+* `create` - 作成 (デフォルト: 60分)
+* `update` - 更新 (デフォルト: 60分)
+* `delete` - 削除 (デフォルト: 20分)
 
 ## Attribute Reference
 
-* `id` - The id of the Switch+Router.
-* `gateway` - The IP address of the gateway used by the Switch+Router.
-* `ip_addresses` - A list of assigned global address to the Switch+Router.
-* `ipv6_network_address` - The IPv6 network address assigned to the Switch+Router.
-* `ipv6_prefix` - The network prefix of assigned IPv6 addresses to the Switch+Router.
-* `ipv6_prefix_len` - The bit length of IPv6 network prefix.
-* `max_ip_address` - Maximum IP address in assigned global addresses to the Switch+Router.
-* `min_ip_address` - Minimum IP address in assigned global addresses to the Switch+Router.
-* `network_address` - The IPv4 network address assigned to the Switch+Router.
-* `server_ids` - A list of the ID of Servers connected to the Switch+Router.
-* `switch_id` - The id of the switch.
-
+* `id` - ID
+* `gateway` - ゲートウェイIPアドレス
+* `ip_addresses` - スイッチ+ルータに割り当てられた、ユーザーが利用可能なIPアドレスのリスト
+* `ipv6_network_address` - IPv6ネットワークアドレス
+* `ipv6_prefix` - IPv6プレフィックス
+* `ipv6_prefix_len` - IPv6プレフィックス長
+* `max_ip_address` - スイッチ+ルータに割り当てられた、ユーザーが利用可能なIPアドレスの最大値
+* `min_ip_address` - スイッチ+ルータに割り当てられた、ユーザーが利用可能なIPアドレスの最小値
+* `network_address` - ネットワークアドレス
+* `server_ids` - スイッチ+ルータに接続しているサーバのIDのリスト
+* `switch_id` - スイッチID

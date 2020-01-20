@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_packet_filter_rules"
-subcategory: "Networking"
-description: |-
-  Manages a SakuraCloud Packet Filter Rules.
----
-
-# sakuracloud_packet_filter_rules
-
-Manages a SakuraCloud Packet Filter Rules.
+# パケットフィルタ(ルール): sakuracloud_packet_filter_rules
 
 ## Example Usage
 
@@ -68,30 +58,29 @@ resource "sakuracloud_packet_filter_rules" "rules" {
 ```
 ## Argument Reference
 
-* `packet_filter_id` - (Required) The id of the packet filter that set expressions to. Changing this forces a new resource to be created.
-* `expression` - (Optional) One or more `expression` blocks as defined below. Changing this forces a new resource to be created.
-* `zone` - (Optional) The name of zone that the PacketFilter Rule will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
+* `packet_filter_id` - (Required) ルールを設定するパケットフィルタのID / この値を変更するとリソースの再作成が行われる
+* `expression` - (Optional) フィルタリングルールのリスト。詳細は[expressionブロック](#expression)を参照 / この値を変更するとリソースの再作成が行われる
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ---
 
-A `expression` block supports the following:
+#### expressionブロック
 
-* `protocol` - (Required) The protocol used for filtering. This must be one of [`http`/`https`/`tcp`/`udp`/`icmp`/`fragment`/`ip`].
-* `allow` - (Optional) The flag to allow the packet through the filter.
-* `destination_port` - (Optional) A destination port number or port range used for filtering (e.g. `1024`, `1024-2048`).
-* `source_network` - (Optional) A source IP address or CIDR block used for filtering (e.g. `192.0.2.1`, `192.0.2.0/24`).
-* `source_port` - (Optional) A source port number or port range used for filtering (e.g. `1024`, `1024-2048`).
-* `description` - (Optional) The description of the expression.
-
+* `protocol` - (Required) プロトコル / 次のいずれかを指定 [`http`/`https`/`tcp`/`udp`/`icmp`/`fragment`/`ip`]
+* `allow` - (Optional) マッチしたパケットを許可するフラグ
+* `destination_port` - (Optional) 宛先ポート、または宛先ポート範囲 (例:`1024`, `1024-2048`)
+* `source_network` - (Optional) 送信元IPアドレス、または送信元CIDRブロック (例: `192.0.2.1`, `192.0.2.0/24`)
+* `source_port` - (Optional) 送信元ポート番号、または送信元ポート番号範囲 (例: `1024`, `1024-2048`)
+* `description` - (Optional) 説明
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 5 minutes) Used when creating the Packet Filter Rules
-* `delete` - (Defaults to 5 minutes) Used when deleting Packet Filter Rules
+* `create` - 作成 (デフォルト: 5分)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the Packet Filter Rules.
+* `id` - パケットフィルタのID
 

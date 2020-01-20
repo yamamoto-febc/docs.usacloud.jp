@@ -1,0 +1,25 @@
+services: docker
+language: minimal
+env:
+  global:
+  - secure: 2UJ2AAY4RhbvnqXBRFKpPnP8uiRs4ERkeVUe4ToFVBU/G4jQTWdmmUyf8vBpAm/uHO1uLTctMO/OfiTP/qHes8IH8kzfpGeVzAipv8gdi3rJ0SOF8CtGboZawR/ZJ8EcwElioO55Iy9CYc53lifaTEJZFnVzt8T5ibthnKGBLpbqhKxtQdFOGlecW+hkNimtVyGo485c7y4r1koNZ2bb73vsI9PdlrNrFpSFsQXlWuS9flah2XHN47SLStAf0/b1CKZ6LmrKZbkpFHpm6qPCLZZBvay67wDEcwplh717Yt/IweJUnExYB1RznF219FmLN6Fh+IwYSvLCXxZAMk1tv5vQ5VvdnrI7CKUi/wGXTTH8FLT0nfgJzJn9pqgzb2f8Z87q0nPUk7vHRvKrHrAkWULITQPRcXEFWeOwy2YYVlLeGeJzFpe/rHDhAKMzK0XAxiIADlv/fC56RK0hGUUGL5zsYubTbTaEYY9gzzFdv8sMLziJaTnykwP69fD30F1yKIdnisKBTcOT0YE2v0pA8uXfOnEytISXkmF5BqR3dtm3IkGQJ/c4RrvpYRb6fToMJ7iyw88BB5Ja9VrIWB8NfZ+uCMqKIhjiKFsIPkMmcPKaxIeW5ZPZZzh0kGdeK9qwCmHv87Hraz9XNmWJ3R3mE4fh1KOtlHz6Qa14ZS536Oo=
+matrix:
+  fast_finish: true
+  include:
+  - name: make lint
+    script: make lint
+  - name: make build
+    script: make build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: "$GITHUB_TOKEN"
+  keep_history: true
+  target_branch: master
+  fqdn: docs.usacloud.jp
+  committer_from_gh: true
+  on:
+    tags: true
+notifications:
+  slack:
+    secure: s3r6HpzsBRUT7rPjkzmoDrfPIvJlDDSP7HF6t+QF3SVIUV9rP31Ds+e/8xD3/iLAv2iajD85dN1MDNFAH+wQB8NPbpXHS5mgplO4DVmctT8+tc7kINKNxF5DasmKeu97Wlps0xNX8Du8zCKZZuvit5Y5kFVPpABkdAJe8hdJr6v2WB8DEOYoJ1z+lVviKGbz+BGX0ygp8pRcizdnAJWI/cI78nNgYQ6aTGmfqau37VLlCd5tq3eIRGnBGHqA9+mYtjBwQlFKj7xeOgwCVJF+9fsQC9iIkD36MxuXQoAHOGHkRORi5q828QZk2dPNP2u0S6Mr1IhqRoU9yCXzYJVOCxZHgtDdv/6+bUB9egi1eK/PMG5Z02LwcC0TBLMpwgWxgdhUYsYn4rlwXFaQwgLDhhWY2jAsL8ImEfw09p9XMY0k7bpehZz4k14BeQWUg4dJddDapACJbmQtK5IM7VwjqY9X5jSYTkQHh1Mq5Dl7iAX6lRHgrRwgQgKNUMPdWcdnsdqzj4irddQanorSiRhEhtUAoEjcPbjn/F8HXnbAYt0Va+YriqmzfsohG1rRZkc44O6tmU/H7J7qy2rLXZ4/9//qY5WmI39M38tWXMxxnR1gWj6qXzz6+OuWSoPuBTR0iqkx4+qytg8FNlV9Wkr2LE2SrKo6SG8ihBu4L/6GrTg=

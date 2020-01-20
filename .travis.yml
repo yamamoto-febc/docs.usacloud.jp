@@ -5,6 +5,7 @@ env:
     secure: WRPyklf+6DWEPl+lIhBcA4ixgbCOP//sQrrTCa/9Q79ctdtIlxQ1RtAXyzIQyDvrIkriXXLPsAsBAYalr+dHyP4XPTmyB/POTZDNcRqJgh1XM9xXiWrcKKOFZ8P4+rtkzzgTmxxKk6wP1SU3wT+Pgbq0SSy0OGyFJRlLbmMZIPe7ekd43Za7lvDd6cBXGmv/VP9JdctqvV972D2tSDUtqO+uHhAHesssWhgbk+B1ZdwybKC14vyV73mpeArDr3dLwyP9GAAfa6xj7aER+wQT3VEO6D/1O2dpKryV7d7QD4oo0uvcKoMAE1YvLjhYEME4+82gAy/QH9yJoScuGyPhOyoAADc60A00MhTZu3S3ouptgC3iLIwKQIPsPeT9R3imrCgJqsYjMJ9FYvTa+40BsEZBZucO/4yMkH+tdfJHKU4xPi14FI2rE20QH2p2Ea5J0Pm/dpZKqozGtYTLv9tlQqkiJPzYjxFXYeEhCq302UHU7MOJjZLwX2n2kMETz15zZ8KtHQVelic9O+cBzIEXfWTHQhsPWaLDEoKSj3dP0MYVKbol0y8UDEFOX25N/3FbpWkhaV0fmef4blosdNNxnfvesr7Y0f5gODs6E/URRDiPX8bCg8TlqM3HqTAl+YbJ9yZkIw4CfHrATLTHkse7aRlF3elCCIQyr+5ILDt5Mgw=
 script:
   - make lint
+before_deploy:
   - make build
 deploy:
   provider: pages
@@ -13,7 +14,8 @@ deploy:
   keep_history: true
   target_branch: master
   fqdn: docs.usacloud.jp
-  committer_from_gh: true
+  user: sacloud-bot
+  email: sacloud.users@gmail.com
   on:
     tags: true
 notifications:

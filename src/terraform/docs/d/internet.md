@@ -1,14 +1,6 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_internet"
-subcategory: "Networking"
-description: |-
-  Get information about an existing Switch+Router.
----
+# スイッチ+ルータ: sakuracloud_internet
 
-# Data Source: sakuracloud_internet
-
-Get information about an existing Switch+Router.
+スイッチ+ルータの情報を参照するためのデータソース
 
 ## Example Usage
 
@@ -19,48 +11,48 @@ data "sakuracloud_internet" "foobar" {
   }
 }
 ```
+
 ## Argument Reference
 
-* `filter` - (Optional) One or more values used for filtering, as defined below.
-* `zone` - (Optional) The name of zone that the Switch+Router is in (e.g. `is1a`, `tk1a`).
+* `filter` - (Optional) 参照対象をフィルタリングするための条件。詳細は[filterブロック](#filter)を参照 
+* `zone` - (Optional) 対象ゾーンの名前 (例: `is1a`, `tk1a`)  
 
 ---
 
-A `filter` block supports the following:
+#### filterブロック
 
-* `condition` - (Optional) One or more name/values pairs used for filtering. There are several valid keys, for a full reference, check out finding section in the [SakuraCloud API reference](https://developer.sakura.ad.jp/cloud/api/1.1/).
-* `id` - (Optional) The resource id on SakuraCloud used for filtering.
-* `names` - (Optional) The resource names on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.
-* `tags` - (Optional) The resource tags on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.
+* `condition` - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は[conditionブロック](#condition)を参照  
+* `id` - (Optional) 対象リソースのID 
+* `names` - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  
+* `tags` - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる
 
 ---
 
-A `condition` block supports the following:
+#### conditionブロック
 
-* `name` - (Required) The name of the target field. This value is case-sensitive.
-* `values` - (Required) The values of the condition. If multiple values ​​are specified, they combined as AND condition.
-
+* `name` - (Required) 対象フィールド名。大文字/小文字を区別する  
+* `values` - (Required) 対象フィールドの値。複数指定した場合はAND条件となる
 
 ## Attribute Reference
 
-* `id` - The id of the Switch+Router.
-* `band_width` - The bandwidth of the network connected to the Internet in Mbps.
-* `description` - The description of the Switch+Router.
-* `enable_ipv6` - The flag to enable IPv6.
-* `gateway` - The IP address of the gateway used by Switch+Router.
-* `icon_id` - The icon id attached to the Switch+Router.
-* `ip_addresses` - A list of assigned global address to the Switch+Router.
-* `ipv6_network_address` - The IPv6 network address assigned to the Switch+Router.
-* `ipv6_prefix` - The network prefix of assigned IPv6 addresses to the Switch+Router.
-* `ipv6_prefix_len` - The bit length of IPv6 network prefix.
-* `max_ip_address` - Maximum IP address in assigned global addresses to the Switch+Router.
-* `min_ip_address` - Minimum IP address in assigned global addresses to the Switch+Router.
-* `name` - The name of the Switch+Router.
-* `netmask` - The bit length of the subnet assigned to the Switch+Router.
-* `network_address` - The IPv4 network address assigned to the Switch+Router.
-* `server_ids` - A list of the ID of Servers connected to the Switch+Router.
-* `switch_id` - The id of the switch connected from the Switch+Router.
-* `tags` - Any tags assigned to the Switch+Router.
+* `id` - ID
+* `band_width` - 帯域(Mbps単位)
+* `description` - 説明
+* `enable_ipv6` - IPv6有効フラグ
+* `gateway` - ゲートウェイIPアドレス
+* `icon_id` - アイコンID
+* `ip_addresses` - スイッチ+ルータに割り当てられた、ユーザーが利用可能なIPアドレスのリスト
+* `ipv6_network_address` - IPv6ネットワークアドレス
+* `ipv6_prefix` - IPv6プレフィックス
+* `ipv6_prefix_len` - IPv6プレフィックス長
+* `max_ip_address` - スイッチ+ルータに割り当てられた、ユーザーが利用可能なIPアドレスの最大値
+* `min_ip_address` - スイッチ+ルータに割り当てられた、ユーザーが利用可能なIPアドレスの最小値
+* `name` - 名前
+* `netmask` - ネットワークマスク長
+* `network_address` - ネットワークアドレス
+* `server_ids` - スイッチ+ルータに接続しているサーバのIDのリスト
+* `switch_id` - スイッチID
+* `tags` - タグ
 
 
 

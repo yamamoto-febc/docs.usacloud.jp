@@ -1,14 +1,6 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_load_balancer"
-subcategory: "Appliance"
-description: |-
-  Get information about an existing Load Balancer.
----
+# ロードバランサ: sakuracloud_load_balancer
 
-# Data Source: sakuracloud_load_balancer
-
-Get information about an existing Load Balancer.
+ロードバランサの情報を参照するためのデータソース
 
 ## Example Usage
 
@@ -19,64 +11,65 @@ data "sakuracloud_load_balancer" "foobar" {
   }
 }
 ```
+
 ## Argument Reference
 
-* `filter` - (Optional) One or more values used for filtering, as defined below.
-* `zone` - (Optional) The name of zone that the LoadBalancer is in (e.g. `is1a`, `tk1a`).
+* `filter` - (Optional) 参照対象をフィルタリングするための条件。詳細は[filterブロック](#filter)を参照 
+* `zone` - (Optional) 対象ゾーンの名前 (例: `is1a`, `tk1a`)  
 
 ---
 
-A `filter` block supports the following:
+#### filterブロック
 
-* `condition` - (Optional) One or more name/values pairs used for filtering. There are several valid keys, for a full reference, check out finding section in the [SakuraCloud API reference](https://developer.sakura.ad.jp/cloud/api/1.1/).
-* `id` - (Optional) The resource id on SakuraCloud used for filtering.
-* `names` - (Optional) The resource names on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.
-* `tags` - (Optional) The resource tags on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.
+* `condition` - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は[conditionブロック](#condition)を参照  
+* `id` - (Optional) 対象リソースのID 
+* `names` - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  
+* `tags` - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる
 
 ---
 
-A `condition` block supports the following:
+#### conditionブロック
 
-* `name` - (Required) The name of the target field. This value is case-sensitive.
-* `values` - (Required) The values of the condition. If multiple values ​​are specified, they combined as AND condition.
+* `name` - (Required) 対象フィールド名。大文字/小文字を区別する  
+* `values` - (Required) 対象フィールドの値。複数指定した場合はAND条件となる
 
 
 ## Attribute Reference
 
-* `id` - The id of the Load Balancer.
-* `description` - The description of the LoadBalancer.
-* `gateway` - The IP address of the gateway used by LoadBalancer.
-* `high_availability` - The flag to enable HA mode.
-* `icon_id` - The icon id attached to the LoadBalancer.
-* `ip_addresses` - The list of IP address assigned to the LoadBalancer.
-* `name` - The name of the LoadBalancer.
-* `netmask` - The bit length of the subnet assigned to the LoadBalancer.
-* `plan` - The plan name of the LoadBalancer. This will be one of [`standard`/`highspec`].
-* `switch_id` - The id of the switch connected from the LoadBalancer.
-* `tags` - Any tags assigned to the LoadBalancer.
-* `vip` - A list of `vip` blocks as defined below.
-* `vrid` - The Virtual Router Identifier. This is only used when `high_availability` is set `true`.
+* `id` - ID
+* `description` - 説明
+* `gateway` - ゲートウェイIPアドレス
+* `high_availability` - 冗長化構成の有効フラグ
+* `icon_id` - アイコンID
+* `ip_addresses` - IPアドレスのリスト
+* `name` - 名前
+* `netmask` - サブネットマスク長
+* `plan` - プラン。次のいずれかとなる [`standard`/`highspec`]
+* `switch_id` - スイッチID
+* `tags` - タグ
+* `vip` - VIPのリスト。詳細は[vipブロック](#vip)を参照
+* `vrid` - VRID
 
 
 ---
 
-A `vip` block exports the following:
+#### vipブロック
 
-* `delay_loop` - The interval in seconds between checks.
-* `description` - The description of the VIP.
-* `port` - The target port number for load-balancing.
-* `server` - A list of `server` blocks as defined below.
-* `sorry_server` - The IP address of the SorryServer. This will be used when all servers under this VIP are down.
-* `vip` - The virtual IP address.
+* `delay_loop` - チェック間隔秒数
+* `description` - 説明
+* `port` - ポート番号
+* `server` - 実サーバのリスト。詳細は[serverブロック](#server)を参照
+* `sorry_server` - ソーリーサーバのIPアドレス
+* `vip` - VIP(仮想IPアドレス)
 
 ---
 
-A `server` block exports the following:
+#### serverブロック
 
-* `enabled` - The flag to enable as destination of load balancing.
-* `ip_address` - The IP address of the destination server.
-* `path` - The path used when checking by HTTP/HTTPS.
-* `protocol` - The protocol used for health checks. This will be one of [`http`/`https`/`tcp`/`ping`].
-* `status` - The response code to expect when checking by HTTP/HTTPS.
+* `enabled` - 有効フラグ
+* `ip_address` - IPアドレス
+* `path` - HTTP/HTTPSチェック時に利用されるリクエストパス
+* `protocol` - ヘルスチェックのプロトコル。次のいずれかとなる [`http`/`https`/`tcp`/`ping`]
+* `status` - HTTP/HTTPSチェック時に利用されるレスポンスコード
 
 

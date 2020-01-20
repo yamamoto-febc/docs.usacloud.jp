@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_auto_backup"
-subcategory: "Appliance"
-description: |-
-  Manages a SakuraCloud Auto Backup.
----
-
-# sakuracloud_auto_backup
-
-Manages a SakuraCloud Auto Backup.
+# 自動バックアップ: sakuracloud_auto_backup
 
 ## Example Usage
 
@@ -28,29 +18,29 @@ resource "sakuracloud_auto_backup" "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the AutoBackup. The length of this value must be in the range [`1`-`64`].
-* `disk_id` - (Required) The disk id to backed up. Changing this forces a new resource to be created.
-* `weekdays` - (Required) A list of weekdays to backed up. The values in the list must be in [`sun`/`mon`/`tue`/`wed`/`thu`/`fri`/`sat`].
-* `max_backup_num` - (Optional) The number backup files to keep. This must be in the range [`1`-`10`]. Default:`1`.
+* `name` -  (Required) 名前 / `1`-`64`文字で指定
+* `disk_id` - (Required) バックアップ対象のディスクID / この値を変更するとリソースの再作成が行われる
+* `weekdays` - (Required) バックアップ取得曜日のリスト / 各要素は次のいずれかを指定 [`sun`/`mon`/`tue`/`wed`/`thu`/`fri`/`sat`]
+* `max_backup_num` - (Optional) バックアップ数 / `1`-`10`の範囲で指定 / デフォルト:`1`
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the AutoBackup. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the AutoBackup.
-* `tags` - (Optional) Any tags to assign to the AutoBackup.
-* `zone` - (Optional) The name of zone that the AutoBackup will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 5 minutes) Used when creating the Auto Backup
-* `update` - (Defaults to 5 minutes) Used when updating the Auto Backup
-* `delete` - (Defaults to 5 minutes) Used when deleting Auto Backup
+* `create` - 作成 (デフォルト: 5分)
+* `update` - 更新 (デフォルト: 5分)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the Auto Backup.
+* `id` - ID
 
 
 

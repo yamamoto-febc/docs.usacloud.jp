@@ -1,14 +1,6 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_packet_filter"
-subcategory: "Networking"
-description: |-
-  Get information about an existing Packet Filter.
----
+# パケットフィルタ : sakuracloud_packet_filter
 
-# Data Source: sakuracloud_packet_filter
-
-Get information about an existing Packet Filter.
+パケットフィルタの情報を参照するためのデータソース
 
 ## Example Usage
 
@@ -19,44 +11,44 @@ data "sakuracloud_packet_filter" "foobar" {
   }
 }
 ```
+
 ## Argument Reference
 
-* `expression` - (Optional) One or more `expression` blocks as defined below.
-* `filter` - (Optional) One or more values used for filtering, as defined below.
-* `zone` - (Optional) The name of zone that the PacketFilter is in (e.g. `is1a`, `tk1a`).
+* `filter` - (Optional) 参照対象をフィルタリングするための条件。詳細は[filterブロック](#filter)を参照 
+* `zone` - (Optional) 対象ゾーンの名前 (例: `is1a`, `tk1a`)  
 
 ---
 
-A `filter` block supports the following:
+#### filterブロック
 
-* `condition` - (Optional) One or more name/values pairs used for filtering. There are several valid keys, for a full reference, check out finding section in the [SakuraCloud API reference](https://developer.sakura.ad.jp/cloud/api/1.1/).
-* `id` - (Optional) The resource id on SakuraCloud used for filtering.
-* `names` - (Optional) The resource names on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.
+* `condition` - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は[conditionブロック](#condition)を参照  
+* `id` - (Optional) 対象リソースのID 
+* `names` - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  
 
 ---
 
-A `condition` block supports the following:
+#### conditionブロック
 
-* `name` - (Required) The name of the target field. This value is case-sensitive.
-* `values` - (Required) The values of the condition. If multiple values ​​are specified, they combined as AND condition.
-
+* `name` - (Required) 対象フィールド名。大文字/小文字を区別する  
+* `values` - (Required) 対象フィールドの値。複数指定した場合はAND条件となる
 
 ## Attribute Reference
 
-* `id` - The id of the Packet Filter.
-* `description` - The description of the PacketFilter.
-* `name` - The name of the PacketFilter.
+* `id` - ID
+* `description` - 説明
+* `expression` - フィルタリングルールのリスト。詳細は[expressionブロック](#expression)を参照
+* `name` - 名前
 
 
 ---
 
-A `expression` block exports the following:
+#### expressionブロック
 
-* `allow` - The flag to allow the packet through the filter.
-* `description` - The description of the expression.
-* `destination_port` - A destination port number or port range used for filtering (e.g. `1024`, `1024-2048`).
-* `protocol` - The protocol used for filtering. This will be one of [`http`/`https`/`tcp`/`udp`/`icmp`/`fragment`/`ip`].
-* `source_network` - A source IP address or CIDR block used for filtering (e.g. `192.0.2.1`, `192.0.2.0/24`).
-* `source_port` - A source port number or port range used for filtering (e.g. `1024`, `1024-2048`).
+* `allow` - ルールにマッチした通信を許可するかのフラグ
+* `description` - 説明
+* `destination_port` - 宛先ポート、または宛先ポート範囲。次のような値となる (`1024`, `1024-2048`)
+* `protocol` - プロトコル。次のいずれかとなる [`http`/`https`/`tcp`/`udp`/`icmp`/`fragment`/`ip`]
+* `source_network` - 送信元IPアドレス、または送信元CIDRブロック。次のような値となる (`192.0.2.1`, `192.0.2.0/24`)
+* `source_port` - 送信元ポート、または送信元ポート範囲。次のような値となる (`1024`, `1024-2048`)
 
 

@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_switch"
-subcategory: "Networking"
-description: |-
-  Manages a SakuraCloud Switch.
----
-
-# sakuracloud_switch
-
-Manages a SakuraCloud Switch.
+# スイッチ: sakuracloud_switch
 
 ## Example Usage
 
@@ -22,28 +12,26 @@ resource "sakuracloud_switch" "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the Switch. The length of this value must be in the range [`1`-`64`].
-* `bridge_id` - (Optional) The bridge id attached to the Switch.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `bridge_id` - (Optional) 接続するブリッジのID
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the Switch. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the Switch.
-* `tags` - (Optional) Any tags to assign to the Switch.
-* `zone` - (Optional) The name of zone that the Switch will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
-
-
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 5 minutes) Used when creating the Switch
-* `update` - (Defaults to 5 minutes) Used when updating the Switch
-* `delete` - (Defaults to 20 minutes) Used when deleting Switch
+* `create` - 作成 (デフォルト: 5分)
+* `update` - 更新 (デフォルト: 5分)
+* `delete` - 削除 (デフォルト: 20分)
 
 ## Attribute Reference
 
-* `id` - The id of the Switch.
-* `server_ids` - A list of server id connected to the switch.
+* `id` - ID
+* `server_ids` - スイッチに接続されているサーバのIDのリスト
 

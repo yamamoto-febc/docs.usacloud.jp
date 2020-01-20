@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_ipv4_ptr"
-subcategory: "Networking"
-description: |-
-  Manages a SakuraCloud IPv4 PTR.
----
-
-# sakuracloud_ipv4_ptr
-
-Manages a SakuraCloud IPv4 PTR.
+# IPv4逆引きアドレス: sakuracloud_ipv4_ptr
 
 ## Example Usage
 
@@ -30,27 +20,33 @@ resource "sakuracloud_ipv4_ptr" "foobar" {
 
 ## Argument Reference
 
-* `hostname` - (Required) The value of the PTR record. This must be FQDN.
-* `ip_address` - (Required) The IP address to which the PTR record is set.
+* `hostname` - (Required) PTRレコードの値 / FQDNを指定
+* `ip_address` - (Required) 対象IPアドレス
 
-#### Retry Parameter
+#### リトライ関連
 
-* `retry_interval` - (Optional) The wait interval(in seconds) for retrying API call used when SakuraCloud API returns any errors. Default:`10`.
-* `retry_max` - (Optional) The maximum number of API call retries used when SakuraCloud API returns any errors. Default:`30`.
+!!! Note
+    PTRレコードを登録するには正引きできる状態になっている必要があります。  
+    正引きレコードを登録したばかりの場合、PTRレコード登録に失敗することがあります。
+    レコード登録に失敗した場合、指定した間隔で指定回数までリトライが行われます。
+    必要に応じて十分に大きな値を指定してください。
+
+* `retry_interval` - (Optional) リトライ間隔秒数 / デフォルト:`10`
+* `retry_max` - (Optional) リトライ回数 / デフォルト:`30`
 
 #### Common Arguments
 
-* `zone` - (Optional) The name of zone that the IPv4 PTR will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 60 minutes) Used when creating the IPv4 PTR
-* `update` - (Defaults to 60 minutes) Used when updating the IPv4 PTR
-* `delete` - (Defaults to 5 minutes) Used when deleting IPv4 PTR
+* `create` - 作成 (デフォルト: 60分)
+* `update` - 更新 (デフォルト: 60分)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the IPv4 PTR.
+* `id` - ID
 

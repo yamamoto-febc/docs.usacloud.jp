@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_icon"
-subcategory: "Misc"
-description: |-
-  Manages a SakuraCloud Icon.
----
-
-# sakuracloud_icon
-
-Manages a SakuraCloud Icon.
+# アイコン: sakuracloud_icon
 
 ## Example Usage
 
@@ -23,21 +13,21 @@ resource "sakuracloud_icon" "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the Icon. The length of this value must be in the range [`1`-`64`].
-* `base64content` - (Optional) The base64 encoded content to upload to as the Icon. This conflicts with [`source`]. Changing this forces a new resource to be created.
-* `source` - (Optional) The file path to upload to as the Icon. This conflicts with [`base64content`]. Changing this forces a new resource to be created.
-* `tags` - (Optional) Any tags to assign to the Icon.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `base64content` - (Optional) base64エンコードされたコンテンツ / [`source`]と同時に指定できません / この値を変更するとリソースの再作成が行われる
+* `source` - (Optional) アップロードするアイコンファイルのパス / [`base64content`]と同時に指定できません / この値を変更するとリソースの再作成が行われる
+* `tags` - (Optional) タグ
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 5 minutes) Used when creating the Icon
-* `update` - (Defaults to 5 minutes) Used when updating the Icon
-* `delete` - (Defaults to 5 minutes) Used when deleting Icon
+* `create` - 作成 (デフォルト: 5分)
+* `update` - 更新 (デフォルト: 5分)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the Icon.
-* `url` - The URL for getting the icon's raw data.
+* `id` - ID
+* `url` - アイコンのデータを取得するためのURL
 

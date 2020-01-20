@@ -1,14 +1,6 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_server"
-subcategory: "Compute"
-description: |-
-  Get information about an existing Server.
----
+# サーバ: sakuracloud_server
 
-# Data Source: sakuracloud_server
-
-Get information about an existing Server.
+サーバの情報を参照するためのデータソース
 
 ## Example Usage
 
@@ -19,56 +11,62 @@ data "sakuracloud_server" "foobar" {
   }
 }
 ```
+
 ## Argument Reference
 
-* `filter` - (Optional) One or more values used for filtering, as defined below.
-* `zone` - (Optional) The name of zone that the Server is in (e.g. `is1a`, `tk1a`).
+* `filter` - (Optional) 参照対象をフィルタリングするための条件。詳細は[filterブロック](#filter)を参照 
+* `zone` - (Optional) 対象ゾーンの名前 (例: `is1a`, `tk1a`)  
 
 ---
 
-A `filter` block supports the following:
+#### filterブロック
 
-* `condition` - (Optional) One or more name/values pairs used for filtering. There are several valid keys, for a full reference, check out finding section in the [SakuraCloud API reference](https://developer.sakura.ad.jp/cloud/api/1.1/).
-* `id` - (Optional) The resource id on SakuraCloud used for filtering.
-* `names` - (Optional) The resource names on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.
-* `tags` - (Optional) The resource tags on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.
+* `condition` - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は[conditionブロック](#condition)を参照  
+* `id` - (Optional) 対象リソースのID 
+* `names` - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  
+* `tags` - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる
 
 ---
 
-A `condition` block supports the following:
+#### conditionブロック
 
-* `name` - (Required) The name of the target field. This value is case-sensitive.
-* `values` - (Required) The values of the condition. If multiple values ​​are specified, they combined as AND condition.
+* `name` - (Required) 対象フィールド名。大文字/小文字を区別する  
+* `values` - (Required) 対象フィールドの値。複数指定した場合はAND条件となる
 
 
 ## Attribute Reference
 
-* `id` - The id of the Server.
-* `cdrom_id` - The id of the CD-ROM attached to the server.
-* `commitment` - The policy of how to allocate virtual CPUs to the server. This will be one of [`standard`/`dedicatedcpu`].
-* `core` - The number of virtual CPUs.
-* `description` - The description of the Server.
-* `disks` - A list of disk id connected to the server.
-* `dns_servers` - A list of IP address of DNS server in the zone.
-* `gateway` - The IP address of the gateway used by Server.
-* `icon_id` - The icon id attached to the Server.
-* `interface_driver` - The driver name of network interface. This will be one of [`virtio`/`e1000`].
-* `ip_address` - The IP address assigned to the Server.
-* `memory` - The size of memory in GiB.
-* `name` - The name of the Server.
-* `netmask` - The bit length of the subnet assigned to the Server.
-* `network_address` - The network address which the `ip_address` belongs.
-* `network_interface` - A list of `network_interface` blocks as defined below.
-* `private_host_id` - The id of the private host which the server is assigned.
-* `private_host_name` - The name of the private host which the server is assigned.
-* `tags` - Any tags assigned to the Server.
+* `id` - ID
+* `cdrom_id` - サーバに挿入されているCD-ROMのID
+* `commitment` - vCPUの割り当て方式。次のいずれかとなる 
+    - `standard`: 通常  
+    - `dedicatedcpu`: コア専有  
+* `core` - vCPU数
+* `description` - 説明
+* `disks` - サーバに接続されているディスクのIDのリスト
+* `dns_servers` - サーバが属するゾーンのDNSサーバのIPアドレスのリスト
+* `gateway` - ゲートウェイIPアドレス
+* `icon_id` - アイコンID
+* `interface_driver` - NICのドライバー。次のいずれかとなる [`virtio`/`e1000`]
+* `ip_address` - IPアドレス
+* `memory` - メモリサイズ(GiB単位)
+* `name` - 名前
+* `netmask` - サブネットマスク長
+* `network_address` - ネットワークアドレス
+* `network_interface` - NIC設定。詳細は[network_interfaceブロック](#network_interface)を参照
+* `private_host_id` - 専有ホストのID
+* `private_host_name` - 専有ホストの名前
+* `tags` - タグ
 
 ---
 
-A `network_interface` block exports the following:
+#### network_interfaceブロック
 
-* `mac_address` - The MAC address.
-* `packet_filter_id` - The id of the packet filter attached to the network interface.
-* `upstream` - The upstream type or upstream switch id. This will be one of [`shared`/`disconnect`/`<switch id>`].
+* `mac_address` - MACアドレス
+* `packet_filter_id` - パケットフィルタのID
+* `upstream` - 上流ネットワーク設定。次のいずれかとなる
+    - `shared`: 共有セグメント(100Mbps)
+    - `disconnect`: 切断
+    - `<switch id>`: スイッチ(ID)
 
 

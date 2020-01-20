@@ -1,14 +1,6 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_gslb"
-subcategory: "Global"
-description: |-
-  Get information about an existing GSLB.
----
+# GSLB: sakuracloud_gslb
 
-# Data Source: sakuracloud_gslb
-
-Get information about an existing GSLB.
+GSLBの情報を参照するためのデータソース
 
 ## Example Usage
 
@@ -19,59 +11,57 @@ data "sakuracloud_gslb" "foobar" {
   }
 }
 ```
+
 ## Argument Reference
 
-* `filter` - (Optional) One or more values used for filtering, as defined below.
-
-
----
-
-A `filter` block supports the following:
-
-* `condition` - (Optional) One or more name/values pairs used for filtering. There are several valid keys, for a full reference, check out finding section in the [SakuraCloud API reference](https://developer.sakura.ad.jp/cloud/api/1.1/).
-* `id` - (Optional) The resource id on SakuraCloud used for filtering.
-* `names` - (Optional) The resource names on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.
-* `tags` - (Optional) The resource tags on SakuraCloud used for filtering. If multiple values ​​are specified, they combined as AND condition.
+* `filter` - (Optional) 参照対象をフィルタリングするための条件。詳細は[filterブロック](#filter)を参照 
 
 ---
 
-A `condition` block supports the following:
+#### filterブロック
 
-* `name` - (Required) The name of the target field. This value is case-sensitive.
-* `values` - (Required) The values of the condition. If multiple values ​​are specified, they combined as AND condition.
+* `condition` - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は[conditionブロック](#condition)を参照  
+* `id` - (Optional) 対象リソースのID 
+* `names` - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  
+* `tags` - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる
 
+---
+
+#### conditionブロック
+
+* `name` - (Required) 対象フィールド名。大文字/小文字を区別する  
+* `values` - (Required) 対象フィールドの値。複数指定した場合はAND条件となる
 
 ## Attribute Reference
 
-* `id` - The id of the GSLB.
-* `description` - The description of the GSLB.
-* `fqdn` - The FQDN for accessing to the GSLB. This is typically used as value of CNAME record.
-* `health_check` - A list of `health_check` blocks as defined below.
-* `icon_id` - The icon id attached to the GSLB.
-* `name` - The name of the GSLB.
-* `server` - A list of `server` blocks as defined below.
-* `sorry_server` - The IP address of the SorryServer. This will be used when all servers are down.
-* `tags` - Any tags assigned to the GSLB.
-* `weighted` - The flag to enable weighted load-balancing.
-
-
----
-
-A `health_check` block exports the following:
-
-* `delay_loop` - The interval in seconds between checks.
-* `host_header` - The value of host header send when checking by HTTP/HTTPS.
-* `path` - The path used when checking by HTTP/HTTPS.
-* `port` - The port number used when checking by TCP.
-* `protocol` - The protocol used for health checks. This will be one of [`http`/`https`/`tcp`/`ping`].
-* `status` - The response-code to expect when checking by HTTP/HTTPS.
+* `id` - ID
+* `description` - 説明
+* `fqdn` - GSLBにアクセスするためのFQDN。通常CNAMEレコードの値として利用する
+* `health_check` - 実サーバのヘルスチェック設定。詳細は[health_checkブロック](#health_check)を参照
+* `icon_id` - アイコンID
+* `name` - 名前
+* `server` - 実サーバのリスト。詳細は[serverブロック](#server)を参照
+* `sorry_server` - ソーリーサーバのIPアドレス
+* `tags` - タグ
+* `weighted` - 重み付け振り分けの有効化フラグ
 
 ---
 
-A `server` block exports the following:
+#### health_checkブロック
 
-* `enabled` - The flag to enable as destination of load balancing.
-* `ip_address` - The IP address of the server.
-* `weight` - The weight used when weighted load balancing is enabled.
+* `delay_loop` - チェック間隔秒数
+* `host_header` - HTTP/HTTPSチェック時に利用されるHostヘッダの値
+* `path` - HTTP/HTTPSチェック時に利用されるリクエストパス
+* `port` - TCPチェック時に利用されるポート番号
+* `protocol` - プロトコル。次のいずれかとなる [`http`/`https`/`tcp`/`ping`]
+* `status` - HTTP/HTTPSチェック時に利用されるレスポンスコード
+
+---
+
+#### serverブロック
+
+* `enabled` - 有効フラグ
+* `ip_address` - IPアドレス
+* `weight` - 重み付け振り分けが有効な場合のウェイト
 
 

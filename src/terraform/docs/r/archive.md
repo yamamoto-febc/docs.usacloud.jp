@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_archive"
-subcategory: "Storage"
-description: |-
-  Manages a SakuraCloud Archive.
----
-
-# sakuracloud_archive
-
-Manages a SakuraCloud Archive.
+# アーカイブ: sakuracloud_archive
 
 ## Example Usage
 
@@ -24,29 +14,30 @@ resource "sakuracloud_archive" "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the archive. The length of this value must be in the range [`1`-`64`].
-* `archive_file` - (Required) The file path to upload to the SakuraCloud.
-* `description` - (Optional) The description of the archive. The length of this value must be in the range [`1`-`512`].
-* `hash` - (Optional) The md5 checksum calculated from the base64 encoded file body.
-* `size` - (Optional) The size of archive in GiB. This must be one of [`20`/`40`/`60`/`80`/`100`/`250`/`500`/`750`/`1024`]. Changing this forces a new resource to be created. Default:`20`.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `archive_file` - (Required) アップロードするファイルのパス
+* `hash` - (Optional) アップロードするファイルをBASE64エンコードしたものから算出されたMD5チェックサム
+* `size` - (Optional) アーカイブのサイズ / 次のいずれかを指定 [`20`/`40`/`60`/`80`/`100`/`250`/`500`/`750`/`1024`]  
+この値を変更するとリソースの再作成が行われる / デフォルト:`20`
 
 #### Common Arguments
 
-* `icon_id` - (Optional) The icon id to attach to the archive.
-* `tags` - (Optional) Any tags to assign to the archive.
-* `zone` - (Optional) The name of zone that the archive will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 24 hours) Used when creating the Archive
-* `update` - (Defaults to 24 hours) Used when updating the Archive
-* `delete` - (Defaults to 5 minutes) Used when deleting Archive
+* `create` - 作成 (デフォルト: 24時間)
+* `update` - 更新 (デフォルト: 24時間)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the Archive.
+* `id` - ID
 
 
 

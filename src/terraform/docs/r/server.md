@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_server"
-subcategory: "Compute"
-description: |-
-  Manages a SakuraCloud Server.
----
-
-# sakuracloud_server
-
-Manages a SakuraCloud Server.
+# サーバ: sakuracloud_server
 
 ## Example Usage
 
@@ -52,76 +42,92 @@ resource "sakuracloud_disk" "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the Server. The length of this value must be in the range [`1`-`64`].
-* `cdrom_id` - (Optional) The id of the CD-ROM to attach to the Server.
-* `force_shutdown` - (Optional) The flag to use force shutdown when need to reboot/shutdown while applying.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `cdrom_id` - (Optional) サーバに挿入するCD-ROM(ISOイメージ)のID
+* `force_shutdown` - (Optional) `terraform apply`時にAPI経由でシャットダウン、または再起動する際に強制終了するフラグ  
+ACPIが利用できないサーバの場合`true`に設定する
 
-#### Spec
+#### スペック関連
 
-* `commitment` - (Optional) The policy of how to allocate virtual CPUs to the server. This must be one of [`standard`/`dedicatedcpu`]. Default:`standard`.
-* `core` - (Optional) The number of virtual CPUs. Default:`1`.
-* `memory` - (Optional) The size of memory in GiB. Default:`1`.
-* `network_interface` - (Optional) One or more `network_interface` blocks as defined below.
-* `interface_driver` - (Optional) The driver name of network interface. This must be one of [`virtio`/`e1000`]. Default:`virtio`.
-* `private_host_id` - (Optional) The id of the PrivateHost which the Server is assigned.
+* `commitment` - (Optional) vCPUの割り当て方法 / 次のいずれかを指定 
+    - `standard`(デフォルト): 通常
+    - `dedicatedcpu`: コア専有
+* `core` - (Optional) vCPUの割り当て数 / デフォルト:`1`
+* `memory` - (Optional) メモリサイズ(GiB単位) / デフォルト:`1`
+* `network_interface` - (Optional) NIC設定のリスト。詳細は[network_interfaceブロック](#network_interface)を参照
+* `interface_driver` - (Optional) NICのドライバー / 次のいずれかを指定 [`virtio`/`e1000`] / デフォルト:`virtio`
+* `private_host_id` - (Optional) 専有ホストのID
 
-#### Disks
+!!! Note
+    `core`と`memory`に指定できる値の組み合わせはさくらのクラウドドキュメントなどを参照ください。  
+    `usacloud server-plan ls`コマンドでも確認できます。
 
-* `disk_edit_parameter` - (Optional) A `disk_edit_parameter` block as defined below.
-* `disks` - (Optional) A list of disk id connected to the server.
+!!! Note
+    `network_interface`は省略可能ですが、省略した場合NICが接続されていない状態のサーバが作成されます。  
+    通常は1つ以上指定してください。
+    
+
+#### ディスク関連
+
+* `disk_edit_parameter` - (Optional) ディスクの修正APIへのパラメータ。詳細は[disk_edit_parameterブロック](#disk_edit_parameter)を参照
+* `disks` - (Optional) サーバに接続するディスクのIDのリスト
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the Server. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the Server.
-* `tags` - (Optional) Any tags to assign to the Server.
-* `zone` - (Optional) The name of zone that the Server will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
-
-
----
-
-A `disk_edit_parameter` block supports the following:
-
-* `change_partition_uuid` - (Optional) The flag to change partition uuid.
-* `disable_pw_auth` - (Optional) The flag to disable password authentication.
-* `enable_dhcp` - (Optional) The flag to enable DHCP client.
-* `gateway` - (Optional) The gateway address used by the Server.
-* `hostname` - (Optional) The hostname of the Server. The length of this value must be in the range [`1`-`64`].
-* `ip_address` - (Optional) The IP address to assign to the Server.
-* `netmask` - (Optional) The bit length of the subnet to assign to the Server.
-* `note_ids` - (Optional) A list of the Note id.
-* `password` - (Optional) The password of default user. The length of this value must be in the range [`8`-`64`].
-* `ssh_key_ids` - (Optional) A list of the SSHKey id.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ---
 
-A `network_interface` block supports the following:
+#### disk_edit_parameterブロック
 
-* `upstream` - (Required) The upstream type or upstream switch id. This must be one of [`shared`/`disconnect`/`<switch id>`].
-* `packet_filter_id` - (Optional) The id of the packet filter to attach to the network interface.
+* `change_partition_uuid` - (Optional) パーティションUUIDを変更するフラグ
+* `disable_pw_auth` - (Optional) パスワード認証を無効にするフラグ
+* `enable_dhcp` - (Optional) DHCPクライアントを有効にするフラグ
+* `gateway` - (Optional) ゲートウェイIPアドレス
+* `hostname` - (Optional) ホスト名 / `1`-`64`文字で指定
+* `ip_address` - (Optional) IPアドレス
+* `netmask` - (Optional) サブネットマスク長
+* `note_ids` - (Optional) スタートアップスクリプトIDのリスト
+* `password` - (Optional) 管理ユーザーのパスワード / `8`-`64`文字で指定
+* `ssh_key_ids` - (Optional) SSH公開鍵IDのリスト
 
+!!! Note
+    ディスクの修正API(`disk_edit_parameter`)はサーバに接続された先頭のディスクに対してのみ有効です。
+
+---
+
+#### network_interfaceブロック
+
+* `upstream` - (Required) 上流ネットワーク設定 / 次のいずれかを指定する
+    - `shared`: 共有セグメント(100Mbps)
+    - `disconnect`: 切断
+    - `<switch id>`: スイッチのID
+* `packet_filter_id` - (Optional) NICにアタッチするパケットフィルタのID
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 5 minutes) Used when creating the Server
-* `update` - (Defaults to 5 minutes) Used when updating the Server
-* `delete` - (Defaults to 20 minutes) Used when deleting Server
+* `create` - 作成 (デフォルト: 5分)
+* `update` - 更新 (デフォルト: 5分)
+* `delete` - 削除 (デフォルト: 20分)
 
 ## Attribute Reference
 
-* `id` - The id of the Server.
-* `dns_servers` - A list of IP address of DNS server in the zone.
-* `gateway` - The IP address of the gateway used by Server.
-* `ip_address` - The IP address assigned to the Server.
-* `netmask` - The bit length of the subnet assigned to the Server.
-* `network_address` - The network address which the `ip_address` belongs.
-* `private_host_name` - The id of the PrivateHost which the Server is assigned.
+* `id` - ID
+* `dns_servers` - DNSサーバのIPアドレスのリスト
+* `gateway` - ゲートウェイIPアドレス
+* `ip_address` - IPアドレス
+* `netmask` - サブネットマスク長
+* `network_address` - ネットワークアドレス
+* `private_host_name` - 専有ホストの名前
 
 ---
 
-A `network_interface` block exports the following:
+`network_interface`の各要素は以下の項目も参照可能です。
 
-* `mac_address` - The MAC address.
+* `mac_address` - MACアドレス
 

@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_disk"
-subcategory: "Storage"
-description: |-
-  Manages a SakuraCloud Disk.
----
-
-# sakuracloud_disk
-
-Manages a SakuraCloud Disk.
+# ディスク: sakuracloud_disk
 
 ## Example Usage
 
@@ -32,39 +22,37 @@ resource "sakuracloud_disk" "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the disk. The length of this value must be in the range [`1`-`64`].
+* `name` - (Required) 名前 / `1`-`64`文字で指定
 
-#### Disk Spec
+#### スペック関連
 
-* `connector` - (Optional) The name of the disk connector. This must be one of [`virtio`/`ide`]. Changing this forces a new resource to be created. Default:`virtio`.
-* `plan` - (Optional) The plan name of the disk. This must be one of [`ssd`/`hdd`]. Changing this forces a new resource to be created. Default:`ssd`.
-* `size` - (Optional) The size of disk in GiB. Changing this forces a new resource to be created. Default:`20`.
-* `distant_from` - (Optional) A list of disk id. The disk will be located to different storage from these disks. Changing this forces a new resource to be created.
+* `connector` - (Optional) ディスク接続インターフェース / 次のいずれかを指定 [`virtio`/`ide`] / この値を変更するとリソースの再作成が行われる / デフォルト:`virtio`
+* `plan` - (Optional) ディスクプラン / 次のいずれかを指定 [`ssd`/`hdd`] / この値を変更するとリソースの再作成が行われる / デフォルト:`ssd`
+* `size` - (Optional) サイズ(GiB単位) / この値を変更するとリソースの再作成が行われる / デフォルト:`20`
+* `distant_from` - (Optional) 別のストレージに格納する対象となるディスクのIDのリスト / この値を変更するとリソースの再作成が行われる
 
-#### Disk Source
+#### コピー元関連
 
-* `source_archive_id` - (Optional) The id of the source archive. This conflicts with [`source_disk_id`]. Changing this forces a new resource to be created.
-* `source_disk_id` - (Optional) The id of the source disk. This conflicts with [`source_archive_id`]. Changing this forces a new resource to be created.
+* `source_archive_id` - (Optional) コピー元アーカイブID / [`source_disk_id`]と同時に指定できません / この値を変更するとリソースの再作成が行われる
+* `source_disk_id` - (Optional) コピー元ディスクID / [`source_archive_id`]と同時に指定できません / この値を変更するとリソースの再作成が行われる
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the disk. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the disk.
-* `tags` - (Optional) Any tags to assign to the disk.
-* `zone` - (Optional) The name of zone that the disk will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
-
-
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 24 hours) Used when creating the Disk
-* `update` - (Defaults to 24 hours) Used when updating the Disk
-* `delete` - (Defaults to 20 minutes) Used when deleting Disk
+* `create` - 作成 (デフォルト: 24時間)
+* `update` - 更新 (デフォルト: 24時間)
+* `delete` - 削除 (デフォルト: 20分)
 
 ## Attribute Reference
 
-* `id` - The id of the Disk.
-* `server_id` - The id of the Server connected to the disk.
+* `id` - ID
+* `server_id` - このディスクが接続されたサーバのID
 

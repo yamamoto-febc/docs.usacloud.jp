@@ -1,14 +1,6 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_subnet"
-subcategory: "Networking"
-description: |-
-  Get information about an existing Subnet.
----
+# サブネット: sakuracloud_subnet
 
-# Data Source: sakuracloud_subnet
-
-Get information about an existing Subnet.
+ディスクの情報を参照するためのデータソース
 
 ## Example Usage
 
@@ -19,23 +11,21 @@ data sakuracloud_subnet "foobar" {
   index       = 1
 }
 ```
+
 ## Argument Reference
 
-* `index` - (Required) The index of the subnet in assigned to the Switch+Router. Changing this forces a new resource to be created.
-* `internet_id` - (Required) The id of the switch+router resource that the Subnet belongs. Changing this forces a new resource to be created.
-* `zone` - (Optional) The name of zone that the Subnet is in (e.g. `is1a`, `tk1a`).
+* `index` - (Required) スイッチ+ルータに割り当てられたサブネットのインデックス
+* `internet_id` - (Required) サブネットが割り当てられたスイッチ+ルータのID
+* `zone` - (Optional) 対象ゾーンの名前 (例: `is1a`, `tk1a`) 
 
 
 ## Attribute Reference
 
-* `id` - The id of the Subnet.
-* `ip_addresses` - A list of assigned global address to the Subnet.
-* `max_ip_address` - Maximum IP address in assigned global addresses to the Subnet.
-* `min_ip_address` - Minimum IP address in assigned global addresses to the Subnet.
-* `netmask` - The bit length of the subnet assigned to the Subnet.
-* `network_address` - The IPv4 network address assigned to the Subnet.
-* `next_hop` - The ip address of the next-hop at the Subnet.
-* `switch_id` - The id of the switch connected from the Subnet.
-
-
-
+* `id` - ID
+* `ip_addresses` - サブネットに割り当てられた、ユーザーが利用可能なIPアドレスのリスト
+* `max_ip_address` - サブネットに割り当てられた、ユーザーが利用可能なIPアドレスの最大値
+* `min_ip_address` - サブネットに割り当てられた、ユーザーが利用可能なIPアドレスの最小値
+* `netmask` - サブネットマスク長
+* `network_address` - ネットワークアドレス
+* `next_hop` - ネクストホップのIPアドレス
+* `switch_id` - スイッチID

@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_gslb"
-subcategory: "Global"
-description: |-
-  Manages a SakuraCloud GSLB.
----
-
-# sakuracloud_gslb
-
-Manages a SakuraCloud GSLB.
+# GSLB: sakuracloud_gslb
 
 ## Example Usage
 
@@ -44,48 +34,48 @@ resource "sakuracloud_gslb" "foobar" {
 
 ## Argument Reference
 
-* `name` - (Required) The name of the GSLB. The length of this value must be in the range [`1`-`64`].
-* `health_check` - (Required) A `health_check` block as defined below.
-* `server` - (Optional) One or more `server` blocks as defined below.
-* `weighted` - (Optional) The flag to enable weighted load-balancing.
-* `sorry_server` - (Optional) The IP address of the SorryServer. This will be used when all servers are down.
+* `name` - (Required) 名前 / `1`-`64`文字で指定
+* `health_check` - (Required) ヘルスチェック。詳細は[health_checkブロック](#health_check)を参照
+* `server` - (Optional) 実サーバのリスト。詳細は[serverブロック](#server)を参照
+* `weighted` - (Optional) 重み付け振り分けの有効フラグ
+* `sorry_server` - (Optional) ソーリーサーバのIPアドレス
 
 #### Common Arguments
 
-* `description` - (Optional) The description of the GSLB. The length of this value must be in the range [`1`-`512`].
-* `icon_id` - (Optional) The icon id to attach to the GSLB.
-* `tags` - (Optional) Any tags to assign to the GSLB.
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
 
 ---
 
-A `health_check` block supports the following:
+#### health_checkブロック
 
-* `protocol` - (Required) The protocol used for health checks. This must be one of [`http`/`https`/`tcp`/`ping`].
-* `delay_loop` - (Optional) The interval in seconds between checks. This must be in the range [`10`-`60`].
-* `host_header` - (Optional) The value of host header send when checking by HTTP/HTTPS.
-* `path` - (Optional) The path used when checking by HTTP/HTTPS.
-* `port` - (Optional) The port number used when checking by TCP.
-* `status` - (Optional) The response-code to expect when checking by HTTP/HTTPS.
+* `protocol` - (Required) プロトコル / 次のいずれかを指定 [`http`/`https`/`tcp`/`ping`]
+* `delay_loop` - (Optional) チェック間隔秒数 / `10`-`60`の範囲で指定
+* `host_header` - (Optional) HTTP/HTTPSチェック時に利用されるHostヘッダの値
+* `path` - (Optional) HTTP/HTTPSチェック時のリクエストパス
+* `port` - (Optional) TCPチェック時のポート番号
+* `status` - (Optional) HTTP/HTTPSチェック時のレスポンスコード
 
 ---
 
-A `server` block supports the following:
+#### serverブロック
 
-* `ip_address` - (Required) The IP address of the server.
-* `enabled` - (Optional) The flag to enable as destination of load balancing.
-* `weight` - (Optional) The weight used when weighted load balancing is enabled. This must be in the range [`1`-`10000`].
+* `ip_address` - (Required) IPアドレス
+* `enabled` - (Optional) 有効フラグ
+* `weight` - (Optional) 重み付け振り分けが有効な場合のウェイト / `1`-`10000`の範囲で指定
 
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 5 minutes) Used when creating the GSLB
-* `update` - (Defaults to 5 minutes) Used when updating the GSLB
-* `delete` - (Defaults to 5 minutes) Used when deleting GSLB
+* `create` - 作成 (デフォルト: 5分)
+* `update` - 更新 (デフォルト: 5分)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the GSLB.
-* `fqdn` - The FQDN for accessing to the GSLB. This is typically used as value of CNAME record.
+* `id` - ID
+* `fqdn` - GSLBにアクセスするためのFQDN。この値は通常CNAMEレコードの値として利用します
 

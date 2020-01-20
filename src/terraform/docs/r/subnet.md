@@ -1,14 +1,4 @@
----
-layout: "sakuracloud"
-page_title: "SakuraCloud: sakuracloud_subnet"
-subcategory: "Networking"
-description: |-
-  Manages a SakuraCloud Subnet.
----
-
-# sakuracloud_subnet
-
-Manages a SakuraCloud Subnet.
+# サブネット: sakuracloud_subnet
 
 ## Example Usage
 
@@ -25,28 +15,28 @@ resource "sakuracloud_subnet" "foobar" {
 
 ## Argument Reference
 
-* `internet_id` - (Required) The id of the switch+router resource that the subnet belongs. Changing this forces a new resource to be created.
-* `next_hop` - (Required) The ip address of the next-hop at the subnet.
-* `netmask` - (Optional) The bit length of the subnet to assign to the Subnet. This must be in the range [`26`-`28`]. Changing this forces a new resource to be created. Default:`28`.
+* `internet_id` - (Required) サブネットを割り当てるスイッチ+ルータのID / この値を変更するとリソースの再作成が行われる
+* `next_hop` - (Required) ネクストホップのIPアドレス
+* `netmask` - (Optional) サブネットのネットワークマスク長 / `26`-`28`の範囲で指定 / この値を変更するとリソースの再作成が行われる / デフォルト:`28`
 
 #### Common Arguments
 
-* `zone` - (Optional) The name of zone that the Subnet will be created. (e.g. `is1a`, `tk1a`). Changing this forces a new resource to be created.
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
 ### Timeouts
 
-The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) for certain actions:
+`timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
-* `create` - (Defaults to 60 minutes) Used when creating the Subnet
-* `update` - (Defaults to 60 minutes) Used when updating the Subnet
-* `delete` - (Defaults to 5 minutes) Used when deleting Subnet
+* `create` - 作成 (デフォルト: 60分)
+* `update` - 更新 (デフォルト: 60分)
+* `delete` - 削除 (デフォルト: 5分)
 
 ## Attribute Reference
 
-* `id` - The id of the Subnet.
-* `ip_addresses` - A list of assigned global address to the subnet.
-* `max_ip_address` - Maximum IP address in assigned global addresses to the subnet.
-* `min_ip_address` - Minimum IP address in assigned global addresses to the subnet.
-* `network_address` - The IPv4 network address assigned to the Subnet.
-* `switch_id` - The id of the switch connected from the Subnet.
+* `id` - ID
+* `ip_addresses` - サブネットに割り当てられた、ユーザーが利用可能なIPアドレスのリスト
+* `max_ip_address` - サブネットに割り当てられた、ユーザーが利用可能なIPアドレスの最大値
+* `min_ip_address` - サブネットに割り当てられた、ユーザーが利用可能なIPアドレスの最小値
+* `network_address` - ネットワークアドレス
+* `switch_id` - スイッチID
 

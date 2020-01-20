@@ -4,3 +4,10 @@ code {
 .wy-nav-content {
     max-width: 1200px;
 }
+
+.wy-plain-list-disc li, .rst-content .section ul li, .rst-content .toctree-wrapper ul li, article ul li {
+    list-style: disc;
+    line-height: 24px;
+    margin-bottom: 16px;
+}
+

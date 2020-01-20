@@ -8,8 +8,9 @@
     },
     "preset-ja-technical-writing": {
       "ja-no-mixed-period": false,
+      "no-exclamation-question-mark": false,
       "sentence-length": {
-        max:100
+        max:150
       },
       "max-kanji-continuous-len": {
         "max": 7

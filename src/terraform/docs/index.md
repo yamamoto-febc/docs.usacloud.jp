@@ -50,6 +50,7 @@
     - データソース
         - [ブリッジ](d/bridge)
         - [スイッチ+ルータ](d/internet)
+        - [ローカルルータ](d/local_router)
         - [パケットフィルタ](d/packet_filter)
         - [サブネット](d/subnet)
         - [スイッチ](d/switch)
@@ -57,6 +58,7 @@
         - [ブリッジ](r/bridge)
         - [スイッチ+ルータ](r/internet)
         - [IPv4逆引き](r/ipv4_ptr)
+        - [ローカルルータ](r/local_router)
         - [パケットフィルタ](r/packet_filter)
         - [パケットフィルタ(ルール)](r/packet_filter_rules)
         - [サブネット](r/subnet)

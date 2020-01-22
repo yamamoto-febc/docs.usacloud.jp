@@ -39,6 +39,7 @@ pages:
       - データソース:
         - ブリッジ: d/bridge.md
         - スイッチ+ルータ: d/internet.md
+        - ローカルルータ: d/local_router.md
         - パケットフィルタ: d/packet_filter.md
         - サブネット: d/subnet.md
         - スイッチ: d/switch.md
@@ -46,6 +47,7 @@ pages:
         - ブリッジ: r/bridge.md
         - スイッチ+ルータ: r/internet.md
         - IPv4逆引き: r/ipv4_ptr.md
+        - ローカルルータ: r/local_router.md
         - パケットフィルタ: r/packet_filter.md
         - パケットフィルタ(ルール): r/packet_filter_rules.md
         - サブネット: r/subnet.md

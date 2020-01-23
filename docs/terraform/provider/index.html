@@ -868,11 +868,11 @@ $ terraform plan
 <li><code>fake_store_path</code> - (Optional) (開発者向け) Fakeドライバーの使用するデータストアのパス。省略した場合インメモリーストアが利用される<br />
 環境変数<code>FAKE_STORE_PATH</code>、またはプロファイルでの指定が可能 </li>
 <li><code>profile</code> - (Optional) プロファイル名。デフォルト:<code>default</code></li>
-<li><code>retry_max</code> - (Optional) APIのレスポンスコードが<code>429</code>/<code>503</code>の場合にリトライする最大回数 <br />
+<li><code>retry_max</code> - (Optional) APIのレスポンスコードが<code>423</code>/<code>503</code>の場合にリトライする最大回数 <br />
 環境変数<code>SAKURACLOUD_RETRY_MAX</code>、またはプロファイルでの指定が可能。デフォルト:<code>100</code></li>
-<li><code>retry_wait_max</code> - (Optional) APIのレスポンスコードが<code>429</code>/<code>503</code>の場合にリトライする際の待ち時間秒数最大値 <br />
+<li><code>retry_wait_max</code> - (Optional) APIのレスポンスコードが<code>423</code>/<code>503</code>の場合にリトライする際の待ち時間秒数最大値 <br />
 環境変数<code>SAKURACLOUD_RETRY_WAIT_MAX</code>、またはプロファイルでの指定が可能。デフォルト:<code>64</code></li>
-<li><code>retry_wait_min</code> - (Optional) APIのレスポンスコードが<code>429</code>/<code>503</code>の場合にリトライする際の待ち時間秒数最小値 <br />
+<li><code>retry_wait_min</code> - (Optional) APIのレスポンスコードが<code>423</code>/<code>503</code>の場合にリトライする際の待ち時間秒数最小値 <br />
 環境変数<code>SAKURACLOUD_RETRY_WAIT_MIN</code>、またはプロファイルでの指定が可能。デフォルト:<code>1</code></li>
 <li><code>secret</code> - (Optional) APIキー(シークレット) <br />
 環境変数<code>SAKURACLOUD_ACCESS_TOKEN_SECRET</code>、またはプロファイルでの指定が可能 </li>

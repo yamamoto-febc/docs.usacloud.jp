@@ -101,11 +101,11 @@ $ cat $HOME/.usacloud/default/config.json
 * `fake_store_path` - (Optional) (開発者向け) Fakeドライバーの使用するデータストアのパス。省略した場合インメモリーストアが利用される  
 環境変数`FAKE_STORE_PATH`、またはプロファイルでの指定が可能 
 * `profile` - (Optional) プロファイル名。デフォルト:`default`
-* `retry_max` - (Optional) APIのレスポンスコードが`429`/`503`の場合にリトライする最大回数   
+* `retry_max` - (Optional) APIのレスポンスコードが`423`/`503`の場合にリトライする最大回数   
 環境変数`SAKURACLOUD_RETRY_MAX`、またはプロファイルでの指定が可能。デフォルト:`100`
-* `retry_wait_max` - (Optional) APIのレスポンスコードが`429`/`503`の場合にリトライする際の待ち時間秒数最大値   
+* `retry_wait_max` - (Optional) APIのレスポンスコードが`423`/`503`の場合にリトライする際の待ち時間秒数最大値   
 環境変数`SAKURACLOUD_RETRY_WAIT_MAX`、またはプロファイルでの指定が可能。デフォルト:`64`
-* `retry_wait_min` - (Optional) APIのレスポンスコードが`429`/`503`の場合にリトライする際の待ち時間秒数最小値   
+* `retry_wait_min` - (Optional) APIのレスポンスコードが`423`/`503`の場合にリトライする際の待ち時間秒数最小値   
 環境変数`SAKURACLOUD_RETRY_WAIT_MIN`、またはプロファイルでの指定が可能。デフォルト:`1`
 * `secret` - (Optional) APIキー(シークレット)   
 環境変数`SAKURACLOUD_ACCESS_TOKEN_SECRET`、またはプロファイルでの指定が可能 

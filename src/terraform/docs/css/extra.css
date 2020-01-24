@@ -8,6 +8,20 @@ code {
 .wy-plain-list-disc li, .rst-content .section ul li, .rst-content .toctree-wrapper ul li, article ul li {
     list-style: disc;
     line-height: 24px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+    margin-top: 8px;
 }
+
+h1 { font-size:225% }
+h2 { font-size:200% }
+h3 { font-size:175% }
+h4 {
+    font-size:150%;
+    border-bottom: solid #ddd 1.5px;
+}
+h5 {
+    font-size:110%;
+    border-bottom: solid #ddd 1px;
+}
+h6 { font-size:100% }
 

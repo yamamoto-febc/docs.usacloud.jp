@@ -22,7 +22,7 @@ resource "sakuracloud_private_host" "foobar" {
 * `tags` - (Optional) タグ
 * `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

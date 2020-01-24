@@ -18,7 +18,7 @@ resource "sakuracloud_ssh_key" "foobar" {
 
 * `description` - (Optional) 説明 / `1`-`512`文字で指定
 
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

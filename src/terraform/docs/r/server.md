@@ -66,22 +66,21 @@ ACPIが利用できないサーバの場合`true`に設定する
     `network_interface`は省略可能ですが、省略した場合NICが接続されていない状態のサーバが作成されます。  
     通常は1つ以上指定してください。
     
+##### network_interfaceブロック
+
+* `upstream` - (Required) 上流ネットワーク設定 / 次のいずれかを指定する
+    - `shared`: 共有セグメント(100Mbps)
+    - `disconnect`: 切断
+    - `<switch id>`: スイッチのID
+* `packet_filter_id` - (Optional) NICにアタッチするパケットフィルタのID
+
 
 #### ディスク関連
 
 * `disk_edit_parameter` - (Optional) ディスクの修正APIへのパラメータ。詳細は[disk_edit_parameterブロック](#disk_edit_parameter)を参照
 * `disks` - (Optional) サーバに接続するディスクのIDのリスト
 
-#### Common Arguments
-
-* `description` - (Optional) 説明 / `1`-`512`文字で指定
-* `icon_id` - (Optional) アイコンID
-* `tags` - (Optional) タグ
-* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
-
----
-
-#### disk_edit_parameterブロック
+##### disk_edit_parameterブロック
 
 * `change_partition_uuid` - (Optional) パーティションUUIDを変更するフラグ
 * `disable_pw_auth` - (Optional) パスワード認証を無効にするフラグ
@@ -97,17 +96,14 @@ ACPIが利用できないサーバの場合`true`に設定する
 !!! Note
     ディスクの修正API(`disk_edit_parameter`)はサーバに接続された先頭のディスクに対してのみ有効です。
 
----
+#### Common Arguments
 
-#### network_interfaceブロック
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
-* `upstream` - (Required) 上流ネットワーク設定 / 次のいずれかを指定する
-    - `shared`: 共有セグメント(100Mbps)
-    - `disconnect`: 切断
-    - `<switch id>`: スイッチのID
-* `packet_filter_id` - (Optional) NICにアタッチするパケットフィルタのID
-
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
@@ -124,8 +120,6 @@ ACPIが利用できないサーバの場合`true`に設定する
 * `netmask` - サブネットマスク長
 * `network_address` - ネットワークアドレス
 * `private_host_name` - 専有ホストの名前
-
----
 
 `network_interface`の各要素は以下の項目も参照可能です。
 

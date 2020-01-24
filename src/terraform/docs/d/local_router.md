@@ -16,18 +16,14 @@ data "sakuracloud_local_router" "foobar" {
 
 * `filter` - (Optional) 参照対象をフィルタリングするための条件。詳細は[filterブロック](#filter)を参照 
 
----
-
-#### filterブロック
+##### filterブロック
 
 * `condition` - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は[conditionブロック](#condition)を参照  
 * `id` - (Optional) 対象リソースのID 
 * `names` - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  
 * `tags` - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる
 
----
-
-#### conditionブロック
+##### conditionブロック
 
 * `name` - (Required) 対象フィールド名。大文字/小文字を区別する  
 * `values` - (Required) 対象フィールドの値。複数指定した場合はAND条件となる
@@ -46,32 +42,24 @@ data "sakuracloud_local_router" "foobar" {
 * `switch` - 接続するスイッチの設定。詳細は[switchブロック](#switch)を参照
 * `tags` - タグ
 
----
-
-#### network_interfaceブロック
+##### network_interfaceブロック
 
 * `ip_addresses` - IPアドレスのリスト
 * `netmask` - サブネットマスク長
 * `vip` - 仮想IPアドレス
 * `vrid` - VRID
 
----
-
-#### peerブロック
+##### peerブロック
 
 * `description` - 説明
 * `enabled` - 有効フラグ
 * `peer_id` - ピアのリソースID
 * `secret_key` - ピアのシークレットキー
 
----
-
-#### static_routeブロック
+##### static_routeブロック
 
 * `next_hop` - ネクストホップのIPアドレス
 * `prefix` - プレフィックスCIDRブロック
-
----
 
 #### switch
 

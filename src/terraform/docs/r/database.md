@@ -7,6 +7,7 @@ variable password {}
 variable replica_password {}
 
 resource "sakuracloud_database" "foobar" {
+  name          = "foobar"
   database_type = "mariadb"
   plan          = "30g"
 
@@ -15,19 +16,20 @@ resource "sakuracloud_database" "foobar" {
 
   replica_password = var.replica_password
 
-  source_ranges = ["192.168.11.0/24", "192.168.12.0/24"]
+  network_interface {
+    switch_id     = sakuracloud_switch.foobar.id
+    ip_address    = "192.168.11.11"
+    netmask       = 24
+    gateway       = "192.168.11.1"
+    port          = 3306
+    source_ranges = ["192.168.11.0/24", "192.168.12.0/24"]
+  }
 
-  port = 3306
+  backup {
+    time     = "00:00"
+    weekdays = ["mon", "tue"]
+  }
 
-  backup_time     = "00:00"
-  backup_weekdays = ["mon", "tue"]
-
-  switch_id    = sakuracloud_switch.foobar.id
-  ip_address   = "192.168.11.11"
-  netmask      = 24
-  gateway      = "192.168.11.1"
-
-  name        = "foobar"
   description = "description"
   tags        = ["tag1", "tag2"]
 }
@@ -50,6 +52,10 @@ resource "sakuracloud_switch" "foobar" {
 
 #### ネットワーク関連
 
+* `network_interface` - (Required) ネットワーク設定。詳細は[network_interfaceブロック](#network_interface)を参照
+
+##### network_interfaceブロック
+
 * `switch_id` - (Required) スイッチID /  この値を変更するとリソースの再作成が行われる
 * `gateway` - (Required) ゲートウェイIPアドレス / この値を変更するとリソースの再作成が行われる
 * `ip_address` - (Required) IPアドレス / この値を変更するとリソースの再作成が行われる
@@ -59,8 +65,12 @@ resource "sakuracloud_switch" "foobar" {
 
 #### バックアップ関連
 
-* `backup_time` - (Optional) バックアップ取得時刻 / `HH:mm`形式で指定
-* `backup_weekdays` - (Optional) バックアップ取得曜日のリスト / 各要素は次のいずれかを指定 [`sun`/`mon`/`tue`/`wed`/`thu`/`fri`/`sat`]
+* `backup` - (Optional) バックアップ設定。詳細は[backupブロック](#backup)を参照
+
+##### backupブロック
+
+* `time` - (Optional) バックアップ取得時刻 / `HH:mm`形式で指定
+* `weekdays` - (Optional) バックアップ取得曜日のリスト / 各要素は次のいずれかを指定 [`sun`/`mon`/`tue`/`wed`/`thu`/`fri`/`sat`]
 
 #### レプリケーション関連
 
@@ -74,8 +84,7 @@ resource "sakuracloud_switch" "foobar" {
 * `tags` - (Optional) タグ
 * `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
-
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

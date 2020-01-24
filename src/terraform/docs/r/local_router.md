@@ -56,40 +56,26 @@ data "sakuracloud_local_router" "peer" {
 * `peer` - (Optional) ピア設定のリスト。詳細は[peerブロック](#peer)を参照
 * `static_route` - (Optional) スタティックルート設定のリスト。詳細は[static_routeブロック](#static_route)を参照
 
-#### Common Arguments
-
-* `description` - (Optional) 説明 / `1`-`512`文字で指定
-* `icon_id` - (Optional) アイコンID
-* `tags` - (Optional) タグ
-
----
-
-#### network_interfaceブロック
+##### network_interfaceブロック
 
 * `ip_addresses` - (Required) IPアドレスのリスト
 * `netmask` - (Required) サブネットマスク長 / `8`-`29`の範囲で指定
 * `vip` - (Required) 仮想IPアドレス
 * `vrid` - (Required) VRID
 
----
-
-#### peerブロック
+##### peerブロック
 
 * `peer_id` - (Required) ピアのリソースID
 * `secret_key` - (Required) ピアのシークレットキー
 * `description` - (Optional) 説明 / `1`-`512`文字で指定
 * `enabled` - (Optional) 有効フラグ
 
----
-
-#### static_routeブロック
+##### static_routeブロック
 
 * `next_hop` - (Required) ネクストホップのIPアドレス
 * `prefix` - (Required) プレフィックスCIDRブロック
 
----
-
-#### switchブロック
+##### switchブロック
 
 * `category` - (Optional) 接続先スイッチのサービス名 (例: `cloud`, `vps`)
 * `code` - (Required) 接続するスイッチのリソースID
@@ -99,8 +85,13 @@ data "sakuracloud_local_router" "peer" {
     現在はさくらのクラウドのスイッチにのみ対応。  
     VPS/専用サーバは未対応です。  
 
+#### Common Arguments
 
-### Timeouts
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

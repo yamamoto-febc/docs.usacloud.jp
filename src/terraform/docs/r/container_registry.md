@@ -45,20 +45,18 @@ resource "sakuracloud_container_registry" "foobar" {
 * `subdomain_label` - (Required) サブドメインラベル /  `1`-`64`文字で指定 / この値を変更するとリソースの再作成が行われる
 * `user` - (Optional) ユーザー設定のリスト。詳細は[userブロック](#user)を参照
 
+##### userブロック
+
+* `name` - (Required) ユーザー名
+* `password` - (Required) パスワード
+
 #### Common Arguments
 
 * `description` - (Optional) 説明 / `1`-`512`文字で指定
 * `icon_id` - (Optional) アイコンID
 * `tags` - (Optional) タグ
 
----
-
-#### userブロック
-
-* `name` - (Required) ユーザー名
-* `password` - (Required) パスワード
-
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

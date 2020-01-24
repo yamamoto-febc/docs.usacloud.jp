@@ -30,16 +30,16 @@ resource "sakuracloud_dns_record" "record2" {
 * `value` - (Required) レコードの値 / この値を変更するとリソースの再作成が行われる
 * `ttl` - (Optional) TTL / この値を変更するとリソースの再作成が行われる / デフォルト:`3600`
 
-#### MX/SRVレコード関連
+###### MX/SRVレコード関連
 
 * `priority` - (Optional) 優先度 / `0`-`65535`の範囲で指定 / この値を変更するとリソースの再作成が行われる
 
-#### SRVレコード関連
+###### SRVレコード関連
 
 * `port` - (Optional) ポート番号 / `1`-`65535`の範囲で指定 / この値を変更するとリソースの再作成が行われる
 * `weight` - (Optional) ウェイト / `0`-`65535`の範囲で指定 / この値を変更するとリソースの再作成が行われる
 
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

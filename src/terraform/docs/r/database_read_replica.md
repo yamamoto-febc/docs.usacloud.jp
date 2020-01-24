@@ -5,7 +5,9 @@
 ```hcl
 resource "sakuracloud_database_read_replica" "foobar" {
   master_id    = data.sakuracloud_database.master.id
-  ip_address   = "192.168.11.111"
+  network_interface {
+    ip_address   = "192.168.11.111"
+  }
   name         = "foobar"
   description  = "description"
   tags         = ["tag1", "tag2"]
@@ -25,12 +27,15 @@ data sakuracloud_database "master" {
 
 #### Network関連
 
+- `network_interface` - ネットワーク設定。詳細は[network_interfaceブロック](#network_interface)を参照
+
+##### network_interfaceブロック
+
 * `ip_address` - (Required) IPアドレス / この値を変更するとリソースの再作成が行われる
 * `gateway` - (Optional) ゲートウェイIPアドレス / 未指定の場合マスターデータベースの値が利用されます / この値を変更するとリソースの再作成が行われる
 * `netmask` - (Optional) サブネットマスク長 / `8`-`29`の範囲で指定 / 未指定の場合マスターデータベースの値が利用されます / この値を変更するとリソースの再作成が行われる
 * `switch_id` - (Optional) スイッチID / 未指定の場合マスターデータベースの値が利用されます / この値を変更するとリソースの再作成が行われる
 * `source_ranges` - (Optional) データベースアプライアンスにアクセスできるIPアドレス、またはCIDRブロックのリスト
-
 
 #### Common Arguments
 
@@ -39,7 +44,7 @@ data sakuracloud_database "master" {
 * `tags` - (Optional) タグ
 * `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

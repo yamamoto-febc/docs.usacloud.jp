@@ -18,13 +18,15 @@ resource "sakuracloud_vpc_router" "premium" {
 
   internet_connection = true
 
-  switch_id    = sakuracloud_internet.foobar.switch_id
-  vip          = sakuracloud_internet.foobar.ip_addresses[0]
-  ip_addresses = [sakuracloud_internet.foobar.ip_addresses[1], sakuracloud_internet.foobar.ip_addresses[2]]
-  aliases      = [sakuracloud_internet.foobar.ip_addresses[3]]
-  vrid         = 1
+  public_network_interface {
+    switch_id    = sakuracloud_internet.foobar.switch_id
+    vip          = sakuracloud_internet.foobar.ip_addresses[0]
+    ip_addresses = [sakuracloud_internet.foobar.ip_addresses[1], sakuracloud_internet.foobar.ip_addresses[2]]
+    aliases      = [sakuracloud_internet.foobar.ip_addresses[3]]
+    vrid         = 1
+  }
 
-  network_interface {
+  private_network_interface {
     index        = 1
     switch_id    = sakuracloud_switch.foobar.id
     vip          = "192.168.11.1"
@@ -131,15 +133,27 @@ resource sakuracloud_switch "foobar" {
 * `internet_connection` - (Optional) インターネットへの接続を許可するフラグ / デフォルト:`true`
 * `plan` - (Optional) プラン / 次のいずれかを指定 [`standard`/`premium`/`highspec`/`highspec4000`] / この値を変更するとリソースの再作成が行われる / デフォルト:`standard`
 * `syslog_host` - (Optional) syslogホストのIPアドレス
-* `vrid` - (Optional) VRID / `plan`が`standard`以外の場合に利用される / この値を変更するとリソースの再作成が行われる
 
 #### ネットワーク関連
 
-* `aliases` - (Optional) プライマリNICに割り当てるIPエイリアスのリスト / `plan`が`standard`以外の場合に利用可能
-* `ip_addresses` - (Optional) プライマリNICのIPアドレスのリスト / `plan`が`standard`の場合は1つ、以外の場合は2つの要素を指定 / この値を変更するとリソースの再作成が行われる
-* `switch_id` - (Optional) プライマリNICが接続するスイッチのID / `plan`が`standard`以外の時に必須 / この値を変更するとリソースの再作成が行われる
-* `vip` - (Optional) プライマリNICに割り当てる仮想IPアドレス /  `plan`が`standard`以外の場合に必須 / この値を変更するとリソースの再作成が行われる
-* `network_interface` - (Optional) NIC設定のリスト / この設定にはプライマリNIC(eth0)の設定を含まない
+* `public_network_interface` - (Required) パブリック側ネットワーク設定 / `plan`が`standard`以外の場合に必須 / 詳細は[public_network_interfaceブロック](#public_network_interface)を参照
+* `private_network_interface` - (Required) プライベート側ネットワーク設定のリスト。詳細は[private_network_interfaceブロック](#private_network_interface)を参照
+
+##### public_network_interfaceブロック
+
+* `aliases` - (Optional) プライマリNICに割り当てるIPエイリアスのリスト
+* `ip_addresses` - (Optional) プライマリNICのIPアドレスのリスト / この値を変更するとリソースの再作成が行われる
+* `switch_id` - (Optional) プライマリNICが接続するスイッチのID / この値を変更するとリソースの再作成が行われる
+* `vip` - (Optional) プライマリNICに割り当てる仮想IPアドレス /  この値を変更するとリソースの再作成が行われる
+* `vrid` - (Optional) VRID / この値を変更するとリソースの再作成が行われる
+
+##### private_network_interfaceブロック
+
+* `index` - (Required) 対象NICのインデックス / `1`-`7`の範囲で指定
+* `ip_addresses` - (Required) IPアドレスのリスト / `plan`が`standard`の場合は1つ、以外の場合は2つの要素を指定
+* `netmask` - (Required) サブネットマスク長
+* `switch_id` - (Required) スイッチID
+* `vip` - (Optional) 仮想IPアドレス /  `plan`が`standard`以外の場合に必須
 
 #### ルータ機能関連
 
@@ -147,53 +161,13 @@ resource sakuracloud_switch "foobar" {
 * `static_route` - (Optional) スタティックルート設定のリスト。詳細は[static_routeブロック](#static_route)を参照
 * `site_to_site_vpn` - (Optional) サイト間VPN設定のリスト。詳細は[site_to_site_vpnブロック](#site_to_site_vpn)を参照
 
-#### DHCP/NAT/Forwarding関連
-
-* `dhcp_server` - (Optional) DHCPサーバ設定のリスト。詳細は[dhcp_serverブロック](#dhcp_server)を参照
-* `dhcp_static_mapping` - (Optional) DHCPスタティックマッピング設定のリスト。詳細は[dhcp_static_mappingブロック](#dhcp_static_mapping)を参照
-* `port_forwarding` - (Optional) ポートフォワーディング設定のリスト。詳細は[port_forwardingブロック](#port_forwarding)を参照
-* `static_nat` - (Optional) スタティックNAT設定のリスト。詳細は[static_natブロック](#static_nat)を参照
-
-#### リモートアクセス関連
-
-* `l2tp` - (Optional) L2TP/IPsec設定。詳細は[l2tpブロック](#l2tp)を参照
-* `pptp` - (Optional) PPTP設定。詳細は[pptpブロック](#pptp)を参照
-* `user` - (Optional) リモートアクセスユーザー設定のリスト。詳細は[userブロック](#user)を参照
-
-#### Common Arguments
-
-* `description` - (Optional) 説明 / `1`-`512`文字で指定
-* `icon_id` - (Optional) アイコンID
-* `tags` - (Optional) タグ
-* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
-
----
-
-#### dhcp_serverブロック
-
-* `interface_index` - (Required) DHCPサーバを有効にするNICのインデックス / `1`-`7`の範囲で指定
-* `range_start` - (Required) DHCPクライアントに割り当てるIPアドレスの開始値
-* `range_stop` - (Required) DHCPクライアントに割り当てるIPアドレスの終了値
-* `dns_servers` - (Optional) DHCPクライアントに配布するDNSサーバのIPアドレスのリスト
-
----
-
-#### dhcp_static_mappingブロック
-
-* `ip_address` - (Required) DHCPクライアントに割り当てるIPアドレス
-* `mac_address` - (Required) スタティックマッピングのキーとなるアクセス元MACアドレス
-
----
-
-#### firewallブロック
+##### firewallブロック
 
 * `direction` - (Required) ファイアウォールを適用する通信方向 / 次のいずれかを指定 [`send`/`receive`]
 * `expression` - (Required) フィルタリングルールのリスト。詳細は[expressionブロック](#expression)を参照
 * `interface_index` - (Optional) ファイアウォールを適用するNICのインデックス /  `0`-`7`の範囲で指定
 
----
-
-#### expressionブロック
+##### expressionブロック
 
 * `protocol` - (Required) プロトコル / 次のいずれかを指定 [`tcp`/`udp`/`icmp`/`ip`]
 * `allow` - (Required) ルールにマッチしたパケットを許可するフラグ
@@ -204,44 +178,12 @@ resource sakuracloud_switch "foobar" {
 * `logging` - (Optional) ルールにマッチしたパケットのロギングを有効にするフラグ
 * `description` - (Optional) 説明 /  `0`-`512`文字で指定
 
----
+##### static_routeブロック
 
-#### l2tpブロック
+* `next_hop` - (Required) ネクストホップのIPアドレス
+* `prefix` - (Required) プレフィックスのリスト / 各要素はCIDRブロックとして指定
 
-* `pre_shared_secret` - (Required) 事前共有鍵
-* `range_start` - (Required) クライアントに割り当てるIPアドレスの開始値
-* `range_stop` - (Required) クライアントに割り当てるIPアドレスの終了値
-
----
-
-#### network_interfaceブロック
-
-* `index` - (Required) 対象NICのインデックス / `1`-`7`の範囲で指定
-* `ip_addresses` - (Required) IPアドレスのリスト / `plan`が`standard`の場合は1つ、以外の場合は2つの要素を指定
-* `netmask` - (Required) サブネットマスク長
-* `switch_id` - (Required) スイッチID
-* `vip` - (Optional) 仮想IPアドレス /  `plan`が`standard`の場合に必須
-
----
-
-#### port_forwardingブロック
-
-* `private_ip` - (Required) プライベート側IPアドレス
-* `private_port` - (Required) プライベート側ポート番号
-* `protocol` - (Required) プロトコル / 次のいずれかを指定 [`tcp`/`udp`]
-* `public_port` - (Required) パブリック側ポート番号
-* `description` - (Optional) 説明 / `0`-`512`文字で指定
-
----
-
-#### pptpブロック
-
-* `range_start` - (Required) クライアントに割り当てるIPアドレスの開始値
-* `range_stop` - (Required) クライアントに割り当てるIPアドレスの終了値
-
----
-
-#### site_to_site_vpnブロック
+##### site_to_site_vpnブロック
 
 * `local_prefix` - (Required) ローカルプレフィックス / CIDRブロックとして指定
 * `peer` - (Required) ピアのIPアドレス
@@ -249,30 +191,69 @@ resource sakuracloud_switch "foobar" {
 * `remote_id` - (Required) リモートID
 * `routes` - (Required) 接続されたVPNのCIDRブロックのリスト
 
----
+#### DHCP/NAT/Forwarding関連
 
-#### static_natブロック
+* `dhcp_server` - (Optional) DHCPサーバ設定のリスト。詳細は[dhcp_serverブロック](#dhcp_server)を参照
+* `dhcp_static_mapping` - (Optional) DHCPスタティックマッピング設定のリスト。詳細は[dhcp_static_mappingブロック](#dhcp_static_mapping)を参照
+* `port_forwarding` - (Optional) ポートフォワーディング設定のリスト。詳細は[port_forwardingブロック](#port_forwarding)を参照
+* `static_nat` - (Optional) スタティックNAT設定のリスト。詳細は[static_natブロック](#static_nat)を参照
+
+##### dhcp_serverブロック
+
+* `interface_index` - (Required) DHCPサーバを有効にするNICのインデックス / `1`-`7`の範囲で指定
+* `range_start` - (Required) DHCPクライアントに割り当てるIPアドレスの開始値
+* `range_stop` - (Required) DHCPクライアントに割り当てるIPアドレスの終了値
+* `dns_servers` - (Optional) DHCPクライアントに配布するDNSサーバのIPアドレスのリスト
+
+##### dhcp_static_mappingブロック
+
+* `ip_address` - (Required) DHCPクライアントに割り当てるIPアドレス
+* `mac_address` - (Required) スタティックマッピングのキーとなるアクセス元MACアドレス
+
+##### port_forwardingブロック
+
+* `private_ip` - (Required) プライベート側IPアドレス
+* `private_port` - (Required) プライベート側ポート番号
+* `protocol` - (Required) プロトコル / 次のいずれかを指定 [`tcp`/`udp`]
+* `public_port` - (Required) パブリック側ポート番号
+* `description` - (Optional) 説明 / `0`-`512`文字で指定
+
+##### static_natブロック
 
 * `private_ip` - (Required) プライベート側IPアドレス
 * `public_ip` - (Required) パブリック側IPアドレス
 * `description` - (Optional) 説明 / `0`-`512`文字で指定
 
----
+#### リモートアクセス関連
 
-#### static_routeブロック
+* `l2tp` - (Optional) L2TP/IPsec設定。詳細は[l2tpブロック](#l2tp)を参照
+* `pptp` - (Optional) PPTP設定。詳細は[pptpブロック](#pptp)を参照
+* `user` - (Optional) リモートアクセスユーザー設定のリスト。詳細は[userブロック](#user)を参照
 
-* `next_hop` - (Required) ネクストホップのIPアドレス
-* `prefix` - (Required) プレフィックスのリスト / 各要素はCIDRブロックとして指定
+##### l2tpブロック
 
----
+* `pre_shared_secret` - (Required) 事前共有鍵
+* `range_start` - (Required) クライアントに割り当てるIPアドレスの開始値
+* `range_stop` - (Required) クライアントに割り当てるIPアドレスの終了値
 
-#### userブロック
+##### pptpブロック
+
+* `range_start` - (Required) クライアントに割り当てるIPアドレスの開始値
+* `range_stop` - (Required) クライアントに割り当てるIPアドレスの終了値
+
+##### userブロック
 
 * `name` - (Required) ユーザー名
 * `password` - (Required) パスワード
 
+#### Common Arguments
 
-### Timeouts
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
+
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
@@ -284,4 +265,5 @@ resource sakuracloud_switch "foobar" {
 
 * `id` - ID
 * `public_ip` - VPCルータのパブリックIP
+* `public_netmask` - VPCルータのパブリック側サブネットマスク長
 

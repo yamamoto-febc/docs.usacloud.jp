@@ -4,13 +4,17 @@
 
 ```hcl
 resource "sakuracloud_nfs" "foobar" {
-  name        = "foobar"
-  switch_id   = sakuracloud_switch.foobar.id
-  plan        = "ssd"
-  size        = "500"
-  ip_address  = "192.168.11.101"
-  netmask     = 24
-  gateway     = "192.168.11.1"
+  name = "foobar"
+  plan = "ssd"
+  size = "500"
+
+  network_interface {
+    switch_id   = sakuracloud_switch.foobar.id
+    ip_address  = "192.168.11.101"
+    netmask     = 24
+    gateway     = "192.168.11.1"
+  }
+
   description = "description"
   tags        = ["tag1", "tag2"]
 }
@@ -28,6 +32,10 @@ resource "sakuracloud_switch" "foobar" {
 
 #### ネットワーク関連
 
+* `network_interface` - (Required) ネットワーク設定。詳細は[network_interfaceブロック](#network_interface)を参照
+
+##### network_interfaceブロック
+
 * `switch_id` - (Required) スイッチID / この値を変更するとリソースの再作成が行われる
 * `ip_address` - (Required) IPアドレス / この値を変更するとリソースの再作成が行われる
 * `netmask` - (Required) サブネットマスク長 / `8`-`29`の範囲で指定 / この値を変更するとリソースの再作成が行われる
@@ -40,7 +48,7 @@ resource "sakuracloud_switch" "foobar" {
 * `tags` - (Optional) タグ
 * `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

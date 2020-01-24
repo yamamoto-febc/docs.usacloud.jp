@@ -20,7 +20,7 @@ resource "sakuracloud_note" "foobar" {
 * `icon_id` - (Optional) アイコンID
 * `tags` - (Optional) タグ
 
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

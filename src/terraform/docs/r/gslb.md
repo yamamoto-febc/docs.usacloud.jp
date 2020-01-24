@@ -40,15 +40,7 @@ resource "sakuracloud_gslb" "foobar" {
 * `weighted` - (Optional) 重み付け振り分けの有効フラグ
 * `sorry_server` - (Optional) ソーリーサーバのIPアドレス
 
-#### Common Arguments
-
-* `description` - (Optional) 説明 / `1`-`512`文字で指定
-* `icon_id` - (Optional) アイコンID
-* `tags` - (Optional) タグ
-
----
-
-#### health_checkブロック
+##### health_checkブロック
 
 * `protocol` - (Required) プロトコル / 次のいずれかを指定 [`http`/`https`/`tcp`/`ping`]
 * `delay_loop` - (Optional) チェック間隔秒数 / `10`-`60`の範囲で指定
@@ -57,16 +49,20 @@ resource "sakuracloud_gslb" "foobar" {
 * `port` - (Optional) TCPチェック時のポート番号
 * `status` - (Optional) HTTP/HTTPSチェック時のレスポンスコード
 
----
-
-#### serverブロック
+##### serverブロック
 
 * `ip_address` - (Required) IPアドレス
 * `enabled` - (Optional) 有効フラグ
 * `weight` - (Optional) 重み付け振り分けが有効な場合のウェイト / `1`-`10000`の範囲で指定
 
+#### Common Arguments
 
-### Timeouts
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+
+
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

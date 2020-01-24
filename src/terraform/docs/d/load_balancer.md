@@ -17,18 +17,14 @@ data "sakuracloud_load_balancer" "foobar" {
 * `filter` - (Optional) 参照対象をフィルタリングするための条件。詳細は[filterブロック](#filter)を参照 
 * `zone` - (Optional) 対象ゾーンの名前 (例: `is1a`, `tk1a`)  
 
----
-
-#### filterブロック
+##### filterブロック
 
 * `condition` - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は[conditionブロック](#condition)を参照  
 * `id` - (Optional) 対象リソースのID 
 * `names` - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  
 * `tags` - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる
 
----
-
-#### conditionブロック
+##### conditionブロック
 
 * `name` - (Required) 対象フィールド名。大文字/小文字を区別する  
 * `values` - (Required) 対象フィールドの値。複数指定した場合はAND条件となる
@@ -38,22 +34,22 @@ data "sakuracloud_load_balancer" "foobar" {
 
 * `id` - ID
 * `description` - 説明
-* `gateway` - ゲートウェイIPアドレス
-* `high_availability` - 冗長化構成の有効フラグ
 * `icon_id` - アイコンID
-* `ip_addresses` - IPアドレスのリスト
 * `name` - 名前
-* `netmask` - サブネットマスク長
+* `network_interface` - ネットワーク設定。詳細は[network_interfaceブロック](#network_interface)を参照
 * `plan` - プラン。次のいずれかとなる [`standard`/`highspec`]
-* `switch_id` - スイッチID
 * `tags` - タグ
 * `vip` - VIPのリスト。詳細は[vipブロック](#vip)を参照
+
+##### network_interfaceブロック
+
+* `gateway` - ゲートウェイIPアドレス
+* `ip_addresses` - IPアドレスのリスト
+* `netmask` - サブネットマスク長
+* `switch_id` - スイッチID
 * `vrid` - VRID
 
-
----
-
-#### vipブロック
+##### vipブロック
 
 * `delay_loop` - チェック間隔秒数
 * `description` - 説明
@@ -62,9 +58,7 @@ data "sakuracloud_load_balancer" "foobar" {
 * `sorry_server` - ソーリーサーバのIPアドレス
 * `vip` - VIP(仮想IPアドレス)
 
----
-
-#### serverブロック
+##### serverブロック
 
 * `enabled` - 有効フラグ
 * `ip_address` - IPアドレス

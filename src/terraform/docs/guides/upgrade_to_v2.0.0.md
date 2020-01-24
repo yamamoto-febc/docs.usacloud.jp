@@ -10,7 +10,7 @@ terraform-provider-sakuracloud v1系をご利用中の方向けのアップグ�
     - [リソース](#resourcesDiff)
 - [各リソースの変更点](#diffDetail)
     - [プロバイダー](#diffProvider)
-    - [データソース](#diffDetailDataSource)
+    - [データソースの変更点](#diffDetailDataSource)
         - [ブリッジ: `sakuracloud_bridge`](#dataSourceBridge)
         - [データベース: `sakuracloud_database`](#dataSourceDatabase)
         - [ディスク: `sakuracloud_disk`](#dataSourceDisk)
@@ -27,7 +27,7 @@ terraform-provider-sakuracloud v1系をご利用中の方向けのアップグ�
         - [サブネット: `sakuracloud_subnet`](#dataSourceSubnet)
         - [VPCルータ: `sakuracloud_vpc_router`](#dataSourceVPCRouter)
         - [ウェブアクセラレータ: `sakuracloud_webaccel`](#dataSourceWebAccel)
-    - [リソース](#diffDetailResource)
+    - [リソースの変更点](#diffDetailResource)
         - [ブリッジ: `sakuracloud_bridge`](#resourceBridge)
         - [データベース: `sakuracloud_database`](#resourceDatabase)
         - [データベース(リードレプリカ): `sakuracloud_database_read_replica`](#resourceDatabaseReadReplica)
@@ -95,7 +95,7 @@ data "sakuracloud_archive" "foobar" {
 }
 ```
 
-### v2でのデータソース:
+#### v2でのデータソース:
 
 ```hcl
 # v1でのデータソース
@@ -170,7 +170,7 @@ VPCルータやロードバランサなどの子リソースを持つリソー�
     現在親子リソースになっていないリソースを親子に分割したいユースケースがある場合は[GitHub](https://github.com/sacloud/terraform-provider-sakuracloud)にIssueを投稿して要望を出してください。  
     ユースケースによっては実装する可能性があります。
 
-#### timeoutsブロックのサポート
+#### Timeoutsブロックのサポート
 
 各リソースで[timeoutsブロック](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)を指定可能になりました。
 
@@ -211,7 +211,7 @@ v2では代わりに各リソースで[timeoutsブロック](https://www.terrafo
 
 ---
 
-## データソース {: #diffDetailDataSource }
+## データソースの変更点 {: #diffDetailDataSource }
 
 ### [ブリッジ: `sakuracloud_bridge`](https://docs.usacloud.jp/terraform/d/bridge) {: #dataSourceBridge}
 
@@ -221,13 +221,19 @@ v2では代わりに各リソースで[timeoutsブロック](https://www.terrafo
 
 ### [データベース: `sakuracloud_database`](https://docs.usacloud.jp/terraform/d/database) {: #dataSourceDatabase}
 
-- `allow_networks`(名称変更) => `source_ranges`  
+- `backup`(追加)
+    - `backup_time`(名称変更) => `time`
+    - `backup_weekdays`(名称変更) => `weekdays`
 - `database_type`(追加) => データベース種別(MariaDB or PostgreSQL)
-- `default_route`(名称変更) => `gateway`
-- `ipaddress1`(名称変更) => `ip_address`
-- `nw_mask_len`(名称変更) => `netmask`
 - `user_name`(名称変更) => `username`
 - `user_password`(名称変更) => `password`
+- `network_interface`(追加)
+    - `allow_networks`(名称変更) => `source_ranges`  
+    - `default_route`(名称変更) => `gateway`
+    - `ipaddress1`(名称変更) => `ip_address`
+    - `nw_mask_len`(名称変更) => `netmask`
+    - `port`(移動)
+    - `switch_id`
 
 ---
 
@@ -269,18 +275,25 @@ v2では代わりに各リソースで[timeoutsブロック](https://www.terrafo
 
 ### [ロードバランサ: `sakuracloud_load_balancer`](https://docs.usacloud.jp/terraform/d/load_balancer) {: #dataSourceLocaBalancer}
 
-- `default_route`(名称変更) => `gateway`
-- `ipaddress1`/`ipaddress2`(統合) => `ip_addresses`(リスト)
-- `is_double`(廃止)
-- `nw_mask_len`(名称変更) => `netmask`
 - `vip`(追加) => 仮想IPアドレス(配下の実サーバを含む)
+- `is_double`(廃止)
+- `high_availability`(廃止)
+- `network_interface`(追加)
+    - `default_route`(名称変更) => `gateway`
+    - `ipaddress1`/`ipaddress2`(統合) => `ip_addresses`(リスト)
+    - `nw_mask_len`(名称変更) => `netmask`
+    - `switch_id`(移動)
+    - `vrid`(移動)
 
 ---
 
 ### [NFS: `sakuracloud_nfs`](https://docs.usacloud.jp/terraform/d/nfs) {: #dataSourceNFS}
 
-- `ipaddress`(名称変更) => `ip_address`
-- `nw_mask_len`(名称変更) => `netmask`
+- `network_interface`(追加)
+    - `gateway`(移動)
+    - `ipaddress`(名称変更) => `ip_address`
+    - `nw_mask_len`(名称変更) => `netmask`
+    - `switch_id`(移動)
 
 ---
 
@@ -361,9 +374,15 @@ v2では代わりに各リソースで[timeoutsブロック](https://www.terrafo
         - `source_nw`(名称変更) => `source_network`
     - `vpc_router_interface_index`(名称変更) => `interface_index`
 - `global_address`(名称変更) => `public_ip`
-- `interface`(名称変更) => `network_interface`
+- `interface`(名称変更) => `private_network_interface`
     - `nw_mask_len`(名称変更) => `netmask`
-- `ipaddress1`/`ipaddress2`(統合) => `ip_addresses`(リスト)
+- `public_network_interface`(追加)
+    - `aliases`(移動)
+    - `ipaddress1`/`ipaddress2`(移動/統合) => `ip_addresses`(リスト)
+    - `switch_id`(移動)
+    - `vip`(移動)
+    - `vrid`(移動)
+- `public_netmask`(追加)
 - `port_forwarding`
     - `private_address`(名称変更) => `private_ip`
     - `global_port`(名称変更) => `public_port`
@@ -394,7 +413,7 @@ v2では代わりに各リソースで[timeoutsブロック](https://www.terrafo
 v2時点では未実装(近日実装予定)
 
 
-## リソース {: #diffDetailResource }
+## リソースの変更点 {: #diffDetailResource }
 
 ### [ブリッジ: `sakuracloud_bridge`](https://docs.usacloud.jp/terraform/r/bridge) {: #resourceBridge }
 
@@ -404,11 +423,17 @@ v2時点では未実装(近日実装予定)
 
 ### [データベース: `sakuracloud_database`](https://docs.usacloud.jp/terraform/r/database) {: #resourceDatabase }
 
-- `allow_networks`(名称変更) => `source_ranges`
-- `default_route`(名称変更) => `gateway`
+- `backup`(追加)
+    - `backup_time`(名称変更) => `time`
+    - `backup_weekdays`(名称変更) => `weekdays`
 - `graceful_shutdown_timeout`(廃止)
-- `ipaddress1`(名称変更) => `ip_address`
-- `nw_mask_len`(名称変更) => `netmask`
+- `network_interface`(追加)
+    - `allow_networks`(名称変更) => `source_ranges`  
+    - `default_route`(名称変更) => `gateway`
+    - `ipaddress1`(名称変更) => `ip_address`
+    - `nw_mask_len`(名称変更) => `netmask`
+    - `port`(移動)
+    - `switch_id`(移動)
 - `replica_user`(挙動変更) => 読み取り専用から書き込み可能に
 - `user_name`(名称変更) => `username`
 - `user_password`(名称変更) => `password`
@@ -417,11 +442,15 @@ v2時点では未実装(近日実装予定)
 
 ### [データベース(リードレプリカ): `sakuracloud_database_read_replica`](https://docs.usacloud.jp/terraform/r/database_read_replica) {: #resourceDatabaseReadReplica }
 
-- `source_ranges`(追加)
-- `default_route`(名称変更) => `gateway`
 - `graceful_shutdown_timeout`(廃止)
-- `ipaddress1`(名称変更) => `ip_address`
-- `nw_mask_len`(名称変更) => `netmask`
+- `network_interface`(追加)
+    - `source_ranges`(追加)  
+    - `default_route`(名称変更) => `gateway`
+    - `ipaddress1`(名称変更) => `ip_address`
+    - `nw_mask_len`(名称変更) => `netmask`
+    - `port`(移動)
+    - `switch_id`(移動)
+- `replica_user`(挙動変更) => 読み取り専用から書き込み可能に
 - `replica_user`(挙動変更) => 読み取り専用から書き込み可能に
 
 ---
@@ -480,9 +509,14 @@ v2時点では未実装(近日実装予定)
 
 - `default_route`(名称変更) => `gateway`
 - `graceful_shutdown_timeout`(廃止)
-- `ipaddress1`/`ipaddress2`(統合) => `ip_addresses`(リスト)
 - `is_double`(廃止)
-- `nw_mask_len`(名称変更) => `netmask`
+- `high_availability`(廃止)
+- `network_interface`(追加)
+    - `default_route`(名称変更) => `gateway`
+    - `ipaddress1`/`ipaddress2`(統合) => `ip_addresses`(リスト)
+    - `nw_mask_len`(名称変更) => `netmask`
+    - `switch_id`(移動)
+    - `vrid`(移動)
 - `vip_ids`(廃止)
 - `vips`(名称変更) => `vip`
     - `servers`(名称変更) => `server`
@@ -507,10 +541,12 @@ v2時点では未実装(近日実装予定)
 
 ### [NFS: `sakuracloud_nfs`](https://docs.usacloud.jp/terraform/r/nfs) {: #resourceNFS }
 
-- `default_route`(名称変更) => `gateway`
-- `graceful_shutdown_timeout`(廃止)
-- `ipaddress`(名称変更) => `ip_address`
-- `nw_mask_len`(名称変更) => `netmask`
+- `network_interface`(追加)
+    - `gateway`(移動)
+    - `ipaddress`(名称変更) => `ip_address`
+    - `nw_mask_len`(名称変更) => `netmask`
+    - `switch_id`(移動)
+
 
 ---
 
@@ -668,9 +704,15 @@ resource "sakuracloud_server" "example" {
     - `vpc_router_interface_index`(名称変更) => `interface_index`
 - `global_address`(名称変更) => `public_ip`
 - `graceful_shutdown_timeout`(廃止)
-- `interface`(名称変更) => `network_interface`
+- `interface`(名称変更) => `private_network_interface`
     - `nw_mask_len`(名称変更) => `netmask`
-- `ipaddress1`/`ipaddress2`(統合) => `ip_addresses`(リスト)
+- `public_network_interface`(追加)
+    - `aliases`(移動)
+    - `ipaddress1`/`ipaddress2`(移動/統合) => `ip_addresses`(リスト)
+    - `switch_id`(移動)
+    - `vip`(移動)
+    - `vrid`(移動)
+- `public_netmask`(追加)
 - `port_forwarding`
     - `private_address`(名称変更) => `private_ip`
     - `global_port`(名称変更) => `public_port`

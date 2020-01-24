@@ -30,18 +30,14 @@ data "sakuracloud_archive" "foobar" {
     - **Windows2019+SQLServer2019**: [`windows2019-sql2019-web`/`windows2019-sql2019-standard`/`windows2019-sql2019-enterprise`/`windows2019-sql2019-standard-all`]  
 * `zone` - (Optional) 対象ゾーンの名前 (例: `is1a`, `tk1a`)  
 
----
-
-#### filterブロック
+##### filterブロック
 
 * `condition` - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は[conditionブロック](#condition)を参照  
 * `id` - (Optional) 対象リソースのID 
 * `names` - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  
 * `tags` - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる
 
----
-
-#### conditionブロック
+##### conditionブロック
 
 * `name` - (Required) 対象フィールド名。大文字/小文字を区別する  
 * `values` - (Required) 対象フィールドの値。複数指定した場合はAND条件となる

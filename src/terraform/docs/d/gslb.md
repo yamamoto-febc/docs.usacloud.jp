@@ -16,18 +16,14 @@ data "sakuracloud_gslb" "foobar" {
 
 * `filter` - (Optional) 参照対象をフィルタリングするための条件。詳細は[filterブロック](#filter)を参照 
 
----
-
-#### filterブロック
+##### filterブロック
 
 * `condition` - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は[conditionブロック](#condition)を参照  
 * `id` - (Optional) 対象リソースのID 
 * `names` - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  
 * `tags` - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる
 
----
-
-#### conditionブロック
+##### conditionブロック
 
 * `name` - (Required) 対象フィールド名。大文字/小文字を区別する  
 * `values` - (Required) 対象フィールドの値。複数指定した場合はAND条件となる
@@ -45,9 +41,7 @@ data "sakuracloud_gslb" "foobar" {
 * `tags` - タグ
 * `weighted` - 重み付け振り分けの有効化フラグ
 
----
-
-#### health_checkブロック
+##### health_checkブロック
 
 * `delay_loop` - チェック間隔秒数
 * `host_header` - HTTP/HTTPSチェック時に利用されるHostヘッダの値
@@ -56,9 +50,7 @@ data "sakuracloud_gslb" "foobar" {
 * `protocol` - プロトコル。次のいずれかとなる [`http`/`https`/`tcp`/`ping`]
 * `status` - HTTP/HTTPSチェック時に利用されるレスポンスコード
 
----
-
-#### serverブロック
+##### serverブロック
 
 * `enabled` - 有効フラグ
 * `ip_address` - IPアドレス

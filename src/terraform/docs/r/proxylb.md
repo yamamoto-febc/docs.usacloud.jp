@@ -58,50 +58,16 @@ resource sakuracloud_server "foobar" {
 ## Argument Reference
 
 * `name` - (Required) 名前 / `1`-`64`文字で指定
-* `bind_port` - (Required) 待ち受けポート設定のリスト。詳細は[bind_portブロック](#bind_port)を参照
-* `health_check` - (Required) ヘルスチェック設定。詳細は[health_checkブロック](#health_check)を参照
 * `vip_failover` - (Optional) VIPフェイルオーバ機能の有効フラグ / この値を変更するとリソースの再作成が行われる
 * `plan` - (Optional) プラン / 次のいずれかを指定 [`100`/`500`/`1000`/`5000`/`10000`/`50000`/`100000`] / この値を変更するとリソースの再作成が行われる / デフォルト:`100`
 * `region` - (Optional) エンハンスドロードバランサが配置されるリージョン / 次のいずれかを指定 [`tk1`/`is1`] / この値を変更するとリソースの再作成が行われる / デフォルト:`is1`
-* `sorry_server` - (Optional) ソーリーサーバ設定。詳細は[sorry_serverブロック](#sorry_server)を参照
-* `sticky_session` - (Optional) Stickyセッションの有効フラグ
 * `timeout` - (Optional) 実サーバの通信タイムアウト秒数 / デフォルト:`10`
 
 #### 証明書関連
 
 * `certificate` - (Optional) 証明書設定。詳細は[certificateブロック](#certificate)を参照
 
-#### 振り分け動作関連
-
-* `rule` - (Optional) 振り分けルール設定のリスト。詳細は[ruleブロック](#rule)を参照
-* `server` - (Optional) 実サーバ設定のリスト。詳細は[serverブロック](#server)を参照
-
-#### Common Arguments
-
-* `description` - (Optional) 説明 / `1`-`512`文字で指定
-* `icon_id` - (Optional) アイコンID
-* `tags` - (Optional) タグ
-
----
-
-#### bind_portブロック
-
-* `proxy_mode` - (Required) プロキシモード / 次のいずれかを指定 [`http`/`https`/`tcp`]
-* `port` - (Optional) 待ち受けポート番号
-* `redirect_to_https` - (Optional) httpからhttpsへのリダイレクト有効化フラグ / `proxy_mode`が`http`の場合のみ有効
-* `response_header` - (Optional) レスポンスに付与するHTTPヘッダのリスト。詳細は[response_headerブロック](#response_header)を参照
-* `support_http2` - (Optional) HTTP/2を有効にするフラグ / `proxy_mode`が`https`の場合のみ有効
-
----
-
-### response_headerブロック
-
-* `header` - (Required) ヘッダ名
-* `value` - (Required) 値
-
----
-
-#### certificateブロック
+##### certificateブロック
 
 !!! Note
     `server_cert`と`private_key`、`intermediate_cert`はエンハンスドロードバランサ ACME設定リソース(`sakuracloud_proxylb_acme`)を利用すると上書きされます。
@@ -111,17 +77,35 @@ resource sakuracloud_server "foobar" {
 * `private_key` - (Optional) 秘密鍵
 * `server_cert` - (Optional) サーバ証明書
 
----
-
-#### additional_certificateブロック
+##### additional_certificateブロック
 
 * `server_cert` - (Required) サーバ証明書
 * `private_key` - (Required) 秘密鍵
 * `intermediate_cert` - (Optional) 中間証明書
 
----
+#### バランシング動作
 
-#### health_checkブロック
+* `bind_port` - (Required) 待ち受けポート設定のリスト。詳細は[bind_portブロック](#bind_port)を参照
+* `health_check` - (Required) ヘルスチェック設定。詳細は[health_checkブロック](#health_check)を参照
+* `rule` - (Optional) 振り分けルール設定のリスト。詳細は[ruleブロック](#rule)を参照
+* `server` - (Optional) 実サーバ設定のリスト。詳細は[serverブロック](#server)を参照
+* `sorry_server` - (Optional) ソーリーサーバ設定。詳細は[sorry_serverブロック](#sorry_server)を参照
+* `sticky_session` - (Optional) Stickyセッションの有効フラグ
+
+##### bind_portブロック
+
+* `proxy_mode` - (Required) プロキシモード / 次のいずれかを指定 [`http`/`https`/`tcp`]
+* `port` - (Optional) 待ち受けポート番号
+* `redirect_to_https` - (Optional) httpからhttpsへのリダイレクト有効化フラグ / `proxy_mode`が`http`の場合のみ有効
+* `response_header` - (Optional) レスポンスに付与するHTTPヘッダのリスト。詳細は[response_headerブロック](#response_header)を参照
+* `support_http2` - (Optional) HTTP/2を有効にするフラグ / `proxy_mode`が`https`の場合のみ有効
+
+##### response_headerブロック
+
+* `header` - (Required) ヘッダ名
+* `value` - (Required) 値
+
+##### health_checkブロック
 
 * `protocol` - (Required) プロトコル / 次のいずれかを指定 [`http`/`tcp`]
 * `delay_loop` - (Optional) チェック間隔秒数 / `10`-`60`の範囲で指定
@@ -129,31 +113,31 @@ resource sakuracloud_server "foobar" {
 * `path` - (Optional) HTTPチェック時のリクエストパス
 * `port` - (Optional) TCPチェック時のポート番号
 
----
-
-#### ruleブロック
+##### ruleブロック
 
 * `group` - (Optional) 振り分け先グループ名 / `host`と`path`にマッチするリクエストを受信した場合に同じ`group`の値を持つ実サーバに振り分けられる / `1`-`10`文字で指定
 * `host` - (Optional) リクエストのHostヘッダ
 * `path` - (Optional) リクエストパス
 
----
-
-#### serverブロック
+##### serverブロック
 
 * `ip_address` - (Required) IPアドレス
 * `port` - (Required) ポート番号 / `1`-`65535`の範囲で指定
 * `enabled` - (Optional) 有効フラグ
 * `group` - (Optional) 振り分け先グループ名 / 振り分けの挙動については[ruleブロック](#rule)を参照 
 
----
-
-#### sorry_serverブロック
+##### sorry_serverブロック
 
 * `ip_address` - (Required) IPアドレス
 * `port` - (Optional) ポート番号
 
-### Timeouts
+#### Common Arguments
+
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

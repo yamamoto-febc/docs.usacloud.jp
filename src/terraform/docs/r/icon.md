@@ -18,7 +18,7 @@ resource "sakuracloud_icon" "foobar" {
 * `source` - (Optional) アップロードするアイコンファイルのパス / [`base64content`]と同時に指定できません / この値を変更するとリソースの再作成が行われる
 * `tags` - (Optional) タグ
 
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

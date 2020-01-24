@@ -39,7 +39,7 @@ data "sakuracloud_proxylb" "foobar" {
     DNSレコードを登録した直後だと名前解決できない場合があります。  
     このため、必要に応じて`update_delay_sec`を適切に設定してください。
 
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 
@@ -51,18 +51,14 @@ data "sakuracloud_proxylb" "foobar" {
 * `id` - ID
 * `certificate` - 証明書設定のリスト。詳細は[certificateブロック](#certificate)を参照
 
----
-
-#### certificateブロック
+##### certificateブロック
 
 * `additional_certificate` - 追加証明書のリスト。詳細は[additional_certificateブロック](#additional_certificate)を参照
 * `intermediate_cert` - 中間証明書
 * `private_key` - 秘密鍵
 * `server_cert` - サーバ証明書
 
----
-
-#### additional_certificateブロック
+##### additional_certificateブロック
 
 * `intermediate_cert` - 中間証明書
 * `private_key` - 秘密鍵

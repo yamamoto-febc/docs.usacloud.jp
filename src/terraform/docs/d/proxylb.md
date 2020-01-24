@@ -16,18 +16,14 @@ data "sakuracloud_proxylb" "foobar" {
 
 * `filter` - (Optional) 参照対象をフィルタリングするための条件。詳細は[filterブロック](#filter)を参照 
 
----
-
-#### filterブロック
+##### filterブロック
 
 * `condition` - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は[conditionブロック](#condition)を参照  
 * `id` - (Optional) 対象リソースのID 
 * `names` - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  
 * `tags` - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる
 
----
-
-#### conditionブロック
+##### conditionブロック
 
 * `name` - (Required) 対象フィールド名。大文字/小文字を区別する  
 * `values` - (Required) 対象フィールドの値。複数指定した場合はAND条件となる
@@ -55,10 +51,7 @@ data "sakuracloud_proxylb" "foobar" {
 * `vip` - エンハンスドロードバランサに割り当てられたVIP
 * `vip_failover` - VIPフェイルオーバ機能の有効フラグ
 
-
----
-
-#### bind_portブロック
+##### bind_portブロック
 
 * `port` - ポート番号
 * `proxy_mode` - 待ち受けモード。次のいずれかとなる [`http`/`https`/`tcp`]
@@ -66,32 +59,24 @@ data "sakuracloud_proxylb" "foobar" {
 * `response_header` - エンハンスドロードバランサが付与するレスポンスヘッダのリスト。詳細は[response_headerブロック](#response_header)を参照
 * `support_http2` - HTTP/2の有効フラグ。 proxy_mode`が`https`の場合にのみ利用される
 
----
-
-#### response_headerブロック
+##### response_headerブロック
 
 * `header` - ヘッダ名
 * `value` - 値
 
----
-
-#### certificateブロック
+##### certificateブロック
 
 * `intermediate_cert` - 中間証明書
 * `private_key` - 秘密鍵
 * `server_cert` - サーバ証明書
 
----
-
-#### additional_certificateブロック
+##### additional_certificateブロック
 
 * `intermediate_cert` - 中間証明書
 * `private_key` - 秘密鍵
 * `server_cert` - サーバ証明書
 
----
-
-#### health_checkブロック
+##### health_checkブロック
 
 * `delay_loop` - チェック間隔秒数 
 * `host_header` - HTTPチェック時に利用されるHostヘッダの値
@@ -99,26 +84,20 @@ data "sakuracloud_proxylb" "foobar" {
 * `port` - TCPチェック時に利用されるポート番号
 * `protocol` - プロトコル。次のいずれかとなる [`http`/`tcp`]
 
----
-
-#### ruleブロック
+##### ruleブロック
 
 * `group` - 振り分け先グループ名。 `host`と`path`にマッチするリクエストを受信した場合に同じ`group`の値を持つ実サーバに振り分けられる
 * `host` - リクエストのHostヘッダ
 * `path` - リクエストパス
 
----
-
-#### serverブロック
+##### serverブロック
 
 * `enabled` - 有効フラグ
 * `group` - 振り分け先グループ名。 振り分けの挙動については[ruleブロック](#rule)を参照
 * `ip_address` - IPアドレス
 * `port` - ポート番号
 
----
-
-#### sorry_serverブロック
+##### sorry_serverブロック
 
 * `ip_address` - IPアドレス
 * `port` - ポート番号

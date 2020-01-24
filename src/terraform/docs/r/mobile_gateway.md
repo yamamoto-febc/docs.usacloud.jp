@@ -59,45 +59,28 @@ resource "sakuracloud_switch" "foobar" {
 * `static_route` - (Optional) スタティックルート設定のリスト。詳細は[static_routeブロック](#static_route)を参照
 * `traffic_control` - (Optional) トラフィックコントロール設定。詳細は[traffic_controlブロック](#traffic_control)を参照
 
-#### Common Arguments
-
-* `description` - (Optional) 説明 / `1`-`512`文字で指定
-* `icon_id` - (Optional) アイコンID
-* `tags` - (Optional) タグ
-* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
-
----
-
-#### private_network_interfaceブロック
+##### private_network_interfaceブロック
 
 * `ip_address` - (Required) IPアドレス
 * `netmask` - (Required) サブネットマスク長 / `8`-`29`の範囲で指定
 * `switch_id` - (Required) スイッチID
 
----
-
-#### simブロック
+##### simブロック
 
 * `ip_address` - (Required) IPアドレス
 * `sim_id` - (Required) SIMのID
 
----
-
-#### sim_routeブロック
+##### sim_routeブロック
 
 * `prefix` - (Required) プレフィックス / CIDRブロックとして指定
 * `sim_id` - (Required) 宛先となるSIMのID
 
----
-
-#### static_routeブロック
+##### static_routeブロック
 
 * `next_hop` - (Required) ネクストホップIPアドレス
 * `prefix` - (Required) プレフィックス / CIDRブロックとして指定
 
----
-
-#### traffic_controlブロック
+##### traffic_controlブロック
 
 * `quota` - (Required) 通信制限を行う月間通信量の閾値
 * `auto_traffic_shaping` - (Optional) `quota`を超えた際に自動で通信制限を有効にするフラグ
@@ -106,8 +89,14 @@ resource "sakuracloud_switch" "foobar" {
 * `enable_slack` - (Optional) slackでの通知の有効フラグ
 * `slack_webhook` - (Optional) slackでの通知に利用されるWebhookのURL
 
+#### Common Arguments
 
-### Timeouts
+* `description` - (Optional) 説明 / `1`-`512`文字で指定
+* `icon_id` - (Optional) アイコンID
+* `tags` - (Optional) タグ
+* `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
+
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

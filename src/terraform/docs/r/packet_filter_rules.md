@@ -62,9 +62,7 @@ resource "sakuracloud_packet_filter_rules" "rules" {
 * `expression` - (Optional) フィルタリングルールのリスト。詳細は[expressionブロック](#expression)を参照 / この値を変更するとリソースの再作成が行われる
 * `zone` - (Optional) リソースを作成する対象ゾーンの名前(例: `is1a`, `tk1a`) / この値を変更するとリソースの再作成が行われる
 
----
-
-#### expressionブロック
+##### expressionブロック
 
 * `protocol` - (Required) プロトコル / 次のいずれかを指定 [`http`/`https`/`tcp`/`udp`/`icmp`/`fragment`/`ip`]
 * `allow` - (Optional) マッチしたパケットを許可するフラグ
@@ -73,7 +71,7 @@ resource "sakuracloud_packet_filter_rules" "rules" {
 * `source_port` - (Optional) 送信元ポート番号、または送信元ポート番号範囲 (例: `1024`, `1024-2048`)
 * `description` - (Optional) 説明
 
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

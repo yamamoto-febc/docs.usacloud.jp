@@ -39,6 +39,35 @@ resource "sakuracloud_simple_monitor" "foobar" {
     `target`はIPv4アドレス、またはAレコードが設定されたFQDNを指定する必要があります。  
     IPv6アドレスには対応していません
 
+##### health_checkブロック
+
+* `protocol` - (Required) プロトコル / 次のいずれかを指定 [`http`/`https`/`ping`/`tcp`/`dns`/`ssh`/`smtp`/`pop3`/`snmp`/`sslcertificate`]
+* `port` - (Optional) ポート番号
+
+###### DNSチェック関連
+
+* `excepcted_data` - (Optional) DNSチェック時の期待値
+* `qname` - (Optional) DNSチェック時のクエリで利用するFQDN
+
+###### HTTP/HTTPSチェック関連
+
+* `host_header` - (Optional) HTTP/HTTPSチェック時のHostヘッダの値
+* `password` - (Optional) HTTP/HTTPSチェック時のBASIC認証で利用するパスワード
+* `username` - (Optional) HTTP/HTTPSチェック時のBASIC認証で利用するユーザー名
+* `path` - (Optional) HTTP/HTTPSチェック時のリクエストパス
+* `sni` - (Optional) HTTP/HTTPSチェック時のSNI有効フラグ
+* `status` - (Optional) HTTP/HTTPSチェック時のレスポンスコード
+
+###### 証明書チェック関連
+
+* `remaining_days` - (Optional) 証明書チェックでの有効期限残日数の閾値 / `1`-`9999`の範囲で指定
+
+###### SNMP関連
+
+* `community` - (Optional) SNMPコミュニティ名
+* `oid` - (Optional) SNMP OID
+* `snmp_version` - (Optional) SNMPバージョン / 次のいずれかを指定 [`1`/`2c`]
+
 #### 通知関連
 
 * `notify_email_enabled` - (Optional) e-mailでの通知の有効フラグ / デフォルト:`true`
@@ -53,38 +82,7 @@ resource "sakuracloud_simple_monitor" "foobar" {
 * `icon_id` - (Optional) アイコンID
 * `tags` - (Optional) タグ
 
----
-
-#### health_checkブロック
-
-* `protocol` - (Required) プロトコル / 次のいずれかを指定 [`http`/`https`/`ping`/`tcp`/`dns`/`ssh`/`smtp`/`pop3`/`snmp`/`sslcertificate`]
-* `port` - (Optional) ポート番号
-
-#### DNSチェック関連
-
-* `excepcted_data` - (Optional) DNSチェック時の期待値
-* `qname` - (Optional) DNSチェック時のクエリで利用するFQDN
-
-#### HTTP/HTTPSチェック関連
-
-* `host_header` - (Optional) HTTP/HTTPSチェック時のHostヘッダの値
-* `password` - (Optional) HTTP/HTTPSチェック時のBASIC認証で利用するパスワード
-* `username` - (Optional) HTTP/HTTPSチェック時のBASIC認証で利用するユーザー名
-* `path` - (Optional) HTTP/HTTPSチェック時のリクエストパス
-* `sni` - (Optional) HTTP/HTTPSチェック時のSNI有効フラグ
-* `status` - (Optional) HTTP/HTTPSチェック時のレスポンスコード
-
-#### 証明書チェック関連
-
-* `remaining_days` - (Optional) 証明書チェックでの有効期限残日数の閾値 / `1`-`9999`の範囲で指定
-
-#### SNMP関連
-
-* `community` - (Optional) SNMPコミュニティ名
-* `oid` - (Optional) SNMP OID
-* `snmp_version` - (Optional) SNMPバージョン / 次のいずれかを指定 [`1`/`2c`]
-
-### Timeouts
+#### Timeouts
 
 `timeouts`ブロックで[カスタムタイムアウト](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)が設定可能です。  
 

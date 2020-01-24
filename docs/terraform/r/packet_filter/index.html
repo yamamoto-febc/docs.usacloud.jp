@@ -845,13 +845,7 @@
 <li><code>name</code> - (Required) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
 <li><code>expression</code> - (Optional) フィルタリングルールのリスト。詳細は<a href="#expression">expressionブロック</a>を参照</li>
 </ul>
-<h4 id="common-arguments">Common Arguments</h4>
-<ul>
-<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
-<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
-</ul>
-<hr />
-<h4 id="expression">expressionブロック</h4>
+<h5 id="expression">expressionブロック</h5>
 <ul>
 <li><code>protocol</code> - (Required) プロトコル / 次のいずれかを指定 [<code>http</code>/<code>https</code>/<code>tcp</code>/<code>udp</code>/<code>icmp</code>/<code>fragment</code>/<code>ip</code>]</li>
 <li><code>allow</code> - (Optional) マッチしたパケットを許可するフラグ</li>
@@ -860,7 +854,12 @@
 <li><code>source_port</code> - (Optional) 送信元ポート番号、または送信元ポート番号範囲 (例: <code>1024</code>, <code>1024-2048</code>)</li>
 <li><code>description</code> - (Optional) 説明</li>
 </ul>
-<h3 id="timeouts">Timeouts</h3>
+<h4 id="common-arguments">Common Arguments</h4>
+<ul>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
+</ul>
+<h4 id="timeouts">Timeouts</h4>
 <p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
 <li><code>create</code> - 作成 (デフォルト: 5分)</li>

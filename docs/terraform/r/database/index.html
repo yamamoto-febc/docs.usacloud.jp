@@ -789,6 +789,7 @@
 variable replica_password {}
 
 resource &quot;sakuracloud_database&quot; &quot;foobar&quot; {
+  name          = &quot;foobar&quot;
   database_type = &quot;mariadb&quot;
   plan          = &quot;30g&quot;
 
@@ -797,19 +798,20 @@ resource &quot;sakuracloud_database&quot; &quot;foobar&quot; {
 
   replica_password = var.replica_password
 
-  source_ranges = [&quot;192.168.11.0/24&quot;, &quot;192.168.12.0/24&quot;]
+  network_interface {
+    switch_id     = sakuracloud_switch.foobar.id
+    ip_address    = &quot;192.168.11.11&quot;
+    netmask       = 24
+    gateway       = &quot;192.168.11.1&quot;
+    port          = 3306
+    source_ranges = [&quot;192.168.11.0/24&quot;, &quot;192.168.12.0/24&quot;]
+  }
 
-  port = 3306
+  backup {
+    time     = &quot;00:00&quot;
+    weekdays = [&quot;mon&quot;, &quot;tue&quot;]
+  }
 
-  backup_time     = &quot;00:00&quot;
-  backup_weekdays = [&quot;mon&quot;, &quot;tue&quot;]
-
-  switch_id    = sakuracloud_switch.foobar.id
-  ip_address   = &quot;192.168.11.11&quot;
-  netmask      = 24
-  gateway      = &quot;192.168.11.1&quot;
-
-  name        = &quot;foobar&quot;
   description = &quot;description&quot;
   tags        = [&quot;tag1&quot;, &quot;tag2&quot;]
 }
@@ -832,6 +834,10 @@ resource &quot;sakuracloud_switch&quot; &quot;foobar&quot; {
 </ul>
 <h4 id="_2">ネットワーク関連</h4>
 <ul>
+<li><code>network_interface</code> - (Required) ネットワーク設定。詳細は<a href="#network_interface">network_interfaceブロック</a>を参照</li>
+</ul>
+<h5 id="network_interface">network_interfaceブロック</h5>
+<ul>
 <li><code>switch_id</code> - (Required) スイッチID /  この値を変更するとリソースの再作成が行われる</li>
 <li><code>gateway</code> - (Required) ゲートウェイIPアドレス / この値を変更するとリソースの再作成が行われる</li>
 <li><code>ip_address</code> - (Required) IPアドレス / この値を変更するとリソースの再作成が行われる</li>
@@ -841,8 +847,12 @@ resource &quot;sakuracloud_switch&quot; &quot;foobar&quot; {
 </ul>
 <h4 id="_3">バックアップ関連</h4>
 <ul>
-<li><code>backup_time</code> - (Optional) バックアップ取得時刻 / <code>HH:mm</code>形式で指定</li>
-<li><code>backup_weekdays</code> - (Optional) バックアップ取得曜日のリスト / 各要素は次のいずれかを指定 [<code>sun</code>/<code>mon</code>/<code>tue</code>/<code>wed</code>/<code>thu</code>/<code>fri</code>/<code>sat</code>]</li>
+<li><code>backup</code> - (Optional) バックアップ設定。詳細は<a href="#backup">backupブロック</a>を参照</li>
+</ul>
+<h5 id="backup">backupブロック</h5>
+<ul>
+<li><code>time</code> - (Optional) バックアップ取得時刻 / <code>HH:mm</code>形式で指定</li>
+<li><code>weekdays</code> - (Optional) バックアップ取得曜日のリスト / 各要素は次のいずれかを指定 [<code>sun</code>/<code>mon</code>/<code>tue</code>/<code>wed</code>/<code>thu</code>/<code>fri</code>/<code>sat</code>]</li>
 </ul>
 <h4 id="_4">レプリケーション関連</h4>
 <ul>
@@ -856,7 +866,7 @@ resource &quot;sakuracloud_switch&quot; &quot;foobar&quot; {
 <li><code>tags</code> - (Optional) タグ</li>
 <li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
 </ul>
-<h3 id="timeouts">Timeouts</h3>
+<h4 id="timeouts">Timeouts</h4>
 <p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
 <li><code>create</code> - 作成 (デフォルト: 60分)</li>

@@ -840,47 +840,16 @@ resource sakuracloud_server &quot;foobar&quot; {
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
 <li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
-<li><code>bind_port</code> - (Required) 待ち受けポート設定のリスト。詳細は<a href="#bind_port">bind_portブロック</a>を参照</li>
-<li><code>health_check</code> - (Required) ヘルスチェック設定。詳細は<a href="#health_check">health_checkブロック</a>を参照</li>
 <li><code>vip_failover</code> - (Optional) VIPフェイルオーバ機能の有効フラグ / この値を変更するとリソースの再作成が行われる</li>
 <li><code>plan</code> - (Optional) プラン / 次のいずれかを指定 [<code>100</code>/<code>500</code>/<code>1000</code>/<code>5000</code>/<code>10000</code>/<code>50000</code>/<code>100000</code>] / この値を変更するとリソースの再作成が行われる / デフォルト:<code>100</code></li>
 <li><code>region</code> - (Optional) エンハンスドロードバランサが配置されるリージョン / 次のいずれかを指定 [<code>tk1</code>/<code>is1</code>] / この値を変更するとリソースの再作成が行われる / デフォルト:<code>is1</code></li>
-<li><code>sorry_server</code> - (Optional) ソーリーサーバ設定。詳細は<a href="#sorry_server">sorry_serverブロック</a>を参照</li>
-<li><code>sticky_session</code> - (Optional) Stickyセッションの有効フラグ</li>
 <li><code>timeout</code> - (Optional) 実サーバの通信タイムアウト秒数 / デフォルト:<code>10</code></li>
 </ul>
 <h4 id="_1">証明書関連</h4>
 <ul>
 <li><code>certificate</code> - (Optional) 証明書設定。詳細は<a href="#certificate">certificateブロック</a>を参照</li>
 </ul>
-<h4 id="_2">振り分け動作関連</h4>
-<ul>
-<li><code>rule</code> - (Optional) 振り分けルール設定のリスト。詳細は<a href="#rule">ruleブロック</a>を参照</li>
-<li><code>server</code> - (Optional) 実サーバ設定のリスト。詳細は<a href="#server">serverブロック</a>を参照</li>
-</ul>
-<h4 id="common-arguments">Common Arguments</h4>
-<ul>
-<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
-<li><code>icon_id</code> - (Optional) アイコンID</li>
-<li><code>tags</code> - (Optional) タグ</li>
-</ul>
-<hr />
-<h4 id="bind_port">bind_portブロック</h4>
-<ul>
-<li><code>proxy_mode</code> - (Required) プロキシモード / 次のいずれかを指定 [<code>http</code>/<code>https</code>/<code>tcp</code>]</li>
-<li><code>port</code> - (Optional) 待ち受けポート番号</li>
-<li><code>redirect_to_https</code> - (Optional) httpからhttpsへのリダイレクト有効化フラグ / <code>proxy_mode</code>が<code>http</code>の場合のみ有効</li>
-<li><code>response_header</code> - (Optional) レスポンスに付与するHTTPヘッダのリスト。詳細は<a href="#response_header">response_headerブロック</a>を参照</li>
-<li><code>support_http2</code> - (Optional) HTTP/2を有効にするフラグ / <code>proxy_mode</code>が<code>https</code>の場合のみ有効</li>
-</ul>
-<hr />
-<h3 id="response_header">response_headerブロック</h3>
-<ul>
-<li><code>header</code> - (Required) ヘッダ名</li>
-<li><code>value</code> - (Required) 値</li>
-</ul>
-<hr />
-<h4 id="certificate">certificateブロック</h4>
+<h5 id="certificate">certificateブロック</h5>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>server_cert</code>と<code>private_key</code>、<code>intermediate_cert</code>はエンハンスドロードバランサ ACME設定リソース(<code>sakuracloud_proxylb_acme</code>)を利用すると上書きされます。</p>
@@ -891,15 +860,35 @@ resource sakuracloud_server &quot;foobar&quot; {
 <li><code>private_key</code> - (Optional) 秘密鍵</li>
 <li><code>server_cert</code> - (Optional) サーバ証明書</li>
 </ul>
-<hr />
-<h4 id="additional_certificate">additional_certificateブロック</h4>
+<h5 id="additional_certificate">additional_certificateブロック</h5>
 <ul>
 <li><code>server_cert</code> - (Required) サーバ証明書</li>
 <li><code>private_key</code> - (Required) 秘密鍵</li>
 <li><code>intermediate_cert</code> - (Optional) 中間証明書</li>
 </ul>
-<hr />
-<h4 id="health_check">health_checkブロック</h4>
+<h4 id="_2">バランシング動作</h4>
+<ul>
+<li><code>bind_port</code> - (Required) 待ち受けポート設定のリスト。詳細は<a href="#bind_port">bind_portブロック</a>を参照</li>
+<li><code>health_check</code> - (Required) ヘルスチェック設定。詳細は<a href="#health_check">health_checkブロック</a>を参照</li>
+<li><code>rule</code> - (Optional) 振り分けルール設定のリスト。詳細は<a href="#rule">ruleブロック</a>を参照</li>
+<li><code>server</code> - (Optional) 実サーバ設定のリスト。詳細は<a href="#server">serverブロック</a>を参照</li>
+<li><code>sorry_server</code> - (Optional) ソーリーサーバ設定。詳細は<a href="#sorry_server">sorry_serverブロック</a>を参照</li>
+<li><code>sticky_session</code> - (Optional) Stickyセッションの有効フラグ</li>
+</ul>
+<h5 id="bind_port">bind_portブロック</h5>
+<ul>
+<li><code>proxy_mode</code> - (Required) プロキシモード / 次のいずれかを指定 [<code>http</code>/<code>https</code>/<code>tcp</code>]</li>
+<li><code>port</code> - (Optional) 待ち受けポート番号</li>
+<li><code>redirect_to_https</code> - (Optional) httpからhttpsへのリダイレクト有効化フラグ / <code>proxy_mode</code>が<code>http</code>の場合のみ有効</li>
+<li><code>response_header</code> - (Optional) レスポンスに付与するHTTPヘッダのリスト。詳細は<a href="#response_header">response_headerブロック</a>を参照</li>
+<li><code>support_http2</code> - (Optional) HTTP/2を有効にするフラグ / <code>proxy_mode</code>が<code>https</code>の場合のみ有効</li>
+</ul>
+<h5 id="response_header">response_headerブロック</h5>
+<ul>
+<li><code>header</code> - (Required) ヘッダ名</li>
+<li><code>value</code> - (Required) 値</li>
+</ul>
+<h5 id="health_check">health_checkブロック</h5>
 <ul>
 <li><code>protocol</code> - (Required) プロトコル / 次のいずれかを指定 [<code>http</code>/<code>tcp</code>]</li>
 <li><code>delay_loop</code> - (Optional) チェック間隔秒数 / <code>10</code>-<code>60</code>の範囲で指定</li>
@@ -907,28 +896,31 @@ resource sakuracloud_server &quot;foobar&quot; {
 <li><code>path</code> - (Optional) HTTPチェック時のリクエストパス</li>
 <li><code>port</code> - (Optional) TCPチェック時のポート番号</li>
 </ul>
-<hr />
-<h4 id="rule">ruleブロック</h4>
+<h5 id="rule">ruleブロック</h5>
 <ul>
 <li><code>group</code> - (Optional) 振り分け先グループ名 / <code>host</code>と<code>path</code>にマッチするリクエストを受信した場合に同じ<code>group</code>の値を持つ実サーバに振り分けられる / <code>1</code>-<code>10</code>文字で指定</li>
 <li><code>host</code> - (Optional) リクエストのHostヘッダ</li>
 <li><code>path</code> - (Optional) リクエストパス</li>
 </ul>
-<hr />
-<h4 id="server">serverブロック</h4>
+<h5 id="server">serverブロック</h5>
 <ul>
 <li><code>ip_address</code> - (Required) IPアドレス</li>
 <li><code>port</code> - (Required) ポート番号 / <code>1</code>-<code>65535</code>の範囲で指定</li>
 <li><code>enabled</code> - (Optional) 有効フラグ</li>
 <li><code>group</code> - (Optional) 振り分け先グループ名 / 振り分けの挙動については<a href="#rule">ruleブロック</a>を参照 </li>
 </ul>
-<hr />
-<h4 id="sorry_server">sorry_serverブロック</h4>
+<h5 id="sorry_server">sorry_serverブロック</h5>
 <ul>
 <li><code>ip_address</code> - (Required) IPアドレス</li>
 <li><code>port</code> - (Optional) ポート番号</li>
 </ul>
-<h3 id="timeouts">Timeouts</h3>
+<h4 id="common-arguments">Common Arguments</h4>
+<ul>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
+</ul>
+<h4 id="timeouts">Timeouts</h4>
 <p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
 <li><code>create</code> - 作成 (デフォルト: 5分)</li>

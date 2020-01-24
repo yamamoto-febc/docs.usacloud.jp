@@ -841,40 +841,28 @@ resource &quot;sakuracloud_switch&quot; &quot;foobar&quot; {
 <li><code>static_route</code> - (Optional) スタティックルート設定のリスト。詳細は<a href="#static_route">static_routeブロック</a>を参照</li>
 <li><code>traffic_control</code> - (Optional) トラフィックコントロール設定。詳細は<a href="#traffic_control">traffic_controlブロック</a>を参照</li>
 </ul>
-<h4 id="common-arguments">Common Arguments</h4>
-<ul>
-<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
-<li><code>icon_id</code> - (Optional) アイコンID</li>
-<li><code>tags</code> - (Optional) タグ</li>
-<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
-</ul>
-<hr />
-<h4 id="private_network_interface">private_network_interfaceブロック</h4>
+<h5 id="private_network_interface">private_network_interfaceブロック</h5>
 <ul>
 <li><code>ip_address</code> - (Required) IPアドレス</li>
 <li><code>netmask</code> - (Required) サブネットマスク長 / <code>8</code>-<code>29</code>の範囲で指定</li>
 <li><code>switch_id</code> - (Required) スイッチID</li>
 </ul>
-<hr />
-<h4 id="sim">simブロック</h4>
+<h5 id="sim">simブロック</h5>
 <ul>
 <li><code>ip_address</code> - (Required) IPアドレス</li>
 <li><code>sim_id</code> - (Required) SIMのID</li>
 </ul>
-<hr />
-<h4 id="sim_route">sim_routeブロック</h4>
+<h5 id="sim_route">sim_routeブロック</h5>
 <ul>
 <li><code>prefix</code> - (Required) プレフィックス / CIDRブロックとして指定</li>
 <li><code>sim_id</code> - (Required) 宛先となるSIMのID</li>
 </ul>
-<hr />
-<h4 id="static_route">static_routeブロック</h4>
+<h5 id="static_route">static_routeブロック</h5>
 <ul>
 <li><code>next_hop</code> - (Required) ネクストホップIPアドレス</li>
 <li><code>prefix</code> - (Required) プレフィックス / CIDRブロックとして指定</li>
 </ul>
-<hr />
-<h4 id="traffic_control">traffic_controlブロック</h4>
+<h5 id="traffic_control">traffic_controlブロック</h5>
 <ul>
 <li><code>quota</code> - (Required) 通信制限を行う月間通信量の閾値</li>
 <li><code>auto_traffic_shaping</code> - (Optional) <code>quota</code>を超えた際に自動で通信制限を有効にするフラグ</li>
@@ -883,7 +871,14 @@ resource &quot;sakuracloud_switch&quot; &quot;foobar&quot; {
 <li><code>enable_slack</code> - (Optional) slackでの通知の有効フラグ</li>
 <li><code>slack_webhook</code> - (Optional) slackでの通知に利用されるWebhookのURL</li>
 </ul>
-<h3 id="timeouts">Timeouts</h3>
+<h4 id="common-arguments">Common Arguments</h4>
+<ul>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
+<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
+</ul>
+<h4 id="timeouts">Timeouts</h4>
 <p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
 <li><code>create</code> - 作成 (デフォルト: 60分)</li>

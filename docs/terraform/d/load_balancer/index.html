@@ -798,16 +798,14 @@
 <li><code>filter</code> - (Optional) 参照対象をフィルタリングするための条件。詳細は<a href="#filter">filterブロック</a>を参照 </li>
 <li><code>zone</code> - (Optional) 対象ゾーンの名前 (例: <code>is1a</code>, <code>tk1a</code>)  </li>
 </ul>
-<hr />
-<h4 id="filter">filterブロック</h4>
+<h5 id="filter">filterブロック</h5>
 <ul>
 <li><code>condition</code> - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は<a href="#condition">conditionブロック</a>を参照  </li>
 <li><code>id</code> - (Optional) 対象リソースのID </li>
 <li><code>names</code> - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  </li>
 <li><code>tags</code> - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる</li>
 </ul>
-<hr />
-<h4 id="condition">conditionブロック</h4>
+<h5 id="condition">conditionブロック</h5>
 <ul>
 <li><code>name</code> - (Required) 対象フィールド名。大文字/小文字を区別する  </li>
 <li><code>values</code> - (Required) 対象フィールドの値。複数指定した場合はAND条件となる</li>
@@ -816,20 +814,22 @@
 <ul>
 <li><code>id</code> - ID</li>
 <li><code>description</code> - 説明</li>
-<li><code>gateway</code> - ゲートウェイIPアドレス</li>
-<li><code>high_availability</code> - 冗長化構成の有効フラグ</li>
 <li><code>icon_id</code> - アイコンID</li>
-<li><code>ip_addresses</code> - IPアドレスのリスト</li>
 <li><code>name</code> - 名前</li>
-<li><code>netmask</code> - サブネットマスク長</li>
+<li><code>network_interface</code> - ネットワーク設定。詳細は<a href="#network_interface">network_interfaceブロック</a>を参照</li>
 <li><code>plan</code> - プラン。次のいずれかとなる [<code>standard</code>/<code>highspec</code>]</li>
-<li><code>switch_id</code> - スイッチID</li>
 <li><code>tags</code> - タグ</li>
 <li><code>vip</code> - VIPのリスト。詳細は<a href="#vip">vipブロック</a>を参照</li>
+</ul>
+<h5 id="network_interface">network_interfaceブロック</h5>
+<ul>
+<li><code>gateway</code> - ゲートウェイIPアドレス</li>
+<li><code>ip_addresses</code> - IPアドレスのリスト</li>
+<li><code>netmask</code> - サブネットマスク長</li>
+<li><code>switch_id</code> - スイッチID</li>
 <li><code>vrid</code> - VRID</li>
 </ul>
-<hr />
-<h4 id="vip">vipブロック</h4>
+<h5 id="vip">vipブロック</h5>
 <ul>
 <li><code>delay_loop</code> - チェック間隔秒数</li>
 <li><code>description</code> - 説明</li>
@@ -838,8 +838,7 @@
 <li><code>sorry_server</code> - ソーリーサーバのIPアドレス</li>
 <li><code>vip</code> - VIP(仮想IPアドレス)</li>
 </ul>
-<hr />
-<h4 id="server">serverブロック</h4>
+<h5 id="server">serverブロック</h5>
 <ul>
 <li><code>enabled</code> - 有効フラグ</li>
 <li><code>ip_address</code> - IPアドレス</li>

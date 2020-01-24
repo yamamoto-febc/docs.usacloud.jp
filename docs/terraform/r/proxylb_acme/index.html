@@ -824,7 +824,7 @@ Let's Encrypt terms of service: https://letsencrypt.org/repository/
 DNSレコードを登録した直後だと名前解決できない場合があります。<br />
 このため、必要に応じて<code>update_delay_sec</code>を適切に設定してください。</p>
 </div>
-<h3 id="timeouts">Timeouts</h3>
+<h4 id="timeouts">Timeouts</h4>
 <p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
 <li><code>create</code> - 作成 (デフォルト: 20分)</li>
@@ -835,16 +835,14 @@ DNSレコードを登録した直後だと名前解決できない場合があ�
 <li><code>id</code> - ID</li>
 <li><code>certificate</code> - 証明書設定のリスト。詳細は<a href="#certificate">certificateブロック</a>を参照</li>
 </ul>
-<hr />
-<h4 id="certificate">certificateブロック</h4>
+<h5 id="certificate">certificateブロック</h5>
 <ul>
 <li><code>additional_certificate</code> - 追加証明書のリスト。詳細は<a href="#additional_certificate">additional_certificateブロック</a>を参照</li>
 <li><code>intermediate_cert</code> - 中間証明書</li>
 <li><code>private_key</code> - 秘密鍵</li>
 <li><code>server_cert</code> - サーバ証明書</li>
 </ul>
-<hr />
-<h4 id="additional_certificate">additional_certificateブロック</h4>
+<h5 id="additional_certificate">additional_certificateブロック</h5>
 <ul>
 <li><code>intermediate_cert</code> - 中間証明書</li>
 <li><code>private_key</code> - 秘密鍵</li>

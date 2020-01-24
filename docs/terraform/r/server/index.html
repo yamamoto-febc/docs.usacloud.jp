@@ -852,20 +852,22 @@ ACPIが利用できないサーバの場合<code>true</code>に設定する</li>
 <p><code>network_interface</code>は省略可能ですが、省略した場合NICが接続されていない状態のサーバが作成されます。<br />
 通常は1つ以上指定してください。</p>
 </div>
+<h5 id="network_interface">network_interfaceブロック</h5>
+<ul>
+<li><code>upstream</code> - (Required) 上流ネットワーク設定 / 次のいずれかを指定する<ul>
+<li><code>shared</code>: 共有セグメント(100Mbps)</li>
+<li><code>disconnect</code>: 切断</li>
+<li><code>&lt;switch id&gt;</code>: スイッチのID</li>
+</ul>
+</li>
+<li><code>packet_filter_id</code> - (Optional) NICにアタッチするパケットフィルタのID</li>
+</ul>
 <h4 id="_2">ディスク関連</h4>
 <ul>
 <li><code>disk_edit_parameter</code> - (Optional) ディスクの修正APIへのパラメータ。詳細は<a href="#disk_edit_parameter">disk_edit_parameterブロック</a>を参照</li>
 <li><code>disks</code> - (Optional) サーバに接続するディスクのIDのリスト</li>
 </ul>
-<h4 id="common-arguments">Common Arguments</h4>
-<ul>
-<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
-<li><code>icon_id</code> - (Optional) アイコンID</li>
-<li><code>tags</code> - (Optional) タグ</li>
-<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
-</ul>
-<hr />
-<h4 id="disk_edit_parameter">disk_edit_parameterブロック</h4>
+<h5 id="disk_edit_parameter">disk_edit_parameterブロック</h5>
 <ul>
 <li><code>change_partition_uuid</code> - (Optional) パーティションUUIDを変更するフラグ</li>
 <li><code>disable_pw_auth</code> - (Optional) パスワード認証を無効にするフラグ</li>
@@ -882,18 +884,14 @@ ACPIが利用できないサーバの場合<code>true</code>に設定する</li>
 <p class="admonition-title">Note</p>
 <p>ディスクの修正API(<code>disk_edit_parameter</code>)はサーバに接続された先頭のディスクに対してのみ有効です。</p>
 </div>
-<hr />
-<h4 id="network_interface">network_interfaceブロック</h4>
+<h4 id="common-arguments">Common Arguments</h4>
 <ul>
-<li><code>upstream</code> - (Required) 上流ネットワーク設定 / 次のいずれかを指定する<ul>
-<li><code>shared</code>: 共有セグメント(100Mbps)</li>
-<li><code>disconnect</code>: 切断</li>
-<li><code>&lt;switch id&gt;</code>: スイッチのID</li>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
+<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
 </ul>
-</li>
-<li><code>packet_filter_id</code> - (Optional) NICにアタッチするパケットフィルタのID</li>
-</ul>
-<h3 id="timeouts">Timeouts</h3>
+<h4 id="timeouts">Timeouts</h4>
 <p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
 <li><code>create</code> - 作成 (デフォルト: 5分)</li>
@@ -910,7 +908,6 @@ ACPIが利用できないサーバの場合<code>true</code>に設定する</li>
 <li><code>network_address</code> - ネットワークアドレス</li>
 <li><code>private_host_name</code> - 専有ホストの名前</li>
 </ul>
-<hr />
 <p><code>network_interface</code>の各要素は以下の項目も参照可能です。</p>
 <ul>
 <li><code>mac_address</code> - MACアドレス</li>

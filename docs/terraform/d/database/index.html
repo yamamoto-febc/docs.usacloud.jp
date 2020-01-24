@@ -798,16 +798,14 @@
 <li><code>filter</code> - (Optional) 参照対象をフィルタリングするための条件。詳細は<a href="#filter">filterブロック</a>を参照 </li>
 <li><code>zone</code> - (Optional) 対象ゾーンの名前 (例: <code>is1a</code>, <code>tk1a</code>)  </li>
 </ul>
-<hr />
-<h4 id="filter">filterブロック</h4>
+<h5 id="filter">filterブロック</h5>
 <ul>
 <li><code>condition</code> - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は<a href="#condition">conditionブロック</a>を参照  </li>
 <li><code>id</code> - (Optional) 対象リソースのID </li>
 <li><code>names</code> - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  </li>
 <li><code>tags</code> - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる</li>
 </ul>
-<hr />
-<h4 id="condition">conditionブロック</h4>
+<h5 id="condition">conditionブロック</h5>
 <ul>
 <li><code>name</code> - (Required) 対象フィールド名。大文字/小文字を区別する  </li>
 <li><code>values</code> - (Required) 対象フィールドの値。複数指定した場合はAND条件となる</li>
@@ -815,25 +813,33 @@
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
 <li><code>id</code> - ID</li>
-<li><code>backup_time</code> - バックアップ開始時刻。<code>HH:mm</code>形式</li>
-<li><code>backup_weekdays</code> - バックアップを取得する曜日のリスト<br />
+<li><code>backup</code> - バックアップ設定。詳細は<a href="#backup">backupブロック</a>を参照
 要素は次のいずれかとなる [<code>sun</code>/<code>mon</code>/<code>tue</code>/<code>wed</code>/<code>thu</code>/<code>fri</code>/<code>sat</code>]</li>
 <li><code>database_type</code> - データベース種別。 次のいずれかとなる [<code>mariadb</code>/<code>postgres</code>]</li>
 <li><code>description</code> - 説明</li>
-<li><code>gateway</code> - ゲートウェイのIPアドレス</li>
 <li><code>icon_id</code> - アイコンID</li>
-<li><code>ip_address</code> - IPアドレス</li>
 <li><code>name</code> - 名前</li>
-<li><code>netmask</code> - サブネットマスク長</li>
+<li><code>network_interface</code> - ネットワーク設定。詳細は<a href="#network_interface">network_interfaceブロック</a>を参照</li>
 <li><code>password</code> - デフォルトユーザーのパスワード</li>
 <li><code>plan</code> - プラン。次のいずれかとなる [<code>10g</code>/<code>30g</code>/<code>90g</code>/<code>240g</code>/<code>500g</code>/<code>1t</code>].</li>
-<li><code>port</code> - ポート番号</li>
 <li><code>replica_password</code> - レプリケーションユーザーのパスワード</li>
 <li><code>replica_user</code> - レプリケーションユーザー名</li>
-<li><code>source_ranges</code> - データベースへのアクセスを許可するソースIP範囲のリスト</li>
-<li><code>switch_id</code> - スイッチID</li>
 <li><code>tags</code> - タグ</li>
 <li><code>username</code> - デフォルトユーザー名</li>
+</ul>
+<h5 id="backup">backupブロック</h5>
+<ul>
+<li><code>time</code> - バックアップ開始時刻。<code>HH:mm</code>形式</li>
+<li><code>weekdays</code> - バックアップを取得する曜日のリスト  </li>
+</ul>
+<h5 id="network_interface">network_interfaceブロック</h5>
+<ul>
+<li><code>gateway</code> - ゲートウェイのIPアドレス</li>
+<li><code>ip_address</code> - IPアドレス</li>
+<li><code>netmask</code> - サブネットマスク長</li>
+<li><code>port</code> - ポート番号</li>
+<li><code>source_ranges</code> - データベースへのアクセスを許可するソースIP範囲のリスト</li>
+<li><code>switch_id</code> - スイッチID</li>
 </ul>
               
             </div>

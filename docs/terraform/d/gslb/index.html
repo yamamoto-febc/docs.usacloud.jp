@@ -797,16 +797,14 @@
 <ul>
 <li><code>filter</code> - (Optional) 参照対象をフィルタリングするための条件。詳細は<a href="#filter">filterブロック</a>を参照 </li>
 </ul>
-<hr />
-<h4 id="filter">filterブロック</h4>
+<h5 id="filter">filterブロック</h5>
 <ul>
 <li><code>condition</code> - (Optional) APIリクエスト時に利用されるフィルタリング用パラメータ。詳細は<a href="#condition">conditionブロック</a>を参照  </li>
 <li><code>id</code> - (Optional) 対象リソースのID </li>
 <li><code>names</code> - (Optional) 対象リソースの名前。指定値と部分一致するリソースが参照対象となる。複数指定した場合はAND条件となる  </li>
 <li><code>tags</code> - (Optional) 対象リソースが持つタグ。指定値と完全一致するリソースが参照対象となる。複数指定した場合はAND条件となる</li>
 </ul>
-<hr />
-<h4 id="condition">conditionブロック</h4>
+<h5 id="condition">conditionブロック</h5>
 <ul>
 <li><code>name</code> - (Required) 対象フィールド名。大文字/小文字を区別する  </li>
 <li><code>values</code> - (Required) 対象フィールドの値。複数指定した場合はAND条件となる</li>
@@ -824,8 +822,7 @@
 <li><code>tags</code> - タグ</li>
 <li><code>weighted</code> - 重み付け振り分けの有効化フラグ</li>
 </ul>
-<hr />
-<h4 id="health_check">health_checkブロック</h4>
+<h5 id="health_check">health_checkブロック</h5>
 <ul>
 <li><code>delay_loop</code> - チェック間隔秒数</li>
 <li><code>host_header</code> - HTTP/HTTPSチェック時に利用されるHostヘッダの値</li>
@@ -834,8 +831,7 @@
 <li><code>protocol</code> - プロトコル。次のいずれかとなる [<code>http</code>/<code>https</code>/<code>tcp</code>/<code>ping</code>]</li>
 <li><code>status</code> - HTTP/HTTPSチェック時に利用されるレスポンスコード</li>
 </ul>
-<hr />
-<h4 id="server">serverブロック</h4>
+<h5 id="server">serverブロック</h5>
 <ul>
 <li><code>enabled</code> - 有効フラグ</li>
 <li><code>ip_address</code> - IPアドレス</li>

@@ -102,9 +102,9 @@
                 
                     <li><a class="toctree-l4" href="#diffProvider">プロバイダー</a></li>
                 
-                    <li><a class="toctree-l4" href="#diffDetailDataSource">データソース</a></li>
+                    <li><a class="toctree-l4" href="#diffDetailDataSource">データソースの変更点</a></li>
                 
-                    <li><a class="toctree-l4" href="#diffDetailResource">リソース</a></li>
+                    <li><a class="toctree-l4" href="#diffDetailResource">リソースの変更点</a></li>
                 
             
             </ul>
@@ -810,7 +810,7 @@
 </li>
 <li><a href="#diffDetail">各リソースの変更点</a><ul>
 <li><a href="#diffProvider">プロバイダー</a></li>
-<li><a href="#diffDetailDataSource">データソース</a><ul>
+<li><a href="#diffDetailDataSource">データソースの変更点</a><ul>
 <li><a href="#dataSourceBridge">ブリッジ: <code>sakuracloud_bridge</code></a></li>
 <li><a href="#dataSourceDatabase">データベース: <code>sakuracloud_database</code></a></li>
 <li><a href="#dataSourceDisk">ディスク: <code>sakuracloud_disk</code></a></li>
@@ -829,7 +829,7 @@
 <li><a href="#dataSourceWebAccel">ウェブアクセラレータ: <code>sakuracloud_webaccel</code></a></li>
 </ul>
 </li>
-<li><a href="#diffDetailResource">リソース</a><ul>
+<li><a href="#diffDetailResource">リソースの変更点</a><ul>
 <li><a href="#resourceBridge">ブリッジ: <code>sakuracloud_bridge</code></a></li>
 <li><a href="#resourceDatabase">データベース: <code>sakuracloud_database</code></a></li>
 <li><a href="#resourceDatabaseReadReplica">データベース(リードレプリカ): <code>sakuracloud_database_read_replica</code></a></li>
@@ -921,7 +921,7 @@ data &quot;sakuracloud_archive&quot; &quot;foobar&quot; {
 }
 </code></pre>
 
-<h3 id="v2">v2でのデータソース:</h3>
+<h4 id="v2">v2でのデータソース:</h4>
 <pre><code class="hcl"># v1でのデータソース
 data &quot;sakuracloud_archive&quot; &quot;foobar&quot; {
   filter {
@@ -1126,7 +1126,7 @@ data &quot;sakuracloud_archive&quot; &quot;foobar&quot; {
 現在親子リソースになっていないリソースを親子に分割したいユースケースがある場合は<a href="https://github.com/sacloud/terraform-provider-sakuracloud">GitHub</a>にIssueを投稿して要望を出してください。<br />
 ユースケースによっては実装する可能性があります。</p>
 </div>
-<h4 id="timeouts">timeoutsブロックのサポート</h4>
+<h4 id="timeouts">Timeoutsブロックのサポート</h4>
 <p>各リソースで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">timeoutsブロック</a>を指定可能になりました。</p>
 <h4 id="_7">ゾーンのスキーマレベルでのバリデーションの廃止</h4>
 <p>これまでは各リソースのスキーマで静的に利用可能なゾーンを定義していましたが、v2ではプロバイダーブロックで<code>zones</code>を指定することにより動的に利用可能なゾーンを指定可能になりました。<br />
@@ -1160,7 +1160,7 @@ v2では代わりに各リソースで<a href="https://www.terraform.io/docs/con
 </li>
 </ul>
 <hr />
-<h2 id="diffDetailDataSource">データソース</h2>
+<h2 id="diffDetailDataSource">データソースの変更点</h2>
 <h3 id="dataSourceBridge"><a href="https://docs.usacloud.jp/terraform/d/bridge">ブリッジ: <code>sakuracloud_bridge</code></a></h3>
 <ul>
 <li><code>switch_ids</code>(廃止) </li>
@@ -1168,13 +1168,23 @@ v2では代わりに各リソースで<a href="https://www.terraform.io/docs/con
 <hr />
 <h3 id="dataSourceDatabase"><a href="https://docs.usacloud.jp/terraform/d/database">データベース: <code>sakuracloud_database</code></a></h3>
 <ul>
-<li><code>allow_networks</code>(名称変更) =&gt; <code>source_ranges</code>  </li>
+<li><code>backup</code>(追加)<ul>
+<li><code>backup_time</code>(名称変更) =&gt; <code>time</code></li>
+<li><code>backup_weekdays</code>(名称変更) =&gt; <code>weekdays</code></li>
+</ul>
+</li>
 <li><code>database_type</code>(追加) =&gt; データベース種別(MariaDB or PostgreSQL)</li>
+<li><code>user_name</code>(名称変更) =&gt; <code>username</code></li>
+<li><code>user_password</code>(名称変更) =&gt; <code>password</code></li>
+<li><code>network_interface</code>(追加)<ul>
+<li><code>allow_networks</code>(名称変更) =&gt; <code>source_ranges</code>  </li>
 <li><code>default_route</code>(名称変更) =&gt; <code>gateway</code></li>
 <li><code>ipaddress1</code>(名称変更) =&gt; <code>ip_address</code></li>
 <li><code>nw_mask_len</code>(名称変更) =&gt; <code>netmask</code></li>
-<li><code>user_name</code>(名称変更) =&gt; <code>username</code></li>
-<li><code>user_password</code>(名称変更) =&gt; <code>password</code></li>
+<li><code>port</code>(移動)</li>
+<li><code>switch_id</code></li>
+</ul>
+</li>
 </ul>
 <hr />
 <h3 id="dataSourceDisk"><a href="https://docs.usacloud.jp/terraform/d/disk">ディスク: <code>sakuracloud_disk</code></a></h3>
@@ -1210,17 +1220,28 @@ v2では代わりに各リソースで<a href="https://www.terraform.io/docs/con
 <hr />
 <h3 id="dataSourceLocaBalancer"><a href="https://docs.usacloud.jp/terraform/d/load_balancer">ロードバランサ: <code>sakuracloud_load_balancer</code></a></h3>
 <ul>
+<li><code>vip</code>(追加) =&gt; 仮想IPアドレス(配下の実サーバを含む)</li>
+<li><code>is_double</code>(廃止)</li>
+<li><code>high_availability</code>(廃止)</li>
+<li><code>network_interface</code>(追加)<ul>
 <li><code>default_route</code>(名称変更) =&gt; <code>gateway</code></li>
 <li><code>ipaddress1</code>/<code>ipaddress2</code>(統合) =&gt; <code>ip_addresses</code>(リスト)</li>
-<li><code>is_double</code>(廃止)</li>
 <li><code>nw_mask_len</code>(名称変更) =&gt; <code>netmask</code></li>
-<li><code>vip</code>(追加) =&gt; 仮想IPアドレス(配下の実サーバを含む)</li>
+<li><code>switch_id</code>(移動)</li>
+<li><code>vrid</code>(移動)</li>
+</ul>
+</li>
 </ul>
 <hr />
 <h3 id="dataSourceNFS"><a href="https://docs.usacloud.jp/terraform/d/nfs">NFS: <code>sakuracloud_nfs</code></a></h3>
 <ul>
+<li><code>network_interface</code>(追加)<ul>
+<li><code>gateway</code>(移動)</li>
 <li><code>ipaddress</code>(名称変更) =&gt; <code>ip_address</code></li>
 <li><code>nw_mask_len</code>(名称変更) =&gt; <code>netmask</code></li>
+<li><code>switch_id</code>(移動)</li>
+</ul>
+</li>
 </ul>
 <hr />
 <h3 id="dataSourcePacketFilter"><a href="https://docs.usacloud.jp/terraform/d/packet_filter">パケットフィルタ : <code>sakuracloud_packet_filter</code></a></h3>
@@ -1312,11 +1333,19 @@ v2では代わりに各リソースで<a href="https://www.terraform.io/docs/con
 </ul>
 </li>
 <li><code>global_address</code>(名称変更) =&gt; <code>public_ip</code></li>
-<li><code>interface</code>(名称変更) =&gt; <code>network_interface</code><ul>
+<li><code>interface</code>(名称変更) =&gt; <code>private_network_interface</code><ul>
 <li><code>nw_mask_len</code>(名称変更) =&gt; <code>netmask</code></li>
 </ul>
 </li>
-<li><code>ipaddress1</code>/<code>ipaddress2</code>(統合) =&gt; <code>ip_addresses</code>(リスト)</li>
+<li><code>public_network_interface</code>(追加)<ul>
+<li><code>aliases</code>(移動)</li>
+<li><code>ipaddress1</code>/<code>ipaddress2</code>(移動/統合) =&gt; <code>ip_addresses</code>(リスト)</li>
+<li><code>switch_id</code>(移動)</li>
+<li><code>vip</code>(移動)</li>
+<li><code>vrid</code>(移動)</li>
+</ul>
+</li>
+<li><code>public_netmask</code>(追加)</li>
 <li><code>port_forwarding</code><ul>
 <li><code>private_address</code>(名称変更) =&gt; <code>private_ip</code></li>
 <li><code>global_port</code>(名称変更) =&gt; <code>public_port</code></li>
@@ -1350,7 +1379,7 @@ v2では代わりに各リソースで<a href="https://www.terraform.io/docs/con
 </ul>
 <h3 id="dataSourceWebAccel">ウェブアクセラレータ: <code>sakuracloud_webaccel</code></h3>
 <p>v2時点では未実装(近日実装予定)</p>
-<h2 id="diffDetailResource">リソース</h2>
+<h2 id="diffDetailResource">リソースの変更点</h2>
 <h3 id="resourceBridge"><a href="https://docs.usacloud.jp/terraform/r/bridge">ブリッジ: <code>sakuracloud_bridge</code></a></h3>
 <ul>
 <li><code>switch_ids</code>(廃止)</li>
@@ -1358,11 +1387,21 @@ v2では代わりに各リソースで<a href="https://www.terraform.io/docs/con
 <hr />
 <h3 id="resourceDatabase"><a href="https://docs.usacloud.jp/terraform/r/database">データベース: <code>sakuracloud_database</code></a></h3>
 <ul>
-<li><code>allow_networks</code>(名称変更) =&gt; <code>source_ranges</code></li>
-<li><code>default_route</code>(名称変更) =&gt; <code>gateway</code></li>
+<li><code>backup</code>(追加)<ul>
+<li><code>backup_time</code>(名称変更) =&gt; <code>time</code></li>
+<li><code>backup_weekdays</code>(名称変更) =&gt; <code>weekdays</code></li>
+</ul>
+</li>
 <li><code>graceful_shutdown_timeout</code>(廃止)</li>
+<li><code>network_interface</code>(追加)<ul>
+<li><code>allow_networks</code>(名称変更) =&gt; <code>source_ranges</code>  </li>
+<li><code>default_route</code>(名称変更) =&gt; <code>gateway</code></li>
 <li><code>ipaddress1</code>(名称変更) =&gt; <code>ip_address</code></li>
 <li><code>nw_mask_len</code>(名称変更) =&gt; <code>netmask</code></li>
+<li><code>port</code>(移動)</li>
+<li><code>switch_id</code>(移動)</li>
+</ul>
+</li>
 <li><code>replica_user</code>(挙動変更) =&gt; 読み取り専用から書き込み可能に</li>
 <li><code>user_name</code>(名称変更) =&gt; <code>username</code></li>
 <li><code>user_password</code>(名称変更) =&gt; <code>password</code></li>
@@ -1370,11 +1409,17 @@ v2では代わりに各リソースで<a href="https://www.terraform.io/docs/con
 <hr />
 <h3 id="resourceDatabaseReadReplica"><a href="https://docs.usacloud.jp/terraform/r/database_read_replica">データベース(リードレプリカ): <code>sakuracloud_database_read_replica</code></a></h3>
 <ul>
-<li><code>source_ranges</code>(追加)</li>
-<li><code>default_route</code>(名称変更) =&gt; <code>gateway</code></li>
 <li><code>graceful_shutdown_timeout</code>(廃止)</li>
+<li><code>network_interface</code>(追加)<ul>
+<li><code>source_ranges</code>(追加)  </li>
+<li><code>default_route</code>(名称変更) =&gt; <code>gateway</code></li>
 <li><code>ipaddress1</code>(名称変更) =&gt; <code>ip_address</code></li>
 <li><code>nw_mask_len</code>(名称変更) =&gt; <code>netmask</code></li>
+<li><code>port</code>(移動)</li>
+<li><code>switch_id</code>(移動)</li>
+</ul>
+</li>
+<li><code>replica_user</code>(挙動変更) =&gt; 読み取り専用から書き込み可能に</li>
 <li><code>replica_user</code>(挙動変更) =&gt; 読み取り専用から書き込み可能に</li>
 </ul>
 <hr />
@@ -1430,9 +1475,16 @@ v2では代わりに各リソースで<a href="https://www.terraform.io/docs/con
 <ul>
 <li><code>default_route</code>(名称変更) =&gt; <code>gateway</code></li>
 <li><code>graceful_shutdown_timeout</code>(廃止)</li>
-<li><code>ipaddress1</code>/<code>ipaddress2</code>(統合) =&gt; <code>ip_addresses</code>(リスト)</li>
 <li><code>is_double</code>(廃止)</li>
+<li><code>high_availability</code>(廃止)</li>
+<li><code>network_interface</code>(追加)<ul>
+<li><code>default_route</code>(名称変更) =&gt; <code>gateway</code></li>
+<li><code>ipaddress1</code>/<code>ipaddress2</code>(統合) =&gt; <code>ip_addresses</code>(リスト)</li>
 <li><code>nw_mask_len</code>(名称変更) =&gt; <code>netmask</code></li>
+<li><code>switch_id</code>(移動)</li>
+<li><code>vrid</code>(移動)</li>
+</ul>
+</li>
 <li><code>vip_ids</code>(廃止)</li>
 <li><code>vips</code>(名称変更) =&gt; <code>vip</code><ul>
 <li><code>servers</code>(名称変更) =&gt; <code>server</code><ul>
@@ -1459,10 +1511,13 @@ v2では代わりに各リソースで<a href="https://www.terraform.io/docs/con
 <hr />
 <h3 id="resourceNFS"><a href="https://docs.usacloud.jp/terraform/r/nfs">NFS: <code>sakuracloud_nfs</code></a></h3>
 <ul>
-<li><code>default_route</code>(名称変更) =&gt; <code>gateway</code></li>
-<li><code>graceful_shutdown_timeout</code>(廃止)</li>
+<li><code>network_interface</code>(追加)<ul>
+<li><code>gateway</code>(移動)</li>
 <li><code>ipaddress</code>(名称変更) =&gt; <code>ip_address</code></li>
 <li><code>nw_mask_len</code>(名称変更) =&gt; <code>netmask</code></li>
+<li><code>switch_id</code>(移動)</li>
+</ul>
+</li>
 </ul>
 <hr />
 <h3 id="resourcePacketFilter"><a href="https://docs.usacloud.jp/terraform/r/packet_filter">パケットフィルタ : <code>sakuracloud_packet_filter</code></a></h3>
@@ -1625,11 +1680,19 @@ v2ではルール全体を表す<code>sakuracloud_packet_filter_rules</code>に�
 </li>
 <li><code>global_address</code>(名称変更) =&gt; <code>public_ip</code></li>
 <li><code>graceful_shutdown_timeout</code>(廃止)</li>
-<li><code>interface</code>(名称変更) =&gt; <code>network_interface</code><ul>
+<li><code>interface</code>(名称変更) =&gt; <code>private_network_interface</code><ul>
 <li><code>nw_mask_len</code>(名称変更) =&gt; <code>netmask</code></li>
 </ul>
 </li>
-<li><code>ipaddress1</code>/<code>ipaddress2</code>(統合) =&gt; <code>ip_addresses</code>(リスト)</li>
+<li><code>public_network_interface</code>(追加)<ul>
+<li><code>aliases</code>(移動)</li>
+<li><code>ipaddress1</code>/<code>ipaddress2</code>(移動/統合) =&gt; <code>ip_addresses</code>(リスト)</li>
+<li><code>switch_id</code>(移動)</li>
+<li><code>vip</code>(移動)</li>
+<li><code>vrid</code>(移動)</li>
+</ul>
+</li>
+<li><code>public_netmask</code>(追加)</li>
 <li><code>port_forwarding</code><ul>
 <li><code>private_address</code>(名称変更) =&gt; <code>private_ip</code></li>
 <li><code>global_port</code>(名称変更) =&gt; <code>public_port</code></li>

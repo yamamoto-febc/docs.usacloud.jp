@@ -822,14 +822,7 @@
 <li><code>weighted</code> - (Optional) 重み付け振り分けの有効フラグ</li>
 <li><code>sorry_server</code> - (Optional) ソーリーサーバのIPアドレス</li>
 </ul>
-<h4 id="common-arguments">Common Arguments</h4>
-<ul>
-<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
-<li><code>icon_id</code> - (Optional) アイコンID</li>
-<li><code>tags</code> - (Optional) タグ</li>
-</ul>
-<hr />
-<h4 id="health_check">health_checkブロック</h4>
+<h5 id="health_check">health_checkブロック</h5>
 <ul>
 <li><code>protocol</code> - (Required) プロトコル / 次のいずれかを指定 [<code>http</code>/<code>https</code>/<code>tcp</code>/<code>ping</code>]</li>
 <li><code>delay_loop</code> - (Optional) チェック間隔秒数 / <code>10</code>-<code>60</code>の範囲で指定</li>
@@ -838,14 +831,19 @@
 <li><code>port</code> - (Optional) TCPチェック時のポート番号</li>
 <li><code>status</code> - (Optional) HTTP/HTTPSチェック時のレスポンスコード</li>
 </ul>
-<hr />
-<h4 id="server">serverブロック</h4>
+<h5 id="server">serverブロック</h5>
 <ul>
 <li><code>ip_address</code> - (Required) IPアドレス</li>
 <li><code>enabled</code> - (Optional) 有効フラグ</li>
 <li><code>weight</code> - (Optional) 重み付け振り分けが有効な場合のウェイト / <code>1</code>-<code>10000</code>の範囲で指定</li>
 </ul>
-<h3 id="timeouts">Timeouts</h3>
+<h4 id="common-arguments">Common Arguments</h4>
+<ul>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
+</ul>
+<h4 id="timeouts">Timeouts</h4>
 <p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
 <li><code>create</code> - 作成 (デフォルト: 5分)</li>

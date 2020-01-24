@@ -786,12 +786,16 @@
                 <h1 id="sakuracloud_load_balancer">ロードバランサ: sakuracloud_load_balancer</h1>
 <h2 id="example-usage">Example Usage</h2>
 <pre><code class="hcl">resource &quot;sakuracloud_load_balancer&quot; &quot;foobar&quot; {
-  name         = &quot;foobar&quot;
-  switch_id    = sakuracloud_switch.foobar.id
-  vrid         = 1
-  ip_addresses = [&quot;192.168.11.101&quot;]
-  netmask      = 24
-  gateway      = &quot;192.168.11.1&quot;
+  name = &quot;foobar&quot;
+  plan = &quot;standard&quot;
+
+  network_interface {
+    switch_id    = sakuracloud_switch.foobar.id
+    vrid         = 1
+    ip_addresses = [&quot;192.168.11.101&quot;]
+    netmask      = 24
+    gateway      = &quot;192.168.11.1&quot;
+  }
 
   description = &quot;description&quot;
   tags        = [&quot;tag1&quot;, &quot;tag2&quot;]
@@ -826,27 +830,22 @@ resource &quot;sakuracloud_switch&quot; &quot;foobar&quot; {
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
 <li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
-<li><code>vrid</code> - (Required) VRID / <code>high_availability</code>が<code>true</code>の場合のみ利用されます / この値を変更するとリソースの再作成が行われる</li>
-<li><code>high_availability</code> - (Optional) 冗長化構成の有効かフラグ / この値を変更するとリソースの再作成が行われる</li>
 <li><code>plan</code> - (Optional) プラン / 次のいずれかを指定 [<code>standard</code>/<code>highspec</code>] / この値を変更するとリソースの再作成が行われる / デフォルト:<code>standard</code></li>
-<li><code>vip</code> - (Optional) VIP設定。詳細は<a href="#vip">vipブロック</a>を参照</li>
 </ul>
 <h4 id="_1">ネットワーク関連</h4>
+<ul>
+<li><code>network_interface</code> - (Required) ネットワーク設定。詳細は<a href="#network_interface">network_interfaceブロック</a>を参照</li>
+<li><code>vip</code> - (Optional) VIP設定。詳細は<a href="#vip">vipブロック</a>を参照</li>
+</ul>
+<h5 id="network_interface">network_interfaceブロック</h5>
 <ul>
 <li><code>ip_addresses</code> - (Required) IPアドレスのリスト / この値を変更するとリソースの再作成が行われる</li>
 <li><code>netmask</code> - (Required) サブネットマスク長 / <code>8</code>-<code>29</code>の範囲で指定 / この値を変更するとリソースの再作成が行われる</li>
 <li><code>gateway</code> - (Optional) ゲートウェイIPアドレス / この値を変更するとリソースの再作成が行われる</li>
 <li><code>switch_id</code> - (Required) スイッチID / この値を変更するとリソースの再作成が行われる</li>
+<li><code>vrid</code> - (Required) VRID / この値を変更するとリソースの再作成が行われる</li>
 </ul>
-<h4 id="common-arguments">Common Arguments</h4>
-<ul>
-<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
-<li><code>icon_id</code> - (Optional) アイコンID</li>
-<li><code>tags</code> - (Optional) タグ</li>
-<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
-</ul>
-<hr />
-<h4 id="vip">vipブロック</h4>
+<h5 id="vip">vipブロック</h5>
 <ul>
 <li><code>port</code> - (Required) ポート番号 / <code>1</code>-<code>65535</code>の範囲で指定</li>
 <li><code>vip</code> - (Required) 仮想IPアドレス</li>
@@ -855,8 +854,7 @@ resource &quot;sakuracloud_switch&quot; &quot;foobar&quot; {
 <li><code>server</code> - (Optional) 実サーバ設定のリスト。詳細は<a href="#server">serverブロック</a>を参照</li>
 <li><code>sorry_server</code> - (Optional) ソーリーサーバのIPアドレス</li>
 </ul>
-<hr />
-<h4 id="server">serverブロック</h4>
+<h5 id="server">serverブロック</h5>
 <ul>
 <li><code>ip_address</code> - (Required) IPアドレス</li>
 <li><code>protocol</code> - (Required) ヘルスチェックで用いるプロコとる / 次のいずれかを指定 [<code>http</code>/<code>https</code>/<code>tcp</code>/<code>ping</code>]</li>
@@ -864,7 +862,14 @@ resource &quot;sakuracloud_switch&quot; &quot;foobar&quot; {
 <li><code>path</code> - (Optional) HTTP/HTTPSチェック時のリクエストパス</li>
 <li><code>status</code> - (Optional) HTTP/HTTPSチェック時のレスポンスコード</li>
 </ul>
-<h3 id="timeouts">Timeouts</h3>
+<h4 id="common-arguments">Common Arguments</h4>
+<ul>
+<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
+<li><code>icon_id</code> - (Optional) アイコンID</li>
+<li><code>tags</code> - (Optional) タグ</li>
+<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
+</ul>
+<h4 id="timeouts">Timeouts</h4>
 <p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
 <li><code>create</code> - 作成 (デフォルト: 60分)</li>

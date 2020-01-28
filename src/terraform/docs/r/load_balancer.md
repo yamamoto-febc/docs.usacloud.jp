@@ -63,6 +63,9 @@ resource "sakuracloud_switch" "foobar" {
 * `switch_id` - (Required) スイッチID / この値を変更するとリソースの再作成が行われる
 * `vrid` - (Required) VRID / この値を変更するとリソースの再作成が行われる
 
+!!! Note
+    冗長化が有効なロードバランサを作成したい場合は`ip_addresses`にIPアドレスを2つ指定します
+
 ##### vipブロック
 
 * `port` - (Required) ポート番号 / `1`-`65535`の範囲で指定

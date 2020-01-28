@@ -845,6 +845,10 @@ resource &quot;sakuracloud_switch&quot; &quot;foobar&quot; {
 <li><code>switch_id</code> - (Required) スイッチID / この値を変更するとリソースの再作成が行われる</li>
 <li><code>vrid</code> - (Required) VRID / この値を変更するとリソースの再作成が行われる</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>冗長化が有効なロードバランサを作成したい場合は<code>ip_addresses</code>にIPアドレスを2つ指定します</p>
+</div>
 <h5 id="vip">vipブロック</h5>
 <ul>
 <li><code>port</code> - (Required) ポート番号 / <code>1</code>-<code>65535</code>の範囲で指定</li>

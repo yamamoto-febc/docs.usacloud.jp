@@ -1281,9 +1281,10 @@ v2では代わりに各リソースで<a href="https://www.terraform.io/docs/con
 <hr />
 <h3 id="dataSourceServer"><a href="https://docs.usacloud.jp/terraform/d/server">サーバ: <code>sakuracloud_server</code></a></h3>
 <ul>
-<li><code>display_ipaddress</code>/<code>additional_display_ipaddresses</code>(廃止)</li>
+<li><code>display_ipaddress</code>/<code>additional_display_ipaddresses</code>(移動/名称変更) =&gt; <code>network_interface</code>ブロック内へ移動、<code>user_ip_address</code>へ名称変更</li>
 <li><code>nic</code>/<code>additional_nics</code>(統合/変更) =&gt; <code>network_interface</code>に統合</li>
 <li><code>gateway</code>(挙動変更) =&gt; <code>gateway</code>(読み取り専用)</li>
+<li><code>hostname</code>(挙動変更) =&gt; <code>hostname</code>(読み取り専用)</li>
 <li><code>ipaddress</code>(名称変更/挙動変更) =&gt; <code>ip_address</code>(読み取り専用)</li>
 <li><code>macaddresses</code>(名称変更/移動) =&gt; <code>network_interface</code>ブロック内へ移動、<code>mac_address</code>へ名称変更</li>
 <li><code>nw_address</code>(名称変更) =&gt; <code>network_address</code></li>
@@ -1574,12 +1575,13 @@ v2ではルール全体を表す<code>sakuracloud_packet_filter_rules</code>に�
 <hr />
 <h3 id="resourceServer"><a href="https://docs.usacloud.jp/terraform/r/server">サーバ: <code>sakuracloud_server</code></a></h3>
 <ul>
-<li><code>display_ipaddress</code>/<code>additional_display_ipaddresses</code>(廃止)</li>
+<li><code>display_ipaddress</code>/<code>additional_display_ipaddresses</code>(移動/名称変更) =&gt; <code>network_interface</code>ブロック内へ移動、<code>user_ip_address</code>へ名称変更</li>
 <li><code>nic</code>/<code>additional_nics</code>(統合/変更) =&gt; <code>network_interface</code>に統合</li>
 <li><code>disk_edit_parameter</code>(追加) =&gt; ディスクの修正関連パラメータ</li>
 <li><code>force_shutdown</code>(追加) =&gt; シャットダウン/リブートの際に強制終了するかのフラグ</li>
 <li><code>graceful_shutdown_timeout</code>(廃止)</li>
 <li><code>gateway</code>(挙動変更) =&gt; <code>gateway</code>(読み取り専用)</li>
+<li><code>hostname</code>(挙動変更) =&gt; <code>hostname</code>(読み取り専用)</li>
 <li><code>ipaddress</code>(名称変更/挙動変更) =&gt; <code>ip_address</code>(読み取り専用)</li>
 <li><code>macaddresses</code>(名称変更/移動) =&gt; <code>network_interface</code>ブロック内へ移動、<code>mac_address</code>へ名称変更</li>
 <li><code>nw_address</code>(名称変更) =&gt; <code>network_address</code></li>

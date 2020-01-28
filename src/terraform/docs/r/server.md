@@ -73,6 +73,7 @@ ACPIが利用できないサーバの場合`true`に設定する
     - `disconnect`: 切断
     - `<switch id>`: スイッチのID
 * `packet_filter_id` - (Optional) NICにアタッチするパケットフィルタのID
+* `user_ip_address` - (Optional) 表示用IPアドレス / `upstream`にスイッチIDが指定されている時のみ有効 / この項目は表示用で実際のサーバのNIC設定には影響しない
 
 
 #### ディスク関連
@@ -116,6 +117,7 @@ ACPIが利用できないサーバの場合`true`に設定する
 * `id` - ID
 * `dns_servers` - DNSサーバのIPアドレスのリスト
 * `gateway` - ゲートウェイIPアドレス
+* `hostname` - ホスト名
 * `ip_address` - IPアドレス
 * `netmask` - サブネットマスク長
 * `network_address` - ネットワークアドレス

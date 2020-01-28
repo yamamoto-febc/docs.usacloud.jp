@@ -42,6 +42,7 @@ data "sakuracloud_server" "foobar" {
 * `disks` - サーバに接続されているディスクのIDのリスト
 * `dns_servers` - サーバが属するゾーンのDNSサーバのIPアドレスのリスト
 * `gateway` - ゲートウェイIPアドレス
+* `hostname` - ホスト名
 * `icon_id` - アイコンID
 * `interface_driver` - NICのドライバー。次のいずれかとなる [`virtio`/`e1000`]
 * `ip_address` - IPアドレス
@@ -62,5 +63,5 @@ data "sakuracloud_server" "foobar" {
     - `shared`: 共有セグメント(100Mbps)
     - `disconnect`: 切断
     - `<switch id>`: スイッチ(ID)
-
+* `user_ip_address`: 表示用IPアドレス。`upstream`がスイッチIDの場合に有効
 

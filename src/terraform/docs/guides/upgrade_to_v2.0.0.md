@@ -329,9 +329,10 @@ v2では代わりに各リソースで[timeoutsブロック](https://www.terrafo
 
 ### [サーバ: `sakuracloud_server`](https://docs.usacloud.jp/terraform/d/server) {: #dataSourceServer}
 
-- `display_ipaddress`/`additional_display_ipaddresses`(廃止)
+- `display_ipaddress`/`additional_display_ipaddresses`(移動/名称変更) => `network_interface`ブロック内へ移動、`user_ip_address`へ名称変更
 - `nic`/`additional_nics`(統合/変更) => `network_interface`に統合
 - `gateway`(挙動変更) => `gateway`(読み取り専用)
+- `hostname`(挙動変更) => `hostname`(読み取り専用)
 - `ipaddress`(名称変更/挙動変更) => `ip_address`(読み取り専用)
 - `macaddresses`(名称変更/移動) => `network_interface`ブロック内へ移動、`mac_address`へ名称変更
 - `nw_address`(名称変更) => `network_address`
@@ -600,12 +601,13 @@ v2ではルール全体を表す`sakuracloud_packet_filter_rules`に変更され
 
 ### [サーバ: `sakuracloud_server`](https://docs.usacloud.jp/terraform/r/server) {: #resourceServer }
 
-- `display_ipaddress`/`additional_display_ipaddresses`(廃止)
+- `display_ipaddress`/`additional_display_ipaddresses`(移動/名称変更) => `network_interface`ブロック内へ移動、`user_ip_address`へ名称変更
 - `nic`/`additional_nics`(統合/変更) => `network_interface`に統合
 - `disk_edit_parameter`(追加) => ディスクの修正関連パラメータ
 - `force_shutdown`(追加) => シャットダウン/リブートの際に強制終了するかのフラグ
 - `graceful_shutdown_timeout`(廃止)
 - `gateway`(挙動変更) => `gateway`(読み取り専用)
+- `hostname`(挙動変更) => `hostname`(読み取り専用)
 - `ipaddress`(名称変更/挙動変更) => `ip_address`(読み取り専用)
 - `macaddresses`(名称変更/移動) => `network_interface`ブロック内へ移動、`mac_address`へ名称変更
 - `nw_address`(名称変更) => `network_address`

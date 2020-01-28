@@ -746,21 +746,18 @@ $ export PATH=$PATH:~/terraform/
 <h2 id="terraform-for">Terraform for さくらのクラウドのセットアップ</h2>
 <ul>
 <li>1) 以下のリンクから、プラットフォームに応じたzipファイルをダウンロードします<blockquote>
-<p><a href="http://releases.usacloud.jp/terraform/">Terraform for さくらのクラウド ダウンロードページ</a></p>
+<p><a href="https://github.com/sacloud/terraform-provider-sakuracloud/releases">Terraform for さくらのクラウド ダウンロードページ</a></p>
 </blockquote>
 </li>
 <li>2) <code>~/.terraform.d/plugins/</code>配下に展開します  <blockquote>
 <ul>
 <li>Windowsの場合は<code>%APPDATA%/terraform.d/plugins/</code>配下に展開します  </li>
 <li>setコマンドでAPPDATAがどこかを確認出来ます</li>
+<li>プラグインを配置できるディレクトリの詳細については<a href="https://www.terraform.io/docs/extend/how-terraform-works.html#discovery">Terraformのドキュメント</a>を参照ください                                           </li>
 </ul>
 </blockquote>
 </li>
 </ul>
-<blockquote>
-<p>Note:<br />
-Terraform for さくらのクラウドのバイナリーファイルは<a href="https://github.com/sacloud/terraform-provider-sakuracloud/releases/latest">GitHub上のリリースページ</a>でも配布しています。</p>
-</blockquote>
 <h2 id="api">さくらのクラウドAPIキーの取得</h2>
 <p>さくらのクラウドのコントロールパネルにログインしAPIキーを発行します。
 以下を参考に実施してください。APIキーを発行したら、<code>ACCESS_TOKEN</code>と<code>ACCESS_TOKEN_SECRET</code>を控えておきましょう。</p>
@@ -777,7 +774,7 @@ Terraform for さくらのクラウドのバイナリーファイルは<a href="
 <h2 id="api_4">さくらのクラウドAPIキーの設定</h2>
 <p>APIキーは環境変数、またはtfファイルにて設定します。<br />
 ここでは環境変数を利用する方法を記載しています。<br />
-tfファイルでの設定方法は設定リファレンスの<a href="http://sacloud.github.io/terraform-provider-sakuracloud/configuration/provider/">プロバイダ セクション</a>を参照してください。</p>
+tfファイルでの設定方法は設定リファレンスの<a href="https://docs.usacloud.jp/terraform-v1/configuration/provider/">プロバイダ セクション</a>を参照してください。</p>
 <h4 id="macunixos">Mac/Unix系OSなどの場合</h4>
 <pre><code># アクセストークン
 $ export SAKURACLOUD_ACCESS_TOKEN=[入力]

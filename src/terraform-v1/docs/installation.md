@@ -102,14 +102,12 @@ $ terraform help
 ## Terraform for さくらのクラウドのセットアップ
 
 - 1) 以下のリンクから、プラットフォームに応じたzipファイルをダウンロードします
-  > [Terraform for さくらのクラウド ダウンロードページ](http://releases.usacloud.jp/terraform/)
+  > [Terraform for さくらのクラウド ダウンロードページ](https://github.com/sacloud/terraform-provider-sakuracloud/releases)
 - 2) `~/.terraform.d/plugins/`配下に展開します  
   > - Windowsの場合は`%APPDATA%/terraform.d/plugins/`配下に展開します  
   > - setコマンドでAPPDATAがどこかを確認出来ます
-     
-
-> Note:  
-Terraform for さくらのクラウドのバイナリーファイルは[GitHub上のリリースページ](https://github.com/sacloud/terraform-provider-sakuracloud/releases/latest)でも配布しています。
+  > - プラグインを配置できるディレクトリの詳細については[Terraformのドキュメント](https://www.terraform.io/docs/extend/how-terraform-works.html#discovery)を参照ください                                           
+                                           
 
 ## さくらのクラウドAPIキーの取得
 
@@ -140,7 +138,7 @@ Terraform for さくらのクラウドのバイナリーファイルは[GitHub�
 
 APIキーは環境変数、またはtfファイルにて設定します。  
 ここでは環境変数を利用する方法を記載しています。  
-tfファイルでの設定方法は設定リファレンスの[プロバイダ セクション](http://sacloud.github.io/terraform-provider-sakuracloud/configuration/provider/)を参照してください。
+tfファイルでの設定方法は設定リファレンスの[プロバイダ セクション](https://docs.usacloud.jp/terraform-v1/configuration/provider/)を参照してください。
 
 #### Mac/Unix系OSなどの場合
 

@@ -72,7 +72,7 @@ resource "sakuracloud_simple_monitor" "foobar" {
 
 * `notify_email_enabled` - (Optional) e-mailでの通知の有効フラグ / デフォルト:`true`
 * `notify_email_html` - (Optional) e-mailでの通知時のHTMLメール有効フラグ
-* `notify_interval` - (Optional) 再通知間隔(単位:時間) / デフォルト:`2`
+* `notify_interval` - (Optional) 再通知間隔(単位:時間) / `1`-`72`の範囲で指定 / デフォルト:`2`
 * `notify_slack_enabled` - (Optional) slack/discordでの通知の有効フラグ
 * `notify_slack_webhook` - (Optional) slack/discordでの通知で利用するWebhookのURL
 

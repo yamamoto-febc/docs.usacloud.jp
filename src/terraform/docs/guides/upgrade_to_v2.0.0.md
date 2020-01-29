@@ -347,6 +347,7 @@ v2では代わりに各リソースで[timeoutsブロック](https://www.terrafo
 - `health_check`
     - `delay_loop`(移動) => トップレベルへ移動
     - `status`(データ型変更) => 文字列から数値型へ変更
+- `notify_interval`(単位変更) => 秒単位で指定から時間単位で指定するように変更    
 
 ---
 
@@ -671,6 +672,7 @@ resource "sakuracloud_server" "example" {
 - `health_check`
     - `delay_loop`(移動) => トップレベルへ移動
     - `status`(データ型変更) => 文字列から数値型へ変更
+- `notify_interval`(単位変更) => 秒単位で指定から時間単位で指定するように変更    
 
 ---
 

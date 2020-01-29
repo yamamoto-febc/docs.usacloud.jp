@@ -3,6 +3,7 @@
 ## Example Usage
 
 ```hcl
+variable username {}
 variable password {}
 variable replica_password {}
 
@@ -11,7 +12,7 @@ resource "sakuracloud_database" "foobar" {
   database_type = "mariadb"
   plan          = "30g"
 
-  username = "your-user-name"
+  username = var.username
   password = var.password
 
   replica_password = var.replica_password
@@ -47,7 +48,7 @@ resource "sakuracloud_switch" "foobar" {
 
 #### ユーザー関連
 
-* `username` - (Required) デフォルトユーザー名 /  この値を変更するとリソースの再作成が行われる
+* `username` - (Required) デフォルトユーザー名 / `3`-`20`文字で指定 / この値を変更するとリソースの再作成が行われる
 * `password` - (Required) デフォルトユーザーのパスワード
 
 #### ネットワーク関連

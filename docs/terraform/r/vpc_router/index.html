@@ -876,10 +876,10 @@ resource &quot;sakuracloud_vpc_router&quot; &quot;premium&quot; {
   }
 
   site_to_site_vpn {
-    peer              = &quot;192.0.2.1&quot;
-    remote_id         = &quot;192.0.2.1&quot;
+    peer              = &quot;10.0.0.1&quot;
+    remote_id         = &quot;10.0.0.1&quot;
     pre_shared_secret = &quot;example&quot;
-    routes            = [&quot;192.0.2.0/8&quot;]
+    routes            = [&quot;10.0.0.0/8&quot;]
     local_prefix      = [&quot;192.168.21.0/24&quot;]
   }
 

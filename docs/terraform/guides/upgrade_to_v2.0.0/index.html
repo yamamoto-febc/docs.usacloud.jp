@@ -1131,10 +1131,19 @@ data &quot;sakuracloud_archive&quot; &quot;foobar&quot; {
 <h4 id="_7">ゾーンのスキーマレベルでのバリデーションの廃止</h4>
 <p>これまでは各リソースのスキーマで静的に利用可能なゾーンを定義していましたが、v2ではプロバイダーブロックで<code>zones</code>を指定することにより動的に利用可能なゾーンを指定可能になりました。<br />
 この影響で、入力値の検証が実行時となり<code>terraform validate</code>などでエラーを返さなくなりました。</p>
-<h4 id="_8">タグのデータ型変更</h4>
-<p>タグのデータ型が<code>schema.TypeList</code>から<code>schema.TypeSet</code>に変更されました。<br />
+<h4 id="_8">タグなどでのデータ型変更</h4>
+<p>タグなどのいくつかの項目データ型が<code>schema.TypeList</code>から<code>schema.TypeSet</code>に変更されました。<br />
 これまではリスト内の値を参照する際に<code>sakuracloud_server.tags[0]</code>のようにインデックスを指定して参照していましたが、v2では<code>sakuracloud_server.tags[NNNN(ハッシュ値)]</code>となりました。<br />
 tfファイルでの値の定義方法については従来通り<code>tags = ["tag1", "tag2"]</code>という形式が利用可能です。  </p>
+<p>変更された項目は以下の通りです。</p>
+<ul>
+<li>各リソースの<code>tags</code></li>
+<li><code>sakuracloud_auto_backup.weekdays</code></li>
+<li><code>sakuracloud_database.backup.weekdays</code></li>
+<li><code>sakuracloud_sim.carrier</code></li>
+<li><code>sakuracloud_vpc_router.site_to_site_vpn.routes</code></li>
+<li><code>sakuracloud_vpc_router.site_to_site_vpn.local_prefix</code></li>
+</ul>
 <h1 id="diffDetail">各リソースの変更点</h1>
 <h2 id="diffProvider"><a href="https://docs.usacloud.jp/terraform/provider/">プロバイダー</a></h2>
 <h4 id="_9">プロファイル機能のサポート</h4>

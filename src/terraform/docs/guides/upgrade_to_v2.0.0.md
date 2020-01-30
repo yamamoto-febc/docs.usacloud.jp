@@ -179,11 +179,20 @@ VPCルータやロードバランサなどの子リソースを持つリソー�
 これまでは各リソースのスキーマで静的に利用可能なゾーンを定義していましたが、v2ではプロバイダーブロックで`zones`を指定することにより動的に利用可能なゾーンを指定可能になりました。  
 この影響で、入力値の検証が実行時となり`terraform validate`などでエラーを返さなくなりました。
 
-#### タグのデータ型変更
+#### タグなどでのデータ型変更
 
-タグのデータ型が`schema.TypeList`から`schema.TypeSet`に変更されました。  
+タグなどのいくつかの項目データ型が`schema.TypeList`から`schema.TypeSet`に変更されました。  
 これまではリスト内の値を参照する際に`sakuracloud_server.tags[0]`のようにインデックスを指定して参照していましたが、v2では`sakuracloud_server.tags[NNNN(ハッシュ値)]`となりました。  
 tfファイルでの値の定義方法については従来通り`tags = ["tag1", "tag2"]`という形式が利用可能です。  
+
+変更された項目は以下の通りです。
+
+- 各リソースの`tags`
+- `sakuracloud_auto_backup.weekdays`
+- `sakuracloud_database.backup.weekdays`
+- `sakuracloud_sim.carrier`
+- `sakuracloud_vpc_router.site_to_site_vpn.routes`
+- `sakuracloud_vpc_router.site_to_site_vpn.local_prefix`
 
 
 # 各リソースの変更点 {: #diffDetail }

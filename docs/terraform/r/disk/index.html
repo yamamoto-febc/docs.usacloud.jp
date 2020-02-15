@@ -820,6 +820,11 @@ resource &quot;sakuracloud_disk&quot; &quot;foobar&quot; {
 <li><code>size</code> - (Optional) サイズ(GiB単位) / この値を変更するとリソースの再作成が行われる / デフォルト:<code>20</code></li>
 <li><code>distant_from</code> - (Optional) 別のストレージに格納する対象となるディスクのIDのリスト / この値を変更するとリソースの再作成が行われる</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>1TB以上のサイズを指定する場合、<code>size</code>に1024の倍数を指定してください。<br />
+<code>size = 2 * 1024</code> (2TBの例)</p>
+</div>
 <h4 id="_2">コピー元関連</h4>
 <ul>
 <li><code>source_archive_id</code> - (Optional) コピー元アーカイブID / [<code>source_disk_id</code>]と同時に指定できません / この値を変更するとリソースの再作成が行われる</li>

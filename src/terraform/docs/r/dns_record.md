@@ -22,6 +22,15 @@ resource "sakuracloud_dns_record" "record2" {
 }
 ```
 
+<div class="editor">
+
+<h2>Code Editor</h2>
+
+<iframe src="https://zouen-alpha.usacloud.jp/#resource/dns_record"></iframe>
+
+</div>
+
+
 ## Argument Reference
 
 * `dns_id` - (Required) レコードを登録する対象ゾーン(DNSリソース)のID / この値を変更するとリソースの再作成が行われる

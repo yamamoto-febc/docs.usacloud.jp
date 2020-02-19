@@ -9,6 +9,15 @@ resource "sakuracloud_ssh_key_gen" "foobar" {
   description = "description"
 }
 ```
+
+<div class="editor">
+
+<h2>Code Editor</h2>
+
+<iframe src="https://zouen-alpha.usacloud.jp/#resource/ssh_key_gen"></iframe>
+
+</div>
+
 ## Argument Reference
 
 * `name` - (Required) 名前 / `1`-`64`文字で指定 / この値を変更するとリソースの再作成が行われる

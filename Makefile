@@ -35,6 +35,10 @@ preview-terraform-v1:
 preview-terraform:
 	@(cd $(TERRAFORM_V2_DIR); make preview)
 
+.PHONY: preview-all
+preview-all:
+	@docker run -it --rm -p 8080:80 -v $$PWD:/usr/share/nginx/html
+
 clean:
 	@rm -rf docs/*
 	@echo "docs.usacloud.jp" > docs/CNAME

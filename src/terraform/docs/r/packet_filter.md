@@ -57,6 +57,16 @@ resource "sakuracloud_packet_filter" "foobar" {
     パケットフィルタのルール(`expression`)にサーバのIPアドレスを利用したい場合にリソースの循環参照エラーとなることがあります。  
     その場合はパケットフィルタルールリソース(`sakuracloud_packet_filter_rules`)をご利用ください。
 
+
+<div class="editor">
+
+<h2>Code Editor</h2>
+
+<iframe src="https://zouen-alpha.usacloud.jp/#resource/packet_filter"></iframe>
+
+</div>
+
+
 ## Argument Reference
 
 * `name` - (Required) 説明 / `1`-`512`文字で指定

@@ -12,6 +12,15 @@ resource "sakuracloud_cdrom" "foobar" {
 }
 ```
 
+<div class="editor">
+
+<h2>Code Editor</h2>
+
+<iframe src="https://zouen-alpha.usacloud.jp/#resource/cdrom"></iframe>
+
+</div>
+
+
 ## Argument Reference
 
 * `name` - (Required) 名前 / `1`-`64`文字で指定

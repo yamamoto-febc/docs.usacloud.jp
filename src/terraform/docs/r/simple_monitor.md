@@ -28,6 +28,15 @@ resource "sakuracloud_simple_monitor" "foobar" {
 }
 ```
 
+<div class="editor">
+
+<h2>Code Editor</h2>
+
+<iframe src="https://zouen-alpha.usacloud.jp/#resource/simple_monitor"></iframe>
+
+</div>
+
+
 ## Argument Reference
 
 * `target` - (Required) 監視対象のIPアドレス、またはFQDN / この値を変更するとリソースの再作成が行われる

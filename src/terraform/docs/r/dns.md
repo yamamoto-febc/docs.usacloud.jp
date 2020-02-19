@@ -20,6 +20,15 @@ resource "sakuracloud_dns" "foobar" {
 }
 ```
 
+<div class="editor">
+
+<h2>Code Editor</h2>
+
+<iframe src="https://zouen-alpha.usacloud.jp/#resource/dns"></iframe>
+
+</div>
+
+
 ## Argument Reference
 
 * `zone` - (Required) 対象ゾーン(例: `example.com`) / この値を変更するとリソースの再作成が行われる

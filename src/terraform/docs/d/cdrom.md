@@ -15,6 +15,14 @@ data "sakuracloud_cdrom" "foobar" {
 }
 ```
 
+<div class="editor">
+
+<h2>Code Editor</h2>
+
+<iframe src="https://zouen-alpha.usacloud.jp/#data/cdrom"></iframe>
+
+</div>
+
 ## Argument Reference
 
 * `filter` - (Optional) 参照対象をフィルタリングするための条件。詳細は[filterブロック](#filter)を参照 

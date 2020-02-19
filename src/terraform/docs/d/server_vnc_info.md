@@ -10,6 +10,14 @@ data "sakuracloud_server_vnc_info" "foobar" {
 }
 ```
 
+<div class="editor">
+
+<h2>Code Editor</h2>
+
+<iframe src="https://zouen-alpha.usacloud.jp/#data/server_vnc_info"></iframe>
+
+</div>
+
 ## Argument Reference
 
 * `server_id` - (Required) サーバのID

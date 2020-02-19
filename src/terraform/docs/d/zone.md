@@ -14,6 +14,15 @@ data "sakuracloud_zone" "is1a" {
 }
 ```
 
+<div class="editor">
+
+<h2>Code Editor</h2>
+
+<iframe src="https://zouen-alpha.usacloud.jp/#data/zone"></iframe>
+
+</div>
+
+
 ## Argument Reference
 
 * `name` - (Optional) 対象ゾーンの名前 (例: `is1a`, `tk1a`)  

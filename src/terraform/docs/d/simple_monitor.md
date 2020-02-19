@@ -12,6 +12,15 @@ data "sakuracloud_simple_monitor" "foobar" {
 }
 ```
 
+<div class="editor">
+
+<h2>Code Editor</h2>
+
+<iframe src="https://zouen-alpha.usacloud.jp/#data/simple_monitor"></iframe>
+
+</div>
+
+
 ## Argument Reference
 
 * `filter` - (Optional) 参照対象をフィルタリングするための条件。詳細は[filterブロック](#filter)を参照 

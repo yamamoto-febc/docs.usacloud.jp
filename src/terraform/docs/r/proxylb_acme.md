@@ -21,6 +21,14 @@ data "sakuracloud_proxylb" "foobar" {
     このリソースを利用する場合、エンハンスドロードバランサリソース(`sakuracloud_proxylb`)の`certificate`ブロックの値は上書きされます。  
     両者を同時に指定することはできません。
 
+<div class="editor">
+
+<h2>Code Editor</h2>
+
+<iframe src="https://zouen-alpha.usacloud.jp/#resource/proxylb_acme"></iframe>
+
+</div>
+
 ## Argument Reference
 
 * `accept_tos` - (Required) [Let's Encrypt terms of service](https://letsencrypt.org/repository/)への同意フラグ  

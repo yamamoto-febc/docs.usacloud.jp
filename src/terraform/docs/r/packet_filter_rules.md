@@ -56,6 +56,15 @@ resource "sakuracloud_packet_filter_rules" "rules" {
   }
 }
 ```
+
+<div class="editor">
+
+<h2>Code Editor</h2>
+
+<iframe src="https://zouen-alpha.usacloud.jp/#resource/packet_filter_rules"></iframe>
+
+</div>
+
 ## Argument Reference
 
 * `packet_filter_id` - (Required) ルールを設定するパケットフィルタのID / この値を変更するとリソースの再作成が行われる

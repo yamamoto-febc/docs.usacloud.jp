@@ -35,6 +35,7 @@ pages:
         - ディスク: d/disk.md
       - リソース:
         - アーカイブ: r/archive.md
+        - アーカイブ共有: r/archive_share.md
         - CD-ROM: r/cdrom.md
         - ディスク: r/disk.md
     - ネットワーク:

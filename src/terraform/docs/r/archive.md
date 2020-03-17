@@ -3,6 +3,28 @@
 ## Example Usage
 
 ```hcl
+# from archive/disk
+resource "sakuracloud_archive" "from-archive-or-disk" {
+  name         = "foobar"
+  description  = "description"
+  tags         = ["tag1", "tag2"]
+
+  source_archive_id   = 123456789012
+  source_archive_zone = "tk1a"
+  # source_disk_id    = 123456789012
+}
+
+# from shared archive
+resource "sakuracloud_archive" "from-shared-archive" {
+  name         = "foobar"
+  description  = "description"
+  tags         = ["tag1", "tag2"]
+
+  source_shared_key = "is1a:123456789012:xxx"
+}
+
+
+# from local file
 resource "sakuracloud_archive" "foobar" {
   name         = "foobar"
   description  = "description"
@@ -23,10 +45,15 @@ resource "sakuracloud_archive" "foobar" {
 ## Argument Reference
 
 * `name` - (Required) 名前 / `1`-`64`文字で指定
-* `archive_file` - (Required) アップロードするファイルのパス
-* `hash` - (Optional) アップロードするファイルをBASE64エンコードしたものから算出されたMD5チェックサム
+* `archive_file` - (Optional) アップロードするファイルのパス
+* `hash` - (Optional) アップロードするファイルをBASE64エンコードしたものから算出されたMD5チェックサム / この値を変更するとリソースの再作成が行われる
 * `size` - (Optional) アーカイブのサイズ / 次のいずれかを指定 [`20`/`40`/`60`/`80`/`100`/`250`/`500`/`750`/`1024`]  
 この値を変更するとリソースの再作成が行われる / デフォルト:`20`
+* `source_archive_id` - (Optional) コピー元アーカイブID / この値を変更するとリソースの再作成が行われる
+* `source_archive_zone` - (Optional) コピー元アーカイブが属するゾーン名 / この値を変更するとリソースの再作成が行われる
+* `source_disk_id` - (Optional) コピー元ディスクID / この値を変更するとリソースの再作成が行われる
+* `source_shared_key` - (Optional) コピー元共有アーカイブの共有キー / この値を変更するとリソースの再作成が行われる
+
 
 #### Common Arguments
 

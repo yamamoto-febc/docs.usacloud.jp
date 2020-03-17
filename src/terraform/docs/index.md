@@ -45,6 +45,7 @@
         - [ディスク](d/disk)
     - リソース
         - [アーカイブ](r/archive)
+        - [アーカイブ共有](r/archive_share)
         - [CD-ROM](r/cdrom)
         - [ディスク](r/disk)
 - ネットワーク

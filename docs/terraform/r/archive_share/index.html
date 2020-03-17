@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>アーカイブ - Terraform for さくらのクラウド(v2)</title>
+  <title>アーカイブ共有 - Terraform for さくらのクラウド(v2)</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -21,7 +21,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "アーカイブ";
+    var mkdocs_page_name = "アーカイブ共有";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -223,12 +223,19 @@
 
         
             
+    <li class="toctree-l1 ">
+        <a class="" href="../archive/">アーカイブ</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 current">
-        <a class="current" href="./">アーカイブ</a>
+        <a class="current" href="./">アーカイブ共有</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#sakuracloud_archive">アーカイブ: sakuracloud_archive</a></li>
+                <li class="toctree-l3"><a href="#sakuracloud_archive_share">アーカイブ共有: sakuracloud_archive_share</a></li>
                 
                     <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
                 
@@ -238,13 +245,6 @@
                 
             
             </ul>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../archive_share/">アーカイブ共有</a>
         
     </li>
 
@@ -787,7 +787,7 @@
         
       
     
-    <li>アーカイブ</li>
+    <li>アーカイブ共有</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -797,36 +797,16 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="sakuracloud_archive">アーカイブ: sakuracloud_archive</h1>
+                <h1 id="sakuracloud_archive_share">アーカイブ共有: sakuracloud_archive_share</h1>
 <h2 id="example-usage">Example Usage</h2>
-<pre><code class="hcl"># from archive/disk
-resource &quot;sakuracloud_archive&quot; &quot;from-archive-or-disk&quot; {
+<pre><code class="hcl">resource &quot;sakuracloud_archive&quot; &quot;source&quot; {
   name         = &quot;foobar&quot;
-  description  = &quot;description&quot;
-  tags         = [&quot;tag1&quot;, &quot;tag2&quot;]
-
-  source_archive_id   = 123456789012
-  source_archive_zone = &quot;tk1a&quot;
-  # source_disk_id    = 123456789012
-}
-
-# from shared archive
-resource &quot;sakuracloud_archive&quot; &quot;from-shared-archive&quot; {
-  name         = &quot;foobar&quot;
-  description  = &quot;description&quot;
-  tags         = [&quot;tag1&quot;, &quot;tag2&quot;]
-
-  source_shared_key = &quot;is1a:123456789012:xxx&quot;
-}
-
-
-# from local file
-resource &quot;sakuracloud_archive&quot; &quot;foobar&quot; {
-  name         = &quot;foobar&quot;
-  description  = &quot;description&quot;
-  tags         = [&quot;tag1&quot;, &quot;tag2&quot;]
   size         = 20
   archive_file = &quot;test/dummy.raw&quot;
+}
+
+resource &quot;sakuracloud_archive_share&quot; &quot;share_info&quot; {
+  archive_id = sakuracloud_archive.source.id
 }
 </code></pre>
 
@@ -834,39 +814,26 @@ resource &quot;sakuracloud_archive&quot; &quot;foobar&quot; {
 
 <h2>Code Editor</h2>
 
-<iframe src="https://zouen-alpha.usacloud.jp/#resource/archive"></iframe>
+<iframe src="https://zouen-alpha.usacloud.jp/#resource/archive_share"></iframe>
 
 </div>
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
-<li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
-<li><code>archive_file</code> - (Optional) アップロードするファイルのパス</li>
-<li><code>hash</code> - (Optional) アップロードするファイルをBASE64エンコードしたものから算出されたMD5チェックサム / この値を変更するとリソースの再作成が行われる</li>
-<li><code>size</code> - (Optional) アーカイブのサイズ / 次のいずれかを指定 [<code>20</code>/<code>40</code>/<code>60</code>/<code>80</code>/<code>100</code>/<code>250</code>/<code>500</code>/<code>750</code>/<code>1024</code>]<br />
-この値を変更するとリソースの再作成が行われる / デフォルト:<code>20</code></li>
-<li><code>source_archive_id</code> - (Optional) コピー元アーカイブID / この値を変更するとリソースの再作成が行われる</li>
-<li><code>source_archive_zone</code> - (Optional) コピー元アーカイブが属するゾーン名 / この値を変更するとリソースの再作成が行われる</li>
-<li><code>source_disk_id</code> - (Optional) コピー元ディスクID / この値を変更するとリソースの再作成が行われる</li>
-<li><code>source_shared_key</code> - (Optional) コピー元共有アーカイブの共有キー / この値を変更するとリソースの再作成が行われる</li>
-</ul>
-<h4 id="common-arguments">Common Arguments</h4>
-<ul>
-<li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>
-<li><code>icon_id</code> - (Optional) アイコンID</li>
-<li><code>tags</code> - (Optional) タグ</li>
+<li><code>archive_id</code> - (Required) アーカイブ共有を有効にするアーカイブのID / この値を変更するとリソースの再作成が行われる</li>
 <li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
 </ul>
 <h4 id="timeouts">Timeouts</h4>
 <p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
 <ul>
-<li><code>create</code> - 作成 (デフォルト: 24時間)</li>
-<li><code>update</code> - 更新 (デフォルト: 24時間)</li>
+<li><code>create</code> - 作成 (デフォルト: 5分)</li>
+<li><code>update</code> - 更新 (デフォルト: 5分)</li>
 <li><code>delete</code> - 削除 (デフォルト: 5分)</li>
 </ul>
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
 <li><code>id</code> - ID</li>
+<li><code>share_key</code> - 共有キー</li>
 </ul>
               
             </div>
@@ -875,10 +842,10 @@ resource &quot;sakuracloud_archive&quot; &quot;foobar&quot; {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../archive_share/" class="btn btn-neutral float-right" title="アーカイブ共有"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../cdrom/" class="btn btn-neutral float-right" title="CD-ROM"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../d/disk/" class="btn btn-neutral" title="ディスク"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../archive/" class="btn btn-neutral" title="アーカイブ"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -906,10 +873,10 @@ resource &quot;sakuracloud_archive&quot; &quot;foobar&quot; {
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../../d/disk/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../archive/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../archive_share/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../cdrom/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

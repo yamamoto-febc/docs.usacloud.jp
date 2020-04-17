@@ -20,7 +20,13 @@ resource "sakuracloud_server" "foobar" {
     disable_pw_auth = true
 
     # ssh_key_ids     = ["<ID>", "<ID>"]
-    # note_ids        = ["<ID>", "<ID>"]
+    # note {
+    #  id         = "<ID>"
+    #  api_key_id = "<ID>"
+    #  variables = {
+    #    foo = "bar"
+    #  }
+    # }
   }
 }
 
@@ -99,12 +105,22 @@ ACPIが利用できないサーバの場合`true`に設定する
 * `hostname` - (Optional) ホスト名 / `1`-`64`文字で指定
 * `ip_address` - (Optional) IPアドレス
 * `netmask` - (Optional) サブネットマスク長
-* `note_ids` - (Optional) スタートアップスクリプトIDのリスト
+* `note_ids` - (Optional/Deprecated) スタートアップスクリプトIDのリスト  
+* `note` - (Optional) スタートアップスクリプト。詳細は[noteブロック](#note)を参照
 * `password` - (Optional) 管理ユーザーのパスワード / `8`-`64`文字で指定
 * `ssh_key_ids` - (Optional) SSH公開鍵IDのリスト
 
 !!! Note
     ディスクの修正API(`disk_edit_parameter`)はサーバに接続された先頭のディスクに対してのみ有効です。
+    
+!!! Note
+    `note_ids`は将来のバージョンで削除される予定です。代わりに`note`をご利用ください。
+    
+##### noteブロック
+
+* `id` - (Required) スタートアップスクリプトのID
+* `api_key_id` - (Optional) スタートアップスクリプトに埋め込むAPIキーのID
+* `variables` - (Optional) スタートアップスクリプトの埋め込み変数に指定する値 / map形式、mapの値は文字列で指定
 
 #### Common Arguments
 

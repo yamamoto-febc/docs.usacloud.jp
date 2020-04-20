@@ -25,6 +25,8 @@
 
 - [v2.0での変更点](guides/upgrade_to_v2.0.0)
 - [v2.1での変更点](guides/upgrade_to_v2.1.0)
+- [v2.2での変更点](guides/upgrade_to_v2.2.0)
+- [v2.3での変更点](guides/upgrade_to_v2.3.0)
 
 #### 設定リファレンス:
 - [プロバイダ設定](provider/)

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>IPv4逆引き - Terraform for さくらのクラウド(v2)</title>
+  <title>v2.3での変更点 - Terraform for さくらのクラウド(v2)</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -21,7 +21,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "IPv4逆引き";
+    var mkdocs_page_name = "v2.3での変更点";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -79,28 +79,47 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../guides/upgrade_to_v2.0.0/">v2.0での変更点</a>
+        <a class="" href="../upgrade_to_v2.0.0/">v2.0での変更点</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../guides/upgrade_to_v2.1.0/">v2.1での変更点</a>
+        <a class="" href="../upgrade_to_v2.1.0/">v2.1での変更点</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../guides/upgrade_to_v2.2.0/">v2.2での変更点</a>
+        <a class="" href="../upgrade_to_v2.2.0/">v2.2での変更点</a>
         
     </li>
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../../guides/upgrade_to_v2.3.0/">v2.3での変更点</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">v2.3での変更点</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#v230">アップグレードガイド(v2.3.0)</a></li>
+                
+                    <li><a class="toctree-l4" href="#_1">目次</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#generalDiff">追加/変更/削除されたリソース</a></li>
+                
+                    <li><a class="toctree-l4" href="#_2">リソース</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#diffDetail">各リソースの変更点</a></li>
+                
+                    <li><a class="toctree-l4" href="#resourceServer">サーバ: sakuracloud_server</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -179,14 +198,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../private_host/">専有ホスト</a>
+        <a class="" href="../../r/private_host/">専有ホスト</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../server/">サーバ</a>
+        <a class="" href="../../r/server/">サーバ</a>
         
     </li>
 
@@ -238,28 +257,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../archive/">アーカイブ</a>
+        <a class="" href="../../r/archive/">アーカイブ</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../archive_share/">アーカイブ共有</a>
+        <a class="" href="../../r/archive_share/">アーカイブ共有</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../cdrom/">CD-ROM</a>
+        <a class="" href="../../r/cdrom/">CD-ROM</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../disk/">ディスク</a>
+        <a class="" href="../../r/disk/">ディスク</a>
         
     </li>
 
@@ -332,69 +351,56 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../bridge/">ブリッジ</a>
+        <a class="" href="../../r/bridge/">ブリッジ</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../internet/">スイッチ+ルータ</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">IPv4逆引き</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#ipv4-sakuracloud_ipv4_ptr">IPv4逆引きアドレス: sakuracloud_ipv4_ptr</a></li>
-                
-                    <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
-                
-                    <li><a class="toctree-l4" href="#argument-reference">Argument Reference</a></li>
-                
-                    <li><a class="toctree-l4" href="#attribute-reference">Attribute Reference</a></li>
-                
-            
-            </ul>
+        <a class="" href="../../r/internet/">スイッチ+ルータ</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../local_router/">ローカルルータ</a>
+        <a class="" href="../../r/ipv4_ptr/">IPv4逆引き</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../packet_filter/">パケットフィルタ</a>
+        <a class="" href="../../r/local_router/">ローカルルータ</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../packet_filter_rules/">パケットフィルタ(ルール)</a>
+        <a class="" href="../../r/packet_filter/">パケットフィルタ</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../subnet/">サブネット</a>
+        <a class="" href="../../r/packet_filter_rules/">パケットフィルタ(ルール)</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../switch/">スイッチ</a>
+        <a class="" href="../../r/subnet/">サブネット</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../r/switch/">スイッチ</a>
         
     </li>
 
@@ -453,42 +459,42 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../auto_backup/">自動バックアップ</a>
+        <a class="" href="../../r/auto_backup/">自動バックアップ</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../database/">データベース</a>
+        <a class="" href="../../r/database/">データベース</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../database_read_replica/">データベース(リードレプリカ)</a>
+        <a class="" href="../../r/database_read_replica/">データベース(リードレプリカ)</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../load_balancer/">ロードバランサ</a>
+        <a class="" href="../../r/load_balancer/">ロードバランサ</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../nfs/">NFS</a>
+        <a class="" href="../../r/nfs/">NFS</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../vpc_router/">VPCルータ</a>
+        <a class="" href="../../r/vpc_router/">VPCルータ</a>
         
     </li>
 
@@ -547,42 +553,42 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../dns/">DNS</a>
+        <a class="" href="../../r/dns/">DNS</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../dns_record/">DNSレコード</a>
+        <a class="" href="../../r/dns_record/">DNSレコード</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../gslb/">GSLB</a>
+        <a class="" href="../../r/gslb/">GSLB</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../proxylb/">エンハンスドロードバランサ</a>
+        <a class="" href="../../r/proxylb/">エンハンスドロードバランサ</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../proxylb_acme/">エンハンスドロードバランサ(ACME設定)</a>
+        <a class="" href="../../r/proxylb_acme/">エンハンスドロードバランサ(ACME設定)</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../simple_monitor/">シンプル監視</a>
+        <a class="" href="../../r/simple_monitor/">シンプル監視</a>
         
     </li>
 
@@ -605,14 +611,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../mobile_gateway/">モバイルゲートウェイ</a>
+        <a class="" href="../../r/mobile_gateway/">モバイルゲートウェイ</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../sim/">SIM</a>
+        <a class="" href="../../r/sim/">SIM</a>
         
     </li>
 
@@ -650,7 +656,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../container_registry/">コンテナレジストリ</a>
+        <a class="" href="../../r/container_registry/">コンテナレジストリ</a>
         
     </li>
 
@@ -702,28 +708,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../icon/">アイコン</a>
+        <a class="" href="../../r/icon/">アイコン</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../note/">スタートアップスクリプト</a>
+        <a class="" href="../../r/note/">スタートアップスクリプト</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../ssh_key/">SSH公開鍵</a>
+        <a class="" href="../../r/ssh_key/">SSH公開鍵</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../ssh_key_gen/">SSH公開鍵生成</a>
+        <a class="" href="../../r/ssh_key_gen/">SSH公開鍵生成</a>
         
     </li>
 
@@ -761,7 +767,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../bucket_object/">バケットオブジェクト</a>
+        <a class="" href="../../r/bucket_object/">バケットオブジェクト</a>
         
     </li>
 
@@ -797,11 +803,11 @@
     
       
         
-          <li>リソース &raquo;</li>
+          <li>アップグレードガイド &raquo;</li>
         
       
     
-    <li>IPv4逆引き</li>
+    <li>v2.3での変更点</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -811,55 +817,59 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="ipv4-sakuracloud_ipv4_ptr">IPv4逆引きアドレス: sakuracloud_ipv4_ptr</h1>
-<h2 id="example-usage">Example Usage</h2>
-<pre><code class="hcl">resource sakuracloud_server &quot;server&quot; {
-  name = &quot;foobar&quot;
+                <h1 id="v230">アップグレードガイド(v2.3.0)</h1>
+<h2 id="_1">目次</h2>
+<ul>
+<li><a href="#generalDiff">追加/変更/削除されたリソース</a></li>
+<li><a href="#diffDetail">各リソースの変更点</a><ul>
+<li><a href="#resourceServer">サーバ: <code>server</code></a></li>
+</ul>
+</li>
+</ul>
+<h1 id="generalDiff">追加/変更/削除されたリソース</h1>
+<h4 id="_2">リソース</h4>
+<ul>
+<li><a href="#resourceServer">サーバ: <code>server</code></a></li>
+</ul>
+<h1 id="diffDetail">各リソースの変更点</h1>
+<h3 id="resourceServer"><a href="https://docs.usacloud.jp/terraform/r/server">サーバ: <code>sakuracloud_server</code></a></h3>
+<p>ドキュメント: <a href="https://docs.usacloud.jp/terraform/r/server">https://docs.usacloud.jp/terraform/r/server</a></p>
+<p>ディスクの修正でのスタートアップスクリプトでパラメータを指定可能になりました。</p>
+<ul>
+<li><em>追加</em> <code>disk_edit_parameter.note</code>:<ul>
+<li><code>id</code>: スタートアップスクリプトのID</li>
+<li><code>api_key_id</code>: スタートアップスクリプト内で利用できるAPIキー(トークン/シークレット)のID</li>
+<li><code>variables</code>: スタートアップスクリプトに渡す変数のマップ。値は文字列で指定</li>
+</ul>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>既存の<code>note_ids</code>パラメータは引き続き利用可能ですが非推奨です。<br />
+<code>note_ids</code>は将来のバージョンで削除されますので<code>note</code>への移行を検討してください。</p>
+</div>
+<h4 id="_3">利用例</h4>
+<pre><code class="tf">resource &quot;sakuracloud_server&quot; &quot;foobar&quot; {
+  name  = &quot;foobar&quot;
+  disks = [sakuracloud_disk.foobar.id]
+
   network_interface {
     upstream = &quot;shared&quot;
   }
-}
 
-resource &quot;sakuracloud_ipv4_ptr&quot; &quot;foobar&quot; {
-  ip_address     = sakuracloud_server.server.ip_address
-  hostname       = &quot;www.example.com&quot;
-  retry_max      = 30
-  retry_interval = 10
+  disk_edit_parameter {
+    password = &quot;password&quot;
+    note {
+      id         = &quot;123456789012&quot;
+      api_key_id = &quot;123456789012&quot;
+      variables  = {
+        foo = &quot;foo&quot;
+        bar = &quot;bar&quot;
+      }
+    }
+  }
 }
 </code></pre>
-
-<h2 id="argument-reference">Argument Reference</h2>
-<ul>
-<li><code>hostname</code> - (Required) PTRレコードの値 / FQDNを指定</li>
-<li><code>ip_address</code> - (Required) 対象IPアドレス</li>
-</ul>
-<h4 id="_1">リトライ関連</h4>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>PTRレコードを登録するには正引きできる状態になっている必要があります。<br />
-正引きレコードを登録したばかりの場合、PTRレコード登録に失敗することがあります。
-レコード登録に失敗した場合、指定した間隔で指定回数までリトライが行われます。
-必要に応じて十分に大きな値を指定してください。</p>
-</div>
-<ul>
-<li><code>retry_interval</code> - (Optional) リトライ間隔秒数 / デフォルト:<code>10</code></li>
-<li><code>retry_max</code> - (Optional) リトライ回数 / デフォルト:<code>30</code></li>
-</ul>
-<h4 id="common-arguments">Common Arguments</h4>
-<ul>
-<li><code>zone</code> - (Optional) リソースを作成する対象ゾーンの名前(例: <code>is1a</code>, <code>tk1a</code>) / この値を変更するとリソースの再作成が行われる</li>
-</ul>
-<h4 id="timeouts">Timeouts</h4>
-<p><code>timeouts</code>ブロックで<a href="https://www.terraform.io/docs/configuration/resources.html#operation-timeouts">カスタムタイムアウト</a>が設定可能です。  </p>
-<ul>
-<li><code>create</code> - 作成 (デフォルト: 60分)</li>
-<li><code>update</code> - 更新 (デフォルト: 60分)</li>
-<li><code>delete</code> - 削除 (デフォルト: 5分)</li>
-</ul>
-<h2 id="attribute-reference">Attribute Reference</h2>
-<ul>
-<li><code>id</code> - ID</li>
-</ul>
               
             </div>
           </div>
@@ -867,10 +877,10 @@ resource &quot;sakuracloud_ipv4_ptr&quot; &quot;foobar&quot; {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../local_router/" class="btn btn-neutral float-right" title="ローカルルータ"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../provider/" class="btn btn-neutral float-right" title="プロバイダ設定"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../internet/" class="btn btn-neutral" title="スイッチ+ルータ"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../upgrade_to_v2.2.0/" class="btn btn-neutral" title="v2.2での変更点"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -898,10 +908,10 @@ resource &quot;sakuracloud_ipv4_ptr&quot; &quot;foobar&quot; {
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../internet/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../upgrade_to_v2.2.0/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../local_router/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../provider/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

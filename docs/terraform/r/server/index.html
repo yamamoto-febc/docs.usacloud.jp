@@ -91,6 +91,20 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../guides/upgrade_to_v2.2.0/">v2.2での変更点</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../guides/upgrade_to_v2.3.0/">v2.3での変更点</a>
+        
+    </li>
+
+        
     </ul>
 
         
@@ -816,7 +830,13 @@
     disable_pw_auth = true
 
     # ssh_key_ids     = [&quot;&lt;ID&gt;&quot;, &quot;&lt;ID&gt;&quot;]
-    # note_ids        = [&quot;&lt;ID&gt;&quot;, &quot;&lt;ID&gt;&quot;]
+    # note {
+    #  id         = &quot;&lt;ID&gt;&quot;
+    #  api_key_id = &quot;&lt;ID&gt;&quot;
+    #  variables = {
+    #    foo = &quot;bar&quot;
+    #  }
+    # }
   }
 }
 
@@ -899,7 +919,8 @@ ACPIが利用できないサーバの場合<code>true</code>に設定する</li>
 <li><code>hostname</code> - (Optional) ホスト名 / <code>1</code>-<code>64</code>文字で指定</li>
 <li><code>ip_address</code> - (Optional) IPアドレス</li>
 <li><code>netmask</code> - (Optional) サブネットマスク長</li>
-<li><code>note_ids</code> - (Optional) スタートアップスクリプトIDのリスト</li>
+<li><code>note_ids</code> - (Optional/Deprecated) スタートアップスクリプトIDのリスト  </li>
+<li><code>note</code> - (Optional) スタートアップスクリプト。詳細は<a href="#note">noteブロック</a>を参照</li>
 <li><code>password</code> - (Optional) 管理ユーザーのパスワード / <code>8</code>-<code>64</code>文字で指定</li>
 <li><code>ssh_key_ids</code> - (Optional) SSH公開鍵IDのリスト</li>
 </ul>
@@ -907,6 +928,16 @@ ACPIが利用できないサーバの場合<code>true</code>に設定する</li>
 <p class="admonition-title">Note</p>
 <p>ディスクの修正API(<code>disk_edit_parameter</code>)はサーバに接続された先頭のディスクに対してのみ有効です。</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>note_ids</code>は将来のバージョンで削除される予定です。代わりに<code>note</code>をご利用ください。</p>
+</div>
+<h5 id="note">noteブロック</h5>
+<ul>
+<li><code>id</code> - (Required) スタートアップスクリプトのID</li>
+<li><code>api_key_id</code> - (Optional) スタートアップスクリプトに埋め込むAPIキーのID</li>
+<li><code>variables</code> - (Optional) スタートアップスクリプトの埋め込み変数に指定する値 / map形式、mapの値は文字列で指定</li>
+</ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
 <li><code>description</code> - (Optional) 説明 / <code>1</code>-<code>512</code>文字で指定</li>

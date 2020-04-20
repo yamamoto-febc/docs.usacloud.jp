@@ -18,8 +18,8 @@
 
 #### リソース
 
-- [コンテナレジストリ: `container_registry`](#resourceDatabase)
-- [データベース: `sakuracloud_database`](#resourceContainerRegistry)
+- [コンテナレジストリ: `container_registry`](#resourceContainerRegistry)
+- [データベース: `sakuracloud_database`](#resourceDatabase)
 
 # 各リソースの変更点 {: #diffDetail }
 

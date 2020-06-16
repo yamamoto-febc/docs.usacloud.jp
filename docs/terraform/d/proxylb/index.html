@@ -857,7 +857,7 @@
 <li><code>name</code> - 名前</li>
 <li><code>plan</code> - プラン。次のいずれかとなる [<code>100</code>/<code>500</code>/<code>1000</code>/<code>5000</code>/<code>10000</code>/<code>50000</code>/<code>100000</code>]</li>
 <li><code>proxy_networks</code> - エンハンスドロードバランサが実サーバにアクセスする際のアクセス元CIDRブロックのリスト</li>
-<li><code>region</code> - エンハンスドロードバランサを設置するリージョン名。次のいずれかとなる [<code>tk1</code>/<code>is1</code>]</li>
+<li><code>region</code> - エンハンスドロードバランサを設置するリージョン名。<code>anycast</code>を指定した場合は複数リージョンに設置される。次のいずれかとなる [<code>tk1</code>/<code>is1</code>/<code>anycast</code>]</li>
 <li><code>rule</code> - ルールベースバランシングを行う際のルールのリスト。詳細は<a href="#rule">ruleブロック</a>を参照</li>
 <li><code>server</code> - 実サーバのリスト。詳細は<a href="#server">serverブロック</a>を参照</li>
 <li><code>sorry_server</code> - ソーリーサーバの設定。詳細は<a href="#sorry_server">sorry_serverブロック</a>を参照</li>

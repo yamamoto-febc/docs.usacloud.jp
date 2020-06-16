@@ -742,7 +742,7 @@ resource &quot;sakuracloud_server&quot; &quot;foobar&quot; {
 <p>NFSにSSDプランが導入された際にパラメータ名が変更となりました。
 v1.11以前でNFSアプライアンスを利用していた場合はtfファイルの変更が必要となります。  </p>
 <p>旧: <code>plan</code>: NFSのサイズをGB単位で指定
-新: <code>plan</code>で<code>hdd</code> or <code>ssd</code>を指定、サイズは<code>size</code>パラメータで指定</p>
+新: <code>plan</code>に<code>hdd</code> or <code>ssd</code>を指定。サイズは<code>size</code>パラメータで指定</p>
 <h3 id="_3">対応方法</h3>
 <ul>
 <li>tfファイルで<code>plan</code>を指定していた場合は<code>size</code>に置き換えてください。</li>

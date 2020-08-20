@@ -6,11 +6,19 @@
 
 ```hcl
 # Configure the SakuraCloud Provider
-provider "sakuracloud" {
-  # We recommend pinning to the specific version of the SakuraCloud Provider you're using
-  # since new versions are released frequently
-  version = "=2.1.0"
+terraform {
+  required_providers {
+    sakuracloud = {
+      source = "sacloud/sakuracloud"
 
+      # We recommend pinning to the specific version of the SakuraCloud Provider you're using
+      # since new versions are released frequently
+      version = "2.4.0"
+      #version = "~> 2"
+    }
+  }
+}
+provider "sakuracloud" {
   # More information on the authentication methods supported by
   # the SakuraCloud Provider can be found here:
   # https://docs.usacloud.jp/terraform/provider/
@@ -116,5 +124,5 @@ $ cat $HOME/.usacloud/default/config.json
 * `zone` - (Optional) デフォルトゾーン名   
 環境変数`SAKURACLOUD_ZONE`、またはプロファイルでの指定が可能 
 * `zones` - (Optional) 利用可能なゾーン名のリスト。利用可能なゾーンを制限したい場合などに利用する   
-プロファイルでの指定が可能  デフォルト:[`is1a`, `is1b`, `tk1a`, `tk1v`]
+プロファイルでの指定が可能  デフォルト:[`is1a`, `is1b`, `tk1a`, `tk1b`, `tk1v`]
 

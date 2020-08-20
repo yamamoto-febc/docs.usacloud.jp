@@ -14,6 +14,9 @@
       },
       "max-kanji-continuous-len": {
         "max": 7
+      },
+      "max-comma": {
+        max: 4
       }
     }
   }

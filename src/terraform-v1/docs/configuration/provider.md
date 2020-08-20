@@ -29,7 +29,7 @@ provider sakuracloud {
 |-----------------|:---:|--------------------|:--------:|------|----------------------------------------------|
 |`token`          | ◯   | APIキー<br />(トークン)     | -        |文字列|環境変数`SAKURACLOUD_ACCESS_TOKEN`での指定も可         |
 |`secret`         | ◯   | APIキー<br />(シークレット)  | -        |文字列|環境変数`SAKURACLOUD_ACCESS_TOKEN_SECRET`での指定も可  |
-|`zone`           | -   | 対象ゾーン           | `is1b`   |`is1b`<br />`tk1a`<br />`tk1v`|環境変数`SAKURACLOUD_ZONE`での指定も可|
+|`zone`           | -   | 対象ゾーン           | `is1b`   |`is1a`<br />`is1b`<br />`tk1a`<br />`tk1b`<br />`tk1v`|環境変数`SAKURACLOUD_ZONE`での指定も可|
 |`retry_max`      | -   | リトライ回数         | `10`     | 数値 |環境変数`SAKURACLOUD_RETRY_MAX`での指定も可  |
 |`retry_interval` | -   | リトライ時待機時間    | `5`     |数値(秒)|環境変数`SAKURACLOUD_RETRY_INTERVAL`での指定も可  |
 |`timeout`        | -   | タイムアウト         | `20`     | 数値(分) |環境変数`SAKURACLOUD_TIMEOUT`での指定も可|

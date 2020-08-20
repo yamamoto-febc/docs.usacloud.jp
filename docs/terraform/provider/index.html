@@ -105,6 +105,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../guides/upgrade_to_v2.4.0/">v2.4での変更点</a>
+        
+    </li>
+
+        
     </ul>
 
         
@@ -815,11 +822,19 @@
 <p>さくらのクラウド上の各種リソースを操作するためのプロバイダー</p>
 <h2 id="example">Example</h2>
 <pre><code class="hcl"># Configure the SakuraCloud Provider
-provider &quot;sakuracloud&quot; {
-  # We recommend pinning to the specific version of the SakuraCloud Provider you're using
-  # since new versions are released frequently
-  version = &quot;=2.1.0&quot;
+terraform {
+  required_providers {
+    sakuracloud = {
+      source = &quot;sacloud/sakuracloud&quot;
 
+      # We recommend pinning to the specific version of the SakuraCloud Provider you're using
+      # since new versions are released frequently
+      version = &quot;2.4.0&quot;
+      #version = &quot;~&gt; 2&quot;
+    }
+  }
+}
+provider &quot;sakuracloud&quot; {
   # More information on the authentication methods supported by
   # the SakuraCloud Provider can be found here:
   # https://docs.usacloud.jp/terraform/provider/
@@ -911,7 +926,7 @@ $ terraform plan
 <li><code>zone</code> - (Optional) デフォルトゾーン名 <br />
 環境変数<code>SAKURACLOUD_ZONE</code>、またはプロファイルでの指定が可能 </li>
 <li><code>zones</code> - (Optional) 利用可能なゾーン名のリスト。利用可能なゾーンを制限したい場合などに利用する <br />
-プロファイルでの指定が可能  デフォルト:[<code>is1a</code>, <code>is1b</code>, <code>tk1a</code>, <code>tk1v</code>]</li>
+プロファイルでの指定が可能  デフォルト:[<code>is1a</code>, <code>is1b</code>, <code>tk1a</code>, <code>tk1b</code>, <code>tk1v</code>]</li>
 </ul>
               
             </div>
@@ -923,7 +938,7 @@ $ terraform plan
         <a href="../d/zone/" class="btn btn-neutral float-right" title="ゾーン"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../guides/upgrade_to_v2.3.0/" class="btn btn-neutral" title="v2.3での変更点"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../guides/upgrade_to_v2.4.0/" class="btn btn-neutral" title="v2.4での変更点"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -951,7 +966,7 @@ $ terraform plan
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../guides/upgrade_to_v2.3.0/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../guides/upgrade_to_v2.4.0/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../d/zone/" style="color: #fcfcfc">Next &raquo;</a></span>

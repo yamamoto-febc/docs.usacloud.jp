@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>コンテナレジストリ - Terraform for さくらのクラウド(v2)</title>
+  <title>2要素認証SMS - Terraform for さくらのクラウド(v2)</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -21,7 +21,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "コンテナレジストリ";
+    var mkdocs_page_name = "2要素認証SMS";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -650,8 +650,21 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../esme/">2要素認証SMS</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">2要素認証SMS</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#2smsesme-sakuracloud_esme">2要素認証SMS(ESME): sakuracloud_esme</a></li>
+                
+                    <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
+                
+                    <li><a class="toctree-l4" href="#argument-reference">Argument Reference</a></li>
+                
+                    <li><a class="toctree-l4" href="#attribute-reference">Attribute Reference</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -688,21 +701,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">コンテナレジストリ</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#sakuracloud_container_registry">コンテナレジストリ: sakuracloud_container_registry</a></li>
-                
-                    <li><a class="toctree-l4" href="#example-usage">Example Usage</a></li>
-                
-                    <li><a class="toctree-l4" href="#argument-reference">Argument Reference</a></li>
-                
-                    <li><a class="toctree-l4" href="#attribute-reference">Attribute Reference</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../container_registry/">コンテナレジストリ</a>
         
     </li>
 
@@ -853,7 +853,7 @@
         
       
     
-    <li>コンテナレジストリ</li>
+    <li>2要素認証SMS</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -863,45 +863,12 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="sakuracloud_container_registry">コンテナレジストリ: sakuracloud_container_registry</h1>
+                <h1 id="2smsesme-sakuracloud_esme">2要素認証SMS(ESME): sakuracloud_esme</h1>
 <h2 id="example-usage">Example Usage</h2>
-<pre><code class="hcl">variable users {
-  type = list(object({
-    name       = string
-    password   = string
-    permission = string
-  }))
-  default = [
-    {
-      name       = &quot;user1&quot;
-      password   = &quot;password1&quot;
-      permission = &quot;all&quot;
-    },
-    {
-      name       = &quot;user2&quot;
-      password   = &quot;password2&quot;
-      permission = &quot;readwrite&quot;
-    }
-  ]
-}
-
-resource &quot;sakuracloud_container_registry&quot; &quot;foobar&quot; {
-  name            = &quot;foobar&quot;
-  virtual_domain  = &quot;your-domain.example.com&quot;
-  subdomain_label = &quot;your-subdomain-label&quot;
-  access_level    = &quot;readwrite&quot; # this must be one of [&quot;readwrite&quot;/&quot;readonly&quot;/&quot;none&quot;]
-
+<pre><code class="hcl">resource &quot;sakuracloud_esme&quot; &quot;foobar&quot; {
+  name        = &quot;foobar&quot;
   description = &quot;description&quot;
   tags        = [&quot;tag1&quot;, &quot;tag2&quot;]
-
-  dynamic user {
-    for_each = var.users
-    content {
-      name       = user.value.name
-      password   = user.value.password
-      permission = user.value.permission
-    }
-  }
 }
 </code></pre>
 
@@ -909,23 +876,13 @@ resource &quot;sakuracloud_container_registry&quot; &quot;foobar&quot; {
 
 <h2>Code Editor</h2>
 
-<iframe src="https://zouen-alpha.usacloud.jp/#resource/container_registry"></iframe>
+<iframe src="https://zouen-alpha.usacloud.jp/#resource/esme"></iframe>
 
 </div>
 
 <h2 id="argument-reference">Argument Reference</h2>
 <ul>
 <li><code>name</code> - (Required) 名前 / <code>1</code>-<code>64</code>文字で指定</li>
-<li><code>access_level</code> - (Required) アクセスレベル / この値は次のいずれかを指定 [<code>readwrite</code>/<code>readonly</code>/<code>none</code>]</li>
-<li><code>subdomain_label</code> - (Required) サブドメインラベル /  <code>1</code>-<code>64</code>文字で指定 / この値を変更するとリソースの再作成が行われる</li>
-<li><code>user</code> - (Optional) ユーザー設定のリスト。詳細は<a href="#user">userブロック</a>を参照</li>
-<li><code>virtual_domain</code> - (Optional) 独自ドメイン(FQDN)</li>
-</ul>
-<h5 id="user">userブロック</h5>
-<ul>
-<li><code>name</code> - (Required) ユーザー名</li>
-<li><code>password</code> - (Required) パスワード</li>
-<li><code>permission</code> - (Required) ユーザーの権限 / 次のいずれかを指定 [<code>all</code>/<code>readwrite</code>/<code>readonly</code>]</li>
 </ul>
 <h4 id="common-arguments">Common Arguments</h4>
 <ul>
@@ -943,7 +900,8 @@ resource &quot;sakuracloud_container_registry&quot; &quot;foobar&quot; {
 <h2 id="attribute-reference">Attribute Reference</h2>
 <ul>
 <li><code>id</code> - ID</li>
-<li><code>fqdn</code> - コンテナレジストリにアクセスするためのFQDN / この値は<code>subdomain_label</code> + <code>.sakuracr.jp</code>となる</li>
+<li><code>send_message_with_generated_otp_api_url</code> - SMS送信(OTP自動生成)APIのURL</li>
+<li><code>send_message_with_inputted_otp_api_url</code> - SMS送信(OTP入力)APIのURL</li>
 </ul>
               
             </div>
@@ -952,10 +910,10 @@ resource &quot;sakuracloud_container_registry&quot; &quot;foobar&quot; {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../d/icon/" class="btn btn-neutral float-right" title="アイコン"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../d/container_registry/" class="btn btn-neutral float-right" title="コンテナレジストリ"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../d/container_registry/" class="btn btn-neutral" title="コンテナレジストリ"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../d/esme/" class="btn btn-neutral" title="2要素認証SMS"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -983,10 +941,10 @@ resource &quot;sakuracloud_container_registry&quot; &quot;foobar&quot; {
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../../d/container_registry/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../d/esme/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../d/icon/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../d/container_registry/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -28,6 +28,7 @@
 - [v2.2での変更点](guides/upgrade_to_v2.2.0)
 - [v2.3での変更点](guides/upgrade_to_v2.3.0)
 - [v2.4での変更点](guides/upgrade_to_v2.4.0)
+- [v2.5での変更点](guides/upgrade_to_v2.5.0)
 
 #### 設定リファレンス:
 - [プロバイダ設定](provider/)
@@ -98,6 +99,11 @@
     - リソース
         - [モバイルゲートウェイ ](r/mobile_gateway)
         - [SIM](r/sim)
+- SMS
+    - データソース
+        - [2要素認証SMS](d/esme)
+    - リソース
+        - [2要素認証SMS](r/esme)
 - Lab
     - データソース
         - [コンテナレジストリ](d/container_registry)

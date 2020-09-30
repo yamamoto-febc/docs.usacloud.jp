@@ -19,6 +19,7 @@ pages:
       - v2.2での変更点: guides/upgrade_to_v2.2.0.md
       - v2.3での変更点: guides/upgrade_to_v2.3.0.md
       - v2.4での変更点: guides/upgrade_to_v2.4.0.md
+      - v2.5での変更点: guides/upgrade_to_v2.5.0.md
   - 設定リファレンス:
     - プロバイダ設定: provider.md
     - プロバイダデータソース:
@@ -88,6 +89,11 @@ pages:
       - リソース:
         - モバイルゲートウェイ : r/mobile_gateway.md
         - SIM: r/sim.md
+    - SMS:
+      - データソース:
+        - 2要素認証SMS: d/esme.md
+      - リソース:
+        - 2要素認証SMS: r/esme.md
     - Lab:
       - データソース:
         - コンテナレジストリ: d/container_registry.md

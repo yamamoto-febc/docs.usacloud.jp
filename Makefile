@@ -1,6 +1,7 @@
 default: lint build
 
 TOP_DIR := src/top
+USACLOUD_DIR := src/usacloud
 TERRAFORM_V1_DIR := src/terraform-v1
 TERRAFORM_V2_DIR := src/terraform
 
@@ -14,6 +15,9 @@ build: clean
 	@echo "running mkdocs in $(TERRAFORM_V2_DIR)..."
 	@mkdir -p docs/terraform
 	@(cd $(TERRAFORM_V2_DIR); make build); cp -r $(TERRAFORM_V2_DIR)/site/* docs/terraform/
+	@echo "running mkdocs in $(USACLOUD_DIR)..."
+	@mkdir -p docs/usacloud
+	@(cd $(USACLOUD_DIR); make build); cp -r $(USACLOUD_DIR)/site/* docs/usacloud/
 
 lint:
 	@echo "running textlint in $(TOP_DIR)..."
@@ -22,6 +26,8 @@ lint:
 	@(cd $(TERRAFORM_V1_DIR); make lint)
 	@echo "running textlint in $(TERRAFORM_V2_DIR)..."
 	@(cd $(TERRAFORM_V2_DIR); make lint)
+	@echo "running textlint in $(USACLOUD_DIR)..."
+	@(cd $(USACLOUD_DIR); make lint)
 
 .PHONY: preview-top
 preview-top:
@@ -34,6 +40,10 @@ preview-terraform-v1:
 .PHONY: preview-terraform
 preview-terraform:
 	@(cd $(TERRAFORM_V2_DIR); make preview)
+
+.PHONY: preview-usacloud
+preview-usacloud:
+	@(cd $(USACLOUD_DIR); make preview)
 
 .PHONY: preview-all
 preview-all:

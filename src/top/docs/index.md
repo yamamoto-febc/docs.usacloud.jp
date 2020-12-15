@@ -12,7 +12,7 @@ Terraformのさくらのクラウド向けProviderプラグイン(最新版)
 
 Terraformのさくらのクラウド向けProviderプラグイン(v1)
 
-#### [Usacloud](https://sacloud.github.io/usacloud)
+#### [Usacloud](./usacloud/)
 
 さくらのクラウド向けCLI
 

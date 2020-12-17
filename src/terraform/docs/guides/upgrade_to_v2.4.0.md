@@ -9,7 +9,7 @@
 ### Terraform Registry経由でのプロバイダーのインストール(#diffTFR)
 
 Terraform Registry経由でのプロバイダーのインストールが可能となりました。
-tfファイルに以下のような記述を行うことでプロバイダーのインストールが行えます。  
+tfファイルに以下のように記述することでプロバイダーのインストールが行えます。  
 
 ```
 # Configure the SakuraCloud Provider
@@ -29,7 +29,7 @@ provider "sakuracloud" {
 ### 東京第2ゾーン(#diffTk1b)
 
 東京第2ゾーンがデフォルトで利用可能となりました。
-v2.4以前をご利用の場合はtfファイルに以下のような記述を行うことで利用可能です。
+v2.4以前をご利用の場合はtfファイルに以下のように記述することで利用可能です。
 
 ```
 provider "sakuracloud" {

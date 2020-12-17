@@ -134,9 +134,9 @@ APIキーを作成したら、以下の値を控えておいてください。
 
 ## APIキーの設定
 
-APIキーの取得を行ったら、`usacloud config`を実行してAPIキーを設定します。
+APIキーを取得したら、`usacloud config`を実行しAPIキーを設定します。
 
-画面の指示に従い、アクセストークン(token)とシークレット(secret)、操作対象のゾーン、デフォルトの出力形式の入力を行います。
+画面の指示に従い、アクセストークン(token)とシークレット(secret)、操作対象のゾーン、デフォルトの出力形式を入力します。
 
 ```bash
 usacloud config
@@ -169,7 +169,7 @@ usacloud config
 
 ### その他のAPIキー設定方法
 
-APIキーは環境変数で指定することも可能です。
+APIキーは環境変数での指定にも対応しています。
 
 ```bash
 export SAKURACLOUD_ACCESS_TOKEN=アクセストークン
@@ -177,7 +177,7 @@ export SAKURACLOUD_ACCESS_TOKEN_SECRET=アクセスシークレット
 export SAKURACLOUD_ZONE=ゾーン
 ```
 
-また、コマンド実行の都度指定することも可能です。
+また、コマンド実行時にコマンドラインオプションで上書きできます。
 
 ```bash
 usacloud --token=アクセストークン --secret=アクセスシークレット --zone=ゾーン server ls

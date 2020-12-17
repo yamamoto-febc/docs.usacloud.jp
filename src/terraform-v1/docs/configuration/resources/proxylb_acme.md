@@ -4,7 +4,7 @@
 
 **全ゾーン共通のグローバルリソースです。**
 
-エンハンスドロードバランサにてLet's Encryptで証明書を取得するための設定を行うリソースです。
+Let's Encryptを設定するリソースです。
 
 ### 設定例
 
@@ -54,10 +54,10 @@ resource "sakuracloud_proxylb" "foobar" {
 
 #### 注1 更新待ち秒数について
 
-エンハンスドロードバランサでLet's Encryptでの証明書取得を行うには、`common_name`で指定したFQDNがエンハンスドロードバランサのVIPまたはFQDNを指している必要があります。  
+エンハンスドロードバランサでLet's Encrypt証明書を取得するには、`common_name`で指定したFQDNがエンハンスドロードバランサのVIPまたはFQDNを指している必要があります。  
 参考: [さくらのクラウドマニュアル - Let's Encrypt証明書自動インストール・更新機能](https://manual.sakura.ad.jp/cloud/appliance/enhanced-lb/#let-s-encrypt)
 
-TerraformにてDNSレコードの登録を行う場合、レコード作成直後にコモンネームの解決をできない場合があります。  
+TerraformにてDNSレコードを登録する場合、レコード作成直後にコモンネームの解決をできない場合があります。  
 この項目はそのような場合のために待ち時間を指定するものです。
 
 ### 属性

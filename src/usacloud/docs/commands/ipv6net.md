@@ -1,10 +1,10 @@
-# コマンドリファレンス / bill
+# コマンドリファレンス / ipv6net
 
 ## コマンド一覧
 
 - Basic Commands
     - [list](#list)
-    - [csv](#csv)
+    - [read](#read)
 
 
 ## list {: #list }
@@ -18,10 +18,21 @@ Aliases:
 
 Flags:
 
-  === Bill-specific options ===
+  === Ipv6net-specific options ===
 
-      --month int   
-      --year int    (*required) 
+      --internet-ids strings     
+      --internet-names strings   
+      --switch-ids strings       
+      --switch-names strings     
+
+  === Limit/Offset options ===
+
+      --count int   (aliases: --max, --limit)
+      --from int    (aliases: --offset)
+
+  === Zone options ===
+
+      --zone string   (*required) 
 
   === Input options ===
 
@@ -41,13 +52,20 @@ Flags:
 
 ```
 
-## csv {: #csv }
+## read {: #read }
 
 ```console
 Usage:
-  csv [flags]
+  read [flags]
+
+Aliases:
+  read, show
 
 Flags:
+
+  === Zone options ===
+
+      --zone string   (*required) 
 
   === Input options ===
 

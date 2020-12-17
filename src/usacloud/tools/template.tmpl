@@ -1,0 +1,14 @@
+# コマンドリファレンス / {{ .Name }}
+
+## コマンド一覧
+{{ range .CategorizedCommands }}
+- {{ .Category.DisplayName }}{{ range .Commands}}
+    - [{{ .Name }}](#{{ .Name }}){{ end }}{{ end }}
+
+{{ range .CategorizedCommands }}{{ range .Commands }}
+## {{ .Name }} {: #{{ .Name }} }
+
+```console
+{{ .CLICommand.UsageString}}
+```
+{{ end }}{{ end}}

@@ -1,4 +1,4 @@
-# コマンドリファレンス / archive
+# コマンドリファレンス / cdrom
 
 ## コマンド一覧
 
@@ -13,8 +13,6 @@
     - [download](#download)
     - [ftp-open](#ftp-open)
     - [ftp-close](#ftp-close)
-- Other Commands
-    - [wait-until-ready](#wait-until-ready)
 
 
 ## list {: #list }
@@ -30,10 +28,10 @@ Flags:
 
   === Filter options ===
 
+      --os-type string   options: [centos/centos8stream/centos8/ubuntu/ubuntu2004/debian/debian10/coreos/rancheros/k3os/freebsd/...]
       --names strings    
       --tags strings     
       --scope string     options: [user/shared]
-      --os-type string   options: [centos/centos8stream/centos8/ubuntu/ubuntu2004/debian/debian10/coreos/rancheros/k3os/freebsd/...]
 
   === Limit/Offset options ===
 
@@ -77,20 +75,14 @@ Flags:
       --tags strings         
       --icon-id int          
 
-  === Archive-specific options ===
+  === Cdrom-specific options ===
 
-      --size int                (*required) 
-      --source-archive-id int   
-      --source-disk-id int      
-      --source-file string      
+      --size int             (*required)  (default 5)
+      --source-file string   (*required) 
 
   === Zone options ===
 
       --zone string   (*required) 
-
-  === Wait options ===
-
-      --no-wait   
 
   === Input options ===
 
@@ -201,6 +193,12 @@ Flags:
 
       --fail-if-not-found   
 
+  === Wait options ===
+
+      --wait-for-release               
+      --wait-for-release-timeout int   
+      --wait-for-release-tick int      
+
   === Input options ===
 
   -y, --assumeyes           Assume that the answer to any question which would be asked is yes
@@ -228,9 +226,9 @@ Usage:
 
 Flags:
 
-  === Upload options ===
+  === Cdrom-specific options ===
 
-      --source-file string   
+      --source-file string   (*required) 
 
   === Zone options ===
 
@@ -256,8 +254,9 @@ Usage:
 
 Flags:
 
-  === Download options ===
+  === Cdrom-specific options ===
 
+      --change-password      
       --destination string   (aliases: --dest)
   -f, --force                overwrite file when --destination file is already exist
 
@@ -288,7 +287,7 @@ Aliases:
 
 Flags:
 
-  === FTP options ===
+  === Cdrom-specific options ===
 
       --change-password   
 
@@ -333,32 +332,6 @@ Flags:
   === Input options ===
 
   -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## wait-until-ready {: #wait-until-ready }
-
-```console
-Usage:
-  wait-until-ready [flags]
-
-Aliases:
-  wait-until-ready, wait, wait-for-copy
-
-Flags:
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
       --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
       --parameters string   Input parameters in JSON format
 

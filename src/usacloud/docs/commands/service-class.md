@@ -1,10 +1,9 @@
-# コマンドリファレンス / zone
+# コマンドリファレンス / service-class
 
 ## コマンド一覧
 
 - Basic Commands
     - [list](#list)
-    - [read](#read)
 
 
 ## list {: #list }
@@ -18,43 +17,14 @@ Aliases:
 
 Flags:
 
-  === Filter options ===
-
-      --names strings   
-
   === Limit/Offset options ===
 
       --count int   (aliases: --max, --limit)
       --from int    (aliases: --offset)
 
-  === Input options ===
+  === Zone options ===
 
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Output options ===
-
-      --format string        Output format in Go templates (aliases: --fmt)
-  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
-      --query string         JMESPath query
-  -q, --quiet                Output IDs only
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## read {: #read }
-
-```console
-Usage:
-  read [flags]
-
-Aliases:
-  read, show
-
-Flags:
+      --zone string   (*required) 
 
   === Input options ===
 

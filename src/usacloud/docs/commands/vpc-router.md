@@ -1,22 +1,24 @@
-# コマンドリファレンス / internet
+# コマンドリファレンス / vpc-router
 
 ## コマンド一覧
 
 - Basic Commands
     - [list](#list)
     - [create](#create)
+    - [create-standard](#create-standard)
     - [read](#read)
     - [update](#update)
+    - [update-standard](#update-standard)
     - [delete](#delete)
-- Subnet Operation Commands
-    - [list-subnet](#list-subnet)
-    - [add-subnet](#add-subnet)
-    - [delete-subnet](#delete-subnet)
-- IPv6 Operation Commands
-    - [enable-ipv6](#enable-ipv6)
-    - [disable-ipv6](#disable-ipv6)
+- Power Management Commands
+    - [boot](#boot)
+    - [shutdown](#shutdown)
+    - [reset](#reset)
 - Monitoring Commands
-    - [monitor-router](#monitor-router)
+    - [monitor-interface](#monitor-interface)
+- Other Commands
+    - [wait-until-ready](#wait-until-ready)
+    - [wait-until-shutdown](#wait-until-shutdown)
 
 
 ## list {: #list }
@@ -32,10 +34,8 @@ Flags:
 
   === Filter options ===
 
-      --switch-ids strings     
-      --switch-names strings   
-      --names strings          
-      --tags strings           
+      --names strings   
+      --tags strings    
 
   === Limit/Offset options ===
 
@@ -79,12 +79,100 @@ Flags:
       --tags strings         
       --icon-id int          
 
-  === Internet-specific options ===
+  === Plan options ===
 
-      --band-width int        (*required) options: [100/250/500/1000/1500/2000/2500/3000/5000] (aliases: --band-width-mbps) (default 100)
-      --enable-ipv6           
-      --netmask int           (*required) options: [28/27/26] (aliases: --network-mask-len) (default 28)
-      --not-found-retry int    (default 10)
+      --plan string   (*required) options: [premium/highspec/highspec4000] (default "premium")
+
+  === Vpc-Router-specific options ===
+
+      --boot-after-create               
+      --dhcp-server string              
+      --dhcp-static-mapping string      
+      --firewall string                 
+      --internet-connection-enabled     
+      --l2tp-pre-shared-secret string   
+      --l2tp-range-start string         
+      --l2tp-range-stop string          
+      --port-forwarding string          
+      --pptp-range-start string         
+      --pptp-range-stop string          
+      --site-to-site-vpn string         
+      --static-nat string               
+      --static-route string             
+      --syslog-host string              
+      --users string                    
+      --vrid int                        
+
+  === Network options ===
+
+      --public-network-interface-ip-addresses strings        
+      --public-network-interface-ip-aliases strings          
+      --public-network-interface-switch-id int               
+      --public-network-interface-virtual-ip-address string   
+      --private-network-interfaces string                    
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Wait options ===
+
+      --no-wait   
+
+  === Input options ===
+
+  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Output options ===
+
+      --format string        Output format in Go templates (aliases: --fmt)
+  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
+      --query string         JMESPath query
+  -q, --quiet                Output IDs only
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
+```
+
+## create-standard {: #create-standard }
+
+```console
+Usage:
+  create-standard [flags]
+
+Flags:
+
+  === Common options ===
+
+      --name string          (*required) 
+      --description string   
+      --tags strings         
+      --icon-id int          
+
+  === Vpc-Router-specific options ===
+
+      --boot-after-create                   
+      --dhcp-server string                  
+      --dhcp-static-mapping string          
+      --firewall string                     
+      --internet-connection-enabled         
+      --l2tp-pre-shared-secret string       
+      --l2tp-range-start string             
+      --l2tp-range-stop string              
+      --port-forwarding string              
+      --pptp-range-start string             
+      --pptp-range-stop string              
+      --private-network-interfaces string   
+      --site-to-site-vpn string             
+      --static-nat string                   
+      --static-route string                 
+      --syslog-host string                  
+      --users string                        
+      --vrid int                            
 
   === Zone options ===
 
@@ -161,14 +249,99 @@ Flags:
       --tags strings         
       --icon-id int          
 
-  === Internet-specific options ===
+  === Vpc-Router-specific options ===
 
-      --band-width int   options: [100/250/500/1000/1500/2000/2500/3000/5000] (aliases: --band-width-mbps)
-      --enable-ipv6      
+      --dhcp-server string              
+      --dhcp-static-mapping string      
+      --firewall string                 
+      --internet-connection-enabled     
+      --l2tp-pre-shared-secret string   
+      --l2tp-range-start string         
+      --l2tp-range-stop string          
+      --port-forwarding string          
+      --pptp-range-start string         
+      --pptp-range-stop string          
+      --site-to-site-vpn string         
+      --static-nat string               
+      --static-route string             
+      --syslog-host string              
+      --users string                    
+
+  === Network options ===
+
+      --public-network-interface-ip-addresses strings        
+      --public-network-interface-ip-aliases strings          
+      --public-network-interface-virtual-ip-address string   
+      --private-network-interfaces string                    
 
   === Zone options ===
 
       --zone string   (*required) 
+
+  === Wait options ===
+
+      --no-wait   
+
+  === Input options ===
+
+  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Output options ===
+
+      --format string        Output format in Go templates (aliases: --fmt)
+  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
+      --query string         JMESPath query
+  -q, --quiet                Output IDs only
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
+```
+
+## update-standard {: #update-standard }
+
+```console
+Usage:
+  update-standard [flags]
+
+Flags:
+
+  === Common options ===
+
+      --name string          
+      --description string   
+      --tags strings         
+      --icon-id int          
+
+  === Vpc-Router-specific options ===
+
+      --dhcp-server string                  
+      --dhcp-static-mapping string          
+      --firewall string                     
+      --internet-connection-enabled         
+      --l2tp-pre-shared-secret string       
+      --l2tp-range-start string             
+      --l2tp-range-stop string              
+      --port-forwarding string              
+      --pptp-range-start string             
+      --pptp-range-stop string              
+      --private-network-interfaces string   
+      --site-to-site-vpn string             
+      --static-nat string                   
+      --static-route string                 
+      --syslog-host string                  
+      --users string                        
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Wait options ===
+
+      --no-wait   
 
   === Input options ===
 
@@ -231,14 +404,14 @@ Flags:
 
 ```
 
-## list-subnet {: #list-subnet }
+## boot {: #boot }
 
 ```console
 Usage:
-  list-subnet [flags]
+  boot [flags]
 
 Aliases:
-  list-subnet, subnet-list
+  boot, power-on
 
 Flags:
 
@@ -246,85 +419,9 @@ Flags:
 
       --zone string   (*required) 
 
-  === Input options ===
+  === Wait options ===
 
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Output options ===
-
-      --format string        Output format in Go templates (aliases: --fmt)
-  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
-      --query string         JMESPath query
-  -q, --quiet                Output IDs only
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## add-subnet {: #add-subnet }
-
-```console
-Usage:
-  add-subnet [flags]
-
-Aliases:
-  add-subnet, subnet-add
-
-Flags:
-
-  === Internet-specific options ===
-
-      --netmask int       (*required) options: [28/27/26] (aliases: --network-mask-len) (default 28)
-      --next-hop string   (*required) 
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
-  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Output options ===
-
-      --format string        Output format in Go templates (aliases: --fmt)
-  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
-      --query string         JMESPath query
-  -q, --quiet                Output IDs only
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## delete-subnet {: #delete-subnet }
-
-```console
-Usage:
-  delete-subnet [flags]
-
-Aliases:
-  delete-subnet, subnet-delete
-
-Flags:
-
-  === Internet-specific options ===
-
-      --subnet-id int   (*required) 
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Error handling options ===
-
-      --fail-if-not-found   
+      --no-wait   
 
   === Input options ===
 
@@ -338,20 +435,28 @@ Flags:
 
 ```
 
-## enable-ipv6 {: #enable-ipv6 }
+## shutdown {: #shutdown }
 
 ```console
 Usage:
-  enable-ipv6 [flags]
+  shutdown [flags]
 
 Aliases:
-  enable-ipv6, ipv6-enable
+  shutdown, power-off
 
 Flags:
+
+  === Vpc-Router-specific options ===
+
+  -f, --force-shutdown   (aliases: --force)
 
   === Zone options ===
 
       --zone string   (*required) 
+
+  === Wait options ===
+
+      --no-wait   
 
   === Input options ===
 
@@ -359,27 +464,17 @@ Flags:
       --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
       --parameters string   Input parameters in JSON format
 
-  === Output options ===
-
-      --format string        Output format in Go templates (aliases: --fmt)
-  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
-      --query string         JMESPath query
-  -q, --quiet                Output IDs only
-
   === Parameter example ===
 
       --example   Output example parameters with JSON format
 
 ```
 
-## disable-ipv6 {: #disable-ipv6 }
+## reset {: #reset }
 
 ```console
 Usage:
-  disable-ipv6 [flags]
-
-Aliases:
-  disable-ipv6, ipv6-disable
+  reset [flags]
 
 Flags:
 
@@ -399,16 +494,20 @@ Flags:
 
 ```
 
-## monitor-router {: #monitor-router }
+## monitor-interface {: #monitor-interface }
 
 ```console
 Usage:
-  monitor-router [flags]
+  monitor-interface [flags]
 
 Aliases:
-  monitor-router, monitor
+  monitor-interface, monitor-nic
 
 Flags:
+
+  === Vpc-Router-specific options ===
+
+      --index int   
 
   === Monitor options ===
 
@@ -430,6 +529,58 @@ Flags:
   -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
       --query string         JMESPath query
   -q, --quiet                Output IDs only
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
+```
+
+## wait-until-ready {: #wait-until-ready }
+
+```console
+Usage:
+  wait-until-ready [flags]
+
+Aliases:
+  wait-until-ready, wait-for-boot
+
+Flags:
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
+```
+
+## wait-until-shutdown {: #wait-until-shutdown }
+
+```console
+Usage:
+  wait-until-shutdown [flags]
+
+Aliases:
+  wait-until-shutdown, wait-for-down
+
+Flags:
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
 
   === Parameter example ===
 

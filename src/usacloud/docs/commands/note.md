@@ -1,4 +1,4 @@
-# コマンドリファレンス / switch
+# コマンドリファレンス / note
 
 ## コマンド一覧
 
@@ -25,15 +25,12 @@ Flags:
 
       --names strings   
       --tags strings    
+      --scope string    options: [user/shared]
 
   === Limit/Offset options ===
 
       --count int   (aliases: --max, --limit)
       --from int    (aliases: --offset)
-
-  === Zone options ===
-
-      --zone string   (*required) 
 
   === Input options ===
 
@@ -63,14 +60,14 @@ Flags:
 
   === Common options ===
 
-      --name string          (*required) 
-      --description string   
-      --tags strings         
-      --icon-id int          
+      --name string    (*required) 
+      --tags strings   
+      --icon-id int    
 
-  === Zone options ===
+  === Note-specific options ===
 
-      --zone string   (*required) 
+      --class string     (*required) options: [shell/yaml_cloud_config] (default "shell")
+      --content string   (*required) (aliases: --contents, --script, --scripts)
 
   === Input options ===
 
@@ -102,10 +99,6 @@ Aliases:
 
 Flags:
 
-  === Zone options ===
-
-      --zone string   (*required) 
-
   === Input options ===
 
       --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
@@ -134,19 +127,13 @@ Flags:
 
   === Common options ===
 
-      --name string          
-      --description string   
-      --tags strings         
-      --icon-id int          
+      --name string    
+      --tags strings   
+      --icon-id int    
 
-  === Switch-specific options ===
+  === Note-specific options ===
 
-      --display-gateway string         (aliases: --display-default-route)
-      --display-network-mask-len int   
-
-  === Zone options ===
-
-      --zone string   (*required) 
+      --content string   (aliases: --contents)
 
   === Input options ===
 
@@ -178,19 +165,9 @@ Aliases:
 
 Flags:
 
-  === Zone options ===
-
-      --zone string   (*required) 
-
   === Error handling options ===
 
       --fail-if-not-found   
-
-  === Wait options ===
-
-      --wait-for-release               
-      --wait-for-release-timeout int   
-      --wait-for-release-tick int      
 
   === Input options ===
 

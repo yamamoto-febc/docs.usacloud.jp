@@ -1,4 +1,4 @@
-# コマンドリファレンス / archive
+# コマンドリファレンス / private-host
 
 ## コマンド一覧
 
@@ -8,13 +8,6 @@
     - [read](#read)
     - [update](#update)
     - [delete](#delete)
-- Operation Commands
-    - [upload](#upload)
-    - [download](#download)
-    - [ftp-open](#ftp-open)
-    - [ftp-close](#ftp-close)
-- Other Commands
-    - [wait-until-ready](#wait-until-ready)
 
 
 ## list {: #list }
@@ -30,10 +23,8 @@ Flags:
 
   === Filter options ===
 
-      --names strings    
-      --tags strings     
-      --scope string     options: [user/shared]
-      --os-type string   options: [centos/centos8stream/centos8/ubuntu/ubuntu2004/debian/debian10/coreos/rancheros/k3os/freebsd/...]
+      --names strings   
+      --tags strings    
 
   === Limit/Offset options ===
 
@@ -77,20 +68,14 @@ Flags:
       --tags strings         
       --icon-id int          
 
-  === Archive-specific options ===
+  === Private-Host-specific options ===
 
-      --size int                (*required) 
-      --source-archive-id int   
-      --source-disk-id int      
-      --source-file string      
+      --class string   (*required) options: [dynamic/ms_windows]
+      --plan-id int    (*required) 
 
   === Zone options ===
 
       --zone string   (*required) 
-
-  === Wait options ===
-
-      --no-wait   
 
   === Input options ===
 
@@ -201,164 +186,15 @@ Flags:
 
       --fail-if-not-found   
 
-  === Input options ===
+  === Wait options ===
 
-  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Output options ===
-
-      --format string        Output format in Go templates (aliases: --fmt)
-  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
-      --query string         JMESPath query
-  -q, --quiet                Output IDs only
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## upload {: #upload }
-
-```console
-Usage:
-  upload [flags]
-
-Flags:
-
-  === Upload options ===
-
-      --source-file string   
-
-  === Zone options ===
-
-      --zone string   (*required) 
+      --wait-for-release               
+      --wait-for-release-timeout int   
+      --wait-for-release-tick int      
 
   === Input options ===
 
   -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## download {: #download }
-
-```console
-Usage:
-  download [flags]
-
-Flags:
-
-  === Download options ===
-
-      --destination string   (aliases: --dest)
-  -f, --force                overwrite file when --destination file is already exist
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
-  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## ftp-open {: #ftp-open }
-
-```console
-Usage:
-  ftp-open [flags]
-
-Aliases:
-  ftp-open, open-ftp
-
-Flags:
-
-  === FTP options ===
-
-      --change-password   
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
-  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Output options ===
-
-      --format string        Output format in Go templates (aliases: --fmt)
-  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
-      --query string         JMESPath query
-  -q, --quiet                Output IDs only
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## ftp-close {: #ftp-close }
-
-```console
-Usage:
-  ftp-close [flags]
-
-Aliases:
-  ftp-close, close-ftp
-
-Flags:
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
-  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## wait-until-ready {: #wait-until-ready }
-
-```console
-Usage:
-  wait-until-ready [flags]
-
-Aliases:
-  wait-until-ready, wait, wait-for-copy
-
-Flags:
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
       --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
       --parameters string   Input parameters in JSON format
 

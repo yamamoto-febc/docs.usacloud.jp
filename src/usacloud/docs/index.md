@@ -6,57 +6,77 @@
 
 ## 目次
 
-* [Installation / 導入ガイド](installation/start_guide.md)
+* [Installation / 導入ガイド](installation/start_guide)
+* Upgrade / アップグレードガイド
+    - [v1.0.0へのアップグレード](upgrade/v1_0_0)
 * Usage / 使い方
-    - [基本的な使い方](guides/basic_usage.md)
-    - [サーバの作成](guides/usage_server_build.md)
-    - [電源操作](guides/usage_server_power.md)
-    - [接続(SSH/VNC)](guides/usage_server_connect.md)
-    - [ファイル送受信(SCP)](guides/usage_server_scp.md)
-    - [オブジェクトストレージの操作](guides/usage_ojs.md)
-    - [アーカイブのダウンロード](guides/usage_download.md)
-    - [ISOイメージのアップロード](guides/usage_upload.md)
-    - [監視/モニタリング](guides/usage_monitoring.md)
-* References / コマンドリファレンス
-    * Computing / コンピューティング
-        - [`server`: サーバー](commands/server.md)
-    * Storage / ストレージ
-        - [`archive`: アーカイブ](commands/archive.md)
-        - [`auto-backup`: 自動バックアップ](commands/auto_backup.md)
-        - [`disk`: ディスク](commands/disk.md)
-        - [`iso-image`: ISOイメージ](commands/iso_image.md)
-        - [`object-storage`: オブジェクトストレージ](commands/object_storage.md)
-    * Networking / ネットワーキング
-        - [`bridge`: ブリッジ](commands/bridge.md)
-        - [`internet`: ルータ](commands/internet.md)
-        - [`packet-filter`: パケットフィルタ](commands/packet_filter.md)
-        - [`switch`: スイッチ](commands/switch.md)
-        - [`interface`: インターフェース](commands/interface.md)
-    * Appliance / アプライアンス
-        - `database`: データベース(未実装)
-        - `load-balancer`: ロードバランサー(未実装)
-        - `vpc-router`: VPCルータ(未実装)
-    * CommonServiceItem / 共通サービスアイテム
-        - [`dns`: DNS](commands/dns.md)
-        - [`gslb`: GSLB](commands/gslb.md)
-        - [`simple-monitor`: シンプル監視](commands/simple_monitor.md)
-    * CommonItem / 共通アイテム
-        - [`license`: ライセンス](commands/license.md)
-        - [`icon`: アイコン](commands/icon.md)
-        - [`ssh-key`: SSH公開鍵](commands/ssh_key.md)
-        - [`startup-script`: スタートアップスクリプト](commands/startup_script.md)
-    * Billing/ 請求
-        - [`bill`: 請求情報](commands/bill.md)
-    * SaaS / サービス
-        - [`web-accel`: ウェブアクセラレータ](commands/webaccel.md)
-    * Information / 製品/プラン/情報
-        - [`price`: 料金情報](commands/price.md)
-        - [`product-disk`: ディスクプラン](commands/product_disk.md)
-        - [`product-internet`: 帯域プラン](commands/product_internet.md)
-        - [`product-license`: ライセンスプラン](commands/product_license.md)
-        - [`product-server`: サーバープラン](commands/product_server.md)
-        - [`region`: リージョン](commands/region.md)
-        - [`zone`: ゾーン](commands/zone.md)
-    * Other / その他
-        - [`config`: 設定](commands/config.md)
-
+    - [基本的な使い方](guides/basic_usage)
+* References / リファレンス
+    * オプション/設定
+        - [グローバルオプション](commands/global.md)
+        - [プロファイル](commands/profile.md)
+    * コマンド
+        * Configuration / プロファイル/コンフィグ
+            - [config](commands/config)
+        * Authentication / 認証情報
+            - [auth-status](commands/auth-status)
+        * Computing / コンピューティング
+            - [private-host](commands/private-host)
+            - [server](commands/server)
+        * Storage / ストレージ
+            - [archive](commands/archive)
+            - [auto-backup](commands/auto-backup)
+            - [cdrom](commands/cdrom)
+            - [disk](commands/disk)
+        * Networking / ネットワーキング
+            - [bridge](commands/bridge)
+            - [internet](commands/internet)
+            - [local-router](commands/local-router)
+            - [packet-filter](commands/packet-filter)
+            - [switch](commands/switch)
+            * ネットワーク関連サブリソース
+                - [interface](commands/interface)
+                - [ipaddress](commands/ipaddress)
+                - [ipv6addr](commands/ipv6addr)
+                - [ipv6net](commands/ipv6net)
+                - [subnet](commands/subnet)
+        * Appliance / アプライアンス
+            - [database](commands/database)
+            - [load-balancer](commands/load-balancer)
+            - [mobile-gateway](commands/mobile-gateway)
+            - [nfs](commands/nfs)
+            - [vpc-router](commands/vpc-router)
+        * Secure Mobile / セキュアモバイル
+            - [mobile-gateway](commands/mobile-gateway)
+            - [sim](commands/sim)
+        * Common service items / 共通サービスアイテム
+            - [dns](commands/dns)
+            - [gslb](commands/gslb)
+            - [proxy-lb](commands/proxy-lb)
+            - [simple-monitor](commands/simple-monitor)
+        * Billing / 請求関連
+            - [bill](commands/bill)
+            - [coupon](commands/coupon)
+        * Lab / Labプロダクト
+            - [container-registry](commands/container-registry)
+            - [esme](commands/esme)
+        * WebAccelerator / ウェブアクセラレータ
+            - [web-accelerator](commands/web-accelerator)
+        * Other services / その他サービス
+            - [icon](commands/icon)
+            - [license](commands/license)
+            - [note](commands/note)
+            - [ssh-key](commands/ssh-key)
+         * Region/Zone information / リージョン/ゾーン情報参照
+            - [region](commands/region)
+            - [zone](commands/zone)
+        * Service/Product information / サービス/プロダクト情報参照
+            - [disk-plan](commands/disk-plan)
+            - [internet-plan](commands/internet-plan)
+            - [license-info](commands/license-info)
+            - [private-host-plan](commands/private-host-plan)
+            - [server-plan](commands/server-plan)
+            - [service-class](commands/service-class)
+        * Other commands / その他
+            - [rest](commands/rest)
+            - [self](commands/self)

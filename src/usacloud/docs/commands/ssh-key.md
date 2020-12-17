@@ -1,20 +1,14 @@
-# コマンドリファレンス / archive
+# コマンドリファレンス / ssh-key
 
 ## コマンド一覧
 
 - Basic Commands
     - [list](#list)
     - [create](#create)
+    - [generate](#generate)
     - [read](#read)
     - [update](#update)
     - [delete](#delete)
-- Operation Commands
-    - [upload](#upload)
-    - [download](#download)
-    - [ftp-open](#ftp-open)
-    - [ftp-close](#ftp-close)
-- Other Commands
-    - [wait-until-ready](#wait-until-ready)
 
 
 ## list {: #list }
@@ -30,19 +24,12 @@ Flags:
 
   === Filter options ===
 
-      --names strings    
-      --tags strings     
-      --scope string     options: [user/shared]
-      --os-type string   options: [centos/centos8stream/centos8/ubuntu/ubuntu2004/debian/debian10/coreos/rancheros/k3os/freebsd/...]
+      --names strings   
 
   === Limit/Offset options ===
 
       --count int   (aliases: --max, --limit)
       --from int    (aliases: --offset)
-
-  === Zone options ===
-
-      --zone string   (*required) 
 
   === Input options ===
 
@@ -74,23 +61,46 @@ Flags:
 
       --name string          (*required) 
       --description string   
-      --tags strings         
-      --icon-id int          
 
-  === Archive-specific options ===
+  === Ssh-Key-specific options ===
 
-      --size int                (*required) 
-      --source-archive-id int   
-      --source-disk-id int      
-      --source-file string      
+      --public-key string   (*required) 
 
-  === Zone options ===
+  === Input options ===
 
-      --zone string   (*required) 
+  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
 
-  === Wait options ===
+  === Output options ===
 
-      --no-wait   
+      --format string        Output format in Go templates (aliases: --fmt)
+  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
+      --query string         JMESPath query
+  -q, --quiet                Output IDs only
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
+```
+
+## generate {: #generate }
+
+```console
+Usage:
+  generate [flags]
+
+Flags:
+
+  === Common options ===
+
+      --name string          (*required) 
+      --description string   
+
+  === Ssh-Key-specific options ===
+
+      --pass-phrase string   
 
   === Input options ===
 
@@ -122,10 +132,6 @@ Aliases:
 
 Flags:
 
-  === Zone options ===
-
-      --zone string   (*required) 
-
   === Input options ===
 
       --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
@@ -156,12 +162,6 @@ Flags:
 
       --name string          
       --description string   
-      --tags strings         
-      --icon-id int          
-
-  === Zone options ===
-
-      --zone string   (*required) 
 
   === Input options ===
 
@@ -193,10 +193,6 @@ Aliases:
 
 Flags:
 
-  === Zone options ===
-
-      --zone string   (*required) 
-
   === Error handling options ===
 
       --fail-if-not-found   
@@ -213,154 +209,6 @@ Flags:
   -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
       --query string         JMESPath query
   -q, --quiet                Output IDs only
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## upload {: #upload }
-
-```console
-Usage:
-  upload [flags]
-
-Flags:
-
-  === Upload options ===
-
-      --source-file string   
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
-  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## download {: #download }
-
-```console
-Usage:
-  download [flags]
-
-Flags:
-
-  === Download options ===
-
-      --destination string   (aliases: --dest)
-  -f, --force                overwrite file when --destination file is already exist
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
-  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## ftp-open {: #ftp-open }
-
-```console
-Usage:
-  ftp-open [flags]
-
-Aliases:
-  ftp-open, open-ftp
-
-Flags:
-
-  === FTP options ===
-
-      --change-password   
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
-  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Output options ===
-
-      --format string        Output format in Go templates (aliases: --fmt)
-  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
-      --query string         JMESPath query
-  -q, --quiet                Output IDs only
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## ftp-close {: #ftp-close }
-
-```console
-Usage:
-  ftp-close [flags]
-
-Aliases:
-  ftp-close, close-ftp
-
-Flags:
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
-  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## wait-until-ready {: #wait-until-ready }
-
-```console
-Usage:
-  wait-until-ready [flags]
-
-Aliases:
-  wait-until-ready, wait, wait-for-copy
-
-Flags:
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
 
   === Parameter example ===
 

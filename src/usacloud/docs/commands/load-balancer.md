@@ -1,4 +1,4 @@
-# コマンドリファレンス / archive
+# コマンドリファレンス / load-balancer
 
 ## コマンド一覧
 
@@ -8,13 +8,15 @@
     - [read](#read)
     - [update](#update)
     - [delete](#delete)
-- Operation Commands
-    - [upload](#upload)
-    - [download](#download)
-    - [ftp-open](#ftp-open)
-    - [ftp-close](#ftp-close)
+- Power Management Commands
+    - [boot](#boot)
+    - [shutdown](#shutdown)
+    - [reset](#reset)
+- Monitoring Commands
+    - [monitor-interface](#monitor-interface)
 - Other Commands
     - [wait-until-ready](#wait-until-ready)
+    - [wait-until-shutdown](#wait-until-shutdown)
 
 
 ## list {: #list }
@@ -30,10 +32,8 @@ Flags:
 
   === Filter options ===
 
-      --names strings    
-      --tags strings     
-      --scope string     options: [user/shared]
-      --os-type string   options: [centos/centos8stream/centos8/ubuntu/ubuntu2004/debian/debian10/coreos/rancheros/k3os/freebsd/...]
+      --names strings   
+      --tags strings    
 
   === Limit/Offset options ===
 
@@ -77,12 +77,19 @@ Flags:
       --tags strings         
       --icon-id int          
 
-  === Archive-specific options ===
+  === Plan options ===
 
-      --size int                (*required) 
-      --source-archive-id int   
-      --source-disk-id int      
-      --source-file string      
+      --plan string   (*required) options: [standard/highspec] (default "standard")
+
+  === Network options ===
+
+      --vrid int                      
+      --switch-id int                 (*required) 
+      --ip-address strings            (*required) (aliases: --ipaddress)
+      --netmask int                   (*required) (aliases: --network-mask-len)
+      --gateway string                (aliases: --default-route)
+      --port int                      
+      --virtual-ip-addresses string   (aliases: --vips)
 
   === Zone options ===
 
@@ -159,9 +166,17 @@ Flags:
       --tags strings         
       --icon-id int          
 
+  === Network options ===
+
+      --virtual-ip-addresses string   (aliases: --vips)
+
   === Zone options ===
 
       --zone string   (*required) 
+
+  === Wait options ===
+
+      --no-wait   
 
   === Input options ===
 
@@ -193,6 +208,10 @@ Aliases:
 
 Flags:
 
+  === Delete options ===
+
+  -f, --force   
+
   === Zone options ===
 
       --zone string   (*required) 
@@ -220,77 +239,79 @@ Flags:
 
 ```
 
-## upload {: #upload }
+## boot {: #boot }
 
 ```console
 Usage:
-  upload [flags]
-
-Flags:
-
-  === Upload options ===
-
-      --source-file string   
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
-  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## download {: #download }
-
-```console
-Usage:
-  download [flags]
-
-Flags:
-
-  === Download options ===
-
-      --destination string   (aliases: --dest)
-  -f, --force                overwrite file when --destination file is already exist
-
-  === Zone options ===
-
-      --zone string   (*required) 
-
-  === Input options ===
-
-  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
-      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
-      --parameters string   Input parameters in JSON format
-
-  === Parameter example ===
-
-      --example   Output example parameters with JSON format
-
-```
-
-## ftp-open {: #ftp-open }
-
-```console
-Usage:
-  ftp-open [flags]
+  boot [flags]
 
 Aliases:
-  ftp-open, open-ftp
+  boot, power-on
 
 Flags:
 
-  === FTP options ===
+  === Zone options ===
 
-      --change-password   
+      --zone string   (*required) 
+
+  === Wait options ===
+
+      --no-wait   
+
+  === Input options ===
+
+  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
+```
+
+## shutdown {: #shutdown }
+
+```console
+Usage:
+  shutdown [flags]
+
+Aliases:
+  shutdown, power-off
+
+Flags:
+
+  === Load-Balancer-specific options ===
+
+  -f, --force-shutdown   (aliases: --force)
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Wait options ===
+
+      --no-wait   
+
+  === Input options ===
+
+  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
+```
+
+## reset {: #reset }
+
+```console
+Usage:
+  reset [flags]
+
+Flags:
 
   === Zone options ===
 
@@ -299,6 +320,37 @@ Flags:
   === Input options ===
 
   -y, --assumeyes           Assume that the answer to any question which would be asked is yes
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
+```
+
+## monitor-interface {: #monitor-interface }
+
+```console
+Usage:
+  monitor-interface [flags]
+
+Aliases:
+  monitor-interface, monitor-nic
+
+Flags:
+
+  === Monitor options ===
+
+      --end string     
+      --start string   
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
       --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
       --parameters string   Input parameters in JSON format
 
@@ -315,14 +367,14 @@ Flags:
 
 ```
 
-## ftp-close {: #ftp-close }
+## wait-until-ready {: #wait-until-ready }
 
 ```console
 Usage:
-  ftp-close [flags]
+  wait-until-ready [flags]
 
 Aliases:
-  ftp-close, close-ftp
+  wait-until-ready, wait-for-boot
 
 Flags:
 
@@ -332,7 +384,6 @@ Flags:
 
   === Input options ===
 
-  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
       --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
       --parameters string   Input parameters in JSON format
 
@@ -342,14 +393,14 @@ Flags:
 
 ```
 
-## wait-until-ready {: #wait-until-ready }
+## wait-until-shutdown {: #wait-until-shutdown }
 
 ```console
 Usage:
-  wait-until-ready [flags]
+  wait-until-shutdown [flags]
 
 Aliases:
-  wait-until-ready, wait, wait-for-copy
+  wait-until-shutdown, wait-for-down
 
 Flags:
 

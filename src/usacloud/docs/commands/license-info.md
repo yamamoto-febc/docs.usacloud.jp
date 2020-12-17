@@ -1,10 +1,10 @@
-# コマンドリファレンス / bill
+# コマンドリファレンス / license-info
 
 ## コマンド一覧
 
 - Basic Commands
     - [list](#list)
-    - [csv](#csv)
+    - [read](#read)
 
 
 ## list {: #list }
@@ -18,10 +18,14 @@ Aliases:
 
 Flags:
 
-  === Bill-specific options ===
+  === Filter options ===
 
-      --month int   
-      --year int    (*required) 
+      --names strings   
+
+  === Limit/Offset options ===
+
+      --count int   (aliases: --max, --limit)
+      --from int    (aliases: --offset)
 
   === Input options ===
 
@@ -41,11 +45,14 @@ Flags:
 
 ```
 
-## csv {: #csv }
+## read {: #read }
 
 ```console
 Usage:
-  csv [flags]
+  read [flags]
+
+Aliases:
+  read, show
 
 Flags:
 

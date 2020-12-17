@@ -4,33 +4,25 @@
 
 # 目次
 
-  * [usacloudとは](#usacloud_1)
-  * [インストール](#_2)
-  * [設定](#_3)
+  * [usacloudとは](#about)
+  * [インストール](#install)
+  * [設定](#configuration)
 
 ---
 
-# usacloudとは 
+# usacloudとは {: #about }
 
 `usacloud`とは、さくらのクラウド用のCLIクライアントです。  
 
-以下のOS/Archに対応しています。
-
-  - macOS(amd64)
-  - Linux(i386/amd64/arm)
-  - Windows(i386/amd64)
-
 ---
 
-# インストール
+# インストール {: #install }
 
-### macOS(`brew`) / Linux(`apt` or `yum` or `brew`) / bash on Windows(Ubuntu)
+### macOS/Linux
 
 ```bash
-curl -fsSL https://releases.usacloud.jp/usacloud/repos/install.sh | bash
+curl -fsSL https://github.com/sacloud/usacloud/releases/latest/download/install.sh | bash
 ```
-
-> ※bash_completionを有効化するには上記コマンドを実行後に再ログインしてください。
 
 ---
 
@@ -44,28 +36,18 @@ choco install usacloud
 
 ---
 
-### Windows/その他の場合
+### その他の場合
 
-以下のリンクからバイナリーファイルをダウンロードして展開し、任意のフォルダー内に配置してください。  
+GitHub Releasesページから任意のプラットフォーム向けのファイルをダウンロードして展開し、任意のフォルダー内に配置してください。  
 (PATHを通しておくと便利です)
 
-- Windows 64bit版 : [https://releases.usacloud.jp/usacloud/repos/windows/usacloud_windows-amd64.zip](https://releases.usacloud.jp/usacloud/repos/windows/usacloud_windows-amd64.zip)
-- Windows 32bit版 : [https://releases.usacloud.jp/usacloud/repos/windows/usacloud_windows-386.zip](https://releases.usacloud.jp/usacloud/repos/windows/usacloud_windows-386.zip)
-- その他の場合 : [https://github.com/sacloud/usacloud/releases/latest/](https://github.com/sacloud/usacloud/releases/latest/)
-
-`bash_completion`が利用できる場合は、以下のコマンドで`usacloud`用の`bash_completion`を導入することが出来ます。
-
-```bash
-curl -s -L https://releases.usacloud.jp/usacloud/contrib/completion/bash/usacloud >> ~/.bashrc
-```
-
-> ※bash_completionを有効化するには上記コマンドを実行後に再ログインしてください。
+[https://github.com/sacloud/usacloud/releases/latest/](https://github.com/sacloud/usacloud/releases/latest/)
 
 ---
 
 ### Dockerを利用する場合
 
-`usacloud`実行用イメージとして`sacloud/usacloud`を公開しています。
+`usacloud`実行用イメージとして`ghcr.io/sacloud/usacloud`を公開しています。
 
 ```bash
 # Dockerでのusacloud実行例
@@ -73,64 +55,43 @@ docker run -it --rm \
     -e SAKURACLOUD_ACCESS_TOKEN \
     -e SAKURACLOUD_ACCESS_TOKEN_SECRET \
     -e SAKURACLOUD_ZONE \
-    sacloud/usacloud server ls
+    ghcr.io/sacloud/usacloud server ls
 ```
+
+!!! info
+    v0との互換性維持のためにDockerHubで`sacloud/usacloud`イメージを配布しています。  
+    このイメージは将来的に廃止予定です。`ghcr.io/sacloud/usacloud`の利用を推奨します。
+
 
 ---
 
-### whalebrewを利用する場合
+### シェル補完(Shell Completion) {: #shell_completion }
 
+`bash_completion`などのシェル補完が利用できる場合は、以下のコマンドで有効に出来ます。
 
-Dockerイメージ`sacloud/usacloud`は`whalebrew`でのインストール/実行に対応しています。
+#### Bash
 
-```bash
-# インストール
-whalebrew install sacloud/usacloud
-```
+- Linux: `$ usacloud completion bash > /etc/bash_completion.d/usacloud`
+- MacOS: `$ usacloud completion bash > /usr/local/etc/bash_completion.d/usacloud`
+
+#### Zsh
+
+    $ usacloud completion zsh > "${fpath[1]}/_usacloud"
+
+#### Fish:
+
+    $ usacloud completion fish > ~/.config/fish/completions/usacloud.fish
 
 ---
 
-# 設定
+
+# 設定 {: #configuration }
 
 `usacloud`の実行にはさくらのクラウドのAPIキーの取得/設定が必要です。
+以下のドキュメントに従いAPIキーを作成してください。
 
-## APIキーの取得
+[さくらのクラウド ドキュメント: APIキーの新規作成・編集](https://manual.sakura.ad.jp/cloud/api/apikey.html#id3)
 
-[さくらのクラウドのコントロールパネル](https://secure.sakura.ad.jp/cloud/)からAPIキーを発行します。
-
-コントロールパネルにログインし、「さくらのクラウド(IaaS)」を選択します。
-
-![apikey-01-01.png](images/apikey-01-01.png)
-
-次に以下手順でAPIキーの追加画面を表示します。
-
-  - (1) 画面右上の「設定」をクリック
-  - (2) 左側に表示されるメニューから「APIキー」を選択
-  - (3) 一覧の右上の「追加」をクリック
-
-![apikey-01-02.png](images/apikey-01-02.png)
-
-APIキーの追加画面が表示されたら、各項目を入力して「追加」をクリックします。
-
-各項目は以下のように入力してください。
-
-  - 名前 : 任意の名前を入力
-  - 説明 : 任意入力
-  - アクセスレベル : `作成・削除`を選択
-  - 他サービスへのアクセス権 : 必要に応じてチェックを入れる
-
-![apikey-01-03.png](images/apikey-01-03.png)
-
-APIキーを作成したら、以下の値を控えておいてください。
-
-  - アクセストークン
-  - アクセスシークレット
-
-![apikey-02.png](images/apikey-02.png)
-
-以上でAPIキーの取得完了です。
-
----
 
 ## APIキーの設定
 
@@ -139,7 +100,7 @@ APIキーを取得したら、`usacloud config`を実行しAPIキーを設定し
 画面の指示に従い、アクセストークン(token)とシークレット(secret)、操作対象のゾーン、デフォルトの出力形式を入力します。
 
 ```bash
-usacloud config
+$ usacloud config
 
   Setting SakuraCloud API Token => 
   	Enter token: [アクセストークンを入力]
@@ -148,10 +109,10 @@ usacloud config
   	Enter secret: [アクセスシークレットを入力]
     	
   Setting SakuraCloud Zone => 
-  	Enter zone[is1a/is1b/tk1a/tk1v](default:tk1a): [ゾーンを入力]
+  	Enter zone[is1a/is1b/tk1a/tk1b/tk1v]: [ゾーンを入力]
   
   Setting Default Output Type => 
-	Enter default-output-type[table/json/yaml/csv/tsv]: [デフォルトの出力形式を入力]
+	Enter default-output-type[table/json/yaml]: [デフォルトの出力形式を入力]
 	
   Written your settings to ~/.usacloud/default/config.json
 ```
@@ -161,33 +122,54 @@ usacloud config
   * `is1a` : 石狩第1ゾーン
   * `is1b` : 石狩第2ゾーン
   * `tk1a` : 東京第1ゾーン
+  * `tk1b` : 東京第2ゾーン
   * `tk1v` : サンドボックス
-  
-> ※`is1a`は2016年7月1日以降に新規作成したアカウントでは[利用できません](http://cloud-news.sakura.ad.jp/2016/07/01/restric_account_is1a/)  
-> ※ここで入力した内容は`~/.usacloud/default/config.json`にJSONファイルとして保存されます
 
+!!! note
+    グローバルオプション`--zones`やプロファイルで`Zones`を設定している場合は設定可能なゾーンが上記と異なる場合があります。  
+    詳細は[コマンドリファレンス / プロファイル](../commands/profile)を参照してください。
+  
+!!! warning
+    `usacloud config`コマンドで入力した内容は平文でJSONファイルとして保存されます。  
+    デフォルトでは`~/.usacloud/<ファイル名>/config.json`にパーミッション`0700`で保存されます。  
+    取り扱いは十分に注意してください。
+
+!!! tip
+    `usacloud config`では基本的な項目の設定のみが行えます。  
+    より詳細な設定をしたい場合は生成されたJSONファイルを直接編集する必要があります。  
+    JSONファイルに記載できる内容の詳細については[コマンドリファレンス / プロファイル](../commands/profile)を参照してください。
 
 ### その他のAPIキー設定方法
+
+#### 環境変数での指定
 
 APIキーは環境変数での指定にも対応しています。
 
 ```bash
-export SAKURACLOUD_ACCESS_TOKEN=アクセストークン
-export SAKURACLOUD_ACCESS_TOKEN_SECRET=アクセスシークレット
-export SAKURACLOUD_ZONE=ゾーン
+$ export SAKURACLOUD_ACCESS_TOKEN=アクセストークン
+$ export SAKURACLOUD_ACCESS_TOKEN_SECRET=アクセスシークレット
+$ export SAKURACLOUD_ZONE=ゾーン
 ```
 
-また、コマンド実行時にコマンドラインオプションで上書きできます。
+#### 環境変数での指定
+
+コマンド実行時にコマンドラインオプションで指定することが出来ます。
 
 ```bash
-usacloud --token=アクセストークン --secret=アクセスシークレット --zone=ゾーン server ls
+$ usacloud --token=アクセストークン --secret=アクセスシークレット --zone=ゾーン server ls
 ```
+
+!!! warning
+    コマンドラインオプション`--token`/`--secret`を利用した場合、ヒストリーに値が残ってしまう場合があります。  
+    取り扱いは十分に注意してください。
+
+#### 複数箇所で指定した場合の優先順位
 
 複数の箇所で指定されていた場合、以下の順で読み込みます(後から読み込んだものが優先)。
 
-1. 環境変数での設定
-2. `usacloud config`での設定
-3. コマンド実行時の指定
+1. 環境変数での指定
+2. プロファイル(`usacloud config`で保存されるもの)での指定
+3. コマンドラインオプションでの指定
 
 --- 
 

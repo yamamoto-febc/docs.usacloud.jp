@@ -1,10 +1,12 @@
-# コマンドリファレンス / interface
+# コマンドリファレンス / ipaddress
 
 ## コマンド一覧
 
 - Basic Commands
     - [list](#list)
     - [read](#read)
+- Other Commands
+    - [update-host-name](#update-host-name)
 
 
 ## list {: #list }
@@ -17,14 +19,6 @@ Aliases:
   list, ls, find, select
 
 Flags:
-
-  === Filter options ===
-
-      --mac-addresses strings         
-      --packet-filer-ids strings      
-      --packet-filter-names strings   
-      --server-ids strings            
-      --server-names strings          
 
   === Limit/Offset options ===
 
@@ -64,12 +58,54 @@ Aliases:
 
 Flags:
 
+  === Ipaddress-specific options ===
+
+      --ipaddress string   (*required) (aliases: --ip-address)
+
   === Zone options ===
 
       --zone string   (*required) 
 
   === Input options ===
 
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Output options ===
+
+      --format string        Output format in Go templates (aliases: --fmt)
+  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
+      --query string         JMESPath query
+  -q, --quiet                Output IDs only
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
+```
+
+## update-host-name {: #update-host-name }
+
+```console
+Usage:
+  update-host-name [flags]
+
+Flags:
+
+  === Ipaddress-specific options ===
+
+      --host-name string     (*required) 
+      --ip-address string    (*required) 
+      --retry-interval int    (default 10)
+      --retry-max int         (default 30)
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
+  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
       --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
       --parameters string   Input parameters in JSON format
 

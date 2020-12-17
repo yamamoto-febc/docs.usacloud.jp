@@ -21,3 +21,6 @@ lint:
 
 clean:
 	rm -rf site/*
+
+generate:
+	go run tools/*.go $(CURDIR)/scaffold

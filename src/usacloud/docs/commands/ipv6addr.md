@@ -1,4 +1,4 @@
-# コマンドリファレンス / switch
+# コマンドリファレンス / ipv6addr
 
 ## コマンド一覧
 
@@ -21,10 +21,11 @@ Aliases:
 
 Flags:
 
-  === Filter options ===
+  === Ipv6addr-specific options ===
 
-      --names strings   
-      --tags strings    
+      --hostnames strings        (aliases: --host-names)
+      --ipv6-addresses strings   
+      --switch-ids strings       
 
   === Limit/Offset options ===
 
@@ -61,12 +62,10 @@ Usage:
 
 Flags:
 
-  === Common options ===
+  === Ipv6addr-specific options ===
 
-      --name string          (*required) 
-      --description string   
-      --tags strings         
-      --icon-id int          
+      --host-name string   (*required) 
+      --ipv6addr string    (*required) 
 
   === Zone options ===
 
@@ -102,6 +101,10 @@ Aliases:
 
 Flags:
 
+  === Ipv6addr-specific options ===
+
+      --ipv6addr string   (*required) 
+
   === Zone options ===
 
       --zone string   (*required) 
@@ -132,17 +135,10 @@ Usage:
 
 Flags:
 
-  === Common options ===
+  === Ipv6addr-specific options ===
 
-      --name string          
-      --description string   
-      --tags strings         
-      --icon-id int          
-
-  === Switch-specific options ===
-
-      --display-gateway string         (aliases: --display-default-route)
-      --display-network-mask-len int   
+      --host-name string   (*required) 
+      --ipv6addr string    (*required) 
 
   === Zone options ===
 
@@ -178,6 +174,10 @@ Aliases:
 
 Flags:
 
+  === Ipv6addr-specific options ===
+
+      --ipv6addr string   (*required) 
+
   === Zone options ===
 
       --zone string   (*required) 
@@ -185,12 +185,6 @@ Flags:
   === Error handling options ===
 
       --fail-if-not-found   
-
-  === Wait options ===
-
-      --wait-for-release               
-      --wait-for-release-timeout int   
-      --wait-for-release-tick int      
 
   === Input options ===
 

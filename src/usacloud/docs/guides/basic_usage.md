@@ -7,7 +7,7 @@
 `usacloud`コマンドの基本構文は以下の通りです。
 
 ```bash
-usacloud [グローバルオプション] <操作対象のリソース> <コマンド> [コマンドオプション] 引数
+$ usacloud <操作対象のリソース> <コマンド> [コマンドオプション] [引数]
 ```
 
 #### 指定できる値
@@ -22,19 +22,19 @@ usacloud [グローバルオプション] <操作対象のリソース> <コマ�
 #------------------------------------------------------------------------------
 
 # 基本的な使い方(オプション/引数なし)
-usacloud server ls
+$ usacloud server ls
 
 # グローバルオプションあり
-usacloud --zone tk1a server ls
+$ usacloud --zone tk1a server ls
 
 # オプション(短い形式)
-usacloud server ls -q
+$ usacloud server ls -q
 
 # オプション(長い形式)
-usacloud server ls --name foobar
+$ usacloud server ls --quiet
 
 # オプションは=を明示してもOK
-usacloud server ls --name=foovar
+$ usacloud server ls --name=foovar
 ```
 
 ---
@@ -76,12 +76,14 @@ usacloud server ls -h
 
 ## グローバルオプション
 
+主なオプションを以下に記載します。全てのオプションについては[グローバルオプション](../commands/global)を参照してください。
+
 ---
 
 #### コンフィグ(`--config`)
 
 利用するコンフィグ(プロファイル)を指定します。(エイリアス:`--profile`)  
-指定可能な値は`usacloud config list`コマンドで調べることができます。  
+指定可能な値は`usacloud config list`コマンドで調べることが可能なほか、`usacloud config create`コマンドなどで新規作成も可能です。
 
 > 通常この値は`~/.usacloud/current`の値が利用されます。  
 > 環境変数`USACLOUD_PROFILE`での指定、またはコマンド実行時の`--config`の指定でこの設定を上書き可能です。  
@@ -106,56 +108,6 @@ usacloud server ls -h
 
 ---
 
-#### 操作対象ゾーン(`--zone`)
-
-操作対象とするさくらのクラウドのゾーンを指定します。  
-指定可能な値は以下のいずれかです。
-
-  * `is1a` : 石狩第1ゾーン
-  * `is1b` : 石狩第2ゾーン
-  * `tk1a` : 東京第1ゾーン
-  * `tk1v` : サンドボックス
-
-> 通常この値は`~/.usacloud/[current-profile-nane]/config.json`の値が利用されます。  
-> 環境変数`SAKURACLOUD_ZONE`での指定、またはコマンド実行時の`--zone`の指定でこれらの設定を上書き可能です。  
-
----
-
-#### デフォルト出力形式(`--default-output-type`)
-
-デフォルトの出力形式を指定します。
-指定可能な値は以下のいずれかです。
-
-  * `table` : テーブル形式(デフォルト)
-  * `json`  : JSON形式
-  * `csv`   : CSV形式
-  * `tsv`   : TSV形式
-
-> 通常この値は`~/.usacloud/[current-profile-nane]/config.json`の値が利用されます。  
-> 環境変数`USACLOUD_DEFAULT_OUTPUT_TYPE`での指定、またはコマンド実行時の`--output-type`(エイリアス:`--out`)の指定でこの設定を上書き可能です。  
-
----
-
-
-
-#### ヘルプ表示(`--help` or `-h`)
-
-ヘルプを表示します。詳細は[help表示](#help)を参照してください。
-
----
-
-#### バージョン表示(`--version` or `-v`)
-
-usacloudのバージョン情報を表示します。
-
----
-
-#### トレース出力(`--trace`) * *上級者向け* *
-
-さくらのクラウドAPI呼び出しのトレースログを標準出力へ書き込みます。
-
----
-
 ## 共通オプション: 出力の設定
 
 出力の行われるコマンドでは以下の出力オプションが利用可能です。  
@@ -167,34 +119,14 @@ usacloudのバージョン情報を表示します。
 
 出力形式を選択します。指定可能な値は以下のいずれかです。  
 
-  * `table` : テーブル形式
-  * `json`  : JSON
-  * `csv`   : CSV形式
-  * `tsv`   : TSV形式
+* `table` : テーブル形式
+* `json`  : JSON形式
+* `yaml`  : YAML形式
 
 未指定の場合はグローバルオプション`--default-output-type`の設定が利用されます。
 
 ---
  
-#### 出力カラム(`--column` or `--col`)
-
-出力する列名を指定します。  
-列名は対象オブジェクトのフィールド名をドットで繋いだものを指定します。  
-複数の列名を指定したい場合はオプションを複数指定してください。  
-
-**このオプションは`--output-type`が`csv`または`tsv`の場合のみ指定可能です。**
-
-サーバーに対する列名指定の例:
-
-- サーバー名の場合: `Name`
-- サーバーの1番目(インデックス0)のNICのIDの場合: `Interfaces.0.ID`
-
-```bash
-usacloud server ls --output-type csv --column=ID --column=Interfaces.0.ID
-```
-
----
-
 #### quietモード(`--quiet` or `-q`)
 
 IDのみ出力します。
@@ -213,19 +145,100 @@ usacloud server ls --format "ID is {{.ID}}, Name is {{.Name}}"
    
 ---
 
-## 共通オプション: 対話をスキップ
+## 共通オプション: ゾーン指定
 
-#### yesオプション(`-y` or `--assumeyes`)
+ゾーンを指定する必要があるリソースの場合`--zone`で指定します。
+
+```bash
+$ usacloud server list --zone is1a
+```
+
+プロファイルでゾーンをセットしている場合は省略可能です。
+
+### 全ゾーン一括操作
+
+`--zone`に`all`を指定することで全ゾーン一括操作が可能です。
+
+```bash
+# 全ゾーンのサーバを一覧表示
+$ usacloud server list --zone=all
+
+# 全ゾーンのサーバのうち、名称にexampleを含むサーバをシャットダウン
+$ usacloud server shutdown --zone=all example
+
+# 全ゾーンにサーバ作成
+$ usacloud server create --name example ... --zone=all
+```
+
+
+---
+
+## 共通オプション: ファイル or JSONでのパラメータ指定(`--parameters`)
+
+コマンドに渡すパラメータをJSONまたはJSONを記述したファイルパスで指定します。
+
+```bash
+# 文字列で指定する例
+$ usacloud server list --parameters '{"Names": ["example"]}'
+
+# ファイルパスで指定する例
+$ cat example.json
+{
+  "Names": ["example"]
+}
+$ usacloud server list --parameters example.json
+```
+
+JSONファイルは`--example`パラメータで記述例を確認出来ます。
+
+!!! tip
+    `--parameters`はコマンドラインオプションとの併用/コマンドラインオプションでの上書きが可能です。  
+    共通的なパラメータをファイルに保存しておき、個別の値はコマンドラインで指定する、という使い方が出来ます。
+
+--- 
+
+## 共通オプション: パラメータ例の出力(`--example`)
+
+`--parameters`で指定するJSONファイルの例を出力します。
+
+```bash
+$ usacloud switch create --example
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012
+}
+```
+
+通常はファイルなどに保存した上で編集して利用します。
+
+```bash
+# パラメータ例をファイルに出力
+$ usacloud switch create --example > parameters.json
+# 編集
+$ vi parameters.json
+# 利用
+$ usacloud switch create --parameters parameters.json
+```
+
+
+## 共通オプション: yesオプション(`-y` or `--assumeyes`)
 
 実行時に確認ダイアログが表示されるコマンドで利用可能です。  
 確認ダイアログ全てに`y` または `yes`を入力します。  
 
-## 引数: IDまたは名称の指定
+## 引数: ID or 名称 or タグでの指定
 
-特定のリソースに対するコマンドの場合、IDまたは名称を引数にとります。  
-名称を指定した場合、部分一致のAND結合(スペース区切り)でヒットしたリソース全てを対象としてコマンドを実行します。
+特定のリソースに対するコマンドの場合、ID、名称、またはタグを引数にとります。  
+IDとタグの場合は完全一致、名称の場合は部分一致したリソースが操作対象となります。
 
-**複数リソースの一括操作に対応していないコマンドの場合、対象が複数となる指定はエラーとなります。**
+!!! warning
+    複数リソースの一括操作に対応していないコマンドの場合、対象が複数となる指定はエラーとなります。
 
 例:
 
@@ -233,7 +246,7 @@ usacloud server ls --format "ID is {{.ID}}, Name is {{.Name}}"
 #------------------------------------------------------------------------------
 # 以下のリソースが存在する場合の例
 #------------------------------------------------------------------------------
-usacloud server ls
+$ usacloud server ls
 +--------------+---------+-----+--------+---------------+--------+
 |      ID      |  NAME   | CPU | MEMORY |   IPADDRESS   | STATUS |
 +--------------+---------+-----+--------+---------------+--------+
@@ -246,7 +259,7 @@ usacloud server ls
 #------------------------------------------------------------------------------
 # 部分一致(例1)
 #------------------------------------------------------------------------------
-usacloud server boot Test # 名称にTestを含むもの
+$ usacloud server boot Test # 名称にTestを含むもの
 
 Target resource IDs => [
 	000000000011,
@@ -259,22 +272,11 @@ Are you sure you want to boot?(y/n) [n]:
 #------------------------------------------------------------------------------
 # 部分一致(例2)
 #------------------------------------------------------------------------------
-usacloud server boot Test3 # 名称にTest3を含むもの
+$ usacloud server boot Test3 # 名称にTest3を含むもの
 
 Target resource IDs => [
 	000000000031,
 	000000000032
 ]
 Are you sure you want to boot?(y/n) [n]:
-
-#------------------------------------------------------------------------------
-# 部分一致(例3) : スペース区切りで複数指定すると部分一致のAND結合
-#------------------------------------------------------------------------------
-usacloud server boot "1 2" # 名称に1と2を両方含むもの
-
-Target resource IDs => [
-	000000000021
-]
-Are you sure you want to boot?(y/n) [n]:
-
 ```

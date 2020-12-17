@@ -1,0 +1,48 @@
+name: Release
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Unshallow
+        run: git fetch --prune --unshallow
+
+      - name: Build a document with mkdocs - src/terraform
+        uses: ./.github/actions/mkdocs
+        with:
+          working-directory: './src/terraform'
+
+      - name: Build a document with mkdocs - src/terraform-v1
+        uses: ./.github/actions/mkdocs
+        with:
+          working-directory: './src/terraform-v1'
+
+      - name: Build a document with mkdocs - src/top
+        uses: ./.github/actions/mkdocs
+        with:
+          working-directory: './src/top'
+
+      - name: Build a document with mkdocs - src/usacloud
+        uses: ./.github/actions/mkdocs
+        with:
+          working-directory: './src/usacloud'
+
+      - run: |
+          mkdir ./public; cp -r ./src/top/site/* public/
+          mkdir ./public/terraform; cp -r ./src/terraform/site/* ./public/terraform
+          mkdir ./public/terraform-v1; cp -r ./src/terraform-v1/site/* ./public/terraform-v1
+          mkdir ./public/usacloud; cp -r ./src/usacloud/site/* ./public/usacloud
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          cname: docs.usacloud.jp
+          publish_branch: gh-pages

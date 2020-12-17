@@ -1,0 +1,12 @@
+name: 'mkdocs'
+description: 'Build static web sites for GitHub Pages'
+inputs:
+  working-directory:
+    description: 'working directory'
+    required: false
+    default: '.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.working-directory}}

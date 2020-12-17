@@ -81,7 +81,7 @@ $ terraform plan
 - Linux/macOS: `$HOME/.usacloud/<profile name>/config.json`
 - Windows: `%USERPROFILE%\.usacloud\<profile name>/config.json`
 
-このファイルは`usacloud profile edit <profile name>`コマンドで編集可能なほか、直接テキストエディタで編集することも可能です。  
+このファイルは`usacloud profile edit <profile name>`コマンドや直接テキストエディタ開くことで編集可能です。  
 
 プロファイルJSONの例:
 

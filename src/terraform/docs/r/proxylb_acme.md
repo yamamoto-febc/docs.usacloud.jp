@@ -19,7 +19,7 @@ data "sakuracloud_proxylb" "foobar" {
 
 !!! Note
     このリソースを利用する場合、エンハンスドロードバランサリソース(`sakuracloud_proxylb`)の`certificate`ブロックの値は上書きされます。  
-    両者を同時に指定することはできません。
+    両者の同時指定はできません。
 
 <div class="editor">
 
@@ -34,11 +34,11 @@ data "sakuracloud_proxylb" "foobar" {
 * `accept_tos` - (Required) [Let's Encrypt terms of service](https://letsencrypt.org/repository/)への同意フラグ  
 この項目は明示的に`true`に設定する必要があります / この値を変更するとリソースの再作成が行われる
 * `common_name` - (Required) 証明書発行対象のFQDN / 名前解決できる値を指定する必要があります / この値を変更するとリソースの再作成が行われる
-* `proxylb_id` - (Required) ACME設定を行う対象のエンハンスドロードバランサID / この値を変更するとリソースの再作成が行われる
-* `update_delay_sec` - (Optional) ACME設定を有効にするまでの待ち時間 / この値を変更するとリソースの再作成が行われる
+* `proxylb_id` - (Required) ACMEを設定する対象のエンハンスドロードバランサID / この値を変更するとリソースの再作成が行われる
+* `update_delay_sec` - (Optional) ACMEを有効にするまでの待ち時間 / この値を変更するとリソースの再作成が行われる
 
 !!! Note
-    エンハンスドロードバランサでLet's Encryptによる証明書発行を行うには[Let's Encrypt terms of service](https://letsencrypt.org/repository/)に同意する必要があります。  
+    エンハンスドロードバランサでLet's Encryptによる証明書発行には[Let's Encrypt terms of service](https://letsencrypt.org/repository/)に同意する必要があります。  
     Let's Encrypt terms of service: https://letsencrypt.org/repository/
     このため、このリソースを使用する際は`accept_tos`に`true`を明示的に設定する必要があります
 

@@ -4,7 +4,7 @@
 
 ## Terraformのセットアップ
 
-- 1) こちらの[公式サイト](https://www.terraform.io/downloads.html)からzipファイルのダウンロードを行います。
+- 1) こちらの[公式サイト](https://www.terraform.io/downloads.html)からzipファイルをダウンロードします。
 - 2) 適当なディレクトリに展開します。
 - 3) 2)のディレクトリにパスを通します。
 
@@ -169,7 +169,7 @@ $ setx SAKURACLOUD_ACCESS_TOKEN_SECRET [入力]
 $ setx SAKURACLOUD_ZONE is1b  
 ```
 
-※設定後、コマンドプロンプトの再起動を行っておいてください。  
+※設定後、コマンドプロンプトを再起動してください。  
 ※set コマンドで設定出来ているかの確認が出来ます。
 
 ## (オプション) Dockerでの実行

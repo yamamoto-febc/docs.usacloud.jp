@@ -1,21 +1,23 @@
+![usacloud_logo.png](images/usacloud_logo_h.png)
+
 # usacloud日本語ドキュメント
 
 ---
 
 ## 目次
 
-* [usacloud導入ガイド](start_guide.md)
-* usacloudコマンド
-    - [基本的な使い方](basic_usage.md)
-    - [サーバの作成](usage_server_build.md)
-    - [電源操作](usage_server_power.md)
-    - [接続(SSH/VNC)](usage_server_connect.md)
-    - [ファイル送受信(SCP)](usage_server_scp.md)
-    - [オブジェクトストレージの操作](usage_ojs.md)
-    - [アーカイブのダウンロード](usage_download.md)
-    - [ISOイメージのアップロード](usage_upload.md)
-    - [監視/モニタリング](usage_monitoring.md)
-* コマンドリファレンス
+* [Installation / 導入ガイド](installation/start_guide.md)
+* Usage / 使い方
+    - [基本的な使い方](guides/basic_usage.md)
+    - [サーバの作成](guides/usage_server_build.md)
+    - [電源操作](guides/usage_server_power.md)
+    - [接続(SSH/VNC)](guides/usage_server_connect.md)
+    - [ファイル送受信(SCP)](guides/usage_server_scp.md)
+    - [オブジェクトストレージの操作](guides/usage_ojs.md)
+    - [アーカイブのダウンロード](guides/usage_download.md)
+    - [ISOイメージのアップロード](guides/usage_upload.md)
+    - [監視/モニタリング](guides/usage_monitoring.md)
+* References / コマンドリファレンス
     * Computing / コンピューティング
         - [`server`: サーバー](commands/server.md)
     * Storage / ストレージ

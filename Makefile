@@ -10,6 +10,9 @@ TERRAFORM_V2_DIR := src/terraform
 build-textlint:
 	docker build -t sacloud/textlint:local .github/actions/textlint
 
+build-mkdocs:
+	docker build -t sacloud/mkdocs:local .github/actions/mkdocs
+
 lint: build-textlint
 	@echo "running textlint in $(TOP_DIR)..."
 	@(cd $(TOP_DIR); make lint)

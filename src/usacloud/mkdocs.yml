@@ -27,7 +27,7 @@ nav:
           - completionコマンド: guides/completion.md
           - restコマンド: guides/rest.md
       - アップグレード:
-            - v1.0.0へのアップグレード: upgrade/v1_0_0.md
+            - v1.0へのアップグレード: upgrade/v1_0_0.md
   - リファレンス:
       - オプション/設定:
           - グローバルオプション: commands/global.md

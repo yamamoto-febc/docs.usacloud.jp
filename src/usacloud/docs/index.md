@@ -2,13 +2,18 @@
 
 # usacloud日本語ドキュメント
 
+このドキュメントは[Usacloud](https://github.com/sacloud/usacloud) v1系向けです。
+v0系については以下を参照してください。
+
+[https://github.com/sacloud/usacloud/tree/v0/build_docs/docs](https://github.com/sacloud/usacloud/tree/v0/build_docs/docs)
+
 ---
 
 ## 目次
 
 * [Installation / 導入ガイド](installation/start_guide)
 * Upgrade / アップグレードガイド
-    - [v1.0.0へのアップグレード](upgrade/v1_0_0)
+    - [v1.0へのアップグレード](upgrade/v1_0_0)
 * Usage / 使い方
     - [基本的な使い方](guides/basic_usage)
     - [completionコマンド](guides/completion)

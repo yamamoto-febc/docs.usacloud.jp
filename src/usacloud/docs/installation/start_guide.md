@@ -58,9 +58,9 @@ docker run -it --rm \
     ghcr.io/sacloud/usacloud server ls
 ```
 
-!!! info
-    v0との互換性維持のためにDockerHubで`sacloud/usacloud`イメージを配布しています。  
-    このイメージは将来的に廃止予定です。`ghcr.io/sacloud/usacloud`の利用を推奨します。
+!!! warning
+    v0との互換性維持のためにDockerHubで`sacloud/usacloud`イメージを配布していますが将来的に廃止予定です。  
+    `ghcr.io/sacloud/usacloud`の利用を推奨します。
 
 
 ---
@@ -71,8 +71,11 @@ docker run -it --rm \
 
 #### Bash
 
-- Linux: `$ usacloud completion bash > /etc/bash_completion.d/usacloud`
-- MacOS: `$ usacloud completion bash > /usr/local/etc/bash_completion.d/usacloud`
+    # Linuxの場合
+    $ usacloud completion bash > /etc/bash_completion.d/usacloud
+
+    # MacOSの場合
+    $ usacloud completion bash > /usr/local/etc/bash_completion.d/usacloud
 
 #### Zsh
 
@@ -81,6 +84,8 @@ docker run -it --rm \
 #### Fish:
 
     $ usacloud completion fish > ~/.config/fish/completions/usacloud.fish
+
+詳細は[completionコマンド](../../guides/completion)を参照してください。
 
 ---
 

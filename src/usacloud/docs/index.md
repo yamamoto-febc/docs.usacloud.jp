@@ -11,6 +11,8 @@
     - [v1.0.0へのアップグレード](upgrade/v1_0_0)
 * Usage / 使い方
     - [基本的な使い方](guides/basic_usage)
+    - [completionコマンド](guides/completion)
+    - [restコマンド](guides/rest)
 * References / リファレンス
     * オプション/設定
         - [グローバルオプション](commands/global.md)

@@ -20,6 +20,8 @@ nav:
       - v1.0.0へのアップグレード: upgrade/v1_0_0.md
   - 利用方法/ガイド:
       - 基本的な使い方: guides/basic_usage.md
+      - completionコマンド: guides/completion.md
+      - restコマンド: guides/rest.md
   - リファレンス:
       - オプション/設定:
           - グローバルオプション: commands/global.md

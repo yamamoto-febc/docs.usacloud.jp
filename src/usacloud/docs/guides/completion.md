@@ -51,7 +51,7 @@ To load completions for each session, execute once:
 
 You will need to start a new shell for this setup to take effect.
 
-## Fish
+## fish
 
     usacloud completion fish | source
 

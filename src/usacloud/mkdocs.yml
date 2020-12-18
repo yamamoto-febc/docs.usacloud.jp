@@ -6,7 +6,11 @@ repo_url: https://github.com/sacloud/usacloud
 repo_name: usacloud
 copyright: Copyright (C) 2017-2020 The Usacloud Authors.
 google_analytics: ['UA-63739336-5','auto']
-theme: readthedocs
+theme:
+  name: readthedocs
+  navigation_depth: 4
+  collapse_navigation: true
+  titles_only: false
 extra_css:
   - css/extra.css
 markdown_extensions:
@@ -15,13 +19,15 @@ markdown_extensions:
   - codehilite
 nav:
   - ホーム: index.md
-  - インストール: installation/start_guide.md
-  - アップグレード:
-      - v1.0.0へのアップグレード: upgrade/v1_0_0.md
   - 利用方法/ガイド:
-      - 基本的な使い方: guides/basic_usage.md
-      - completionコマンド: guides/completion.md
-      - restコマンド: guides/rest.md
+      - インストール:
+          - installation/start_guide.md
+      - 利用方法/ガイド:
+          - 基本的な使い方: guides/basic_usage.md
+          - completionコマンド: guides/completion.md
+          - restコマンド: guides/rest.md
+      - アップグレード:
+            - v1.0.0へのアップグレード: upgrade/v1_0_0.md
   - リファレンス:
       - オプション/設定:
           - グローバルオプション: commands/global.md

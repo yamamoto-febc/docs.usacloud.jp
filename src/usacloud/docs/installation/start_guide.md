@@ -2,23 +2,15 @@
 
 ---
 
-# 目次
-
-  * [usacloudとは](#about)
-  * [インストール](#install)
-  * [設定](#configuration)
-
----
-
-# usacloudとは {: #about }
+### usacloudとは {: #about }
 
 `usacloud`とは、さくらのクラウド用のCLIクライアントです。  
 
 ---
 
-# インストール {: #install }
+### インストール {: #install }
 
-### macOS/Linux
+#### macOS/Linux
 
 ```bash
 curl -fsSL https://github.com/sacloud/usacloud/releases/latest/download/install.sh | bash
@@ -26,7 +18,7 @@ curl -fsSL https://github.com/sacloud/usacloud/releases/latest/download/install.
 
 ---
 
-### Windows(`chocolatey`)
+#### Windows(`chocolatey`)
 
 ```bash
 choco install usacloud
@@ -36,7 +28,7 @@ choco install usacloud
 
 ---
 
-### その他の場合
+#### その他の場合
 
 GitHub Releasesページから任意のプラットフォーム向けのファイルをダウンロードして展開し、任意のフォルダー内に配置してください。  
 (PATHを通しておくと便利です)
@@ -45,7 +37,7 @@ GitHub Releasesページから任意のプラットフォーム向けのファ�
 
 ---
 
-### Dockerを利用する場合
+#### Dockerを利用する場合
 
 `usacloud`実行用イメージとして`ghcr.io/sacloud/usacloud`を公開しています。
 
@@ -65,11 +57,11 @@ docker run -it --rm \
 
 ---
 
-### シェル補完(Shell Completion) {: #shell_completion }
+#### シェル補完(Shell Completion) {: #shell_completion }
 
 `bash_completion`などのシェル補完が利用できる場合は、以下のコマンドで有効に出来ます。
 
-#### Bash
+##### Bash
 
     # Linuxの場合
     $ usacloud completion bash > /etc/bash_completion.d/usacloud
@@ -77,11 +69,11 @@ docker run -it --rm \
     # MacOSの場合
     $ usacloud completion bash > /usr/local/etc/bash_completion.d/usacloud
 
-#### Zsh
+##### Zsh
 
     $ usacloud completion zsh > "${fpath[1]}/_usacloud"
 
-#### Fish:
+##### Fish:
 
     $ usacloud completion fish > ~/.config/fish/completions/usacloud.fish
 
@@ -90,7 +82,7 @@ docker run -it --rm \
 ---
 
 
-# 設定 {: #configuration }
+### 設定 {: #configuration }
 
 `usacloud`の実行にはさくらのクラウドのAPIキーの取得/設定が必要です。
 以下のドキュメントに従いAPIキーを作成してください。
@@ -98,7 +90,7 @@ docker run -it --rm \
 [さくらのクラウド ドキュメント: APIキーの新規作成・編集](https://manual.sakura.ad.jp/cloud/api/apikey.html#id3)
 
 
-## APIキーの設定
+#### APIキーの設定
 
 APIキーを取得したら、`usacloud config`を実行しAPIキーを設定します。
 
@@ -144,9 +136,9 @@ $ usacloud config
     より詳細な設定をしたい場合は生成されたJSONファイルを直接編集する必要があります。  
     JSONファイルに記載できる内容の詳細については[コマンドリファレンス / プロファイル](../commands/profile)を参照してください。
 
-### その他のAPIキー設定方法
+#### その他のAPIキー設定方法
 
-#### 環境変数での指定
+##### 環境変数での指定
 
 APIキーは環境変数での指定にも対応しています。
 
@@ -156,7 +148,7 @@ $ export SAKURACLOUD_ACCESS_TOKEN_SECRET=アクセスシークレット
 $ export SAKURACLOUD_ZONE=ゾーン
 ```
 
-#### 環境変数での指定
+##### 環境変数での指定
 
 コマンド実行時にコマンドラインオプションで指定することが出来ます。
 
@@ -168,7 +160,7 @@ $ usacloud --token=アクセストークン --secret=アクセスシークレッ
     コマンドラインオプション`--token`/`--secret`を利用した場合、ヒストリーに値が残ってしまう場合があります。  
     取り扱いは十分に注意してください。
 
-#### 複数箇所で指定した場合の優先順位
+##### 複数箇所で指定した場合の優先順位
 
 複数の箇所で指定されていた場合、以下の順で読み込みます(後から読み込んだものが優先)。
 

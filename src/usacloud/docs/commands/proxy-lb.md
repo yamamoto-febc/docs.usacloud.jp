@@ -77,6 +77,7 @@ Flags:
       --health-check-path string           (default "/")
       --health-check-protocol string      (*required)  (default "http")
       --inactive-sec int                   (default 10)
+      --lets-encrypt-accept-tos           The flag to accept the current Let's Encrypt terms of service(see: https://letsencrypt.org/repository/)
       --lets-encrypt-common-name string   
       --lets-encrypt-enabled              
       --plan string                       (*required) options: [100/500/1000/5000/10000/50000/100000] (default "100")
@@ -160,6 +161,7 @@ Flags:
       --health-check-path string          
       --health-check-protocol string      
       --inactive-sec int                  
+      --lets-encrypt-accept-tos           The flag to accept the current Let's Encrypt terms of service(see: https://letsencrypt.org/repository/)
       --lets-encrypt-common-name string   
       --lets-encrypt-enabled              
       --plan string                       options: [100/500/1000/5000/10000/50000/100000]

@@ -14,7 +14,7 @@ import (
 
 const (
 	destination = "/docs/commands"
-	templateFile = "/tools/template.tmpl"
+	templateFile = "../tools/template.tmpl"
 )
 
 

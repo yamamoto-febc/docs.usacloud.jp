@@ -15,6 +15,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -55,8 +56,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -91,8 +94,19 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example"
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -124,8 +138,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -160,8 +176,19 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example"
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -204,8 +231,10 @@ Flags:
 
 ```
 
+
 ## connect-switch {: #connect-switch }
 
+##### Usage
 ```console
 Usage:
   connect-switch [flags]
@@ -235,8 +264,10 @@ Flags:
 
 ```
 
+
 ## disconnect-switch {: #disconnect-switch }
 
+##### Usage
 ```console
 Usage:
   disconnect-switch [flags]
@@ -261,4 +292,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

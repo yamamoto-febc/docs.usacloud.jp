@@ -23,6 +23,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -64,8 +65,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -138,8 +141,151 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "Plan": "premium | highspec | highspec4000",
+    "PublicNetworkInterface": {
+        "SwitchID": 123456789012,
+        "IPAddresses": [
+            "192.0.2.21",
+            "192.0.2.22"
+        ],
+        "VirtualIPAddress": "192.0.2.101",
+        "IPAliases": [
+            "192.0.2.102"
+        ]
+    },
+    "PrivateNetworkInterfaces": [
+        {
+            "SwitchID": 123456789012,
+            "IPAddresses": [
+                "192.168.0.11",
+                "192.168.0.12"
+            ],
+            "VirtualIPAddress": "192.168.0.1",
+            "NetworkMaskLen": 24,
+            "Index": 1
+        }
+    ],
+    "RouterSetting": {
+        "VRID": 1,
+        "InternetConnectionEnabled": true,
+        "StaticNAT": [
+            {
+                "GlobalAddress": "192.0.2.101",
+                "PrivateAddress": "192.168.0.1",
+                "Description": "example"
+            }
+        ],
+        "PortForwarding": [
+            {
+                "Protocol": "tcp | udp",
+                "GlobalPort": "22",
+                "PrivateAddress": "192.168.0.11",
+                "PrivatePort": "22",
+                "Description": "example"
+            }
+        ],
+        "Firewall": [
+            {
+                "Send": [
+                    {
+                        "Protocol": "tcp | udp | icmp | ip",
+                        "SourceNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "SourcePort": "1024 | 1024-2048",
+                        "DestinationNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "DestinationPort": "1024 | 1024-2048",
+                        "Action": "allow | deny",
+                        "Logging": "True",
+                        "Description": "example"
+                    }
+                ],
+                "Receive": [
+                    {
+                        "Protocol": "tcp | udp | icmp | ip",
+                        "SourceNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "SourcePort": "1024 | 1024-2048",
+                        "DestinationNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "DestinationPort": "1024 | 1024-2048",
+                        "Action": "allow | deny",
+                        "Logging": "True",
+                        "Description": "example"
+                    }
+                ],
+                "Index": 0
+            }
+        ],
+        "DHCPServer": [
+            {
+                "Interface": "eth1",
+                "RangeStart": "192.168.0.240",
+                "RangeStop": "192.168.0.244",
+                "DNSServers": [
+                    "133.242.0.3",
+                    "133.242.0.4"
+                ]
+            }
+        ],
+        "DHCPStaticMapping": [
+            {
+                "MACAddress": "9C:A3:BA:xx:xx:xx",
+                "IPAddress": "192.168.0.245"
+            }
+        ],
+        "PPTPServer": {
+            "RangeStart": "192.168.0.246",
+            "RangeStop": "192.168.0.249"
+        },
+        "L2TPIPsecServer": {
+            "RangeStart": "192.168.0.250",
+            "RangeStop": "192.168.0.254",
+            "PreSharedSecret": "presharedsecret"
+        },
+        "RemoteAccessUsers": [
+            {
+                "UserName": "username",
+                "Password": "password"
+            }
+        ],
+        "SiteToSiteIPsecVPN": [
+            {
+                "Peer": "192.0.2.1",
+                "PreSharedSecret": "presharedsecret",
+                "RemoteID": "192.0.2.1",
+                "Routes": [
+                    "10.0.0.0/8"
+                ],
+                "LocalPrefix": [
+                    "192.168.0.0/24"
+                ]
+            }
+        ],
+        "StaticRoute": [
+            {
+                "Prefix": "172.16.0.0/16",
+                "NextHop": "192.168.0.21"
+            }
+        ],
+        "SyslogHost": "192.168.0.1"
+    },
+    "BootAfterCreate": true,
+    "NoWait": false
+}
+```
+
+
 ## create-standard {: #create-standard }
 
+##### Usage
 ```console
 Usage:
   create-standard [flags]
@@ -201,8 +347,128 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "PrivateNetworkInterfacesData": "",
+    "PrivateNetworkInterfaces": [
+        {
+            "SwitchID": 123456789012,
+            "IPAddress": "192.168.0.11",
+            "NetworkMaskLen": 24,
+            "Index": 1
+        }
+    ],
+    "RouterSetting": {
+        "InternetConnectionEnabled": true,
+        "PortForwarding": [
+            {
+                "Protocol": "tcp | udp",
+                "GlobalPort": "22",
+                "PrivateAddress": "192.168.0.11",
+                "PrivatePort": "22",
+                "Description": "example"
+            }
+        ],
+        "Firewall": [
+            {
+                "Send": [
+                    {
+                        "Protocol": "tcp | udp | icmp | ip",
+                        "SourceNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "SourcePort": "1024 | 1024-2048",
+                        "DestinationNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "DestinationPort": "1024 | 1024-2048",
+                        "Action": "allow | deny",
+                        "Logging": "True",
+                        "Description": "example"
+                    }
+                ],
+                "Receive": [
+                    {
+                        "Protocol": "tcp | udp | icmp | ip",
+                        "SourceNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "SourcePort": "1024 | 1024-2048",
+                        "DestinationNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "DestinationPort": "1024 | 1024-2048",
+                        "Action": "allow | deny",
+                        "Logging": "True",
+                        "Description": "example"
+                    }
+                ],
+                "Index": 0
+            }
+        ],
+        "DHCPServer": [
+            {
+                "Interface": "eth1",
+                "RangeStart": "192.168.0.240",
+                "RangeStop": "192.168.0.244",
+                "DNSServers": [
+                    "133.242.0.3",
+                    "133.242.0.4"
+                ]
+            }
+        ],
+        "DHCPStaticMapping": [
+            {
+                "MACAddress": "9C:A3:BA:xx:xx:xx",
+                "IPAddress": "192.168.0.245"
+            }
+        ],
+        "PPTPServer": {
+            "RangeStart": "192.168.0.246",
+            "RangeStop": "192.168.0.249"
+        },
+        "L2TPIPsecServer": {
+            "RangeStart": "192.168.0.250",
+            "RangeStop": "192.168.0.254",
+            "PreSharedSecret": "presharedsecret"
+        },
+        "RemoteAccessUsers": [
+            {
+                "UserName": "username",
+                "Password": "password"
+            }
+        ],
+        "SiteToSiteIPsecVPN": [
+            {
+                "Peer": "192.0.2.1",
+                "PreSharedSecret": "presharedsecret",
+                "RemoteID": "192.0.2.1",
+                "Routes": [
+                    "10.0.0.0/8"
+                ],
+                "LocalPrefix": [
+                    "192.168.0.0/24"
+                ]
+            }
+        ],
+        "StaticRoute": [
+            {
+                "Prefix": "172.16.0.0/16",
+                "NextHop": "192.168.0.21"
+            }
+        ],
+        "SyslogHost": "192.168.0.1"
+    },
+    "BootAfterCreate": true,
+    "NoWait": false
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -234,8 +500,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -301,8 +569,155 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "PublicNetworkInterface": {
+        "IPAddresses": [
+            "192.0.2.21",
+            "192.0.2.22"
+        ],
+        "VirtualIPAddress": "192.0.2.101",
+        "IPAliases": [
+            "192.0.2.102"
+        ]
+    },
+    "PrivateNetworkInterfaces": [
+        {
+            "SwitchID": 123456789012,
+            "IPAddresses": [
+                "192.168.0.11",
+                "192.168.0.12"
+            ],
+            "VirtualIPAddress": "192.168.0.1",
+            "NetworkMaskLen": 24,
+            "Index": 1
+        }
+    ],
+    "RouterSetting": {
+        "InternetConnectionEnabled": true,
+        "StaticNATData": "",
+        "StaticNAT": [
+            {
+                "GlobalAddress": "192.0.2.101",
+                "PrivateAddress": "192.168.0.1",
+                "Description": "example"
+            }
+        ],
+        "PortForwardingData": "",
+        "PortForwarding": [
+            {
+                "Protocol": "tcp | udp",
+                "GlobalPort": "22",
+                "PrivateAddress": "192.168.0.11",
+                "PrivatePort": "22",
+                "Description": "example"
+            }
+        ],
+        "FirewallData": "",
+        "Firewall": [
+            {
+                "Send": [
+                    {
+                        "Protocol": "tcp | udp | icmp | ip",
+                        "SourceNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "SourcePort": "1024 | 1024-2048",
+                        "DestinationNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "DestinationPort": "1024 | 1024-2048",
+                        "Action": "allow | deny",
+                        "Logging": "True",
+                        "Description": "example"
+                    }
+                ],
+                "Receive": [
+                    {
+                        "Protocol": "tcp | udp | icmp | ip",
+                        "SourceNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "SourcePort": "1024 | 1024-2048",
+                        "DestinationNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "DestinationPort": "1024 | 1024-2048",
+                        "Action": "allow | deny",
+                        "Logging": "True",
+                        "Description": "example"
+                    }
+                ],
+                "Index": 0
+            }
+        ],
+        "DHCPServerData": "",
+        "DHCPServer": [
+            {
+                "Interface": "eth1",
+                "RangeStart": "192.168.0.240",
+                "RangeStop": "192.168.0.244",
+                "DNSServers": [
+                    "133.242.0.3",
+                    "133.242.0.4"
+                ]
+            }
+        ],
+        "DHCPStaticMappingData": "",
+        "DHCPStaticMapping": [
+            {
+                "MACAddress": "9C:A3:BA:xx:xx:xx",
+                "IPAddress": "192.168.0.245"
+            }
+        ],
+        "PPTPServer": {
+            "RangeStart": "192.168.0.246",
+            "RangeStop": "192.168.0.249"
+        },
+        "L2TPIPsecServer": {
+            "RangeStart": "192.168.0.250",
+            "RangeStop": "192.168.0.254",
+            "PreSharedSecret": "presharedsecret"
+        },
+        "RemoteAccessUsersData": "",
+        "RemoteAccessUsers": [
+            {
+                "UserName": "username",
+                "Password": "password"
+            }
+        ],
+        "SiteToSiteIPsecVPNData": "",
+        "SiteToSiteIPsecVPN": [
+            {
+                "Peer": "192.0.2.1",
+                "PreSharedSecret": "presharedsecret",
+                "RemoteID": "192.0.2.1",
+                "Routes": [
+                    "10.0.0.0/8"
+                ],
+                "LocalPrefix": [
+                    "192.168.0.0/24"
+                ]
+            }
+        ],
+        "StaticRouteData": "",
+        "StaticRoute": [
+            {
+                "Prefix": "172.16.0.0/16",
+                "NextHop": "192.168.0.21"
+            }
+        ],
+        "SyslogHost": "192.168.0.1"
+    },
+    "NoWait": false
+}
+```
+
+
 ## update-standard {: #update-standard }
 
+##### Usage
 ```console
 Usage:
   update-standard [flags]
@@ -362,8 +777,135 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "PrivateNetworkInterfaces": [
+        {
+            "SwitchID": 123456789012,
+            "IPAddress": "192.168.0.11",
+            "NetworkMaskLen": 24,
+            "Index": 1
+        }
+    ],
+    "RouterSetting": {
+        "InternetConnectionEnabled": true,
+        "StaticNATData": "",
+        "StaticNAT": null,
+        "PortForwardingData": "",
+        "PortForwarding": [
+            {
+                "Protocol": "tcp | udp",
+                "GlobalPort": "22",
+                "PrivateAddress": "192.168.0.11",
+                "PrivatePort": "22",
+                "Description": "example"
+            }
+        ],
+        "FirewallData": "",
+        "Firewall": [
+            {
+                "Send": [
+                    {
+                        "Protocol": "tcp | udp | icmp | ip",
+                        "SourceNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "SourcePort": "1024 | 1024-2048",
+                        "DestinationNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "DestinationPort": "1024 | 1024-2048",
+                        "Action": "allow | deny",
+                        "Logging": "True",
+                        "Description": "example"
+                    }
+                ],
+                "Receive": [
+                    {
+                        "Protocol": "tcp | udp | icmp | ip",
+                        "SourceNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "SourcePort": "1024 | 1024-2048",
+                        "DestinationNetwork": "192.0.2.1 | 192.0.2.0/24",
+                        "DestinationPort": "1024 | 1024-2048",
+                        "Action": "allow | deny",
+                        "Logging": "True",
+                        "Description": "example"
+                    }
+                ],
+                "Index": 0
+            }
+        ],
+        "DHCPServerData": "",
+        "DHCPServer": [
+            {
+                "Interface": "eth1",
+                "RangeStart": "192.168.0.240",
+                "RangeStop": "192.168.0.244",
+                "DNSServers": [
+                    "133.242.0.3",
+                    "133.242.0.4"
+                ]
+            }
+        ],
+        "DHCPStaticMappingData": "",
+        "DHCPStaticMapping": [
+            {
+                "MACAddress": "9C:A3:BA:xx:xx:xx",
+                "IPAddress": "192.168.0.245"
+            }
+        ],
+        "PPTPServer": {
+            "RangeStart": "192.168.0.246",
+            "RangeStop": "192.168.0.249"
+        },
+        "L2TPIPsecServer": {
+            "RangeStart": "192.168.0.250",
+            "RangeStop": "192.168.0.254",
+            "PreSharedSecret": "presharedsecret"
+        },
+        "RemoteAccessUsersData": "",
+        "RemoteAccessUsers": [
+            {
+                "UserName": "username",
+                "Password": "password"
+            }
+        ],
+        "SiteToSiteIPsecVPNData": "",
+        "SiteToSiteIPsecVPN": [
+            {
+                "Peer": "192.0.2.1",
+                "PreSharedSecret": "presharedsecret",
+                "RemoteID": "192.0.2.1",
+                "Routes": [
+                    "10.0.0.0/8"
+                ],
+                "LocalPrefix": [
+                    "192.168.0.0/24"
+                ]
+            }
+        ],
+        "StaticRouteData": "",
+        "StaticRoute": [
+            {
+                "Prefix": "172.16.0.0/16",
+                "NextHop": "192.168.0.21"
+            }
+        ],
+        "SyslogHost": "192.168.0.1"
+    },
+    "NoWait": false
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -404,8 +946,10 @@ Flags:
 
 ```
 
+
 ## boot {: #boot }
 
+##### Usage
 ```console
 Usage:
   boot [flags]
@@ -435,8 +979,10 @@ Flags:
 
 ```
 
+
 ## shutdown {: #shutdown }
 
+##### Usage
 ```console
 Usage:
   shutdown [flags]
@@ -470,8 +1016,10 @@ Flags:
 
 ```
 
+
 ## reset {: #reset }
 
+##### Usage
 ```console
 Usage:
   reset [flags]
@@ -494,8 +1042,10 @@ Flags:
 
 ```
 
+
 ## monitor-interface {: #monitor-interface }
 
+##### Usage
 ```console
 Usage:
   monitor-interface [flags]
@@ -536,8 +1086,10 @@ Flags:
 
 ```
 
+
 ## wait-until-ready {: #wait-until-ready }
 
+##### Usage
 ```console
 Usage:
   wait-until-ready [flags]
@@ -562,8 +1114,10 @@ Flags:
 
 ```
 
+
 ## wait-until-shutdown {: #wait-until-shutdown }
 
+##### Usage
 ```console
 Usage:
   wait-until-shutdown [flags]
@@ -587,4 +1141,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

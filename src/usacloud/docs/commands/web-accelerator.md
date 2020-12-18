@@ -16,6 +16,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -48,8 +49,10 @@ Flags:
 
 ```
 
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -77,8 +80,10 @@ Flags:
 
 ```
 
+
 ## read-certificate {: #read-certificate }
 
+##### Usage
 ```console
 Usage:
   read-certificate [flags]
@@ -106,8 +111,10 @@ Flags:
 
 ```
 
+
 ## create-certificate {: #create-certificate }
 
+##### Usage
 ```console
 Usage:
   create-certificate [flags]
@@ -141,8 +148,18 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "CertificateChain": "/path/to/your/certificate/chain | -----BEGIN CERTIFICATE-----\n...",
+    "Key": "/path/to/your/private-key | -----BEGIN RSA PRIVATE KEY-----\n..."
+}
+```
+
+
 ## update-certificate {: #update-certificate }
 
+##### Usage
 ```console
 Usage:
   update-certificate [flags]
@@ -176,8 +193,18 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "CertificateChain": "/path/to/your/certificate/chain | -----BEGIN CERTIFICATE-----\n...",
+    "Key": "/path/to/your/private-key | -----BEGIN RSA PRIVATE KEY-----\n..."
+}
+```
+
+
 ## delete-cache {: #delete-cache }
 
+##### Usage
 ```console
 Usage:
   delete-cache [flags]
@@ -210,8 +237,10 @@ Flags:
 
 ```
 
+
 ## delete-cache-all {: #delete-cache-all }
 
+##### Usage
 ```console
 Usage:
   delete-cache-all [flags]
@@ -236,4 +265,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

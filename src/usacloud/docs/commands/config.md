@@ -15,6 +15,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list
@@ -24,16 +25,20 @@ Aliases:
 
 ```
 
+
 ## current {: #current }
 
+##### Usage
 ```console
 Usage:
   current
 
 ```
 
+
 ## show {: #show }
 
+##### Usage
 ```console
 Usage:
   show [flags]
@@ -46,8 +51,10 @@ Flags:
 
 ```
 
+
 ## use {: #use }
 
+##### Usage
 ```console
 Usage:
   use [flags]
@@ -60,8 +67,10 @@ Flags:
 
 ```
 
+
 ## path {: #path }
 
+##### Usage
 ```console
 Usage:
   path [flags]
@@ -74,8 +83,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -94,8 +105,10 @@ Flags:
 
 ```
 
+
 ## edit {: #edit }
 
+##### Usage
 ```console
 Usage:
   edit [flags]
@@ -114,8 +127,10 @@ Flags:
 
 ```
 
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -131,4 +146,5 @@ Flags:
   -y, --assumeyes   Assume that the answer to any question which would be asked is yes
 
 ```
+
 

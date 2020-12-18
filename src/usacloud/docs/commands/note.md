@@ -12,6 +12,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -50,8 +51,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -88,8 +91,24 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "Class": "shell | yaml_cloud_config",
+    "Content": "#!/bin/bash\n\n..."
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -117,8 +136,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -154,8 +175,23 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "Content": "#!/bin/bash\n\n..."
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -187,4 +223,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

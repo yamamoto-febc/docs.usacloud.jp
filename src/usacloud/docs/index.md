@@ -78,5 +78,6 @@
             - [server-plan](commands/server-plan)
             - [service-class](commands/service-class)
         * Other commands / その他
+            - [completion](commands/completion)
             - [rest](commands/rest)
             - [self](commands/self)

@@ -15,6 +15,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -52,8 +53,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -86,8 +89,23 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -115,8 +133,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -149,8 +169,23 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -183,8 +218,10 @@ Flags:
 
 ```
 
+
 ## logs {: #logs }
 
+##### Usage
 ```console
 Usage:
   logs [flags]
@@ -209,8 +246,10 @@ Flags:
 
 ```
 
+
 ## send-message {: #send-message }
 
+##### Usage
 ```console
 Usage:
   send-message [flags]
@@ -244,4 +283,14 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
+##### Parameter Examples
+```console
+{
+    "Destination": "81zzzzzzzzzz",
+    "Sender": "example-sender",
+    "OTP": "your-otp"
+}
+```
+
 

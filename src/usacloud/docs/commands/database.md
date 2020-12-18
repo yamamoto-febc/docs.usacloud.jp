@@ -24,6 +24,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -65,8 +66,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -142,8 +145,48 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "DatabaseType": "postgresql | postgres | mariadb",
+    "PlanID": "10g | 30g | 90g | 240g | 500g | 1t",
+    "SwitchID": 123456789012,
+    "IPAddresses": [
+        "192.0.2.11"
+    ],
+    "NetworkMaskLen": 24,
+    "DefaultRoute": "192.0.2.1",
+    "Port": 5432,
+    "SourceNetwork": [
+        "192.0.2.0/24"
+    ],
+    "Username": "username",
+    "Password": "password",
+    "EnableReplication": true,
+    "ReplicaUserPassword": "password",
+    "EnableWebUI": true,
+    "EnableBackup": true,
+    "BackupWeekdays": [
+        "all | sun | mon | tue | wed | thu | fri | sat"
+    ],
+    "BackupStartTimeHour": 1,
+    "BackupStartTimeMinute": 30,
+    "NoWait": false
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -175,8 +218,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -237,8 +282,37 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "SourceNetwork": [
+        "192.0.2.0/24"
+    ],
+    "EnableReplication": true,
+    "ReplicaUserPassword": "password",
+    "EnableWebUI": true,
+    "EnableBackup": true,
+    "BackupWeekdays": [
+        "all | sun | mon | tue | wed | thu | fri | sat"
+    ],
+    "BackupStartTimeHour": 1,
+    "BackupStartTimeMinute": 30,
+    "NoWait": false
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -279,8 +353,10 @@ Flags:
 
 ```
 
+
 ## boot {: #boot }
 
+##### Usage
 ```console
 Usage:
   boot [flags]
@@ -310,8 +386,10 @@ Flags:
 
 ```
 
+
 ## shutdown {: #shutdown }
 
+##### Usage
 ```console
 Usage:
   shutdown [flags]
@@ -345,8 +423,10 @@ Flags:
 
 ```
 
+
 ## reset {: #reset }
 
+##### Usage
 ```console
 Usage:
   reset [flags]
@@ -369,8 +449,10 @@ Flags:
 
 ```
 
+
 ## monitor-cpu {: #monitor-cpu }
 
+##### Usage
 ```console
 Usage:
   monitor-cpu [flags]
@@ -404,8 +486,10 @@ Flags:
 
 ```
 
+
 ## monitor-database {: #monitor-database }
 
+##### Usage
 ```console
 Usage:
   monitor-database [flags]
@@ -439,8 +523,10 @@ Flags:
 
 ```
 
+
 ## monitor-disk {: #monitor-disk }
 
+##### Usage
 ```console
 Usage:
   monitor-disk [flags]
@@ -474,8 +560,10 @@ Flags:
 
 ```
 
+
 ## monitor-interface {: #monitor-interface }
 
+##### Usage
 ```console
 Usage:
   monitor-interface [flags]
@@ -512,8 +600,10 @@ Flags:
 
 ```
 
+
 ## wait-until-ready {: #wait-until-ready }
 
+##### Usage
 ```console
 Usage:
   wait-until-ready [flags]
@@ -538,8 +628,10 @@ Flags:
 
 ```
 
+
 ## wait-until-shutdown {: #wait-until-shutdown }
 
+##### Usage
 ```console
 Usage:
   wait-until-shutdown [flags]
@@ -563,4 +655,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

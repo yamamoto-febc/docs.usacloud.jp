@@ -15,6 +15,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -52,8 +53,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -110,8 +113,40 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Target": "www.example.com",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "DelayLoop": 60,
+    "Enabled": true,
+    "HealthCheck": {
+        "Protocol": "http | https | ping | tcp | dns | ssh | smtp | pop3 | snmp | sslcertificate",
+        "Port": 80,
+        "Path": "/healthz",
+        "Status": 200,
+        "SNI": true,
+        "Host": "www2.example.com",
+        "BasicAuthUsername": "username",
+        "BasicAuthPassword": "password"
+    },
+    "NotifyEmailEnabled": true,
+    "NotifyEmailHTML": true,
+    "NotifySlackEnabled": true,
+    "SlackWebhooksURL": "https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX",
+    "NotifyInterval": 7200
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -139,8 +174,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -196,8 +233,39 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "DelayLoop": 60,
+    "Enabled": true,
+    "HealthCheck": {
+        "Protocol": "http | https | ping | tcp | dns | ssh | smtp | pop3 | snmp | sslcertificate",
+        "Port": 80,
+        "Path": "/healthz",
+        "Status": 200,
+        "SNI": true,
+        "Host": "www2.example.com",
+        "BasicAuthUsername": "username",
+        "BasicAuthPassword": "password"
+    },
+    "NotifyEmailEnabled": true,
+    "NotifyEmailHTML": true,
+    "NotifySlackEnabled": true,
+    "SlackWebhooksURL": "https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX",
+    "NotifyInterval": 7200
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -230,8 +298,10 @@ Flags:
 
 ```
 
+
 ## health {: #health }
 
+##### Usage
 ```console
 Usage:
   health [flags]
@@ -261,8 +331,10 @@ Flags:
 
 ```
 
+
 ## monitor-response-time {: #monitor-response-time }
 
+##### Usage
 ```console
 Usage:
   monitor-response-time [flags]
@@ -294,4 +366,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

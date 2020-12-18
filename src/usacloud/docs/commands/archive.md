@@ -19,6 +19,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -62,8 +63,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -111,8 +114,29 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "SizeGB": 20,
+    "SourceFile": "/path/to/raw/file",
+    "SourceDiskID": 123456789012,
+    "SourceArchiveID": 123456789012,
+    "NoWait": false
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -144,8 +168,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -182,8 +208,24 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -220,8 +262,10 @@ Flags:
 
 ```
 
+
 ## upload {: #upload }
 
+##### Usage
 ```console
 Usage:
   upload [flags]
@@ -248,8 +292,10 @@ Flags:
 
 ```
 
+
 ## download {: #download }
 
+##### Usage
 ```console
 Usage:
   download [flags]
@@ -277,8 +323,10 @@ Flags:
 
 ```
 
+
 ## ftp-open {: #ftp-open }
 
+##### Usage
 ```console
 Usage:
   ftp-open [flags]
@@ -315,8 +363,10 @@ Flags:
 
 ```
 
+
 ## ftp-close {: #ftp-close }
 
+##### Usage
 ```console
 Usage:
   ftp-close [flags]
@@ -342,8 +392,10 @@ Flags:
 
 ```
 
+
 ## wait-until-ready {: #wait-until-ready }
 
+##### Usage
 ```console
 Usage:
   wait-until-ready [flags]
@@ -367,4 +419,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

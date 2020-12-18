@@ -21,6 +21,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -62,8 +63,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -138,8 +141,66 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "DiskPlan": "ssd | hdd",
+    "SizeGB": 20,
+    "Connection": "virtio | ide",
+    "OSType": "centos | centos8stream | centos8 | centos7 | ubuntu | ubuntu2004 | ubuntu1804 | ubuntu1604 | debian | debian10 | debian9 | coreos | rancheros | k3os | kusanagi | freebsd | windows2016 | windows2016-rds | windows2016-rds-office | windows2016-sql-web | windows2016-sql-standard | windows2016-sql-standard-all | windows2016-sql2017-standard | windows2016-sql2017-enterprise | windows2016-sql2017-standard-all | windows2019 | windows2019-rds | windows2019-rds-office2019 | windows2019-sql2017-web | windows2019-sql2019-web | windows2019-sql2017-standard | windows2019-sql2019-standard | windows2019-sql2017-enterprise | windows2019-sql2019-enterprise | windows2019-sql2017-standard-all | windows2019-sql2019-standard-all",
+    "SourceDiskID": 123456789012,
+    "SourceArchiveID": 123456789012,
+    "ServerID": 123456789012,
+    "DistantFrom": [
+        123456789012
+    ],
+    "EditDisk": {
+        "HostName": "hostname",
+        "Password": "password",
+        "IPAddress": "192.0.2.11",
+        "NetworkMaskLen": 24,
+        "DefaultRoute": "192.0.2.1",
+        "DisablePWAuth": true,
+        "EnableDHCP": true,
+        "ChangePartitionUUID": true,
+        "SSHKeys": [
+            "/path/to/your/public/key",
+            "ssh-rsa ..."
+        ],
+        "SSHKeyIDs": [
+            123456789012
+        ],
+        "IsSSHKeysEphemeral": true,
+        "NoteIDs": [
+            123456789012
+        ],
+        "IsNotesEphemeral": true,
+        "Notes": [
+            {
+                "ID": 123456789012,
+                "Variables": {
+                    "variable1": "foo",
+                    "variable2": "bar"
+                }
+            }
+        ]
+    },
+    "NoWait": false
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -171,8 +232,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -234,8 +297,57 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "Connection": "virtio | ide",
+    "EditDisk": {
+        "HostName": "hostname",
+        "Password": "password",
+        "IPAddress": "192.0.2.11",
+        "NetworkMaskLen": 24,
+        "DefaultRoute": "192.0.2.1",
+        "DisablePWAuth": true,
+        "EnableDHCP": true,
+        "ChangePartitionUUID": true,
+        "SSHKeys": [
+            "/path/to/your/public/key",
+            "ssh-rsa ..."
+        ],
+        "SSHKeyIDs": [
+            123456789012
+        ],
+        "IsSSHKeysEphemeral": true,
+        "NoteIDs": [
+            123456789012
+        ],
+        "IsNotesEphemeral": true,
+        "Notes": [
+            {
+                "ID": 123456789012,
+                "Variables": {
+                    "variable1": "foo",
+                    "variable2": "bar"
+                }
+            }
+        ]
+    },
+    "NoWait": false
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -278,8 +390,10 @@ Flags:
 
 ```
 
+
 ## connect-to-server {: #connect-to-server }
 
+##### Usage
 ```console
 Usage:
   connect-to-server [flags]
@@ -309,8 +423,10 @@ Flags:
 
 ```
 
+
 ## edit {: #edit }
 
+##### Usage
 ```console
 Usage:
   edit [flags]
@@ -361,8 +477,10 @@ Flags:
 
 ```
 
+
 ## disconnect-from-server {: #disconnect-from-server }
 
+##### Usage
 ```console
 Usage:
   disconnect-from-server [flags]
@@ -388,8 +506,10 @@ Flags:
 
 ```
 
+
 ## resize-partition {: #resize-partition }
 
+##### Usage
 ```console
 Usage:
   resize-partition [flags]
@@ -412,8 +532,10 @@ Flags:
 
 ```
 
+
 ## monitor-disk {: #monitor-disk }
 
+##### Usage
 ```console
 Usage:
   monitor-disk [flags]
@@ -450,8 +572,10 @@ Flags:
 
 ```
 
+
 ## wait-until-ready {: #wait-until-ready }
 
+##### Usage
 ```console
 Usage:
   wait-until-ready [flags]
@@ -475,4 +599,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

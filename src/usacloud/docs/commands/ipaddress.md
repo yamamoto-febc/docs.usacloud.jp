@@ -11,6 +11,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -47,8 +48,10 @@ Flags:
 
 ```
 
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -84,8 +87,10 @@ Flags:
 
 ```
 
+
 ## update-host-name {: #update-host-name }
 
+##### Usage
 ```console
 Usage:
   update-host-name [flags]
@@ -121,4 +126,16 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "IPAddress": "192.0.2.11",
+    "HostName": "www.example.com",
+    "RetryMax": 30,
+    "RetryInterval": 10
+}
+```
+
 

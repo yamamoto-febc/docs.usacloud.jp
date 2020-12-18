@@ -21,6 +21,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -64,8 +65,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -113,8 +116,29 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "NetworkMaskLen": 28,
+    "BandWidthMbps": 100,
+    "EnableIPv6": true,
+    "NoWait": false,
+    "NotFoundRetry": 10
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -146,8 +170,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -189,8 +215,26 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "BandWidthMbps": 28,
+    "EnableIPv6": true
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -231,8 +275,10 @@ Flags:
 
 ```
 
+
 ## list-subnet {: #list-subnet }
 
+##### Usage
 ```console
 Usage:
   list-subnet [flags]
@@ -264,8 +310,10 @@ Flags:
 
 ```
 
+
 ## add-subnet {: #add-subnet }
 
+##### Usage
 ```console
 Usage:
   add-subnet [flags]
@@ -303,8 +351,10 @@ Flags:
 
 ```
 
+
 ## delete-subnet {: #delete-subnet }
 
+##### Usage
 ```console
 Usage:
   delete-subnet [flags]
@@ -338,8 +388,10 @@ Flags:
 
 ```
 
+
 ## enable-ipv6 {: #enable-ipv6 }
 
+##### Usage
 ```console
 Usage:
   enable-ipv6 [flags]
@@ -372,8 +424,10 @@ Flags:
 
 ```
 
+
 ## disable-ipv6 {: #disable-ipv6 }
 
+##### Usage
 ```console
 Usage:
   disable-ipv6 [flags]
@@ -399,8 +453,10 @@ Flags:
 
 ```
 
+
 ## monitor-router {: #monitor-router }
 
+##### Usage
 ```console
 Usage:
   monitor-router [flags]
@@ -436,4 +492,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

@@ -25,6 +25,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -66,8 +67,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -167,8 +170,97 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "CPU": 1,
+    "Memory": 2,
+    "Commitment": "standard | dedicatedcpu",
+    "Generation": "default | g100 | g200",
+    "InterfaceDriver": "virtio | e1000",
+    "BootAfterCreate": true,
+    "CDROMID": 123456789012,
+    "PrivateHostID": 123456789012,
+    "NetworkInterfaces": [
+        {
+            "Upstream": "shared | disconnected | (switch-id)",
+            "PacketFilterID": 123456789012,
+            "UserIPAddress": "192.0.2.11"
+        }
+    ],
+    "Disks": [
+        {
+            "Description": "新規ディスクを作成する例",
+            "Tags": [
+                "tag1=example1",
+                "tag2=example2"
+            ],
+            "IconID": 123456789012,
+            "DiskPlan": "ssd | hdd",
+            "Connection": "virtio | ide",
+            "SourceDiskID": 123456789012,
+            "SourceArchiveID": 123456789012,
+            "SizeGB": 20,
+            "DistantFrom": [
+                123456789012
+            ],
+            "OSType": "centos | centos8stream | centos8 | centos7 | ubuntu | ubuntu2004 | ubuntu1804 | ubuntu1604 | debian | debian10 | debian9 | coreos | rancheros | k3os | kusanagi | freebsd | windows2016 | windows2016-rds | windows2016-rds-office | windows2016-sql-web | windows2016-sql-standard | windows2016-sql-standard-all | windows2016-sql2017-standard | windows2016-sql2017-enterprise | windows2016-sql2017-standard-all | windows2019 | windows2019-rds | windows2019-rds-office2019 | windows2019-sql2017-web | windows2019-sql2019-web | windows2019-sql2017-standard | windows2019-sql2019-standard | windows2019-sql2017-enterprise | windows2019-sql2019-enterprise | windows2019-sql2017-standard-all | windows2019-sql2019-standard-all",
+            "EditDisk": {
+                "HostName": "hostname",
+                "Password": "password",
+                "IPAddress": "192.0.2.11",
+                "NetworkMaskLen": 24,
+                "DefaultRoute": "192.0.2.1",
+                "DisablePWAuth": true,
+                "EnableDHCP": true,
+                "ChangePartitionUUID": true,
+                "SSHKeys": [
+                    "/path/to/your/public/key",
+                    "ssh-rsa ..."
+                ],
+                "SSHKeyIDs": [
+                    123456789012
+                ],
+                "IsSSHKeysEphemeral": true,
+                "NoteIDs": [
+                    123456789012
+                ],
+                "IsNotesEphemeral": true,
+                "Notes": [
+                    {
+                        "ID": 123456789012,
+                        "Variables": {
+                            "variable1": "foo",
+                            "variable2": "bar"
+                        }
+                    }
+                ]
+            },
+            "NoWait": true
+        },
+        {
+            "ID": 123456789012,
+            "Description": "既存のディスクを接続する例",
+            "EditDisk": {},
+            "NoWait": false
+        }
+    ],
+    "NoWait": false
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -200,8 +292,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -258,8 +352,97 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "CPU": 1,
+    "Memory": 2,
+    "Commitment": "standard | dedicatedcpu",
+    "Generation": "default | g100 | g200",
+    "InterfaceDriver": "virtio | e1000",
+    "CDROMID": 123456789012,
+    "PrivateHostID": 123456789012,
+    "NetworkInterfaces": [
+        {
+            "Upstream": "shared | disconnected | (switch-id)",
+            "PacketFilterID": 123456789012,
+            "UserIPAddress": "192.0.2.11"
+        }
+    ],
+    "Disks": [
+        {
+            "Description": "新規ディスクを作成する例",
+            "Tags": [
+                "tag1=example1",
+                "tag2=example2"
+            ],
+            "IconID": 123456789012,
+            "DiskPlan": "ssd | hdd",
+            "Connection": "virtio | ide",
+            "SourceDiskID": 123456789012,
+            "SourceArchiveID": 123456789012,
+            "SizeGB": 20,
+            "DistantFrom": [
+                123456789012
+            ],
+            "OSType": "centos | centos8stream | centos8 | centos7 | ubuntu | ubuntu2004 | ubuntu1804 | ubuntu1604 | debian | debian10 | debian9 | coreos | rancheros | k3os | kusanagi | freebsd | windows2016 | windows2016-rds | windows2016-rds-office | windows2016-sql-web | windows2016-sql-standard | windows2016-sql-standard-all | windows2016-sql2017-standard | windows2016-sql2017-enterprise | windows2016-sql2017-standard-all | windows2019 | windows2019-rds | windows2019-rds-office2019 | windows2019-sql2017-web | windows2019-sql2019-web | windows2019-sql2017-standard | windows2019-sql2019-standard | windows2019-sql2017-enterprise | windows2019-sql2019-enterprise | windows2019-sql2017-standard-all | windows2019-sql2019-standard-all",
+            "EditDisk": {
+                "HostName": "hostname",
+                "Password": "password",
+                "IPAddress": "192.0.2.11",
+                "NetworkMaskLen": 24,
+                "DefaultRoute": "192.0.2.1",
+                "DisablePWAuth": true,
+                "EnableDHCP": true,
+                "ChangePartitionUUID": true,
+                "SSHKeys": [
+                    "/path/to/your/public/key",
+                    "ssh-rsa ..."
+                ],
+                "SSHKeyIDs": [
+                    123456789012
+                ],
+                "IsSSHKeysEphemeral": true,
+                "NoteIDs": [
+                    123456789012
+                ],
+                "IsNotesEphemeral": true,
+                "Notes": [
+                    {
+                        "ID": 123456789012,
+                        "Variables": {
+                            "variable1": "foo",
+                            "variable2": "bar"
+                        }
+                    }
+                ]
+            },
+            "NoWait": true
+        },
+        {
+            "ID": 123456789012,
+            "Description": "既存のディスクを接続する例",
+            "EditDisk": {},
+            "NoWait": false
+        }
+    ],
+    "NoWait": false,
+    "ForceShutdown": false
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -294,8 +477,10 @@ Flags:
 
 ```
 
+
 ## ssh {: #ssh }
 
+##### Usage
 ```console
 Usage:
   ssh [flags]
@@ -325,8 +510,10 @@ Flags:
 
 ```
 
+
 ## vnc {: #vnc }
 
+##### Usage
 ```console
 Usage:
   vnc [flags]
@@ -352,8 +539,10 @@ Flags:
 
 ```
 
+
 ## rdp {: #rdp }
 
+##### Usage
 ```console
 Usage:
   rdp [flags]
@@ -384,8 +573,10 @@ Flags:
 
 ```
 
+
 ## boot {: #boot }
 
+##### Usage
 ```console
 Usage:
   boot [flags]
@@ -415,8 +606,10 @@ Flags:
 
 ```
 
+
 ## shutdown {: #shutdown }
 
+##### Usage
 ```console
 Usage:
   shutdown [flags]
@@ -450,8 +643,10 @@ Flags:
 
 ```
 
+
 ## reset {: #reset }
 
+##### Usage
 ```console
 Usage:
   reset [flags]
@@ -474,8 +669,10 @@ Flags:
 
 ```
 
+
 ## monitor-cpu {: #monitor-cpu }
 
+##### Usage
 ```console
 Usage:
   monitor-cpu [flags]
@@ -509,8 +706,10 @@ Flags:
 
 ```
 
+
 ## wait-until-ready {: #wait-until-ready }
 
+##### Usage
 ```console
 Usage:
   wait-until-ready [flags]
@@ -535,8 +734,10 @@ Flags:
 
 ```
 
+
 ## wait-until-shutdown {: #wait-until-shutdown }
 
+##### Usage
 ```console
 Usage:
   wait-until-shutdown [flags]
@@ -560,4 +761,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

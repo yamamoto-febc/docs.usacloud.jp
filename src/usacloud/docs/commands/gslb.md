@@ -12,6 +12,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -49,8 +50,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -98,8 +101,40 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "HealthCheck": {
+        "Protocol": "http | https | ping | tcp",
+        "HostHeader": "www.example.com",
+        "Path": "/",
+        "ResponseCode": 200,
+        "Port": 80
+    },
+    "DelayLoop": 10,
+    "Weighted": true,
+    "SorryServer": "192.0.2.1",
+    "DestinationServers": [
+        {
+            "IPAddress": "192.0.2.11",
+            "Enabled": "True",
+            "Weight": "1"
+        }
+    ]
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -127,8 +162,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -176,8 +213,40 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "HealthCheck": {
+        "Protocol": "http | https | ping | tcp",
+        "HostHeader": "www.example.com",
+        "Path": "/",
+        "ResponseCode": 200,
+        "Port": 80
+    },
+    "DelayLoop": 10,
+    "Weighted": true,
+    "SorryServer": "192.0.2.1",
+    "DestinationServers": [
+        {
+            "IPAddress": "192.0.2.11",
+            "Enabled": "True",
+            "Weight": "1"
+        }
+    ]
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -209,4 +278,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

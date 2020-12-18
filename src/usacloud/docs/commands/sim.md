@@ -18,6 +18,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -55,8 +56,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -94,8 +97,25 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "ICCID": "your-iccid",
+    "PassCode": "your-passcode"
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -123,8 +143,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -157,8 +179,23 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -197,8 +234,10 @@ Flags:
 
 ```
 
+
 ## activate {: #activate }
 
+##### Usage
 ```console
 Usage:
   activate [flags]
@@ -217,8 +256,10 @@ Flags:
 
 ```
 
+
 ## deactivate {: #deactivate }
 
+##### Usage
 ```console
 Usage:
   deactivate [flags]
@@ -237,8 +278,10 @@ Flags:
 
 ```
 
+
 ## monitor-sim {: #monitor-sim }
 
+##### Usage
 ```console
 Usage:
   monitor-sim [flags]
@@ -271,8 +314,10 @@ Flags:
 
 ```
 
+
 ## logs {: #logs }
 
+##### Usage
 ```console
 Usage:
   logs [flags]
@@ -296,4 +341,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

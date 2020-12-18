@@ -13,6 +13,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -49,8 +50,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -85,8 +88,19 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "PublicKey": "/path/to/your/public/key | ssh-rsa ..."
+}
+```
+
+
 ## generate {: #generate }
 
+##### Usage
 ```console
 Usage:
   generate [flags]
@@ -121,8 +135,10 @@ Flags:
 
 ```
 
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -150,8 +166,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -182,8 +200,18 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example"
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -215,4 +243,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

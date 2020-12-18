@@ -16,6 +16,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -53,8 +54,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -99,8 +102,51 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "Switch": {
+        "Code": "123456789012",
+        "Category": "cloud",
+        "ZoneID": "tk1a | tk1b | is1a | is1b | tk1v"
+    },
+    "Interface": {
+        "VirtualIPAddress": "192.0.2.101",
+        "IPAddress": [
+            "192.0.2.21",
+            "192.0.2.22"
+        ],
+        "NetworkMaskLen": 24,
+        "VRID": 1
+    },
+    "Peers": [
+        {
+            "ID": 123456789012,
+            "SecretKey": "*****",
+            "Enabled": true,
+            "Description": "example-peer"
+        }
+    ],
+    "StaticRoutes": [
+        {
+            "Prefix": "192.0.2.0/24",
+            "NextHop": "192.0.2.1"
+        }
+    ]
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -128,8 +174,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -174,8 +222,51 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "Switch": {
+        "Code": "123456789012",
+        "Category": "cloud",
+        "ZoneID": "tk1a | tk1b | is1a | is1b | tk1v"
+    },
+    "Interface": {
+        "VirtualIPAddress": "192.0.2.101",
+        "IPAddress": [
+            "192.0.2.21",
+            "192.0.2.22"
+        ],
+        "NetworkMaskLen": 24,
+        "VRID": 1
+    },
+    "Peers": [
+        {
+            "ID": 123456789012,
+            "SecretKey": "*****",
+            "Enabled": true,
+            "Description": "example-peer"
+        }
+    ],
+    "StaticRoutes": [
+        {
+            "Prefix": "192.0.2.0/24",
+            "NextHop": "192.0.2.1"
+        }
+    ]
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -208,8 +299,10 @@ Flags:
 
 ```
 
+
 ## monitor-local-router {: #monitor-local-router }
 
+##### Usage
 ```console
 Usage:
   monitor-local-router [flags]
@@ -242,8 +335,10 @@ Flags:
 
 ```
 
+
 ## health {: #health }
 
+##### Usage
 ```console
 Usage:
   health [flags]
@@ -267,4 +362,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

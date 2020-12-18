@@ -86,5 +86,6 @@ nav:
               - server-plan: commands/server-plan.md
               - service-class: commands/service-class.md
           - Other commands / その他:
+              - completion: commands/completion.md
               - rest: commands/rest.md
               - self: commands/self.md

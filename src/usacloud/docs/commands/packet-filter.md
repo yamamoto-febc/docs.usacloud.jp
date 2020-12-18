@@ -12,6 +12,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -52,8 +53,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -92,8 +95,77 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Expressions": [
+        {
+            "Protocol": "http | https | tcp | udp | icmp | fragment | ip",
+            "SourceNetwork": "192.0.2.1 | 192.0.2.0/24",
+            "SourcePort": "1024 | 1024-2048",
+            "DestinationPort": "1024 | 1024-2048",
+            "Action": "allow | deny",
+            "Description": "description"
+        },
+        {
+            "Protocol": "tcp",
+            "SourceNetwork": "",
+            "SourcePort": "",
+            "DestinationPort": "22",
+            "Action": "allow",
+            "Description": "allow ssh"
+        },
+        {
+            "Protocol": "icmp",
+            "SourceNetwork": "",
+            "SourcePort": "",
+            "DestinationPort": "",
+            "Action": "allow",
+            "Description": ""
+        },
+        {
+            "Protocol": "tcp",
+            "SourceNetwork": "",
+            "SourcePort": "",
+            "DestinationPort": "32768-61000",
+            "Action": "allow",
+            "Description": ""
+        },
+        {
+            "Protocol": "udp",
+            "SourceNetwork": "",
+            "SourcePort": "",
+            "DestinationPort": "32768-61000",
+            "Action": "allow",
+            "Description": ""
+        },
+        {
+            "Protocol": "fragment",
+            "SourceNetwork": "",
+            "SourcePort": "",
+            "DestinationPort": "",
+            "Action": "allow",
+            "Description": ""
+        },
+        {
+            "Protocol": "ip",
+            "SourceNetwork": "",
+            "SourcePort": "",
+            "DestinationPort": "",
+            "Action": "deny",
+            "Description": ""
+        }
+    ]
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -125,8 +197,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -165,8 +239,77 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Expressions": [
+        {
+            "Protocol": "http | https | tcp | udp | icmp | fragment | ip",
+            "SourceNetwork": "192.0.2.1 | 192.0.2.0/24",
+            "SourcePort": "1024 | 1024-2048",
+            "DestinationPort": "1024 | 1024-2048",
+            "Action": "allow | deny",
+            "Description": "description"
+        },
+        {
+            "Protocol": "tcp",
+            "SourceNetwork": "",
+            "SourcePort": "",
+            "DestinationPort": "22",
+            "Action": "allow",
+            "Description": "allow ssh"
+        },
+        {
+            "Protocol": "icmp",
+            "SourceNetwork": "",
+            "SourcePort": "",
+            "DestinationPort": "",
+            "Action": "allow",
+            "Description": ""
+        },
+        {
+            "Protocol": "tcp",
+            "SourceNetwork": "",
+            "SourcePort": "",
+            "DestinationPort": "32768-61000",
+            "Action": "allow",
+            "Description": ""
+        },
+        {
+            "Protocol": "udp",
+            "SourceNetwork": "",
+            "SourcePort": "",
+            "DestinationPort": "32768-61000",
+            "Action": "allow",
+            "Description": ""
+        },
+        {
+            "Protocol": "fragment",
+            "SourceNetwork": "",
+            "SourcePort": "",
+            "DestinationPort": "",
+            "Action": "allow",
+            "Description": ""
+        },
+        {
+            "Protocol": "ip",
+            "SourceNetwork": "",
+            "SourcePort": "",
+            "DestinationPort": "",
+            "Action": "deny",
+            "Description": ""
+        }
+    ]
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -208,4 +351,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

@@ -2,7 +2,15 @@ package main
 
 import (
 	"bytes"
+	"context"
+	"encoding/json"
 	"fmt"
+	"github.com/sacloud/libsacloud/v2/sacloud"
+	"github.com/sacloud/libsacloud/v2/sacloud/profile"
+	"github.com/sacloud/usacloud/pkg/cli"
+	"github.com/sacloud/usacloud/pkg/cmd/core"
+	"github.com/sacloud/usacloud/pkg/config"
+	"github.com/sacloud/usacloud/pkg/test"
 	"github.com/sacloud/usacloud/tools"
 	"go/build"
 	"io/ioutil"
@@ -35,10 +43,40 @@ func main() {
 			OutputPath:         filepath.Join(baseDir, destination, resource.Name + ".md"),
 			Template:           string(tmpl),
 			Parameter:          resource,
-			PreventOverwriting: true,
+			PreventOverwriting: false,
+			FuncMap: map[string]interface{}{
+				"example": func(command *core.Command) string {
+					parameter := command.ParameterInitializer()
+					if eh, ok := parameter.(core.ExampleHolder); ok {
+						return marshalIndent(eh.ExampleParameters(dummyCLIContext()))
+					}
+					return ""
+				},
+			},
 		}
 		WriteFileWithTemplate(config)
 	}
+}
+
+func dummyCLIContext() cli.Context {
+	return &test.DummyCLIContext{
+		DummyValue: &test.DummyCLIContextValue{
+			Context:      context.Background(),
+			Option:       &config.Config{
+				ConfigValue:       profile.ConfigValue{
+					Zones: sacloud.SakuraCloudZones,
+				},
+			},
+		},
+	}
+}
+
+func marshalIndent(v interface{}) string {
+	data, err := json.MarshalIndent(v, "", "    ")
+	if err != nil {
+		return ""
+	}
+	return string(data)
 }
 
 // TemplateConfig ソース生成を行うためのテンプレート設定
@@ -47,12 +85,13 @@ type TemplateConfig struct {
 	Template           string
 	Parameter          interface{}
 	PreventOverwriting bool
+	FuncMap template.FuncMap
 }
 
 // WriteFileWithTemplate 指定の設定に従いファイル出力
 func WriteFileWithTemplate(config *TemplateConfig) bool {
 	buf := bytes.NewBufferString("")
-	t := template.New("t")
+	t := template.New("t").Funcs(config.FuncMap)
 	template.Must(t.Parse(config.Template))
 	if err := t.Execute(buf, config.Parameter); err != nil {
 		log.Fatalf("writing output: %s", err)

@@ -17,6 +17,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -54,8 +55,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -109,8 +112,77 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "Plan": "100 | 500 | 1000 | 5000 | 10000 | 50000 | 100000",
+    "HealthCheck": {
+        "Protocol": "http | tcp",
+        "Path": "/healthz",
+        "Host": "www.example.com",
+        "DelayLoop": 10
+    },
+    "SorryServer": {
+        "IPAddress": "192.0.2.11",
+        "Port": 80
+    },
+    "LetsEncrypt": {
+        "CommonName": "www.example.com",
+        "Enabled": true,
+        "AcceptTOS": false
+    },
+    "StickySession": {
+        "Method": "cookie",
+        "Enabled": true
+    },
+    "Timeout": {
+        "InactiveSec": 10
+    },
+    "UseVIPFailover": true,
+    "Region": "tk1 | is1 | anycast",
+    "BindPorts": [
+        {
+            "ProxyMode": "http | https | tcp",
+            "Port": 80,
+            "RedirectToHTTPS": true,
+            "SupportHTTP2": true,
+            "AddResponseHeader": [
+                {
+                    "Header": "Cache-Control",
+                    "Value": "public, max-age=900"
+                }
+            ]
+        }
+    ],
+    "Servers": [
+        {
+            "IPAddress": "192.0.2.11",
+            "Port": 80,
+            "ServerGroup": "group1",
+            "Enabled": true
+        }
+    ],
+    "Rules": [
+        {
+            "Host": "www2.example.com",
+            "Path": "/foo",
+            "ServerGroup": "group1"
+        }
+    ]
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -138,8 +210,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -191,8 +265,78 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "Plan": "100 | 500 | 1000 | 5000 | 10000 | 50000 | 100000",
+    "HealthCheck": {
+        "Protocol": "http | tcp",
+        "Path": "/healthz",
+        "Host": "www.example.com",
+        "DelayLoop": 10
+    },
+    "SorryServer": {
+        "IPAddress": "192.0.2.11",
+        "Port": 80
+    },
+    "LetsEncrypt": {
+        "CommonName": "www.example.com",
+        "Enabled": true,
+        "AcceptTOS": false
+    },
+    "StickySession": {
+        "Method": "cookie",
+        "Enabled": true
+    },
+    "Timeout": {
+        "InactiveSec": 10
+    },
+    "BindPortsData": null,
+    "BindPorts": [
+        {
+            "ProxyMode": "http | https | tcp",
+            "Port": 80,
+            "RedirectToHTTPS": true,
+            "SupportHTTP2": true,
+            "AddResponseHeader": [
+                {
+                    "Header": "Cache-Control",
+                    "Value": "public, max-age=900"
+                }
+            ]
+        }
+    ],
+    "ServersData": null,
+    "Servers": [
+        {
+            "IPAddress": "192.0.2.11",
+            "Port": 80,
+            "ServerGroup": "group1",
+            "Enabled": true
+        }
+    ],
+    "RulesData": null,
+    "Rules": [
+        {
+            "Host": "www2.example.com",
+            "Path": "/foo",
+            "ServerGroup": "group1"
+        }
+    ]
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -225,8 +369,10 @@ Flags:
 
 ```
 
+
 ## health-status {: #health-status }
 
+##### Usage
 ```console
 Usage:
   health-status [flags]
@@ -254,8 +400,10 @@ Flags:
 
 ```
 
+
 ## renew-lets-encrypt-cert {: #renew-lets-encrypt-cert }
 
+##### Usage
 ```console
 Usage:
   renew-lets-encrypt-cert [flags]
@@ -274,8 +422,10 @@ Flags:
 
 ```
 
+
 ## monitor-connection {: #monitor-connection }
 
+##### Usage
 ```console
 Usage:
   monitor-connection [flags]
@@ -307,4 +457,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

@@ -12,6 +12,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -49,8 +50,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -87,8 +90,37 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "Records": [
+        {
+            "Name": "www",
+            "Type": "A | AAAA | ALIAS | CNAME | NS | MX | TXT | SRV | CAA | PTR",
+            "RData": "192.0.2.11",
+            "TTL": 300
+        },
+        {
+            "Name": "@",
+            "Type": "A | AAAA | ALIAS | CNAME | NS | MX | TXT | SRV | CAA | PTR",
+            "RData": "192.0.2.11",
+            "TTL": 300
+        }
+    ]
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -116,8 +148,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -154,8 +188,37 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "Records": [
+        {
+            "Name": "www",
+            "Type": "A | AAAA | ALIAS | CNAME | NS | MX | TXT | SRV | CAA | PTR",
+            "RData": "192.0.2.11",
+            "TTL": 300
+        },
+        {
+            "Name": "@",
+            "Type": "A | AAAA | ALIAS | CNAME | NS | MX | TXT | SRV | CAA | PTR",
+            "RData": "192.0.2.11",
+            "TTL": 300
+        }
+    ]
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -187,4 +250,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

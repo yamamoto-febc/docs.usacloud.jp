@@ -8,7 +8,14 @@
 {{ range .CategorizedCommands }}{{ range .Commands }}
 ## {{ .Name }} {: #{{ .Name }} }
 
+##### Usage
 ```console
 {{ .CLICommand.UsageString}}
 ```
-{{ end }}{{ end}}
+{{ $example := example .}}{{ if $example }}
+##### Parameter Examples
+```console
+{{ $example }}
+```
+{{ end }}
+{{ end }}{{ end }}

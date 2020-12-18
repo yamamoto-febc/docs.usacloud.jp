@@ -21,6 +21,7 @@
 
 ## list {: #list }
 
+##### Usage
 ```console
 Usage:
   list [flags]
@@ -62,8 +63,10 @@ Flags:
 
 ```
 
+
 ## create {: #create }
 
+##### Usage
 ```console
 Usage:
   create [flags]
@@ -118,8 +121,56 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "PlanID": "standard | highspec",
+    "VRID": 1,
+    "SwitchID": 123456789012,
+    "IPAddresses": [
+        "192.0.2.21",
+        "192.0.2.22"
+    ],
+    "NetworkMaskLen": 24,
+    "DefaultRoute": "192.0.2.1",
+    "Port": 80,
+    "VirtualIPAddresses": [
+        {
+            "VirtualIPAddress": "192.0.2.101",
+            "Port": "80",
+            "DelayLoop": "10",
+            "SorryServer": "192.0.2.1",
+            "Description": "example",
+            "Servers": [
+                {
+                    "IPAddress": "192.0.2.101",
+                    "Port": "80",
+                    "Enabled": "True",
+                    "HealthCheck": {
+                        "Protocol": "http | https | tcp | ping",
+                        "Path": "/",
+                        "ResponseCode": "200"
+                    }
+                }
+            ]
+        }
+    ],
+    "NoWait": false
+}
+```
+
+
 ## read {: #read }
 
+##### Usage
 ```console
 Usage:
   read [flags]
@@ -151,8 +202,10 @@ Flags:
 
 ```
 
+
 ## update {: #update }
 
+##### Usage
 ```console
 Usage:
   update [flags]
@@ -197,8 +250,46 @@ Flags:
 
 ```
 
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "VirtualIPAddresses": [
+        {
+            "VirtualIPAddress": "192.0.2.101",
+            "Port": "80",
+            "DelayLoop": "10",
+            "SorryServer": "192.0.2.1",
+            "Description": "example",
+            "Servers": [
+                {
+                    "IPAddress": "192.0.2.101",
+                    "Port": "80",
+                    "Enabled": "True",
+                    "HealthCheck": {
+                        "Protocol": "http | https | tcp | ping",
+                        "Path": "/",
+                        "ResponseCode": "200"
+                    }
+                }
+            ]
+        }
+    ],
+    "NoWait": false
+}
+```
+
+
 ## delete {: #delete }
 
+##### Usage
 ```console
 Usage:
   delete [flags]
@@ -239,8 +330,10 @@ Flags:
 
 ```
 
+
 ## boot {: #boot }
 
+##### Usage
 ```console
 Usage:
   boot [flags]
@@ -270,8 +363,10 @@ Flags:
 
 ```
 
+
 ## shutdown {: #shutdown }
 
+##### Usage
 ```console
 Usage:
   shutdown [flags]
@@ -305,8 +400,10 @@ Flags:
 
 ```
 
+
 ## reset {: #reset }
 
+##### Usage
 ```console
 Usage:
   reset [flags]
@@ -329,8 +426,10 @@ Flags:
 
 ```
 
+
 ## monitor-interface {: #monitor-interface }
 
+##### Usage
 ```console
 Usage:
   monitor-interface [flags]
@@ -367,8 +466,10 @@ Flags:
 
 ```
 
+
 ## wait-until-ready {: #wait-until-ready }
 
+##### Usage
 ```console
 Usage:
   wait-until-ready [flags]
@@ -393,8 +494,10 @@ Flags:
 
 ```
 
+
 ## wait-until-shutdown {: #wait-until-shutdown }
 
+##### Usage
 ```console
 Usage:
   wait-until-shutdown [flags]
@@ -418,4 +521,5 @@ Flags:
       --example   Output example parameters with JSON format
 
 ```
+
 

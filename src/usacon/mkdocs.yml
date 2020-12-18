@@ -1,0 +1,21 @@
+site_name: Usaconドキュメント
+site_url: https://docs.usacloud.jp/usacon
+site_description: Usacon日本語ドキュメント
+site_author: '@sacloud-authors'
+repo_url: https://github.com/sacloud/usacon
+repo_name: usacon
+copyright: Copyright (C) 2017-2020 The Usacon Authors.
+google_analytics: ['UA-63739336-5','auto']
+theme:
+  name: readthedocs
+  navigation_depth: 4
+  collapse_navigation: true
+  titles_only: false
+extra_css:
+  - css/extra.css
+markdown_extensions:
+  - admonition
+  - attr_list
+  - codehilite
+nav:
+  - Usaconドキュメント: index.md

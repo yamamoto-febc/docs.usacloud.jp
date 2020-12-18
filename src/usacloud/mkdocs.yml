@@ -2,7 +2,7 @@ site_name: Usacloudドキュメント
 site_url: https://sacloud.github.io/usacloud/
 site_description: Usacloud日本語ドキュメント
 site_author: '@sacloud-authors'
-repo_url: https://github.com/sacloud/usacloud
+repo_url: https://docs.usacloud.jp/usacloud
 repo_name: usacloud
 copyright: Copyright (C) 2017-2020 The Usacloud Authors.
 google_analytics: ['UA-63739336-5','auto']

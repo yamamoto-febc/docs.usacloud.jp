@@ -1,593 +1,765 @@
-# server
+# コマンドリファレンス / server
 
----
+## コマンド一覧
 
-サーバー関連の操作。
+- Basic Commands
+    - [list](#list)
+    - [create](#create)
+    - [read](#read)
+    - [update](#update)
+    - [delete](#delete)
+- Connect Commands
+    - [ssh](#ssh)
+    - [vnc](#vnc)
+    - [rdp](#rdp)
+- Power Management Commands
+    - [boot](#boot)
+    - [shutdown](#shutdown)
+    - [reset](#reset)
+- Monitoring Commands
+    - [monitor-cpu](#monitor-cpu)
+- Other Commands
+    - [wait-until-ready](#wait-until-ready)
+    - [wait-until-shutdown](#wait-until-shutdown)
 
-# コマンド
 
-* 基本的な操作
-    - [`list`](#list) - 一覧表示
-    - [`build`](#build) - 作成
-    - [`read`](#read) - 詳細表示
-    - [`update`](#update) - 更新
-    - [`delete`](#delete) - 削除
-    - [`plan-change`](#plan-change) - プラン変更
-* 電源操作
-    - [`boot`](#boot) - 起動
-    - [`shutdown`](#shutdown) - シャットダウン(graceful)
-    - [`shutdown-force`](#shutdown-force) - シャットダウン(force)
-    - [`reset`](#reset) - リセット
-    - [`wait-for-boot`](#wait-for-boot) - 起動するまで待機
-    - [`wait-for-down`](#wait-for-down) - 終了するまで待機
-* SSH/SCP/VNC
-    - [`ssh`](#ssh) - SSH接続
-    - [`ssh-exec`](#ssh-exec) - SSH接続(コマンド実行)
-    - [`scp`](#scp) - SCPでのファイル送受信
-    - [`vnc`](#vnc) - VNCクライアント起動
-    - [`vnc-info`](#vnc-info) - VNC接続情報の表示
-* ディスク管理
-    - [`disk-info`](#disk-info1) - 接続されているディスクを一覧表示
-    - [`disk-connect`](#disk-connect) - ディスクの接続
-    - [`disk-disconnect`](#disk-disconnect) - ディスクの切断
-* ネットワーク(NIC)管理
-    - [`interface-info`](#interface-info) - 接続されているNICを一覧表示
-    - [`interface-add-for-internet`](#interface-add-for-internet) - インターネット(共有セグメント)に接続するNICを追加
-    - [`interface-add-for-router`](#interface-add-for-router) - ルーターに接続するNICを追加
-    - [`interface-add-for-switch`](#interface-add-for-switch) - スイッチに接続するNICを追加
-    - [`interface-add-disconnected`](#interface-add-disconnected) - 上流ネットワークに接続していないNICを追加
-* ISOイメージ(CD-ROM)
-    - [`iso-info`](#iso-info) - 挿入されているISOイメージ(CD-ROM)の詳細表示
-    - [`iso-insert`](#iso-insert) - ISOイメージ(CD-ROM)の挿入
-    - [`iso-eject`](#iso-eject) - ISOイメージ(CD-ROM)の排出
-* 監視/モニタリング
-    - [`monitor-cpu`](#monitor-cpu) - アクティビティモニタ(CPU)取得
-    - [`monitor-nic`](#monitor-nic) - アクティビティモニタ(NIC)取得
-    - [`monitor-disk`](#monitor-disk) - アクティビティモニタ(ディスク)取得
+## list {: #list }
 
-# == 基本的な操作 ==
+##### Usage
+```console
+Usage:
+  list [flags]
 
----
+Aliases:
+  list, ls, find, select
 
-## list
+Flags:
 
-```bash
-USAGE:
-   usacloud server list [command options] [arguments...]
+  === Filter options ===
 
-OPTIONS:
-   --from value  set offset (default: 0)
-   --id value    set filter by id(s)
-   --max value   set limit (default: 0)
-   --name value  set filter by name(s)
-   --sort value  set field(s) for sort
-   --help, -h    show help (default: false)
+      --names strings   
+      --tags strings    
+
+  === Limit/Offset options ===
+
+      --count int   (aliases: --max, --limit)
+      --from int    (aliases: --offset)
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Output options ===
+
+      --format string        Output format in Go templates (aliases: --fmt)
+  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
+      --query string         JMESPath query
+  -q, --quiet                Output IDs only
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
 
-## build
+## create {: #create }
 
-```bash
-USAGE:
-   usacloud server build [command options] [arguments...]
+##### Usage
+```console
+Usage:
+  create [flags]
 
-OPTIONS:
- === For server-plan options ===
-   --core value    [Required] set CPU core count (default: 1)
-   --memory value  [Required] set memory size(GB) (default: 1)
-   
- === For disk options ===
-   --disk-mode value          [Required] disk create mode[create/connect/diskless] (default: "create")
-   --os-type value            set source OS type
-   --disk-plan value          set disk plan('hdd' or 'ssd') (default: "ssd")
-   --disk-connection value    set disk connection('virtio' or 'ide') (default: "virtio")
-   --disk-size value          set disk size(GB) (default: 20)
-   --source-archive-id value  set source disk ID (default: 0)
-   --source-disk-id value     set source disk ID (default: 0)
-   --distant-from value       set distant from disk IDs
-   --disk-id value            set connect disk ID (default: 0)
-   
- === For ISO image options ===
-   --iso-image-id value  set iso-image ID (default: 0)
-   
- === For network options ===
-   --network-mode value      [Required] network connection mode[shared/switch/disconnect/none] (default: "shared")
-   --use-nic-virtio          use virtio on nic (default: true)
-   --packet-filter-id value  set packet filter ID (default: 0)
-   --switch-id value         set connect switch ID (default: 0)
-   
- === For edit-disk options ===
-   --hostname value                            set hostname
-   --password value                            set password
-   --disable-password-auth, --disable-pw-auth  disable password auth on SSH (default: false)
-   
- === For edit-disk(network settings) options ===
-   --ipaddress value, --ip value                set ipaddress
-   --nw-masklen value, --network-masklen value  set ipaddress  prefix (default: 24)
-   --default-route value, --gateway value       set default gateway
-   
- === For edit-disk(startup-script) options ===
-   --startup-scripts value, --notes value        set startup script(s)
-   --startup-script-ids value, --note-ids value  set startup script ID(s)
-   --startup-scripts-ephemeral                   set startup script persist mode (default: true)
-   
- === For edit-disk(ssh-key) options ===
-   --ssh-key-mode value                ssh-key mode[none/id/generate/upload]
-   --ssh-key-name value                set ssh-key name
-   --ssh-key-ids value                 set ssh-key ID(s)
-   --ssh-key-pass-phrase value         set ssh-key pass phrase
-   --ssh-key-description value         set ssh-key description
-   --ssh-key-private-key-output value  set ssh-key privatekey output path
-   --ssh-key-public-keys value         set ssh-key public key
-   --ssh-key-public-key-files value    set ssh-key public key file
-   --ssh-key-ephemeral                 set ssh-key persist mode (default: true)
-   
- === For server-info options ===
-   --name value                       [Required] set resource display name
-   --description value, --desc value  set resource description
-   --tags value                       set resource tags
-   --icon-id value                    set Icon ID (default: 0)
-   
- === Common options ===
-   --assumeyes, -y              assume that the answer to any question which would be asked is yes (default: false)
-   --us-keyboard                use us-keyboard (default: false)
-   --disable-boot-after-create  boot after create (default: false)
-   --help, -h                   show help (default: false)
+Aliases:
+  create, build
+
+Flags:
+
+  === Common options ===
+
+      --disk-name string          
+      --name string               (*required) 
+      --description string        
+      --disk-description string   
+      --disk-tags strings         
+      --tags strings              
+      --disk-icon-id int          
+      --icon-id int               
+
+  === Plan options ===
+
+      --cpu int             (*required) (aliases: --core) (default 1)
+      --memory int          (*required)  (default 1)
+      --commitment string   (*required) options: [standard/dedicatedcpu] (default "standard")
+      --generation string   (*required) options: [default/g100/g200] (default "default")
+
+  === Server-specific options ===
+
+      --boot-after-create         
+      --cdrom-id int              (aliases: --iso-image-id)
+      --interface-driver string   (*required) options: [virtio/e1000] (default "virtio")
+      --private-host-id int       
+
+  === Disk options ===
+
+      --disk-connection string       options: [virtio/ide]
+      --disk-disk-plan string        options: [ssd/hdd]
+      --disk-distant-from int        
+      --disk-id int                  
+      --disk-no-wait                 
+      --disk-os-type string          options: [centos/centos8stream/centos8/ubuntu/ubuntu2004/debian/debian10/coreos/rancheros/k3os/freebsd/...]
+      --disk-size int                (aliases: --size-gb)
+      --disk-source-archive-id int   
+      --disk-source-disk-id int      
+      --disk-ids int                 
+      --disks string                 
+
+  === Edit disk options ===
+
+      --disk-edit-host-name string          
+      --disk-edit-password string           
+      --disk-edit-ip-address string         
+      --disk-edit-netmask int               (aliases: --network-mask-len)
+      --disk-edit-gateway string            (aliases: --default-route)
+      --disk-edit-disable-pw-auth           
+      --disk-edit-enable-dhcp               
+      --disk-edit-change-partition-uuid     
+      --disk-edit-ssh-keys strings          
+      --disk-edit-ssh-key-ids int           
+      --disk-edit-make-ssh-keys-ephemeral   
+      --disk-edit-note-ids int              
+      --disk-edit-notes string              
+      --disk-edit-make-notes-ephemeral      
+
+  === Network options ===
+
+      --network-interface-packet-filter-id int     
+      --network-interface-upstream string          options: [shared/disconnected/(switch-id)]
+      --network-interface-user-ip-address string   
+      --network-interfaces string                  
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Wait options ===
+
+      --no-wait   
+
+  === Input options ===
+
+  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Output options ===
+
+      --format string        Output format in Go templates (aliases: --fmt)
+  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
+      --query string         JMESPath query
+  -q, --quiet                Output IDs only
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
-
-## read
-
-```bash
-USAGE:
-   usacloud server read [command options] <ID or Name(allow multiple target)>
-
-OPTIONS:
- === Common options ===
-   --help, -h  show help (default: false)
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "CPU": 1,
+    "Memory": 2,
+    "Commitment": "standard | dedicatedcpu",
+    "Generation": "default | g100 | g200",
+    "InterfaceDriver": "virtio | e1000",
+    "BootAfterCreate": true,
+    "CDROMID": 123456789012,
+    "PrivateHostID": 123456789012,
+    "NetworkInterfaces": [
+        {
+            "Upstream": "shared | disconnected | (switch-id)",
+            "PacketFilterID": 123456789012,
+            "UserIPAddress": "192.0.2.11"
+        }
+    ],
+    "Disks": [
+        {
+            "Description": "新規ディスクを作成する例",
+            "Tags": [
+                "tag1=example1",
+                "tag2=example2"
+            ],
+            "IconID": 123456789012,
+            "DiskPlan": "ssd | hdd",
+            "Connection": "virtio | ide",
+            "SourceDiskID": 123456789012,
+            "SourceArchiveID": 123456789012,
+            "SizeGB": 20,
+            "DistantFrom": [
+                123456789012
+            ],
+            "OSType": "centos | centos8stream | centos8 | centos7 | ubuntu | ubuntu2004 | ubuntu1804 | ubuntu1604 | debian | debian10 | debian9 | coreos | rancheros | k3os | kusanagi | freebsd | windows2016 | windows2016-rds | windows2016-rds-office | windows2016-sql-web | windows2016-sql-standard | windows2016-sql-standard-all | windows2016-sql2017-standard | windows2016-sql2017-enterprise | windows2016-sql2017-standard-all | windows2019 | windows2019-rds | windows2019-rds-office2019 | windows2019-sql2017-web | windows2019-sql2019-web | windows2019-sql2017-standard | windows2019-sql2019-standard | windows2019-sql2017-enterprise | windows2019-sql2019-enterprise | windows2019-sql2017-standard-all | windows2019-sql2019-standard-all",
+            "EditDisk": {
+                "HostName": "hostname",
+                "Password": "password",
+                "IPAddress": "192.0.2.11",
+                "NetworkMaskLen": 24,
+                "DefaultRoute": "192.0.2.1",
+                "DisablePWAuth": true,
+                "EnableDHCP": true,
+                "ChangePartitionUUID": true,
+                "SSHKeys": [
+                    "/path/to/your/public/key",
+                    "ssh-rsa ..."
+                ],
+                "SSHKeyIDs": [
+                    123456789012
+                ],
+                "IsSSHKeysEphemeral": true,
+                "NoteIDs": [
+                    123456789012
+                ],
+                "IsNotesEphemeral": true,
+                "Notes": [
+                    {
+                        "ID": 123456789012,
+                        "Variables": {
+                            "variable1": "foo",
+                            "variable2": "bar"
+                        }
+                    }
+                ]
+            },
+            "NoWait": true
+        },
+        {
+            "ID": 123456789012,
+            "Description": "既存のディスクを接続する例",
+            "EditDisk": {},
+            "NoWait": false
+        }
+    ],
+    "NoWait": false
+}
 ```
 
----
 
-## update
+## read {: #read }
 
-```bash
-USAGE:
-   usacloud server update [command options] <ID or Name(allow multiple target)>
+##### Usage
+```console
+Usage:
+  read [flags]
 
-OPTIONS:
- === Common options ===
-   --assumeyes, -y                    assume that the answer to any question which would be asked is yes (default: false)
-   --description value, --desc value  set resource description
-   --icon-id value                    set Icon ID (default: 0)
-   --name value                       set resource display name
-   --tags value                       set resource tags
-   --help, -h                         show help (default: false)
+Aliases:
+  read, show
+
+Flags:
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Output options ===
+
+      --format string        Output format in Go templates (aliases: --fmt)
+  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
+      --query string         JMESPath query
+  -q, --quiet                Output IDs only
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
 
-## delete
+## update {: #update }
 
-```bash
-USAGE:
-   usacloud server delete [command options] <ID or Name(allow multiple target)>
+##### Usage
+```console
+Usage:
+  update [flags]
 
-OPTIONS:
- === Common options ===
-   --assumeyes, -y  assume that the answer to any question which would be asked is yes (default: false)
-   --force, -f      forced-shutdown flag if server is running (default: false)
-   --with-disk      delete connected disks with server (default: true)
-   --help, -h       show help (default: false)
+Flags:
+
+  === Common options ===
+
+      --name string          
+      --description string   
+      --tags strings         
+      --icon-id int          
+
+  === Plan options ===
+
+      --cpu int             (aliases: --core)
+      --memory int          
+      --commitment string   options: [standard/dedicatedcpu]
+      --generation string   options: [default/g100/g200]
+
+  === Server-specific options ===
+
+      --cdrom-id int                (aliases: --iso-image-id)
+      --disks string                
+      --force-shutdown              
+      --interface-driver string     options: [interface_dirver]
+      --network-interfaces string   
+      --private-host-id int         
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Wait options ===
+
+      --no-wait   
+
+  === Input options ===
+
+  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Output options ===
+
+      --format string        Output format in Go templates (aliases: --fmt)
+  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
+      --query string         JMESPath query
+  -q, --quiet                Output IDs only
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
-
-## plan-change
-
-```bash
-USAGE:
-   usacloud server plan-change [command options] <ID or Name(allow multiple target)>
-
-OPTIONS:
- === Common options ===
-   --assumeyes, -y  assume that the answer to any question which would be asked is yes (default: false)
-   --core value     [Required] set CPU core count (default: 0)
-   --memory value   [Required] set memory size(GB) (default: 0)
-   --help, -h       show help (default: false)
+##### Parameter Examples
+```console
+{
+    "Zone": "tk1a | tk1b | is1a | is1b | tk1v",
+    "Name": "example",
+    "Description": "example",
+    "Tags": [
+        "tag1=example1",
+        "tag2=example2"
+    ],
+    "IconID": 123456789012,
+    "CPU": 1,
+    "Memory": 2,
+    "Commitment": "standard | dedicatedcpu",
+    "Generation": "default | g100 | g200",
+    "InterfaceDriver": "virtio | e1000",
+    "CDROMID": 123456789012,
+    "PrivateHostID": 123456789012,
+    "NetworkInterfaces": [
+        {
+            "Upstream": "shared | disconnected | (switch-id)",
+            "PacketFilterID": 123456789012,
+            "UserIPAddress": "192.0.2.11"
+        }
+    ],
+    "Disks": [
+        {
+            "Description": "新規ディスクを作成する例",
+            "Tags": [
+                "tag1=example1",
+                "tag2=example2"
+            ],
+            "IconID": 123456789012,
+            "DiskPlan": "ssd | hdd",
+            "Connection": "virtio | ide",
+            "SourceDiskID": 123456789012,
+            "SourceArchiveID": 123456789012,
+            "SizeGB": 20,
+            "DistantFrom": [
+                123456789012
+            ],
+            "OSType": "centos | centos8stream | centos8 | centos7 | ubuntu | ubuntu2004 | ubuntu1804 | ubuntu1604 | debian | debian10 | debian9 | coreos | rancheros | k3os | kusanagi | freebsd | windows2016 | windows2016-rds | windows2016-rds-office | windows2016-sql-web | windows2016-sql-standard | windows2016-sql-standard-all | windows2016-sql2017-standard | windows2016-sql2017-enterprise | windows2016-sql2017-standard-all | windows2019 | windows2019-rds | windows2019-rds-office2019 | windows2019-sql2017-web | windows2019-sql2019-web | windows2019-sql2017-standard | windows2019-sql2019-standard | windows2019-sql2017-enterprise | windows2019-sql2019-enterprise | windows2019-sql2017-standard-all | windows2019-sql2019-standard-all",
+            "EditDisk": {
+                "HostName": "hostname",
+                "Password": "password",
+                "IPAddress": "192.0.2.11",
+                "NetworkMaskLen": 24,
+                "DefaultRoute": "192.0.2.1",
+                "DisablePWAuth": true,
+                "EnableDHCP": true,
+                "ChangePartitionUUID": true,
+                "SSHKeys": [
+                    "/path/to/your/public/key",
+                    "ssh-rsa ..."
+                ],
+                "SSHKeyIDs": [
+                    123456789012
+                ],
+                "IsSSHKeysEphemeral": true,
+                "NoteIDs": [
+                    123456789012
+                ],
+                "IsNotesEphemeral": true,
+                "Notes": [
+                    {
+                        "ID": 123456789012,
+                        "Variables": {
+                            "variable1": "foo",
+                            "variable2": "bar"
+                        }
+                    }
+                ]
+            },
+            "NoWait": true
+        },
+        {
+            "ID": 123456789012,
+            "Description": "既存のディスクを接続する例",
+            "EditDisk": {},
+            "NoWait": false
+        }
+    ],
+    "NoWait": false,
+    "ForceShutdown": false
+}
 ```
 
----
 
-# == 電源操作 ==
+## delete {: #delete }
 
----
+##### Usage
+```console
+Usage:
+  delete [flags]
 
-## boot
+Aliases:
+  delete, rm
 
-```bash
-USAGE:
-   usacloud server boot [command options] <ID or Name(allow multiple target)>
+Flags:
 
-OPTIONS:
-   --assumeyes, -y  assume that the answer to any question which would be asked is yes (default: false)
-   --help, -h       show help (default: false)
+  === Delete options ===
+
+  -f, --force        
+      --with-disks   
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Error handling options ===
+
+      --fail-if-not-found   
+
+  === Input options ===
+
+  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
 
-## shutdown
+## ssh {: #ssh }
 
-```bash
-USAGE:
-   usacloud server shutdown [command options] <ID or Name(allow multiple target)>
+##### Usage
+```console
+Usage:
+  ssh [flags]
 
-OPTIONS:
-   --assumeyes, -y  assume that the answer to any question which would be asked is yes (default: false)
-   --help, -h       show help (default: false)
+Flags:
+
+  === Server-specific options ===
+
+  -i, --key string         
+      --password string    (aliases: --pass-phrase)
+  -p, --port int           (*required)  (default 22)
+  -l, --user string        
+      --wait-until-ready   (aliases: --wait)
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
 
-## shutdown-force
+## vnc {: #vnc }
 
-```bash
-USAGE:
-   usacloud server shutdown-force [command options] <ID or Name(allow multiple target)>
+##### Usage
+```console
+Usage:
+  vnc [flags]
 
-OPTIONS:
-   --assumeyes, -y  assume that the answer to any question which would be asked is yes (default: false)
-   --help, -h       show help (default: false)
+Flags:
+
+  === Server-specific options ===
+
+      --wait-until-ready   (aliases: --wait)
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
 
-## reset
+## rdp {: #rdp }
 
-```bash
-USAGE:
-   usacloud server reset [command options] <ID or Name(allow multiple target)>
+##### Usage
+```console
+Usage:
+  rdp [flags]
 
-OPTIONS:
-   --assumeyes, -y  assume that the answer to any question which would be asked is yes (default: false)
-   --help, -h       show help (default: false)
+Aliases:
+  rdp, remote-desktop
+
+Flags:
+
+  === Server-specific options ===
+
+      --port int            (default 3389)
+      --user string         (default "Administrator")
+      --wait-until-ready   (aliases: --wait)
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
 
-## wait-for-boot
+## boot {: #boot }
 
-```bash
-USAGE:
-   usacloud server wait-for-boot [command options] <ID or Name(allow multiple target)>
+##### Usage
+```console
+Usage:
+  boot [flags]
 
-OPTIONS:
-   --help, -h  show help (default: false)
+Aliases:
+  boot, power-on
+
+Flags:
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Wait options ===
+
+      --no-wait   
+
+  === Input options ===
+
+  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
 
-## wait-for-down
+## shutdown {: #shutdown }
 
----
+##### Usage
+```console
+Usage:
+  shutdown [flags]
 
-# == SSH/SCP/VNC ==
+Aliases:
+  shutdown, power-off
 
-```bash
-USAGE:
-   usacloud server wait-for-down [command options] <ID or Name(allow multiple target)>
+Flags:
 
-OPTIONS:
-   --help, -h  show help (default: false)
+  === Server-specific options ===
+
+  -f, --force-shutdown   (aliases: --force)
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Wait options ===
+
+      --no-wait   
+
+  === Input options ===
+
+  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
 
-## ssh
+## reset {: #reset }
 
-```bash
-USAGE:
-   usacloud server ssh [command options] <ID or Name(only single target)>
+##### Usage
+```console
+Usage:
+  reset [flags]
 
-OPTIONS:
-   --key value, -i value   private-key file path
-   --password value        password(or private-key pass phrase) [$SAKURACLOUD_SSH_PASSWORD]
-   --port value, -p value  [Required] port (default: 22)
-   --quiet, -q             disable information messages (default: false)
-   --user value, -l value  user name
-   --help, -h              show help (default: false)
+Flags:
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
+  -y, --assumeyes           Assume that the answer to any question which would be asked is yes
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
 
-## ssh-exec
+## monitor-cpu {: #monitor-cpu }
 
-```bash
-USAGE:
-   usacloud server ssh-exec [command options] <ID or Name(only single target)>
+##### Usage
+```console
+Usage:
+  monitor-cpu [flags]
 
-OPTIONS:
-   --key value, -i value   private-key file path
-   --password value        password(or private-key pass phrase) [$SAKURACLOUD_SSH_PASSWORD]
-   --port value, -p value  [Required] port (default: 22)
-   --quiet, -q             disable information messages (default: false)
-   --user value, -l value  user name
-   --help, -h              show help (default: false)
+Flags:
+
+  === Monitor options ===
+
+      --end string     
+      --start string   
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Output options ===
+
+      --format string        Output format in Go templates (aliases: --fmt)
+  -o, --output-type string   Output format: one of the following [table/json/yaml] (aliases: --out)
+      --query string         JMESPath query
+  -q, --quiet                Output IDs only
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
 
-## scp
+## wait-until-ready {: #wait-until-ready }
 
-```bash
-USAGE:
-   usacloud server scp [command options] [ServerID:]<FROM> [ServerID:]<TO>
+##### Usage
+```console
+Usage:
+  wait-until-ready [flags]
 
-OPTIONS:
-   --assumeyes, -y         assume that the answer to any question which would be asked is yes (default: false)
-   --key value, -i value   private-key file path
-   --password value        password(or private-key pass phrase) [$SAKURACLOUD_SSH_PASSWORD]
-   --port value, -p value  [Required] port (default: 22)
-   --quiet, -q             disable information messages (default: false)
-   --recursive, -r         set recursive copy flag (default: false)
-   --user value, -l value  user name
-   --help, -h              show help (default: false)
+Aliases:
+  wait-until-ready, wait-for-boot
+
+Flags:
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
 
-## vnc
+## wait-until-shutdown {: #wait-until-shutdown }
 
-```bash
-USAGE:
-   usacloud server vnc [command options] <ID or Name(allow multiple target)>
+##### Usage
+```console
+Usage:
+  wait-until-shutdown [flags]
 
-OPTIONS:
-   --assumeyes, -y  assume that the answer to any question which would be asked is yes (default: false)
-   --help, -h       show help (default: false)
+Aliases:
+  wait-until-shutdown, wait-for-down
+
+Flags:
+
+  === Zone options ===
+
+      --zone string   (*required) 
+
+  === Input options ===
+
+      --generate-skeleton   Output skeleton of parameters with JSON format (aliases: --skeleton)
+      --parameters string   Input parameters in JSON format
+
+  === Parameter example ===
+
+      --example   Output example parameters with JSON format
+
 ```
 
----
-
-## vnc-info
-
-```bash
-USAGE:
-   usacloud server vnc-info [command options] <ID or Name(allow multiple target)>
-
-OPTIONS:
- === Common options ===
-   --help, -h  show help (default: false)
-```
-
----
-
-# == ディスク管理 ===
-
----
-
-## disk-info
-
-```bash
-USAGE:
-   usacloud server disk-info [command options] <ID or Name(only single target)>
-
-OPTIONS:
- === Common options ===
-   --help, -h  show help (default: false)
-```
-
----
-
-## disk-connect
-
-```bash
-USAGE:
-   usacloud server disk-connect [command options] <ID or Name(only single target)>
-
-OPTIONS:
-   --assumeyes, -y  assume that the answer to any question which would be asked is yes (default: false)
-   --disk-id value  [Required] set target disk ID (default: 0)
-   --help, -h       show help (default: false)
-```
-
----
-
-## disk-disconnect
-
-```bash
-USAGE:
-   usacloud server disk-disconnect [command options] <ID or Name(only single target)>
-
-OPTIONS:
-   --assumeyes, -y  assume that the answer to any question which would be asked is yes (default: false)
-   --disk-id value  [Required] set target disk ID (default: 0)
-   --help, -h       show help (default: false)
-```
-
----
-
-# == ネットワーク(NIC)管理 ==
-
----
-
-## interface-info
-
-```bash
-USAGE:
-   usacloud server interface-info [command options] <ID or Name(only single target)>
-
-OPTIONS:
- === Common options ===
-   --help, -h  show help (default: false)
-```
-
----
-
-## interface-add-for-internet
-
-```bash
-USAGE:
-   usacloud server interface-add-for-internet [command options] <ID or Name(only single target)>
-
-OPTIONS:
-   --assumeyes, -y      assume that the answer to any question which would be asked is yes (default: false)
-   --without-disk-edit  set skip edit-disk flag. if true, don't call DiskEdit API after interface added (default: false)
-   --help, -h           show help (default: false)
-```
-
----
-
-## interface-add-for-router
-
-```bash
-USAGE:
-   usacloud server interface-add-for-router [command options] <ID or Name(only single target)>
-
-OPTIONS:
-   --assumeyes, -y                              assume that the answer to any question which would be asked is yes (default: false)
-   --default-route value, --gateway value       set default gateway
-   --ipaddress value, --ip value                set ipaddress
-   --nw-masklen value, --network-masklen value  set ipaddress  prefix (default: 24)
-   --switch-id value                            [Required] set connect switch(connected to router) ID (default: 0)
-   --without-disk-edit                          set skip edit-disk flag. if true, don't call DiskEdit API after interface added (default: false)
-   --help, -h                                   show help (default: false)
-```
-
----
-
-## interface-add-for-switch
-
-```bash
-USAGE:
-   usacloud server interface-add-for-switch [command options] <ID or Name(only single target)>
-
-OPTIONS:
-   --assumeyes, -y                              assume that the answer to any question which would be asked is yes (default: false)
-   --default-route value, --gateway value       set default gateway
-   --ipaddress value, --ip value                set ipaddress
-   --nw-masklen value, --network-masklen value  set ipaddress  prefix (default: 24)
-   --switch-id value                            [Required] set connect switch ID (default: 0)
-   --without-disk-edit                          set skip edit-disk flag. if true, don't call DiskEdit API after interface added (default: false)
-   --help, -h                                   show help (default: false)
-```
-
----
-
-## interface-add-disconnected
-
-```bash
-USAGE:
-   usacloud server interface-add-disconnected [command options] <ID or Name(only single target)>
-
-OPTIONS:
-   --assumeyes, -y  assume that the answer to any question which would be asked is yes (default: false)
-   --help, -h       show help (default: false)
-```
-
----
-
-# == ISOイメージ(CD-ROM) ==
-
----
-
-## iso-info
-
-```bash
-USAGE:
-   usacloud server iso-info [command options] <ID or Name(only single target)>
-
-OPTIONS:
- === Common options ===
-   --help, -h  show help (default: false)
-```
-
----
-
-## iso-insert
-
-```bash
-USAGE:
-   usacloud server iso-insert [command options] <ID or Name(only single target)>
-
-OPTIONS:
-   --assumeyes, -y                    assume that the answer to any question which would be asked is yes (default: false)
-   --description value, --desc value  set resource description
-   --icon-id value                    set Icon ID (default: 0)
-   --iso-file value                   set iso image file
-   --iso-image-id value               set iso-image ID (default: 0)
-   --name value                       set resource display name
-   --size value                       set iso size(GB) (default: 5)
-   --tags value                       set resource tags
-   --help, -h                         show help (default: false)
-```
-
----
-
-## iso-eject
-
-```bash
-USAGE:
-   usacloud server iso-eject [command options] <ID or Name(only single target)>
-
-OPTIONS:
-   --assumeyes, -y  assume that the answer to any question which would be asked is yes (default: false)
-   --help, -h       show help (default: false)
-```
-
----
-
-# == 監視/モニタリング ==
-
----
-
-## monitor-cpu
-
-```bash
-USAGE:
-   usacloud server monitor-cpu [command options] <ID or Name(allow multiple target)>
-
-OPTIONS:
- === Common options ===
-   --end value         set end-time
-   --key-format value  [Required] set monitoring value key-format (default: "sakuracloud.{{.ID}}.cpu")
-   --start value       set start-time
-   --help, -h          show help (default: false)
-```
-
----
-
-## monitor-nic
-
-```bash
-USAGE:
-   usacloud server monitor-nic [command options] <ID or Name(allow multiple target)>
-
-OPTIONS:
- === Common options ===
-   --end value         set end-time
-   --index value       target index(es)
-   --key-format value  [Required] set monitoring value key-format (default: "sakuracloud.{{.ID}}.nic.{{.Index}}")
-   --start value       set start-time
-   --help, -h          show help (default: false)
-```
-
----
-
-## monitor-disk
-
-```bash
-USAGE:
-   usacloud server monitor-disk [command options] <ID or Name(allow multiple target)>
-
-OPTIONS:
- === Common options ===
-   --end value         set end-time
-   --index value       target index(es)
-   --key-format value  [Required] set monitoring value key-format (default: "sakuracloud.{{.ID}}.disk.{{.Index}}")
-   --start value       set start-time
-   --help, -h          show help (default: false)
-```
 

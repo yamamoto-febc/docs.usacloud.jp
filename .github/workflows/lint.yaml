@@ -11,6 +11,7 @@ jobs:
           - './src/terraform-v1'
           - './src/top'
           - './src/usacloud'
+          - './src/usacon'
     steps:
       - name: Checkout
         uses: actions/checkout@v2

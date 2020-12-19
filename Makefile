@@ -2,6 +2,7 @@ default: preview
 
 TOP_DIR := src/top
 USACLOUD_DIR := src/usacloud
+USACON_DIR := src/usacon
 TERRAFORM_V1_DIR := src/terraform-v1
 TERRAFORM_V2_DIR := src/terraform
 
@@ -24,6 +25,8 @@ lint: build-textlint
 	@(cd $(TERRAFORM_V2_DIR); make lint)
 	@echo "running textlint in $(USACLOUD_DIR)..."
 	@(cd $(USACLOUD_DIR); make lint)
+	@echo "running textlint in $(USACON_DIR)..."
+	@(cd $(USACON_DIR); make lint)
 
 .PHONY: preview-top
 preview-top:
@@ -41,6 +44,10 @@ preview-terraform:
 preview-usacloud:
 	@(cd $(USACLOUD_DIR); make preview)
 
+.PHONY: preview-usacon
+preview-usacon:
+	@(cd $(USACON_DIR); make preview)
+
 .PHONY: preview-all
 preview: preview-all
 preview-all:
@@ -55,3 +62,5 @@ clean:
 	@(cd $(TERRAFORM_V2_DIR); make clean)
 	@echo "cleaning in $(USACLOUD_DIR)..."
 	@(cd $(USACLOUD_DIR); make clean)
+	@echo "cleaning in $(USACON_DIR)..."
+	@(cd $(USACON_DIR); make clean)

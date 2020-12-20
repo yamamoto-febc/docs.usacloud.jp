@@ -16,3 +16,7 @@ Terraformのさくらのクラウド向けProviderプラグイン(v1)
 
 さくらのクラウド向けCLI
 
+#### [UsaCon](./usacon/)
+
+Usacloudをコントロールパネル上で利用可能にするChrome拡張
+

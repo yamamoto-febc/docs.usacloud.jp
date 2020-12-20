@@ -175,8 +175,8 @@ github.com/ryanuber/columnize v0.0.0-20160712163229-9b3edd62028f/go.mod h1:sm1tb
 github.com/sacloud/ftps v1.1.0/go.mod h1:h4awhOi3PEyhKLj1FpXjoVV5yVkmRUU+d5L95EwX2JU=
 github.com/sacloud/libsacloud/v2 v2.8.11-0.20201215043141-215ba08138a4 h1:TGwiszvl3ssOdh9x1N4peEg7UzGmhjsa06nYwcLTwCU=
 github.com/sacloud/libsacloud/v2 v2.8.11-0.20201215043141-215ba08138a4/go.mod h1:gRNUdloSQqgQfTEMpot80TK7REly0TSME6dn5aZl3GY=
-github.com/sacloud/usacloud v1.0.0-rc.1.0.20201220072705-d92f086bce5d h1:UPsjCLo6IZAVvDGi1D6zqPGRSXsaoD3U0rceig1+daA=
-github.com/sacloud/usacloud v1.0.0-rc.1.0.20201220072705-d92f086bce5d/go.mod h1:ERrHyCrCr6CsGsEQVq5CfKzHvptYXqIMNwBAx4SnjaE=
+github.com/sacloud/usacloud v1.0.0-rc.1.0.20201220083755-495b77e63a2f h1:qhtFBrBoVbcg8icCYqC8PzBCamT/dKqAEIdbBbnfoZ4=
+github.com/sacloud/usacloud v1.0.0-rc.1.0.20201220083755-495b77e63a2f/go.mod h1:ERrHyCrCr6CsGsEQVq5CfKzHvptYXqIMNwBAx4SnjaE=
 github.com/sean-/seed v0.0.0-20170313163322-e2103e2c3529/go.mod h1:DxrIzT+xaE7yg65j358z/aeFdxmN0P9QXhEzd20vsDc=
 github.com/shurcooL/sanitized_anchor_name v1.0.0/go.mod h1:1NzhyTcUVG4SuEtjjoZeVRXNmyL/1OwPU0+IJeTBvfc=
 github.com/sirupsen/logrus v1.2.0/go.mod h1:LxeOpSwHxABJmUn/MG1IvRgCAasNZTLOkJPxbbu5VWo=

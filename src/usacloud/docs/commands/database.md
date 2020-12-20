@@ -95,7 +95,7 @@ Flags:
   === Backup options ===
 
       --enable-backup                  
-      --backup-weekdays strings        (*required) options: [all/sun/mon/tue/wed/thu/fri/sat]
+      --backup-weekdays strings        (*required when --enable-backup is specified) options: [all/sun/mon/tue/wed/thu/fri/sat]
       --backup-start-time-hour int     
       --backup-start-time-minute int   options: [0/15/30/45]
 
@@ -111,7 +111,7 @@ Flags:
   === Replication options ===
 
       --enable-replication             
-      --replica-user-password string   (*required) 
+      --replica-user-password string   (*required when --enable-replication is specified)
 
   === User options ===
 
@@ -242,7 +242,7 @@ Flags:
   === Backup options ===
 
       --enable-backup                  
-      --backup-weekdays strings        (*required) options: [all/sun/mon/tue/wed/thu/fri/sat]
+      --backup-weekdays strings        options: [all/sun/mon/tue/wed/thu/fri/sat]
       --backup-start-time-hour int     
       --backup-start-time-minute int   
 
@@ -253,7 +253,7 @@ Flags:
   === Replication options ===
 
       --enable-replication             
-      --replica-user-password string   (*required) 
+      --replica-user-password string   (*required when --enable-replication is specified)
 
   === Zone options ===
 

@@ -80,7 +80,7 @@ Flags:
 
   === Cdrom-specific options ===
 
-      --size int             (*required)  (default 5)
+      --size int             (*required when --source-file is specified) (default 5)
       --source-file string   (*required) 
 
   === Zone options ===

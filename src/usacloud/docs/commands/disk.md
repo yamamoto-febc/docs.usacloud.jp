@@ -203,7 +203,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  read [flags]
+  read { ID | NAME | TAG } [flags]
 
 Aliases:
   read, show
@@ -238,7 +238,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  update [flags]
+  update { ID | NAME | TAG }... [flags]
 
 Flags:
 
@@ -350,7 +350,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  delete [flags]
+  delete { ID | NAME | TAG }... [flags]
 
 Aliases:
   delete, rm
@@ -396,7 +396,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  connect-to-server [flags]
+  connect-to-server { ID | NAME | TAG } [flags]
 
 Aliases:
   connect-to-server, server-connect
@@ -429,7 +429,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  edit [flags]
+  edit { ID | NAME | TAG }... [flags]
 
 Flags:
 
@@ -483,7 +483,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  disconnect-from-server [flags]
+  disconnect-from-server { ID | NAME | TAG } [flags]
 
 Aliases:
   disconnect-from-server, server-disconnect
@@ -512,7 +512,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  resize-partition [flags]
+  resize-partition { ID | NAME | TAG } [flags]
 
 Flags:
 
@@ -538,7 +538,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  monitor-disk [flags]
+  monitor-disk { ID | NAME | TAG }... [flags]
 
 Aliases:
   monitor-disk, monitor
@@ -578,7 +578,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  wait-until-ready [flags]
+  wait-until-ready { ID | NAME | TAG }... [flags]
 
 Aliases:
   wait-until-ready, wait, wait-for-copy

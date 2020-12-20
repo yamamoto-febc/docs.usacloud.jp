@@ -48,7 +48,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  csv [flags]
+  csv BillID [flags]
 
 Flags:
 

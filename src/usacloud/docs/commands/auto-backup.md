@@ -125,7 +125,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  read [flags]
+  read { ID | NAME | TAG } [flags]
 
 Aliases:
   read, show
@@ -160,7 +160,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  update [flags]
+  update { ID | NAME | TAG }... [flags]
 
 Flags:
 
@@ -223,7 +223,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  delete [flags]
+  delete { ID | NAME | TAG }... [flags]
 
 Aliases:
   delete, rm

@@ -56,7 +56,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  read [flags]
+  read { ID | NAME | TAG } [flags]
 
 Aliases:
   read, show

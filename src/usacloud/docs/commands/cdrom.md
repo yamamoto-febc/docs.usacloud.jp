@@ -128,7 +128,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  read [flags]
+  read { ID | NAME | TAG } [flags]
 
 Aliases:
   read, show
@@ -163,7 +163,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  update [flags]
+  update { ID | NAME | TAG }... [flags]
 
 Flags:
 
@@ -217,7 +217,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  delete [flags]
+  delete { ID | NAME | TAG }... [flags]
 
 Aliases:
   delete, rm
@@ -263,7 +263,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  upload [flags]
+  upload { ID | NAME | TAG }... [flags]
 
 Flags:
 
@@ -293,7 +293,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  download [flags]
+  download { ID | NAME | TAG } [flags]
 
 Flags:
 
@@ -325,7 +325,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  ftp-open [flags]
+  ftp-open { ID | NAME | TAG }... [flags]
 
 Aliases:
   ftp-open, open-ftp
@@ -365,7 +365,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  ftp-close [flags]
+  ftp-close { ID | NAME | TAG }... [flags]
 
 Aliases:
   ftp-close, close-ftp

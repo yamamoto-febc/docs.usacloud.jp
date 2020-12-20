@@ -189,7 +189,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  read [flags]
+  read { ID | NAME | TAG } [flags]
 
 Aliases:
   read, show
@@ -224,7 +224,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  update [flags]
+  update { ID | NAME | TAG }... [flags]
 
 Flags:
 
@@ -315,7 +315,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  delete [flags]
+  delete { ID | NAME | TAG }... [flags]
 
 Aliases:
   delete, rm
@@ -359,7 +359,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  boot [flags]
+  boot { ID | NAME | TAG }... [flags]
 
 Aliases:
   boot, power-on
@@ -392,7 +392,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  shutdown [flags]
+  shutdown { ID | NAME | TAG }... [flags]
 
 Aliases:
   shutdown, power-off
@@ -429,7 +429,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  reset [flags]
+  reset { ID | NAME | TAG }... [flags]
 
 Flags:
 
@@ -455,7 +455,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  monitor-cpu [flags]
+  monitor-cpu { ID | NAME | TAG }... [flags]
 
 Flags:
 
@@ -492,7 +492,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  monitor-database [flags]
+  monitor-database { ID | NAME | TAG }... [flags]
 
 Flags:
 
@@ -529,7 +529,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  monitor-disk [flags]
+  monitor-disk { ID | NAME | TAG }... [flags]
 
 Flags:
 
@@ -566,7 +566,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  monitor-interface [flags]
+  monitor-interface { ID | NAME | TAG }... [flags]
 
 Aliases:
   monitor-interface, monitor-nic
@@ -606,7 +606,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  wait-until-ready [flags]
+  wait-until-ready { ID | NAME | TAG }... [flags]
 
 Aliases:
   wait-until-ready, wait-for-boot
@@ -634,7 +634,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  wait-until-shutdown [flags]
+  wait-until-shutdown { ID | NAME | TAG }... [flags]
 
 Aliases:
   wait-until-shutdown, wait-for-down

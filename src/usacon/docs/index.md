@@ -23,7 +23,7 @@ WebAssemblyを利用しており別途サーバを必要とせずにブラウザ
     - [コンソールの操作](#console_usage)
         - [コマンド](#console_commands)
         - [キーボードショートカット](#keyboard_shortcut)
-
+- [Usacloudとの違い](#diff)
 ---
 
 ## Install {: #install }
@@ -118,3 +118,25 @@ bash風のキーボードショートカットが利用可能です。
 - `ctrl + e`: カーソルを行末へ移動
 - `ctrl + b`: カーソルを1文字前へ移動
 - `ctrl + f`: カーソルを1文字後ろへ移動
+
+## Usacloudとの違い {: #diff }
+
+#### 使用できないコマンド
+
+以下のコマンドは利用できません。
+
+- `usacloud config`(`profile`)
+- `usacloud server ssh`
+- `usacloud server rdp`
+- `usacloud server vnc`
+- `usacloud self`
+
+#### 使用できないコマンドラインオプション
+
+以下のオプションは利用できません。
+
+- `--profile`
+- `--zones`
+- `--trace`
+- `--fake-store`
+

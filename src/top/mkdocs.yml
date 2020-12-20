@@ -4,7 +4,9 @@ site_description: Sacloudの提供するOSSツール群のドキュメント
 site_author: '@yamamoto-febc'
 copyright: Copyright (C) 2016-2020 sacloude authors
 google_analytics: ['UA-63739336-5','auto']
-theme: readthedocs
+theme:
+  name: readthedocs
+  navigation_depth: 1
 extra_css:
   - css/extra.css
 nav:

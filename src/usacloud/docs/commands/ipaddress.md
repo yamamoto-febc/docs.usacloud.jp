@@ -54,7 +54,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  read [flags]
+  read ipv4_address [flags]
 
 Aliases:
   read, show
@@ -93,7 +93,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  update-host-name [flags]
+  update-host-name { ID | NAME | TAG }... [flags]
 
 Flags:
 

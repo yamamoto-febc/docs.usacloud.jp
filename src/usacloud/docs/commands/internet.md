@@ -141,7 +141,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  read [flags]
+  read { ID | NAME | TAG } [flags]
 
 Aliases:
   read, show
@@ -176,7 +176,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  update [flags]
+  update { ID | NAME | TAG }... [flags]
 
 Flags:
 
@@ -237,7 +237,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  delete [flags]
+  delete { ID | NAME | TAG }... [flags]
 
 Aliases:
   delete, rm
@@ -281,7 +281,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  list-subnet [flags]
+  list-subnet { ID | NAME | TAG }... [flags]
 
 Aliases:
   list-subnet, subnet-list
@@ -316,7 +316,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  add-subnet [flags]
+  add-subnet { ID | NAME | TAG }... [flags]
 
 Aliases:
   add-subnet, subnet-add
@@ -357,7 +357,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  delete-subnet [flags]
+  delete-subnet { ID | NAME | TAG } [flags]
 
 Aliases:
   delete-subnet, subnet-delete
@@ -394,7 +394,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  enable-ipv6 [flags]
+  enable-ipv6 { ID | NAME | TAG }... [flags]
 
 Aliases:
   enable-ipv6, ipv6-enable
@@ -430,7 +430,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  disable-ipv6 [flags]
+  disable-ipv6 { ID | NAME | TAG }... [flags]
 
 Aliases:
   disable-ipv6, ipv6-disable
@@ -459,7 +459,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  monitor-router [flags]
+  monitor-router { ID | NAME | TAG }... [flags]
 
 Aliases:
   monitor-router, monitor

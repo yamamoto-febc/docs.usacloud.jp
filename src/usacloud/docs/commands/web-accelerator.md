@@ -55,7 +55,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  read [flags]
+  read { ID | NAME | TAG } [flags]
 
 Aliases:
   read, show
@@ -86,7 +86,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  read-certificate [flags]
+  read-certificate { ID | NAME | TAG } [flags]
 
 Aliases:
   read-certificate, certificate-read, cert-read
@@ -117,7 +117,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  create-certificate [flags]
+  create-certificate { ID | NAME | TAG } [flags]
 
 Aliases:
   create-certificate, certificate-create, cert-create
@@ -162,7 +162,7 @@ Flags:
 ##### Usage
 ```console
 Usage:
-  update-certificate [flags]
+  update-certificate { ID | NAME | TAG } [flags]
 
 Aliases:
   update-certificate, certificate-update, cert-update

@@ -84,8 +84,8 @@ Flags:
   === Mobile-Gateway-specific options ===
 
       --boot-after-create                                 
-      --dns1 string                                       (*required) 
-      --dns2 string                                       (*required) 
+      --dns1 string                                       
+      --dns2 string                                       
       --inter-device-communication-enabled                
       --internet-connection-enabled                       
       --sim-routes string                                 
@@ -238,8 +238,8 @@ Flags:
 
   === Mobile-Gateway-specific options ===
 
-      --dns1 string                                       (*required) 
-      --dns2 string                                       (*required) 
+      --dns1 string                                       
+      --dns2 string                                       
       --inter-device-communication-enabled                
       --internet-connection-enabled                       
       --sim-routes string                                 

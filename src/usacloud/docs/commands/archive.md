@@ -82,7 +82,7 @@ Flags:
 
   === Archive-specific options ===
 
-      --size int                (*required) 
+      --size int                (*required when --source-file is specified)
       --source-archive-id int   
       --source-disk-id int      
       --source-file string      
